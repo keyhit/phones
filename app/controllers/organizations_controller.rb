@@ -12,9 +12,9 @@ class OrganizationsController < ApplicationController
 
   def create
     @organization = Organization.new(organization_params)
- 
+
     if @organization.save
-      redirect_to organizations_path
+      redirect_to organization_path(organization)
     end
   end
 
@@ -40,7 +40,8 @@ class OrganizationsController < ApplicationController
   end
 
   def organization
-    @organization ||= Organization.find(params[:id])
+      @organization ||= Organization.find(params[:id])
   end
   helper_method :organization
+
 end

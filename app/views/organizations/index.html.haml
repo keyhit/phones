@@ -22,7 +22,7 @@
       %ul.list-group
       - @organizations.each do |organization|
         %li.list-group-item
-          = link_to 'Remove', organization_path(organization), method: :delete, :class => 'btn btn-danger'
+          = link_to 'Remove', organization_path(organization), :class => 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' }
           = link_to 'edit', edit_organization_path(organization), :class => 'btn btn-warning'
-          = link_to organization.name, organization_path(organization), :class => 'btn btn-success'
+          = link_to organization.name, organization_path(organization.id), :class => 'btn btn-success'
   .col-md-8

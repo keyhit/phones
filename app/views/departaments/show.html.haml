@@ -1,0 +1,22 @@
+.navbar.navbar-default{:role=>"navigation"}>
+  .container-fluid
+    .navbar-header
+      .navbar-brand 
+        This departament 
+        = departament.departament_name
+        of 
+        = organization.name
+        company
+    .collapse.navbar-collapse
+    #bs-example-navbar-collapse-1
+    %ul.nav.navbar-nav
+      %li= link_to 'ALL COMPANIES', organizations_path()
+      %li= link_to 'MY COMPANY', organization_path(id: organization.id)
+      %li= link_to 'ALL DEPARTAMENT', organization_departaments_path()
+%table.table
+  %tr
+    %th Departament name
+    %th Departament description
+  %tr
+    %td= departament.departament_name
+    %td= departament.departament_description

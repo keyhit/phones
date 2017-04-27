@@ -19,7 +19,7 @@
   - units.each do |unit|
     %tr
       %td= unit.full_name
-      %td= link_to 'detail', organization_departament_unit_path(id: unit.id)
-      %td= link_to 'edit', edit_organization_departament_unit_path(id: unit.id)
-      %td= link_to 'destroy', organization_departament_unit_path(id: unit.id), method: :delete
+      %td= link_to 'Detail', organization_departament_unit_path(id: unit.id)
+      %td= link_to 'Edit', edit_organization_departament_unit_path(id: unit.id)
+      %td= link_to 'Destroy', organization_departament_unit_path(id: unit.id), method: :delete, data: { confirm: 'Are you sure?' }
 / = render "1.html.erb"

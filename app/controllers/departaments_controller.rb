@@ -43,6 +43,6 @@ class DepartamentsController < ApplicationController
     def departament
       @departament ||= departaments.find(params[:id])
     end
-
     helper_method :departament
+
 end

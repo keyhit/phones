@@ -27,4 +27,4 @@
         %td= link_to 'Units', organization_departament_units_path(departament.organization_id, departament.id)
         %td= link_to 'Details', organization_departament_path(departament.organization_id, departament.id)
         %td= link_to 'Edit', edit_organization_departament_path(departament.organization_id, departament.id)
-        %td= link_to 'Delete departament', organization_departament_path(departament.organization_id, departament.id), method: :delete
+        %td= link_to 'Delete departament', organization_departament_path(departament.organization_id, departament.id), method: :delete, data: { confirm: 'Are you sure?' }

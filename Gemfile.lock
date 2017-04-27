@@ -43,9 +43,6 @@ GEM
     autoprefixer-rails (6.7.7.2)
       execjs
     bindex (0.5.0)
-    bootstrap (4.0.0.alpha6)
-      autoprefixer-rails (>= 6.0.3)
-      sass (>= 3.4.19)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -173,7 +170,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap (~> 4.0.0.alpha6)
   bootstrap-sass (~> 3.3.6)
   bootstrap_form
   byebug
