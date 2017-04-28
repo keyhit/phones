@@ -21,3 +21,15 @@
   %tr
     %td= departament.departament_name
     %td= departament.departament_description
+%br/
+%table.table
+  %caption 
+    Units of 
+    = departament.departament_name
+  %tr 
+    %td Id
+    %td Name
+  - units.each do |unit|
+    %tr
+      %td= unit.id
+      %td= link_to unit.full_name, organization_departament_unit_path(organization.id, departament.id, unit.id)
