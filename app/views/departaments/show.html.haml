@@ -12,7 +12,8 @@
     %ul.nav.navbar-nav
       %li= link_to 'ALL COMPANIES', organizations_path()
       %li= link_to 'MY COMPANY', organization_path(id: organization.id)
-      %li= link_to 'ALL DEPARTAMENT', organization_departaments_path()
+      %li= link_to 'ALL DEPARTAMENTS', organization_departaments_path()
+      %li= link_to 'ADD NEW UNIT', new_organization_departament_unit_path(departament_id: departament.id), :type => "button",:class => "btn btn-default"
 %table.table
   %tr
     %th Departament name

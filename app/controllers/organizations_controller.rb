@@ -12,8 +12,10 @@ class OrganizationsController < ApplicationController
 
   def create
     @organization = Organization.new(organization_params)
-
-    if @organization.save
+    @first_departament_id = organization.departaments.ids[0]
+    if @organization.save and @first_departament_id == nil
+      redirect_to new_organization_departament_path(organization)
+    else
       redirect_to organization_path(organization)
     end
   end
@@ -43,5 +45,4 @@ class OrganizationsController < ApplicationController
       @organization ||= Organization.find(params[:id])
   end
   helper_method :organization
-
 end

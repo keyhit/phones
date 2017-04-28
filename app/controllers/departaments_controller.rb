@@ -10,8 +10,14 @@ class DepartamentsController < ApplicationController
   end
 
   def create
-    if departaments.create(departament_params)
-      redirect_to organization_departaments_path(organization)
+    if !organization.departaments.ids[0]
+      if departaments.create(departament_params)
+        redirect_to new_organization_departament_unit_path(organization, organization.departaments.ids[0])
+      end
+    else
+      if departaments.create(departament_params)
+        redirect_to new_organization_departament_unit_path(organization, organization.departaments.ids[-1])
+      end
     end
   end
 
