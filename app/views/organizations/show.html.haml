@@ -14,13 +14,40 @@
           %li= link_to 'ALL COMPANIES', organizations_path()
           %li= link_to 'DEPARTAMENTS', organization_departaments_path(organization)
 .row
-  .col_md-6
-
-  .col-md-6
-    = organization.name
-    = organization.address
-    = organization.phone
-    = organization.email
+  .col-md-1
+  .col-md-2
+    - unless organization.organizationlogotype_url.nil?
+      = image_tag organization.organizationlogotype_url, size: "160x120", alt: "company logo", class: "center-block img-rounded"
+    %table.table.table-striped
+      %caption Our skills
+      %tr 
+        %td= organization.our_skils
+  .col-md-4 
+    %table.table.table-striped
+      %trin
+        %th Company name
+        %td= organization.name
+      %tr
+        %th Headquarters address
+        %td= organization.address
+      %tr
+        %th Phone
+        %td= organization.phone
+      %tr
+        %th Fax
+        %td Fax
+      %tr
+        %th E-mail
+        %td= organization.email
+      %tr
+        %th Web site
+        %td Web site
+      %tr
+        %th Adminstrative actions
+        %td
+          = link_to 'edit', edit_organization_path(organization), :class => 'btn btn-warning'
+          = link_to 'Remove', organization_path(organization), :class => 'btn btn-danger', method: :delete, data: { confirm: 'CAUTION! After you confirm all will be deleted!!!' }
+  .col-md-1
 .row
   .col-md-12
     %table.table
@@ -37,5 +64,3 @@
           %td= departament.id
           %td= link_to departament.departament_name, organization_departament_path(organization.id, departament.id)
           %td= departament.departament_description
-
-= image_tag('logo.jpg', size: "100x100", alt: "my logo")

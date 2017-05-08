@@ -38,7 +38,7 @@ class DepartamentsController < ApplicationController
 
   private 
     def departament_params
-      params.require(:departament).permit(:departament_name, :departament_description)
+      params.require(:departament).permit(:departament_name, :departament_description, :departamentlogotype)
     end
 
     def departaments

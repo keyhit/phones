@@ -58,6 +58,9 @@ gem 'sprockets-rails', '~> 3.2.0'
 gem 'bootstrap_form'
 gem 'bootstrap-sass', '~> 3.3.6'
 
+gem 'carrierwave', '~> 1.0'
+gem 'cloudinary'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end

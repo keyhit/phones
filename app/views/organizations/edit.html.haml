@@ -7,5 +7,11 @@
       = f.text_field :address
       = f.text_field :phone
       = f.text_field :email
+      = f.text_area :our_skils
+      = f.label :organizationlogotype, 'Curent logotype'
+      %br
+      = image_tag(organization.organizationlogotype_url.to_s, size: "50x30", alt: "my logo")
+      = f.file_field :organizationlogotype, :class => "btn btn-default"
       = f.submit :class => "btn btn-primary"
-      = link_to 'CANCEL', organizations_path(), :type=> "button", :class => "btn btn-danger"
+      = link_to 'CANCEL', organization_path(organization), :type=> "button", :class => "btn btn-danger"
+клаудінарі сервіс для файлів

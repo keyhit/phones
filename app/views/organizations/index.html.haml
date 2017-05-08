@@ -22,7 +22,7 @@
       %ul.list-group
       - @organizations.each do |organization|
         %li.list-group-item
-          = link_to 'Remove', organization_path(organization), :class => 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' }
-          = link_to 'edit', edit_organization_path(organization), :class => 'btn btn-warning'
+          - unless organization.organizationlogotype_url.nil?
+            = image_tag organization.organizationlogotype_url, size: "50x35", alt: "company logo"
           = link_to organization.name, organization_path(organization.id), :class => 'btn btn-success'
   .col-md-8

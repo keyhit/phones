@@ -14,6 +14,7 @@
 %table.table
   %tr
     %th Departament id
+    %th Departament logotype
     %th Departament name
     %th Departament description
     %th Organization id
@@ -21,6 +22,9 @@
     - departaments.each do |departament|
       %tr
         %td= departament.id
+        %td
+          - unless departament.departamentlogotype_url.nil?
+            = image_tag departament.departamentlogotype_url, size: "50x35", alt: "company logo"
         %td= departament.departament_name
         %td= departament.departament_description
         %td= departament.organization_id

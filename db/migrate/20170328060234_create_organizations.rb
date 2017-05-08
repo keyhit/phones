@@ -5,6 +5,9 @@ class CreateOrganizations < ActiveRecord::Migration[5.0]
       t.string :address
       t.string :phone
       t.string :email
+      t.string :our_skils
+      t.string :image
+
 
       t.timestamps
     end

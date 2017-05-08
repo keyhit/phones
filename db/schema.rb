@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170416111709) do
+ActiveRecord::Schema.define(version: 20170508212418) do
 
   create_table "departaments", force: :cascade do |t|
     t.string   "departament_name"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170416111709) do
     t.integer  "organization_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "departamentlogotype"
     t.index ["organization_id"], name: "index_departaments_on_organization_id"
   end
 
@@ -32,16 +33,36 @@ ActiveRecord::Schema.define(version: 20170416111709) do
     t.string   "address"
     t.string   "phone"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "our_skils"
+    t.string   "image"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "organizationlogotype"
   end
 
   create_table "units", force: :cascade do |t|
     t.string   "full_name"
+    t.string   "post"
+    t.string   "primary_email"
+    t.string   "secondary_email"
+    t.string   "primary_phone_number"
+    t.string   "secondary_phone_number"
+    t.string   "short_phone_nunber"
+    t.string   "fax"
+    t.string   "home_phone_number"
+    t.string   "web_page"
+    t.string   "start_work"
+    t.string   "finish_work"
+    t.string   "working_days"
+    t.date     "birthday"
+    t.string   "login"
+    t.string   "password"
+    t.string   "unitphoto"
+    t.string   "characteristic"
     t.integer  "departament_id"
     t.integer  "organization_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.index ["departament_id"], name: "index_units_on_departament_id"
     t.index ["organization_id"], name: "index_units_on_organization_id"
   end

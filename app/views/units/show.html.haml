@@ -11,10 +11,66 @@
       %li= link_to 'MY COMPANY', organization_path(id: organization.id)
       %li= link_to 'DEPARTAMENTS', organization_departaments_path()
       %li= link_to 'ALL UNITS', organization_departament_units_path()
-%table.table
-  %tr
-    %th Id
-    %th Full name
-  %tr
-    %td= unit.id
-    %td= unit.full_name
+.row
+  .col-md-1
+  .col-md-3
+    = image_tag(unit.unitphoto_url.to_s, size: "160x120", alt: "my logo", :class => "center-block img-rounded")
+    %h4 Characteristic
+    %p= unit.characteristic
+  .col-md-5
+    %table.table
+      %tr
+        %th Name, surename, patronimic
+        %td= unit.full_name
+      %tr
+        %th Has post of
+        %td= unit.post
+      %tr
+        %th Primary email
+        %td= unit.primary_email
+      %tr
+        %th Secondary email
+        %td= unit.secondary_email
+
+      %tr
+        %th Primary phone number
+        %td= unit.primary_phone_number
+
+      %tr
+        %th Secondary phone number
+        %td= unit.secondary_phone_number
+      %tr
+        %th Short phone number
+        %td= unit.short_phone_nunber
+      %tr
+        %th Fax phone number
+        %td= unit.fax
+      %tr
+        %th Home phone number
+        %td= unit.home_phone_number
+      %tr
+        %th Oficial web page
+        %td= unit.web_page
+      %tr
+        %th Has began work at
+        %td= unit.start_work
+      %tr
+        %th Has finished work at
+        %td= unit.finish_work
+      %tr
+        %th Has working 
+        %td= unit.working_days
+      %tr
+        %th Birthday
+        %td= unit.birthday
+      %tr
+        %th Login 
+        %td= unit.login
+      %tr
+        %th Password
+        %td= unit.password
+      %tr
+        %th Adminstrative actions
+        %td
+          = link_to 'edit', edit_organization_departament_unit_path(organization, departament, unit), :class => 'btn btn-warning'
+          = link_to 'Remove', organization_departament_unit_path(organization, departament, unit), :class => 'btn btn-danger', method: :delete, data: { confirm: 'CAUTION! After you confirm all will be deleted!!!' }

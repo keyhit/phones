@@ -25,7 +25,7 @@ class OrganizationsController < ApplicationController
 
   def update
     if organization.update(organization_params)
-      redirect_to organizations_path
+      redirect_to organization_path(organization)
     end
   end
 
@@ -38,7 +38,7 @@ class OrganizationsController < ApplicationController
   private
 
   def organization_params
-    params.require(:organization).permit(:name, :address, :phone, :email)
+    params.require(:organization).permit(:name, :address, :phone, :email, :our_skils, :organizationlogotype)
   end
 
   def organization
