@@ -35,7 +35,7 @@ class UnitsController < ApplicationController
 
   private
   def unit_params
-    params.require(:unit).permit(:full_name, :post, :primary_email, :secondary_email, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :login, :password, :characteristic, :unitphoto)
+    params.require(:unit).permit(:full_name, :belong_to_departament, :post, :primary_email, :secondary_email, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :login, :password, :characteristic, :unitphoto)
   end
 
   def units

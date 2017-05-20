@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170508212418) do
 
   create_table "units", force: :cascade do |t|
     t.string   "full_name"
+    t.string   "belong_to_departament"
     t.string   "post"
     t.string   "primary_email"
     t.string   "secondary_email"

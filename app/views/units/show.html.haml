@@ -10,7 +10,7 @@
       %li= link_to 'ALL COMPANIES', organizations_path()
       %li= link_to 'MY COMPANY', organization_path(id: organization.id)
       %li= link_to 'DEPARTAMENTS', organization_departaments_path()
-      %li= link_to 'ALL UNITS', organization_departament_units_path()
+      %li= link_to 'ALL UNITS OF DEPARTAMENT ', organization_departament_units_path()
 .row
   .col-md-1
   .col-md-3
@@ -22,6 +22,9 @@
       %tr
         %th Name, surename, patronimic
         %td= unit.full_name
+      %tr
+        %th Belong to departament
+        %td=link_to unit.belong_to_departament, organization_departament_path(organization.id, departament.id)
       %tr
         %th Has post of
         %td= unit.post

@@ -2,6 +2,7 @@ class CreateUnits < ActiveRecord::Migration[5.0]
   def change
     create_table :units do |t|
       t.string :full_name
+      t.string :belong_to_departament
       t.string :post
       t.string :primary_email
       t.string :secondary_email

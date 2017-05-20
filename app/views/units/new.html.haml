@@ -4,6 +4,7 @@
   .panel-body
     = bootstrap_form_for @unit, url: organization_departament_units_path(:organization_id => organization.id, :departament_id => departament.id) do |f|
       = f.text_field :full_name
+      = f.select(:belong_to_departament, organization.departaments.ids , {include_blank: "Select departament"})
       = f.text_area :post
       = f.email_field :primary_email
       = f.email_field :secondary_email
