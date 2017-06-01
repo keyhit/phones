@@ -1,17 +1,7 @@
-.navbar.navbar-default{:role=>"navigation"}>
-  .container-fluid
-    .navbar-header
-      .navbar-brand 
-        This all units of 
-        = departament.departament_name
-        departament
-    .collapse.navbar-collapse
-    #bs-example-navbar-collapse-1
-    %ul.nav.navbar-nav
-      %li= link_to 'ALL COMPANIES', organizations_path()
-      %li= link_to 'MY COMPANY', organization_path(id: organization.id)
-      %li= link_to 'DEPARTAMENTS', organization_departaments_path()
-      %li= link_to 'ADD UNIT', new_organization_departament_unit_path(), :type=> "button", :class => "btn btn-default"
+= content_for :title do
+  = 'All units'
+= content_for :all_units_of_departament do
+  = departament.departament_name
 %table.table
   %tr
     %th Unit name
@@ -25,4 +15,3 @@
           = image_tag unit.unitphoto_url, size: "50x35", alt: "company logo"
       %td= link_to 'Detail', organization_departament_unit_path(id: unit.id)
       %td= link_to 'Destroy', organization_departament_unit_path(id: unit.id), method: :delete, data: { confirm: 'Are you sure?' }
-= render "1.html.erb"

@@ -1,26 +1,32 @@
-.panel.panel-primary
-  .panel-heading
-    CREATE
-  .panel-body
-    = bootstrap_form_for @unit, url: organization_departament_units_path(:organization_id => organization.id, :departament_id => departament.id) do |f|
-      = f.text_field :full_name
-      = f.select(:belong_to_departament, organization.departaments.ids , {include_blank: "Select departament"})
-      = f.text_area :post
-      = f.email_field :primary_email
-      = f.email_field :secondary_email
-      = f.telephone_field :primary_phone_number
-      = f.telephone_field :secondary_phone_number
-      = f.telephone_field :short_phone_nunber
-      = f.telephone_field :fax
-      = f.telephone_field :home_phone_number
-      = f.url_field :web_page
-      = f.time_field :start_work
-      = f.time_field :finish_work
-      = f.text_field :working_days
-      = f.date_field :birthday
-      = f.text_field :login
-      = f.password_field :password
-      = f.file_field :unitphoto, :class => "btn btn-default"
-      = f.text_area :characteristic
-      = f.submit :class => "btn btn-primary"
-      = link_to 'CANCEL', organization_departament_units_path(organization), :type=> "button", :class => "btn btn-danger"
+= content_for :title do
+  = 'Add new unit'
+= content_for :new_unit do
+  = 'Add new unit'
+.row
+  .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
+    .panel.panel-primary
+      .panel-heading
+        CREATE
+      .panel-body 
+        = bootstrap_form_for @unit, url: organization_departament_units_path(:organization_id => organization.id, :departament_id => departament.id) do |f|
+          = f.text_field :full_name
+          = f.select(:belong_to_departament, organization.departaments.ids , {include_blank: "Select departament"})
+          = f.text_area :post
+          = f.email_field :primary_email
+          = f.email_field :secondary_email
+          = f.telephone_field :primary_phone_number
+          = f.telephone_field :secondary_phone_number
+          = f.telephone_field :short_phone_nunber
+          = f.telephone_field :fax
+          = f.telephone_field :home_phone_number
+          = f.url_field :web_page
+          = f.time_field :start_work
+          = f.time_field :finish_work
+          = f.text_field :working_days
+          = f.date_field :birthday
+          = f.text_field :login
+          = f.password_field :password
+          = f.file_field :unitphoto, :class => "btn btn-default"
+          = f.text_area :characteristic
+          = f.submit :class => "btn btn-primary"
+          = link_to 'CANCEL', organization_departament_units_path(organization), :type=> "button", :class => "btn btn-danger"

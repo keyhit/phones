@@ -1,16 +1,7 @@
-.navbar.navbar-default{:role=>"navigation"}>
-  .container-fluid
-    .navbar-header
-      .navbar-brand 
-        This all departaments of 
-        = organization.name
-        company
-    .collapse.navbar-collapse
-    #bs-example-navbar-collapse-1
-    %ul.nav.navbar-nav
-      %li= link_to 'ALL COMPANIES', organizations_path()
-      %li= link_to 'MY COMPANY', organization_path(id: organization.id)
-      %li= link_to 'NEW DEPARTAMENT', new_organization_departament_path(), :type => "button", :class => "btn btn-default"
+= content_for :title do
+  = 'All departaments'
+= content_for :organization_name_for_departaments do 
+  = organization.name
 %table.table
   %tr
     %th Departament id
@@ -32,3 +23,4 @@
         %td= link_to 'Details', organization_departament_path(departament.organization_id, departament.id)
         %td= link_to 'Edit', edit_organization_departament_path(departament.organization_id, departament.id)
         %td= link_to 'Delete departament', organization_departament_path(departament.organization_id, departament.id), method: :delete, data: { confirm: 'Are you sure?' }
+

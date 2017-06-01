@@ -1,19 +1,5 @@
-.row
-  .col-md-8
-    .navbar.navbar-default{:role=>"navigation"}>
-      .container-fluid
-        .navbar-header
-          .navbar-brand 
-            Create you list you company stucrure by us
-        .collapse.navbar-collapse
-        #bs-example-navbar-collapse-1
-        %ul.nav.navbar-nav
-          %li= link_to 'FIRST LINES', lines_path
-          %li= link_to 'ADD COMPANY', new_organization_path(), :type=> "button", :class => "btn btn-default"
-  .col-md-4
-    .page-header
-      %h3 Try create contact book with rails
-      %small using rails and bootstrap
+= content_for :title do
+  = 'All companies'
 .row
   .col-md-4
     .panel.panel-success

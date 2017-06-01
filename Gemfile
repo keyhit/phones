@@ -60,6 +60,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'carrierwave', '~> 1.0'
 gem 'cloudinary'
+gem 'figaro', '~> 1.1.1'
+gem 'devise'
+gem 'erb2haml'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'

@@ -1,17 +1,22 @@
-.panel.panel-primary
-  .panel-heading
-    EDIT
-  .panel-body
-    = bootstrap_form_for organization, url: organization_path(organization), method: :patch do |f|
-      = f.text_field :name
-      = f.text_field :address
-      = f.text_field :phone
-      = f.text_field :email
-      = f.text_area :our_skils
-      = f.label :organizationlogotype, 'Curent logotype'
-      %br
-      = image_tag(organization.organizationlogotype_url.to_s, size: "50x30", alt: "my logo")
-      = f.file_field :organizationlogotype, :class => "btn btn-default"
-      = f.submit :class => "btn btn-primary"
-      = link_to 'CANCEL', organization_path(organization), :type=> "button", :class => "btn btn-danger"
-клаудінарі сервіс для файлів
+= content_for :title do
+  = 'Editing organization data'
+= content_for :edit_organization do
+  = 'Editing organization data'
+.row
+  .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
+    .panel.panel-primary
+      .panel-heading
+        EDIT
+      .panel-body
+        = bootstrap_form_for organization, url: organization_path(organization), method: :patch do |f|
+          = f.text_field :name
+          = f.text_field :address
+          = f.text_field :phone
+          = f.text_field :email
+          = f.text_area :our_skils
+          = f.label :organizationlogotype, 'Curent logotype'
+          %br
+          = image_tag(organization.organizationlogotype_url.to_s, size: "50x30", alt: "my logo")
+          = f.file_field :organizationlogotype, :class => "btn btn-default"
+          = f.submit :class => "btn btn-primary"
+          = link_to 'CANCEL', organization_path(organization), :type=> "button", :class => "btn btn-danger"

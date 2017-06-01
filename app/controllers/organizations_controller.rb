@@ -1,5 +1,9 @@
 class OrganizationsController < ApplicationController
 
+
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @organizations = Organization.all
   end
@@ -45,4 +49,6 @@ class OrganizationsController < ApplicationController
       @organization ||= Organization.find(params[:id])
   end
   helper_method :organization
+
+
 end

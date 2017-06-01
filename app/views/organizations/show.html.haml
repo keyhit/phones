@@ -1,18 +1,5 @@
-.row
-  .col-md-12
-    .navbar.navbar-default{:role=>"navigation"}>
-      .container-fluid
-        .navbar-header
-          .navbar-brand 
-            Contact information of
-            %b
-            = organization.name
-            company
-        .collapse.navbar-collapse
-        #bs-example-navbar-collapse-1
-        %ul.nav.navbar-nav
-          %li= link_to 'ALL COMPANIES', organizations_path()
-          %li= link_to 'DEPARTAMENTS', organization_departaments_path(organization)
+= content_for :title do
+  = organization.name
 .row
   .col-md-1
   .col-md-2
@@ -47,6 +34,8 @@
         %td
           = link_to 'edit', edit_organization_path(organization), :class => 'btn btn-warning'
           = link_to 'Remove', organization_path(organization), :class => 'btn btn-danger', method: :delete, data: { confirm: 'CAUTION! After you confirm all will be deleted!!!' }
+      = content_for :organization_name do 
+        = organization.name
   .col-md-1
 .row
   .col-md-12

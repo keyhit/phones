@@ -1,16 +1,7 @@
-.navbar.navbar-default{:role=>"navigation"}>
-  .container-fluid
-    .navbar-header
-      .navbar-brand 
-        Detail information about 
-        = unit.full_name
-    .collapse.navbar-collapse
-    #bs-example-navbar-collapse-1
-    %ul.nav.navbar-nav
-      %li= link_to 'ALL COMPANIES', organizations_path()
-      %li= link_to 'MY COMPANY', organization_path(id: organization.id)
-      %li= link_to 'DEPARTAMENTS', organization_departaments_path()
-      %li= link_to 'ALL UNITS OF DEPARTAMENT ', organization_departament_units_path()
+= content_for :title do
+  = 'About unit'
+= content_for :unit_full_name do
+  = unit.full_name
 .row
   .col-md-1
   .col-md-3

@@ -1,19 +1,7 @@
-.navbar.navbar-default{:role=>"navigation"}>
-  .container-fluid
-    .navbar-header
-      .navbar-brand 
-        This departament 
-        = departament.departament_name
-        of 
-        = organization.name
-        company
-    .collapse.navbar-collapse
-    #bs-example-navbar-collapse-1
-    %ul.nav.navbar-nav
-      %li= link_to 'ALL COMPANIES', organizations_path()
-      %li= link_to 'MY COMPANY', organization_path(id: organization.id)
-      %li= link_to 'ALL DEPARTAMENTS', organization_departaments_path()
-      %li= link_to 'ADD NEW UNIT', new_organization_departament_unit_path(departament_id: departament.id), :type => "button",:class => "btn btn-default"
+= content_for :title do
+  = departament.departament_name
+= content_for :departament_name do 
+  = departament.departament_name
 %table.table
   %tr
     %th Departament name

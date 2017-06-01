@@ -1,0 +1,104 @@
+.col-md-12
+.navbar.navbar-default{:role=>"navigation"}>
+  .container-fluid
+    .navbar-header
+      .navbar-brand 
+        - if @organizations
+          Create you list you company stucrure by us
+          = yield(:title)
+        - elsif content_for? :create_organization
+          = yield(:create_organization)
+        - elsif content_for? :edit_organization
+          = yield(:edit_organization)
+        - elsif content_for? :organization_name
+          Contact information of
+          %b
+          = yield(:organization_name)
+          company
+        -elsif content_for? :create_departament
+          = yield(:create_departament)
+        -elsif content_for? :edit_departament 
+          = yield(:edit_departament )
+        - elsif content_for? :organization_name_for_departaments
+          All departaments of
+          %b
+          = yield(:organization_name_for_departaments)
+        - elsif content_for? :departament_name
+          Detail information about
+          = yield(:departament_name)
+          departament
+          = yield(:organization_name)
+        -elsif content_for? :all_units_of_departament
+          All units of departament
+          = yield(:all_units_of_departament)
+        -elsif content_for? :unit_full_name
+          Detail info about 
+          %b
+          = yield(:unit_full_name)
+          unit
+        - elsif content_for? :new_unit
+          = yield(:new_unit)
+        - elsif content_for? :edit_unit
+          = yield(:edit_unit)
+    .collapse.navbar-collapse
+    #bs-example-navbar-collapse-1
+    %ul.nav.navbar-nav
+      - if @organizations
+        / %li= link_to 'FIRST LINES', lines_path
+        %li= link_to 'ADD COMPANY'.html_safe, new_organization_path(), :type=> "button", :class => "btn btn-default"
+      - elsif content_for? :create_organization
+        %li= link_to 'ALL COMPANIES', organizations_path(), :type => "button", :class => "btn btn-default"
+      - elsif content_for? :edit_organization
+        %li= link_to 'ALL COMPANIES', organizations_path()
+        %li= link_to 'DEPARTAMENTS', organization_departaments_path(organization), :type => "button", :class => "btn btn-default"
+      - elsif content_for? :organization_name
+        %li= link_to 'ALL COMPANIES', organizations_path()
+        %li= link_to 'DEPARTAMENTS', organization_departaments_path(organization), :type => "button", :class => "btn btn-default"
+      - elsif content_for? :organization_name_for_departaments
+        %li= link_to 'ALL COMPANIES', organizations_path()
+        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
+        %li= link_to 'NEW DEPARTAMENT', new_organization_departament_path(), :type => "button", :class => "btn btn-default"
+      -elsif content_for? :create_departament
+        %li= link_to 'ALL COMPANIES', organizations_path()
+        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
+        %li= link_to 'ALL DEPARTAMENTS', organization_departaments_path(), :type => "button",:class => "btn btn-default"
+      - elsif content_for? :departament_name
+        %li= link_to 'ALL COMPANIES', organizations_path()
+        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
+        %li= link_to 'ALL DEPARTAMENTS', organization_departaments_path()
+        %li= link_to 'ADD NEW UNIT', new_organization_departament_unit_path(departament_id: departament.id), :type => "button",:class => "btn btn-default"
+      -elsif content_for? :edit_departament
+        %li= link_to 'ALL COMPANIES', organizations_path()
+        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
+        %li= link_to 'ALL DEPARTAMENTS', organization_departaments_path(), :type => "button",:class => "btn btn-default"
+      -elsif content_for? :all_units_of_departament
+        %li= link_to 'ALL COMPANIES', organizations_path()
+        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
+        %li= link_to 'DEPARTAMENTS', organization_departaments_path()
+        %li= link_to 'ADD UNIT', new_organization_departament_unit_path(), :type=> "button", :class => "btn btn-default"
+      -elsif content_for? :unit_full_name
+        %li= link_to 'ALL COMPANIES', organizations_path()
+        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
+        %li= link_to 'DEPARTAMENTS', organization_departaments_path()
+        %li= link_to 'ALL UNITS OF DEPARTAMENT ', organization_departament_units_path(), :type=> "button", :class => "btn btn-default"
+      - elsif content_for? :new_unit
+        %li= link_to 'ALL COMPANIES', organizations_path()
+        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
+        %li= link_to 'DEPARTAMENTS', organization_departaments_path(), :type=> "button", :class => "btn btn-default"
+      - elsif content_for? :edit_unit
+        %li= link_to 'ALL COMPANIES', organizations_path()
+        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
+        %li= link_to 'DEPARTAMENTS', organization_departaments_path()
+        %li= link_to 'ALL UNITS OF DEPARTAMENT ', organization_departament_units_path(), :type=> "button", :class => "btn btn-default"
+        %li
+        - if notice
+          .alert.alert-info
+            %p= notice
+        - if alert
+          .alert.alert-warning
+            %p= alert
+    %ul.nav.navbar-nav.navbar-right
+      - if user_signed_in?
+        %li= link_to "LOGUOUT", destroy_user_session_path(), method: :delete
+      - else
+        %li= link_to "LOGIN", new_user_session_path()
