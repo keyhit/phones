@@ -1,20 +1,21 @@
+= content_for :title do
+  = 'Authentication'
+= content_for :authentication do
+  = 'Authentication'
 .row
-  .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
+  .col-lg-offset-4.col-lg-4.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
     .panel.panel-primary
       .panel-heading
-        AUTHORIZATION
+        Log in
       .panel-body 
-        %h2 Log in
-        = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .field
+          = f.email_field :email, autofocus: true
+        .field
+          = f.password_field :password, autocomplete: "off"
+        - if devise_mapping.rememberable?
           .field
-            %br/
-            = f.email_field :email, autofocus: true
-          .field
-            %br/
-            = f.password_field :password, autocomplete: "off"
-          - if devise_mapping.rememberable?
-            .field
-              = f.check_box :remember_me
-          .actions
-            = f.submit "Log in"
-        = render "devise/shared/links"
+            = f.check_box :remember_me
+        .actions
+          = f.submit "Log in"
+      = render "devise/shared/links"

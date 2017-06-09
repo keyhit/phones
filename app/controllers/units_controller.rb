@@ -1,6 +1,6 @@
 class UnitsController < ApplicationController
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user!, except: []
+  before_action :authenticate_unit!, except: []
+
   def index
   end
 
@@ -37,7 +37,7 @@ class UnitsController < ApplicationController
 
   private
   def unit_params
-    params.require(:unit).permit(:full_name, :belong_to_departament, :post, :primary_email, :secondary_email, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :login, :password, :characteristic, :unitphoto)
+    params.require(:unit).permit(:full_name, :belong_to_departament, :post, :email, :password, :password_confirmation, :secondary_email, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :login, :password, :characteristic, :show_hide_for_units, :show_hide_for_visitors, :global_admin, :global_moderator, :organization_admin, :organization_moderator, :departament_admin, :units_admin, :unitphoto)
   end
 
   def units

@@ -1,14 +1,16 @@
 = content_for :title do
   = 'All companies'
+= content_for :all_companies do
+  = 'All companies'
 .row
-  .col-md-4
+  .col-md-12
     .panel.panel-success
       .panel-heading
-        %h4 Here is all companies
+        %h5 Here is all companies
       %ul.list-group
       - @organizations.each do |organization|
         %li.list-group-item
           - unless organization.organizationlogotype_url.nil?
             = image_tag organization.organizationlogotype_url, size: "50x35", alt: "company logo"
           = link_to organization.name, organization_path(organization.id), :class => 'btn btn-success'
-  .col-md-8
+

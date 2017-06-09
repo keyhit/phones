@@ -1,8 +1,5 @@
 class OrganizationsController < ApplicationController
-
-
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user!, except: [:index, :show]
+  # before_action :authenticate_unit!, except: [:index, :show, :new]
 
   def index
     @organizations = Organization.all

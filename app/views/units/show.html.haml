@@ -21,7 +21,7 @@
         %td= unit.post
       %tr
         %th Primary email
-        %td= unit.primary_email
+        %td= unit.email
       %tr
         %th Secondary email
         %td= unit.secondary_email
@@ -61,9 +61,31 @@
         %th Login 
         %td= unit.login
       %tr
-        %th Password
-        %td= unit.password
+        %th Visible inside
+        %td= unit.show_hide_for_units
       %tr
+        %th Visible for all
+        %th= unit.show_hide_for_visitors
+      %tr
+        %th Global admin role
+        %th= unit.global_admin
+      %tr
+        %th Global admin moderator
+        %th= unit.global_moderator
+      %tr
+        %th Organization admin role
+        %th= unit.organization_admin
+      %tr
+        %th Organization admin moderator
+        %th= unit.organization_moderator
+      %tr
+        %th Departament admin role
+        %th= unit.departament_admin
+      %tr
+        %th My changes
+        %th= unit.units_admin
+      %tr
+
         %th Adminstrative actions
         %td
           = link_to 'edit', edit_organization_departament_unit_path(organization, departament, unit), :class => 'btn btn-warning'

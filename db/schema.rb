@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523205717) do
+ActiveRecord::Schema.define(version: 20170608062320) do
 
   create_table "departaments", force: :cascade do |t|
     t.string   "departament_name"
@@ -26,23 +26,6 @@ ActiveRecord::Schema.define(version: 20170523205717) do
     t.string   "rec"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "models", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_models_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -61,8 +44,9 @@ ActiveRecord::Schema.define(version: 20170523205717) do
     t.string   "full_name"
     t.string   "belong_to_departament"
     t.string   "post"
-    t.string   "primary_email"
+    t.string   "email",                  default: "",    null: false
     t.string   "secondary_email"
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "primary_phone_number"
     t.string   "secondary_phone_number"
     t.string   "short_phone_nunber"
@@ -79,27 +63,26 @@ ActiveRecord::Schema.define(version: 20170523205717) do
     t.string   "characteristic"
     t.integer  "departament_id"
     t.integer  "organization_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["departament_id"], name: "index_units_on_departament_id"
-    t.index ["organization_id"], name: "index_units_on_organization_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.boolean  "show_hide_for_units",    default: false
+    t.boolean  "show_hide_for_visitors", default: false
+    t.boolean  "global_admin",           default: false
+    t.boolean  "global_moderator",       default: false
+    t.boolean  "organization_admin",     default: false
+    t.boolean  "organization_moderator", default: false
+    t.boolean  "departament_admin",      default: false
+    t.boolean  "units_admin",            default: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["departament_id"], name: "index_units_on_departament_id"
+    t.index ["email"], name: "index_units_on_email", unique: true
+    t.index ["organization_id"], name: "index_units_on_organization_id"
+    t.index ["reset_password_token"], name: "index_units_on_reset_password_token", unique: true
   end
 
 end

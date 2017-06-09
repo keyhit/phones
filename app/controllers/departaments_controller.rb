@@ -1,7 +1,5 @@
 class DepartamentsController < ApplicationController
-
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user!, except: []
+  before_action :authenticate_unit!, except: []
 
   def index
   end
@@ -55,3 +53,4 @@ class DepartamentsController < ApplicationController
     helper_method :departament
 
 end
+ 
