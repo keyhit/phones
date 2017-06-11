@@ -1,35 +1,46 @@
 class UnitsController < ApplicationController
-  before_action :authenticate_unit!, except: []
+  before_action :authenticate_unit!, except: [:new, :create]
 
   def index
+    admin_moderator_roles
   end
 
   def show
+    admin_moderator_roles
   end
 
   def new
-    @unit = Unit.new
+    if units.empty?
+      new_unit
+    else
+      admin_moderator_roles
+      new_unit
+    end
+
   end
 
   def create
-    @unit = Unit.new(unit_params)
-    @unit.organization = organization
-    @unit.departament = departament
-    if @unit.save
-      redirect_to organization_departament_units_path(organization, departament.id)
+    if units.empty?
+      create_unit
+    else
+      admin_moderator_roles
+      create_unit
     end
   end
 
   def edit
+    admin_moderator_roles
   end
 
   def update
+    admin_moderator_roles
     if unit.update(unit_params)
       redirect_to organization_departament_units_path(organization, departament.id)
     end
   end
 
   def destroy
+    admin_moderator_roles
     if unit.destroy
       redirect_to organization_departament_units_path(organization, departament.id)
     end
@@ -49,4 +60,20 @@ class UnitsController < ApplicationController
     @unit ||= departament.units.find(params[:id])
   end
   helper_method :unit
+
+  def new_unit
+    @unit = Unit.new
+  end
+
+  def create_unit
+    @unit = Unit.new(unit_params)
+    @unit.organization = organization
+    @unit.departament = departament
+    if @unit.save and unit_signed_in?
+      redirect_to organization_departament_units_path(organization, departament.id)
+    else
+      redirect_to new_unit_session_path()
+    end
+  end
+
 end

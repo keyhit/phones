@@ -2,7 +2,7 @@
 .navbar.navbar-default{:role=>"navigation"}>
   .container-fluid
     .row
-      .col-xs-8.col-sm-8.col-md-8.col-lg-8
+      .col-xs-10.col-sm-10.col-md-10.col-lg-10
         .navbar-header
           .navbar-brand 
             - if content_for? :all_companies
@@ -42,13 +42,16 @@
               = yield(:new_unit)
             - elsif content_for? :edit_unit
               = yield(:edit_unit)
-      .col-xs-5.col-sm-4.col-md-4.col-lg-4
-        - if notice
-          .alert.alert-info
-            %p= notice
-        - if alert
-          .alert.alert-warning
-            %p= alert
+      .col-xs-2.col-sm-2.col-md-2.col-lg-2
+        - if unit_signed_in?
+          = 'You logged as '
+          = current_unit.full_name
+          = current_unit.organization_id
+          %br/
+          - if current_unit.global_admin 
+            = 'You status - global admin'
+        - else
+          = 'My greating for you, Guest!!!'
     .collapse.navbar-collapse
     #bs-example-navbar-collapse-1
     %ul.nav.navbar-nav
@@ -86,7 +89,8 @@
         %li= link_to 'ALL COMPANIES', organizations_path()
         %li= link_to 'MY COMPANY', organization_path(id: organization.id)
         %li= link_to 'DEPARTAMENTS', organization_departaments_path()
-        %li= link_to 'ADD UNIT', new_organization_departament_unit_path(), :type=> "button", :class => "btn btn-default"
+        - if current_unit.departament_admin? || current_unit.global_admin?
+          %li= link_to 'ADD UNIT', new_organization_departament_unit_path(), :type=> "button", :class => "btn btn-default"
       -elsif content_for? :unit_full_name
         %li= link_to 'ALL COMPANIES', organizations_path()
         %li= link_to 'MY COMPANY', organization_path(id: organization.id)
@@ -102,6 +106,13 @@
         %li= link_to 'DEPARTAMENTS', organization_departaments_path()
         %li= link_to 'ALL UNITS OF DEPARTAMENT ', organization_departament_units_path(), :type=> "button", :class => "btn btn-default"
     %ul.nav.navbar-nav.navbar-right
+      %li
+        - if notice
+          .alert.alert-info
+            %p= notice
+        - if alert
+          .alert.alert-warning
+            %p= alert
       - if unit_signed_in?
         %li= link_to 'LOG OUT', destroy_unit_session_path(), method: :delete
       - else

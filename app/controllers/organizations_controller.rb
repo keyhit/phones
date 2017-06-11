@@ -22,17 +22,20 @@ class OrganizationsController < ApplicationController
   end
 
   def edit
+    admin_moderator_roles
   end
 
   def update
+    admin_moderator_roles
     if organization.update(organization_params)
       redirect_to organization_path(organization)
     end
   end
 
   def destroy
+    admin_moderator_roles
     if organization.destroy
-      redirect_to organizations_path
+      redirect_to organizations_path()
     end
   end
 
