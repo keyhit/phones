@@ -44,11 +44,10 @@
               = yield(:edit_unit)
       .col-xs-2.col-sm-2.col-md-2.col-lg-2
         - if unit_signed_in?
-          = 'You logged as '
+          = 'Logged as '
           = current_unit.full_name
-          = current_unit.organization_id
           %br/
-          = 'You status -'
+          = 'Status -'
           - if current_unit.global_admin 
             = 'global admin'
           - elsif current_unit.global_moderator

@@ -50,8 +50,8 @@ class OrganizationsController < ApplicationController
     elsif current_unit.organization_admin?
       organization_admin_role
       update_organization
-    elsif current_unit.departament_admin?
-      departament_admin_role
+    elsif current_unit.organization_moderator?
+      organization_moderator_role
       update_organization
     else
       redirect_to organization_path(organization)
@@ -73,11 +73,8 @@ class OrganizationsController < ApplicationController
     elsif current_unit.organization_admin?
       organization_admin_role
       deletion_organization
-    elsif current_unit.departament_admin?
-      departament_admin_role
-      deletion_organization
     else
-      redirect_to organization_path()
+      redirect_to organization_path(organization)
     end
   end
 

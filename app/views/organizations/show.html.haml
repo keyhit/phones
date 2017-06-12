@@ -51,6 +51,6 @@
       - departaments.each do |departament|
         %tr
           %td= departament.id
-          %td= link_to departament.departament_name, organization_departament_path(organization.id, departament.id)
+          %td= link_to departament.departament_name, organization_departament_path(organization, departament)
           %td= departament.departament_description
 

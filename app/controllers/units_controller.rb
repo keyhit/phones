@@ -17,7 +17,7 @@ class UnitsController < ApplicationController
     elsif current_unit.units_admin?
       units_admin_role
     else
-      redirect_to organization_departament_units_path()
+     redirect_to organization_departament_units_path(organization, departament)
     end
   end
 
@@ -37,28 +37,32 @@ class UnitsController < ApplicationController
     elsif current_unit.units_admin?
       units_admin_role
     else
-      redirect_to organization_departament_units_path()
+      redirect_to organization_departament_unit_path(organization, departament, unit)
     end
   end
 
   def new
-    if units.empty?
-      new_unit
+    if current_unit.units_admin?
+      redirect_to organization_departament_units_path(organization, departament)
     else
-      if current_unit.global_admin?
-        global_admin_role
-        new_unit
-      elsif current_unit.global_moderator?
-        global_moderator_role
-        new_unit
-      elsif current_unit.organization_admin?
-        organization_admin_role
-        new_unit
-       elsif current_unit.departament_admin?
-        departament_admin_role
+      if units.empty?
         new_unit
       else
-        redirect_to organization_departament_units_path()
+        if current_unit.global_admin?
+          global_admin_role
+          new_unit
+        elsif current_unit.global_moderator?
+          global_moderator_role
+          new_unit
+        elsif current_unit.organization_admin?
+          organization_admin_role
+          new_unit
+         elsif current_unit.departament_admin?
+          departament_admin_role
+          new_unit
+        else
+          redirect_to organization_departament_units_path(organization, departament, unit)
+        end
       end
     end
   end
@@ -80,7 +84,7 @@ class UnitsController < ApplicationController
         departament_admin_role
         create_unit
       else
-        redirect_to organization_departament_units_path()
+        redirect_to organization_departament_units_path(organization, departament, unit)
       end
     end
   end
@@ -101,7 +105,7 @@ class UnitsController < ApplicationController
     elsif current_unit.units_admin?
       units_admin_role
     else
-      redirect_to organization_departament_units_path()
+      redirect_to organization_departament_units_path(organization, departament, unit)
     end
   end
 
@@ -133,7 +137,7 @@ class UnitsController < ApplicationController
       units_admin_role
       updation_unit
     else
-        redirect_to organization_departament_units_path()
+        redirect_to organization_departament_units_path(organization, departament, unit)
     end
   end
 
@@ -156,7 +160,7 @@ class UnitsController < ApplicationController
       departament_admin_role
       deletion_unit
     else
-      redirect_to organization_departament_units_path()
+      redirect_to organization_departament_units_path(organization, departament)
     end
   end
 

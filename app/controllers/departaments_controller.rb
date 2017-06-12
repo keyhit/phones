@@ -17,7 +17,7 @@ class DepartamentsController < ApplicationController
     elsif current_unit.units_admin?
       units_admin_role
     else
-      redirect_to organization_path(params[:organization_id])
+      redirect_to organization_path(organization)
     end
   end
 
@@ -37,7 +37,7 @@ class DepartamentsController < ApplicationController
     elsif current_unit.units_admin?
       units_admin_role
     else
-      redirect_to organization_path(params[:organization_id])
+      redirect_to organization_path(organization)
     end
   end
 
@@ -53,7 +53,7 @@ class DepartamentsController < ApplicationController
       elsif current_unit.departament_admin?
         departament_admin_role
       else
-        redirect_to organization_path(params[:organization_id])
+        redirect_to organization_departaments_path(organization)
       end
     end
   end
@@ -87,10 +87,14 @@ class DepartamentsController < ApplicationController
       global_moderator_role
     elsif current_unit.organization_admin?
       organization_admin_role
+    elsif current_unit.organization_moderator?
+      organization_moderator_role
     elsif current_unit.departament_admin?
       departament_admin_role
+    elsif current_unit.departament_moderator?
+      departament_moderator_role
     else
-      # redirect_to organization_path(params[:organization_id])
+      redirect_to organization_departament_path(organization, departament)
     end
   end
 
@@ -109,13 +113,19 @@ class DepartamentsController < ApplicationController
     elsif current_unit.organization_admin?
       organization_admin_role
       updation_departament
+    elsif current_unit.organization_moderator?
+      organization_moderator_role
+      updation_departament
     elsif current_unit.departament_admin?
       departament_admin_role
       updation_departament
+    elsif current_unit.departament_moderator?
+      departament_moderator_role
+      updation_departament
     else
-      redirect_to organization_path(params[:organization_id])
+      redirect_to organization_departament_path(organization, departament)
     end
-  end
+end
 
   def destroy
     def deletion_departament
@@ -136,7 +146,7 @@ class DepartamentsController < ApplicationController
       departament_admin_role
       deletion_departament
     else
-      redirect_to organization_path(params[:organization_id])
+      redirect_to organization_departaments_path(organization)
     end
   end
 

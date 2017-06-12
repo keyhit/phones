@@ -27,52 +27,37 @@ class ApplicationController < ActionController::Base
     # outher company 
     def organizations_isolation
       if unit_signed_in?
-        if current_unit.organization_id.to_s != params[:organization_id] 
-           redirect_to organization_path(params[:organization_id])
+        if current_unit.organization_id != organization.id
+           redirect_to organization_path(organization)
         end
       end
     end
+
     # Here roles of units
     def global_admin_role
-      if !current_unit.global_admin
-        organizations_isolation
-      end
     end
 
     def global_moderator_role
-      if !current_unit.global_moderator
-        organizations_isolation
-      end
     end
 
     def organization_admin_role
-      if !current_unit.organization_admin || !current_unit.global_admin || !current_unit.global_moderator
         organizations_isolation
-      end
     end
 
     def organization_moderator_role
-      if !current_unit.organization_moderator || !current_unit.global_admin || !current_unit.global_moderator
         organizations_isolation
-      end
     end
 
     def departament_admin_role
-      if !current_unit.departament_admin || !current_unit.global_admin || !current_unit.global_moderator
         organizations_isolation
-      end
     end
 
     def departament_moderator_role
-      if !current_unit.departament_moderator || !current_unit.global_admin || !current_unit.global_moderator
         organizations_isolation
-      end
     end
 
     def units_admin_role
-      if !current_unit.departament_admin || !current_unit.global_admin || !current_unit.global_moderator
         organizations_isolation
-      end
     end
 
     protected
