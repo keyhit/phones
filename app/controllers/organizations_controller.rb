@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  # before_action :authenticate_unit!, except: [:index, :show, :new]
+  before_action :authenticate_unit!, except: [:index, :show, :new, :create]
 
   def index
     @organizations = Organization.all
@@ -13,8 +13,8 @@ class OrganizationsController < ApplicationController
 
   def create
     @organization = Organization.new(organization_params)
-    @first_departament_id = organization.departaments.ids[0]
-    if @organization.save and @first_departament_id == nil
+    @organization.save
+    if departaments.empty?
       redirect_to new_organization_departament_path(organization)
     else
       redirect_to organization_path(organization)
@@ -22,20 +22,62 @@ class OrganizationsController < ApplicationController
   end
 
   def edit
-    admin_moderator_roles
+    if current_unit.global_admin?
+      global_admin_role
+    elsif current_unit.global_moderator?
+      global_moderator_role
+    elsif current_unit.organization_admin?
+      organization_admin_role
+    elsif current_unit.organization_moderator?
+      organization_moderator_role
+    else
+      redirect_to organization_path()
+    end
   end
 
   def update
-    admin_moderator_roles
-    if organization.update(organization_params)
+    def update_organization
+      if organization.update(organization_params)
+        redirect_to organization_path(organization)
+      end
+    end
+    if current_unit.global_admin?
+      global_admin_role
+      update_organization
+    elsif current_unit.global_moderator?
+      global_moderator_role
+      update_organization
+    elsif current_unit.organization_admin?
+      organization_admin_role
+      update_organization
+    elsif current_unit.departament_admin?
+      departament_admin_role
+      update_organization
+    else
       redirect_to organization_path(organization)
     end
   end
 
   def destroy
-    admin_moderator_roles
-    if organization.destroy
-      redirect_to organizations_path()
+    def deletion_organization
+      if organization.destroy
+        redirect_to organizations_path()
+      end
+    end
+    if current_unit.global_admin?
+      global_admin_role
+      deletion_organization
+    elsif current_unit.global_moderator?
+      global_moderator_role
+      deletion_organization
+    elsif current_unit.organization_admin?
+      organization_admin_role
+      deletion_organization
+    elsif current_unit.departament_admin?
+      departament_admin_role
+      deletion_organization
+    else
+      redirect_to organization_path()
     end
   end
 
@@ -49,6 +91,4 @@ class OrganizationsController < ApplicationController
       @organization ||= Organization.find(params[:id])
   end
   helper_method :organization
-
-
 end

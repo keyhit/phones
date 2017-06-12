@@ -70,7 +70,8 @@ ActiveRecord::Schema.define(version: 20170608062320) do
     t.boolean  "organization_admin",     default: false
     t.boolean  "organization_moderator", default: false
     t.boolean  "departament_admin",      default: false
-    t.boolean  "units_admin",            default: false
+    t.boolean  "departament_moderator",  default: false
+    t.boolean  "units_admin",            default: true
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

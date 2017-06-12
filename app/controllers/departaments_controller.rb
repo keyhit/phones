@@ -2,17 +2,59 @@ class DepartamentsController < ApplicationController
   before_action :authenticate_unit!, except: [:new, :create]
 
   def index
-    admin_moderator_roles
+    if current_unit.global_admin?
+      global_admin_role
+    elsif current_unit.global_moderator?
+      global_moderator_role
+    elsif current_unit.organization_admin?
+      organization_admin_role
+    elsif current_unit.organization_moderator?
+      organization_moderator_role
+    elsif current_unit.departament_admin?
+      departament_admin_role
+    elsif current_unit.departament_moderator?
+      departament_moderator_role
+    elsif current_unit.units_admin?
+      units_admin_role
+    else
+      redirect_to organization_path(params[:organization_id])
+    end
   end
 
   def show
-    admin_moderator_roles
+    if current_unit.global_admin?
+      global_admin_role
+    elsif current_unit.global_moderator?
+      global_moderator_role
+    elsif current_unit.organization_admin?
+      organization_admin_role
+    elsif current_unit.organization_moderator?
+      organization_moderator_role
+    elsif current_unit.departament_admin?
+      departament_admin_role
+    elsif current_unit.departament_moderator?
+      departament_moderator_role
+    elsif current_unit.units_admin?
+      units_admin_role
+    else
+      redirect_to organization_path(params[:organization_id])
+    end
   end
 
   def new
     if  departaments.empty?
     else
-      admin_moderator_roles
+      if current_unit.global_admin?
+        global_admin_role
+      elsif current_unit.global_moderator?
+        global_moderator_role
+      elsif current_unit.organization_admin?
+        organization_admin_role
+      elsif current_unit.departament_admin?
+        departament_admin_role
+      else
+        redirect_to organization_path(params[:organization_id])
+      end
     end
   end
 
@@ -20,26 +62,81 @@ class DepartamentsController < ApplicationController
     if departaments.empty?
       create_departament
     else
-      organizations_isolation
-      create_departament
+      if current_unit.global_admin?
+        global_admin_role
+        create_departament
+      elsif current_unit.global_moderator?
+        global_moderator_role
+        create_departament
+      elsif current_unit.organization_admin?
+        organization_admin_role
+        create_departament
+      elsif current_unit.departament_admin?
+        departament_admin_role
+        create_departament
+      else
+        redirect_to organization_path(params[:organization_id])
+      end
     end
   end
 
   def edit
-    admin_moderator_roles
+    if current_unit.global_admin?
+      global_admin_role
+    elsif current_unit.global_moderator?
+      global_moderator_role
+    elsif current_unit.organization_admin?
+      organization_admin_role
+    elsif current_unit.departament_admin?
+      departament_admin_role
+    else
+      # redirect_to organization_path(params[:organization_id])
+    end
   end
 
   def update
-    admin_moderator_roles
-    if departament.update(departament_params)
-      redirect_to organization_departaments_path(organization)
+    def updation_departament
+      if departament.update(departament_params)
+        redirect_to organization_departaments_path(organization)
+      end
+    end
+    if current_unit.global_admin?
+      global_admin_role
+      updation_departament
+    elsif current_unit.global_moderator?
+      global_moderator_role
+      updation_departament
+    elsif current_unit.organization_admin?
+      organization_admin_role
+      updation_departament
+    elsif current_unit.departament_admin?
+      departament_admin_role
+      updation_departament
+    else
+      redirect_to organization_path(params[:organization_id])
     end
   end
 
   def destroy
-    admin_moderator_roles
-    if departament.destroy
-      redirect_to organization_departaments_path(organization)
+    def deletion_departament
+      if departament.destroy
+        redirect_to organization_departaments_path(organization)
+      end
+    end
+    if current_unit.global_admin?
+      global_admin_role
+      deletion_departament
+    elsif current_unit.global_moderator?
+      global_moderator_role
+      deletion_departament
+    elsif current_unit.organization_admin?
+      organization_admin_role
+      deletion_departament
+    elsif current_unit.departament_admin?
+      departament_admin_role
+      deletion_departament
+    else
+      redirect_to organization_path(params[:organization_id])
     end
   end
 

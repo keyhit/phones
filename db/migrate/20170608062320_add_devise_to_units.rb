@@ -27,12 +27,20 @@ class AddDeviseToUnits < ActiveRecord::Migration[5.0]
       t.boolean :show_hide_for_units, default: false
       t.boolean :show_hide_for_visitors, default: false
       # Roles
+      # CRUD all
       t.boolean :global_admin, default: false
+      # CRU all
       t.boolean :global_moderator, default: false
+      # CRUD only in native: orgamization, departament, unit 
       t.boolean :organization_admin, default: false
+      # CRU only in native: orgamization, departament, unit
       t.boolean :organization_moderator, default: false
+      # CRUD only in native: departament, unit
       t.boolean :departament_admin, default: false
-      t.boolean :units_admin, default: false
+      # CRU only in native: departament, unit
+      t.boolean :departament_moderator, default: false
+      # RU only in native unit
+      t.boolean :units_admin, default: true
       ## Database authenticatable
       # t.string :email,              null: false, default: ""
 

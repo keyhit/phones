@@ -32,7 +32,7 @@
       %tr
         %th Adminstrative actions
         %td
-          = link_to 'edit', edit_organization_path(organization), :class => 'btn btn-warning'
+          = link_to 'edit', edit_organization_path(organization.id), :class => 'btn btn-warning'
           = link_to 'Remove', organization_path(organization), :class => 'btn btn-danger', method: :delete, data: { confirm: 'CAUTION! After you confirm all will be deleted!!!' }
       = content_for :organization_name do 
         = organization.name
