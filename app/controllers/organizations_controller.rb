@@ -31,7 +31,7 @@ class OrganizationsController < ApplicationController
     elsif current_unit.organization_moderator?
       organization_moderator_role
     else
-      redirect_to organization_path()
+      redirect_to organization_path(organization)
     end
   end
 
@@ -53,28 +53,25 @@ class OrganizationsController < ApplicationController
     elsif current_unit.organization_moderator?
       organization_moderator_role
       update_organization
-    else
-      redirect_to organization_path(organization)
     end
   end
 
+
   def destroy
-    def deletion_organization
-      if organization.destroy
-        redirect_to organizations_path()
-      end
-    end
     if current_unit.global_admin?
       global_admin_role
-      deletion_organization
+      organization.destroy
+      redirect_to organizations_path()
     elsif current_unit.global_moderator?
       global_moderator_role
-      deletion_organization
-    elsif current_unit.organization_admin?
+      organization.destroy
+      redirect_to organizations_path()
+    elsif current_unit.organization_id == organization.id and current_unit.organization_admin?
       organization_admin_role
-      deletion_organization
+      organization.destroy
+      redirect_to organizations_path()
     else
-      redirect_to organization_path(organization)
+        redirect_to organization_path(organization)
     end
   end
 

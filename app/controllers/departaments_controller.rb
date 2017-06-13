@@ -59,10 +59,9 @@ class DepartamentsController < ApplicationController
   end
 
   def create
-    if departaments.empty?
-      create_departament
-    else
-      if current_unit.global_admin?
+      if departaments.empty?
+        create_departament
+      elsif current_unit.global_admin?
         global_admin_role
         create_departament
       elsif current_unit.global_moderator?
@@ -77,7 +76,6 @@ class DepartamentsController < ApplicationController
       else
         redirect_to organization_path(params[:organization_id])
       end
-    end
   end
 
   def edit

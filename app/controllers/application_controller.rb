@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
     end
     helper_method :organization
 
+    def unit_orgammization
+      @unit_orgammization ||= Organization.find(current_unit.organization_id)
+    end
+    helper_method :unit_orgammization
+
     def departament
       @departament ||= organization.departaments.find(params[:departament_id])
     end

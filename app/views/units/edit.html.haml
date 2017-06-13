@@ -13,9 +13,9 @@
           = f.select(:belong_to_departament, organization.departaments.ids , {include_blank: unit.belong_to_departament})
           = f.text_area :post
           = f.email_field :email
-          = link_to 'Change password', unit_password_path()
-          = f.password_field :password, autocomplete: "off"
-          = f.password_field :password_confirmation, autocomplete: "off"
+          = link_to 'Change password', new_password_path()
+          / = f.password_field :password, autocomplete: "off"
+          / = f.password_field :password_confirmation, autocomplete: "off"
           = f.email_field :secondary_email
           = f.telephone_field :primary_phone_number
           = f.telephone_field :secondary_phone_number

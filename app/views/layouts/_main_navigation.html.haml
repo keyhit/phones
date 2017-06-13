@@ -2,7 +2,7 @@
 .navbar.navbar-default{:role=>"navigation"}>
   .container-fluid
     .row
-      .col-xs-10.col-sm-10.col-md-10.col-lg-10
+      .col-xs-8.col-sm-8.col-md-8.col-lg-8
         .navbar-header
           .navbar-brand 
             - if content_for? :all_companies
@@ -42,12 +42,13 @@
               = yield(:new_unit)
             - elsif content_for? :edit_unit
               = yield(:edit_unit)
-      .col-xs-2.col-sm-2.col-md-2.col-lg-2
+      .col-xs-4.col-sm-4.col-md-4.col-lg-4
         - if unit_signed_in?
-          = 'Logged as '
+          %b Organization:
+          = unit_orgammization.name
+          %b Name: 
           = current_unit.full_name
-          %br/
-          = 'Status -'
+          %b Status:
           - if current_unit.global_admin 
             = 'global admin'
           - elsif current_unit.global_moderator
@@ -63,7 +64,7 @@
           -elsif current_unit.units_admin
             = 'units_admin'
           -else
-            = 'undefined '
+            = 'undefined'
         - else
           = 'My greating for you, Guest!!!'
     .collapse.navbar-collapse

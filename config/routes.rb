@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :units
     end
   end
+  get 'organization/:organization_id/departament/:departament_id/unit/:id', to: 'units#new_password', as: 'new_password' 
   root 'organizations#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

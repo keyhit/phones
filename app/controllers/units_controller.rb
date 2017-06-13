@@ -42,50 +42,42 @@ class UnitsController < ApplicationController
   end
 
   def new
-    if current_unit.units_admin?
-      redirect_to organization_departament_units_path(organization, departament)
-    else
-      if units.empty?
+    if units.empty? 
         new_unit
-      else
-        if current_unit.global_admin?
-          global_admin_role
-          new_unit
-        elsif current_unit.global_moderator?
-          global_moderator_role
-          new_unit
-        elsif current_unit.organization_admin?
-          organization_admin_role
-          new_unit
-         elsif current_unit.departament_admin?
-          departament_admin_role
-          new_unit
-        else
-          redirect_to organization_departament_units_path(organization, departament, unit)
-        end
-      end
+    elsif current_unit.global_admin?
+      global_admin_role
+      new_unit
+    elsif current_unit.global_moderator?
+      global_moderator_role
+      new_unit
+    elsif current_unit.organization_admin?
+      organization_admin_role
+      new_unit
+     elsif current_unit.departament_admin?
+      departament_admin_role
+      new_unit
+    else
+      redirect_to organization_departament_units_path(organization, departament)
     end
   end
 
   def create
     if units.empty?
       create_unit
+    elsif current_unit.global_admin?
+      global_admin_role
+      create_unit
+    elsif current_unit.global_moderator?
+      global_moderator_role
+      create_unit
+    elsif current_unit.organization_admin?
+      organization_admin_role
+      create_unit
+     elsif current_unit.departament_admin?
+      departament_admin_role
+      create_unit
     else
-      if current_unit.global_admin?
-        global_admin_role
-        create_unit
-      elsif current_unit.global_moderator?
-        global_moderator_role
-        create_unit
-      elsif current_unit.organization_admin?
-        organization_admin_role
-        create_unit
-       elsif current_unit.departament_admin?
-        departament_admin_role
-        create_unit
-      else
-        redirect_to organization_departament_units_path(organization, departament, unit)
-      end
+      redirect_to organization_departament_units_path(organization, departament, unit)
     end
   end
 
@@ -162,6 +154,9 @@ class UnitsController < ApplicationController
     else
       redirect_to organization_departament_units_path(organization, departament)
     end
+  end
+
+  def new_password
   end
 
   private
