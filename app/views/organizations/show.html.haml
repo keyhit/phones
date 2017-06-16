@@ -1,56 +1,79 @@
 = content_for :title do
   = organization.name
+= content_for :organization_name do
+  = :organization_name
 .row
-  .col-md-1
-  .col-md-2
-    - unless organization.organizationlogotype_url.nil?
-      = image_tag organization.organizationlogotype_url, size: "160x120", alt: "company logo", class: "center-block img-rounded"
-    %table.table.table-striped
-      %caption Our skills
+  .col-md-6 
+    %table.table
+      %caption 
+        Departaments of 
+        %b= organization.name
+        company
       %tr 
-        %td= organization.our_skils
-  .col-md-4 
+        %td Name
+        %td Description
+      - departaments.each do |departament|
+        %tr
+          %td= link_to departament.departament_name, organization_departament_path(organization, departament)
+          %td= departament.departament_description
+  .col-md-6
     %table.table.table-striped
-      %trin
+      %caption 
+        Main data of: 
+        %b= organization.name
+      %tr
+        %td
+          - unless organization.organizationlogotype_url.nil?
+            = image_tag organization.organizationlogotype_url, size: "160x120", alt: "company logo", class: "center-block img-rounded"
+        %td
+          %table.table.table-striped
+            %caption Our skills
+            %tr 
+              %td= organization.our_skils
+      %tr
         %th Company name
         %td= organization.name
       %tr
         %th Headquarters address
         %td= organization.address
       %tr
+        %th Contact person
+        %td
+          -unless public_presentation.nil?
+            = link_to public_presentation.full_name, organization_departament_unit_path( public_presentation.organization_id, public_presentation.departament_id, public_presentation.id)
+          -else
+            = 'Not assigned'
+      %tr
         %th Phone
-        %td= organization.phone
+        %td
+          - unless public_presentation.nil?
+            = public_presentation.primary_phone_number 
+            = ' and '
+            = public_presentation.secondary_phone_number
+          -else
+            = 'Not assigned'
       %tr
         %th Fax
-        %td Fax
-      %tr
-        %th E-mail
-        %td= organization.email
-      %tr
-        %th Web site
-        %td Web site
-      %tr
-        %th Adminstrative actions
         %td
-          = link_to 'edit', edit_organization_path(organization.id), :class => 'btn btn-warning'
-          = link_to 'Remove', organization_path(organization), :class => 'btn btn-danger', method: :delete, data: { confirm: 'CAUTION! After you confirm all will be deleted!!!' }
-      = content_for :organization_name do 
-        = organization.name
-  .col-md-1
-.row
-  .col-md-12
-    %table.table
-      %caption 
-        Departaments of 
-        = organization.name
-        company
-      %tr 
-        %td Id
-        %td Name
-        %td Description
-      - departaments.each do |departament|
+          - unless public_presentation.nil?
+            = public_presentation.fax
+          -else
+            = 'Not assigned'
+      %tr
+        %th Email
+        %td
+          - unless public_presentation.nil?
+            = public_presentation.email
+            = ' and '
+            = public_presentation.secondary_email
+          -else
+            = 'Not assigned'
+      %tr
+        %th Web page
+        %td= organization.web_page
+      - if unit_signed_in? and current_unit.global_admin || current_unit.global_moderator || current_unit.organization_admin
         %tr
-          %td= departament.id
-          %td= link_to departament.departament_name, organization_departament_path(organization, departament)
-          %td= departament.departament_description
-
+          %th Adminstrative actions
+          %td
+            = link_to 'edit', edit_organization_path(organization.id), :class => 'btn btn-warning'
+            = link_to 'Remove', organization_path(organization), :class => 'btn btn-danger', method: :delete, data: { confirm: 'CAUTION! After you confirm all will be deleted!!!' }

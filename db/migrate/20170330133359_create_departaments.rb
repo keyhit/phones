@@ -3,10 +3,11 @@ class CreateDepartaments < ActiveRecord::Migration[5.0]
     create_table :departaments do |t|
       t.string :departament_name
       t.string :departament_description
+      t.string :departamentlogotype
+      t.string :subordinated
       t.references :organization, foreign_key: true
 
       t.timestamps
     end
   end
 end
- 

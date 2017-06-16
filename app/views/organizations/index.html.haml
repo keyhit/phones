@@ -13,4 +13,5 @@
           - unless organization.organizationlogotype_url.nil?
             = image_tag organization.organizationlogotype_url, size: "50x35", alt: "company logo"
           = link_to organization.name, organization_path(organization.id), :class => 'btn btn-success'
+          = organization.our_skils
 

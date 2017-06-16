@@ -1,6 +1,6 @@
 class AddDeviseToUnits < ActiveRecord::Migration[5.0]
   def self.up
-    create_table :units do |t|
+    create_table :units do |t| 
       t.string :full_name
       t.string :belong_to_departament
       t.string :post
@@ -28,7 +28,11 @@ class AddDeviseToUnits < ActiveRecord::Migration[5.0]
       t.boolean :show_hide_for_visitors, default: false
       # Roles
       # CRUD all
-      t.boolean :global_admin, default: false
+      if units.empty?
+        t.boolean :global_admin, default: true
+      elsif unit.empty?
+        t.boolean :global_admin, default: false
+      end
       # CRU all
       t.boolean :global_moderator, default: false
       # CRUD only in native: orgamization, departament, unit 
@@ -40,7 +44,11 @@ class AddDeviseToUnits < ActiveRecord::Migration[5.0]
       # CRU only in native: departament, unit
       t.boolean :departament_moderator, default: false
       # RU only in native unit
-      t.boolean :units_admin, default: true
+      if unit.empty?
+        t.boolean :units_admin
+      else
+        t.boolean :units_admin
+      end
       ## Database authenticatable
       # t.string :email,              null: false, default: ""
 

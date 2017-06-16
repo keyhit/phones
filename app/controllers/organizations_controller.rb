@@ -78,11 +78,16 @@ class OrganizationsController < ApplicationController
   private
 
   def organization_params
-    params.require(:organization).permit(:name, :address, :phone, :email, :our_skils, :organizationlogotype)
+    params.require(:organization).permit(:name, :address, :web_page, :our_skils, :organizationlogotype, :public_presentation_user_id)
   end
 
   def organization
       @organization ||= Organization.find(params[:id])
   end
   helper_method :organization
-end
+
+        def az
+        organization.public_presentation_user_id
+      end
+      helper_method :az
+end 

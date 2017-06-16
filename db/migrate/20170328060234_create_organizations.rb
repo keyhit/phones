@@ -3,11 +3,10 @@ class CreateOrganizations < ActiveRecord::Migration[5.0]
     create_table :organizations do |t|
       t.string :name
       t.string :address
-      t.string :phone
-      t.string :email
+      t.string :web_page
       t.string :our_skils
-      t.string :image
-
+      t.string :organizationlogotype
+      t.string :public_presentation_user_id
 
       t.timestamps
     end

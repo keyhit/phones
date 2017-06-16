@@ -9,29 +9,32 @@
         CREATE
       .panel-body 
         = bootstrap_form_for :unit, url: organization_departament_units_path(:organization_id => organization.id, :departament_id => departament.id) do |f|
-          = f.text_field :full_name
+          = f.text_field :full_name, value: 'Name'
           = f.select(:belong_to_departament, organization.departaments.ids , {include_blank: "Select departament"})
           = f.text_area :post
-          = f.email_field :email
+          = f.email_field :email, value: '1@1'
           = f.password_field :password, autocomplete: "off"
           = f.password_field :password_confirmation, autocomplete: "off"
-          = f.email_field :secondary_email
-          = f.telephone_field :primary_phone_number
-          = f.telephone_field :secondary_phone_number
-          = f.telephone_field :short_phone_nunber
-          = f.telephone_field :fax
-          = f.telephone_field :home_phone_number
-          = f.url_field :web_page
-          = f.time_field :start_work
-          = f.time_field :finish_work
-          = f.text_field :working_days
-          = f.date_field :birthday
-          = f.text_field :login
+          = f.email_field :secondary_email, value: 'z@z'
+          = f.telephone_field :primary_phone_number, value: 'xxxxxxxxx'
+          = f.telephone_field :secondary_phone_number, value: 'xxxxxxxxx'
+          = f.telephone_field :short_phone_nunber, value: 'xxx'
+          = f.telephone_field :fax, value: 'xxxxxxxxx'
+          = f.telephone_field :home_phone_number, value: 'xxxxxxx'
+          = f.url_field :web_page, value: ''
+          = f.time_field :start_work, value: ''
+          = f.time_field :finish_work, value: ''
+          = f.text_field :working_days, value: ''
+          = f.date_field :birthday, value: ''
+          = f.text_field :login, value: ''
           = f.file_field :unitphoto, :class => "btn btn-default"
           = f.text_area :characteristic
           = f.check_box :show_hide_for_units
           = f.check_box :show_hide_for_visitors
-          = f.check_box :global_admin
+          - if departament.units.empty?
+            = f.check_box :global_admin, checked: true
+          - else
+            = f.check_box :global_admin
           = f.check_box :global_moderator
           = f.check_box :organization_admin
           = f.check_box :organization_moderator
@@ -39,5 +42,5 @@
           = f.check_box :departament_moderator
           = f.check_box :units_admin
           = f.submit :class => "btn btn-primary"
-          - if departament.blank?
+          - if !departament.blank? and !units.blank?
             = link_to 'CANCEL', organization_departament_units_path(organization), :type=> "button", :class => "btn btn-danger"

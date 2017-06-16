@@ -2,22 +2,17 @@
   = departament.departament_name
 = content_for :departament_name do 
   = departament.departament_name
-%table.table
-  %tr
-    %th Departament name
-    %th Departament description
-  %tr
-    %td= departament.departament_name
-    %td= departament.departament_description
-%br/
-%table.table
-  %caption 
-    Units of 
-    = departament.departament_name
-  %tr 
-    %td Id
-    %td Name
-  - units.each do |unit|
-    %tr
-      %td= unit.id
-      %td= link_to unit.full_name, organization_departament_unit_path(organization.id, departament.id, unit.id)
+.row
+  .col-xs-12.col-sm-12.col-md-12.col-lg-12
+    %table.table
+      %tr
+        %th Logotype
+        %th Departament name
+        %th Departament description
+      %tr
+        %td= image_tag(departament.departamentlogotype_url.to_s, size: "160x120", alt: "my logo", :class => "center-block img-rounded")
+        %td= departament.departament_name
+        %td= departament.departament_description
+.row
+  .col-xs-12.col-sm-12.col-md-12.col-lg-12
+    = render 'units/all_departament_units'

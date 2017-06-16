@@ -3,6 +3,35 @@
 = content_for :unit_full_name do
   = unit.full_name
 .row
+  .col-md-4
+  .col-md-5
+    %table.table
+      %tr
+        %th Adminstrative actions
+        - if current_unit.global_admin? || current_unit.global_moderator? || current_unit.organization_admin? || current_unit.departament_admin?
+          %td
+            - if unit.id.to_i == organization.public_presentation_user_id.to_i
+              = bootstrap_form_for organization, url: organization_path(organization), method: :patch do |f|
+                = f.hidden_field :public_presentation_user_id, value: ''
+                = f.hidden_field :public_presentation_departament_id, value: ''
+                = f.submit value: 'Make it private', class: 'btn btn-info'
+            -else 
+              = bootstrap_form_for organization, url: organization_path(organization), method: :patch do |f|
+                = f.hidden_field :public_presentation_user_id, value: unit.id
+                = f.hidden_field :public_presentation_departament_id, value: unit.departament_id
+                = f.submit value: 'Make it public', class: 'btn btn-info'
+          %td
+            = link_to 'edit', edit_organization_departament_unit_path(organization, departament, unit), :class => 'btn btn-warning'
+          %td
+            - if organization.public_presentation_user_id.to_i != unit.id.to_i
+              = link_to 'Remove', organization_departament_unit_path(organization, departament, unit), :class => 'btn btn-danger', method: :delete, data: { confirm: 'CAUTION! After you confirm all will be deleted!!!' }
+
+        - if current_unit.id == unit.id
+          %td= link_to 'User edit', units_self_admin_path(organization, departament, unit), :class => 'btn btn-warning'
+        - if !current_unit.global_admin || !current_unit.global_moderator || !current_unit.organization_admin || !current_unit.departament_admin
+          %td
+            = 'You can\'t make changes.'
+.row
   .col-md-1
   .col-md-3
     = image_tag(unit.unitphoto_url.to_s, size: "160x120", alt: "my logo", :class => "center-block img-rounded")
@@ -57,39 +86,40 @@
       %tr
         %th Birthday
         %td= unit.birthday
-      %tr
-        %th Login 
-        %td= unit.login
-      %tr
-        %th Visible inside
-        %td= unit.show_hide_for_units
-      %tr
-        %th Visible for all
-        %th= unit.show_hide_for_visitors
-      %tr
-        %th Global admin role
-        %th= unit.global_admin
-      %tr
-        %th Global admin moderator
-        %th= unit.global_moderator
-      %tr
-        %th Organization admin role
-        %th= unit.organization_admin
-      %tr
-        %th Organization admin moderator
-        %th= unit.organization_moderator
-      %tr
-        %th Departament admin role
-        %th= unit.departament_admin
-      %tr
-        %th Departament moderator role
-        %th= unit.departament_moderator
-      %tr
-        %th My changes
-        %th= unit.units_admin
-      %tr
-
-        %th Adminstrative actions
-        %td
-          = link_to 'edit', edit_organization_departament_unit_path(organization, departament, unit), :class => 'btn btn-warning'
-          = link_to 'Remove', organization_departament_unit_path(organization, departament, unit), :class => 'btn btn-danger', method: :delete, data: { confirm: 'CAUTION! After you confirm all will be deleted!!!' }
+      / %tr
+      /   %th Login 
+      /   %td= unit.login
+      / %tr
+      /   %th Visible inside
+      /   %td= unit.show_hide_for_units
+      / %tr
+      /   %th Visible for all
+      /   %th= unit.show_hide_for_visitors
+      - if unit.global_admin?
+        %tr
+          %th Global admin role
+          %th= unit.global_admin
+      - if unit.global_moderator?
+        %tr
+          %th Global admin moderator
+          %th= unit.global_moderator
+      - if unit.organization_admin?
+        %tr
+          %th Organization admin role
+          %th= unit.organization_admin
+      - if unit.organization_moderator
+        %tr
+          %th Organization moderator role
+          %th= unit.organization_moderator
+      - if unit.departament_admin?
+        %tr
+          %th Departament admin role
+          %th= unit.departament_admin
+      - if unit.departament_moderator?
+        %tr
+          %th Departament moderator role
+          %th= unit.departament_moderator
+      - if unit.units_admin?
+        %tr
+          %th My changes
+          %th= unit.units_admin

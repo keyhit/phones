@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608062320) do
+ActiveRecord::Schema.define(version: 20170616120851) do
 
   create_table "departaments", force: :cascade do |t|
     t.string   "departament_name"
     t.string   "departament_description"
+    t.string   "departamentlogotype"
+    t.string   "subordinated"
     t.integer  "organization_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.string   "departamentlogotype"
     t.index ["organization_id"], name: "index_departaments_on_organization_id"
   end
 
@@ -31,13 +32,15 @@ ActiveRecord::Schema.define(version: 20170608062320) do
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.string   "address"
-    t.string   "phone"
-    t.string   "email"
+    t.string   "web_page"
     t.string   "our_skils"
-    t.string   "image"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
     t.string   "organizationlogotype"
+    t.string   "public_presentation_user_id"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "public_presentation_departament_id"
+    t.string   "string"
+    t.index ["string"], name: "index_organizations_on_string"
   end
 
   create_table "units", force: :cascade do |t|

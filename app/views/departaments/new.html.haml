@@ -10,11 +10,11 @@
       .panel-body
         =bootstrap_form_for :departament, url: organization_departaments_path(organization) do |f|
           - if organization.departaments.blank?
-            = f.text_field :departament_name, disabled: true, value: 'Public relations'
+            = f.text_field :departament_name, value: 'Departament name'
           - else
             = f.text_field :departament_name
           = f.text_area :departament_description
           = f.file_field :departamentlogotype, :class => "btn btn-default"
           = f.submit :class => "btn btn-primary"
-          - if organization.departaments.empty?
+          - if !organization.departaments.empty?
             = link_to 'CANCEL', organization_departaments_path(organization), :type=> "button", :class => "btn btn-danger"

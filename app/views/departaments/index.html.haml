@@ -4,23 +4,20 @@
   = organization.name
 %table.table
   %tr
-    %th Departament id
     %th Departament logotype
     %th Departament name
     %th Departament description
-    %th Organization id
-    %th{:colspan => "4"} Actions
+    - if current_unit.global_admin? || current_unit.global_moderator? || current_unit.organization_admin? || current_unit.departament_admin?
+      %th{:colspan => "4"} Actions
     - departaments.each do |departament|
       %tr
-        %td= departament.id
         %td
           - unless departament.departamentlogotype_url.nil?
             = image_tag departament.departamentlogotype_url, size: "50x35", alt: "company logo"
-        %td= departament.departament_name
+        %td= link_to departament.departament_name,organization_departament_path(departament.organization_id, departament.id)
         %td= departament.departament_description
-        %td= departament.organization_id
-        %td= link_to 'Units', organization_departament_units_path(departament.organization_id, departament.id)
-        %td= link_to 'Details', organization_departament_path(departament.organization_id, departament.id)
-        %td= link_to 'Edit', edit_organization_departament_path(departament.organization_id, departament.id)
-        %td= link_to 'Delete departament', organization_departament_path(departament.organization_id, departament.id), method: :delete, data: { confirm: 'Are you sure?' }
-
+        - if current_unit.global_admin? || current_unit.global_moderator? || current_unit.organization_admin? || current_unit.departament_admin?
+          %td= link_to 'Units',organization_departament_units_path(departament.organization_id, departament.id), class: 'btn btn-default'
+          %td= link_to 'Details', organization_departament_path(departament.organization_id, departament.id), class: 'btn btn-info'
+          %td= link_to 'Edit', edit_organization_departament_path(departament.organization_id, departament.id), class: 'btn btn-warning'
+          %td= link_to 'Delete departament', organization_departament_path(departament.organization_id, departament.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

@@ -95,7 +95,11 @@ class UnitsController < ApplicationController
     elsif current_unit.departament_moderator?
       departament_moderator_role
     elsif current_unit.units_admin?
-      units_admin_role
+      if current_unit.id.to_i == unit.id.to_i
+        units_admin_role
+      else 
+        redirect_to organization_departament_units_path(organization, departament, unit)
+      end
     else
       redirect_to organization_departament_units_path(organization, departament, unit)
     end
@@ -157,6 +161,15 @@ class UnitsController < ApplicationController
   end
 
   def new_password
+    if current_unit.id != unit.id
+      redirect_to organization_departament_units_path(organization, departament)
+    end
+  end
+
+  def units_self_admin
+    if current_unit.id != unit.id
+      redirect_to organization_departament_units_path(organization, departament)
+    end
   end
 
   private

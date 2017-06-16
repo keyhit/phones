@@ -2,16 +2,4 @@
   = 'All units'
 = content_for :all_units_of_departament do
   = departament.departament_name
-%table.table
-  %tr
-    %th Unit name
-    %th Unit photo
-    %th{:colspan=>"2"} Action
-  - units.each do |unit|
-    %tr
-      %td= unit.full_name
-      %td
-        - unless unit.unitphoto_url.nil?
-          = image_tag unit.unitphoto_url, size: "50x35", alt: "company logo"
-      %td= link_to 'Detail', organization_departament_unit_path(id: unit.id)
-      %td= link_to 'Destroy', organization_departament_unit_path(id: unit.id), method: :delete, data: { confirm: 'Are you sure?' }
+= render 'all_departament_units'
