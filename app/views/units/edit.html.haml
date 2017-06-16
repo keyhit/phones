@@ -8,37 +8,34 @@
       .panel-heading
         EDIT
       .panel-body
-        = bootstrap_form_for unit, url: organization_departament_unit_path(organization, departament, unit) do |f|
-          = f.text_field :full_name
-          = f.select(:belong_to_departament, organization.departaments.ids , {include_blank: unit.belong_to_departament})
-          = f.text_area :post
-          = f.email_field :email
-          = link_to 'Change password', new_password_path()
-          = f.email_field :secondary_email
-          = f.telephone_field :primary_phone_number
-          = f.telephone_field :secondary_phone_number
-          = f.telephone_field :short_phone_nunber
-          = f.telephone_field :fax
-          = f.telephone_field :home_phone_number
-          = f.url_field :web_page
-          = f.time_field :start_work, as: :string, value: f.object.start_work
-          = f.time_field :finish_work, as: :string, value: f.object.finish_work
-          = f.text_field :working_days
-          = f.date_field :birthday
-          = f.text_field :login
-          = f.text_area :characteristic
-          %h4 Curent unit photo
-          = image_tag(unit.unitphoto_url.to_s, size: "160x120", alt: "my logo")
-          %h4 New unit photo
+        = bootstrap_form_for :unit, url: organization_departament_unit_path(:organization_id => organization.id, :departament_id => departament.id), method: :patch do |f|
+          = f.email_field :email, value: unit.email
+          = f.email_field :secondary_email, value: unit.secondary_email
+          = f.telephone_field :primary_phone_number, value: unit.primary_phone_number
+          = f.telephone_field :secondary_phone_number, value: unit.secondary_phone_number
+          = f.telephone_field :short_phone_nunber, value: unit.short_phone_nunber
+          = f.telephone_field :fax, value: unit.fax
+          = f.telephone_field :home_phone_number, value: unit.home_phone_number
+          = f.url_field :web_page, value: unit.web_page
+          = f.time_field :start_work, value: unit.start_work
+          = f.time_field :finish_work, value: unit.finish_work
+          = f.select(:working_days, options_for_select([['Sun-Fri', 'Sun-Fri'], ['Day work two rest', 'Day work two rest'], ['Vacation', 'Vacation']]))
+          = f.date_field :birthday, value: unit.birthday
+          / = f.text_field :login, value: ''
+          - unless unit.unitphoto_url.nil?
+            = image_tag unit.unitphoto_url, size: "50x35", alt: "company logo"
           = f.file_field :unitphoto, :class => "btn btn-default"
-          = f.check_box :show_hide_for_units
-          = f.check_box :show_hide_for_visitors
-          = f.check_box :global_admin
-          = f.check_box :global_moderator
-          = f.check_box :organization_admin
-          = f.check_box :organization_moderator
-          = f.check_box :departament_admin
-          = f.check_box :departament_moderator
-          = f.check_box :units_admin
+          = f.text_area :characteristic, value: unit.characteristic
+          / = f.check_box :show_hide_for_units
+          / = f.check_box :show_hide_for_visitors
+          - if departament.units.empty?
+            = f.check_box :global_admin, checked: unit.global_admin
+            = f.check_box :global_moderator, checked: unit.global_moderator
+          = f.check_box :organization_admin, checked: unit.organization_admin
+          = f.check_box :organization_moderator, checked: unit.organization_moderator
+          = f.check_box :departament_admin, checked: unit.departament_admin
+          = f.check_box :departament_moderator, checked: unit.departament_moderator
+          = f.check_box :units_admin, checked: unit.units_admin
           = f.submit :class => "btn btn-primary"
-          = link_to 'CANCEL', organization_departament_unit_path(organization), :type=> "button", :class => "btn btn-danger"
+          - if !departament.blank? and !units.blank?
+            = link_to 'CANCEL', organization_departament_units_path(organization), :type=> "button", :class => "btn btn-danger"

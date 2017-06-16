@@ -13,8 +13,6 @@
           = f.select(:belong_to_departament, organization.departaments.ids , {include_blank: "Select departament"})
           = f.text_area :post
           = f.email_field :email, value: '1@1'
-          = f.password_field :password, autocomplete: "off"
-          = f.password_field :password_confirmation, autocomplete: "off"
           = f.email_field :secondary_email, value: 'z@z'
           = f.telephone_field :primary_phone_number, value: 'xxxxxxxxx'
           = f.telephone_field :secondary_phone_number, value: 'xxxxxxxxx'
@@ -24,18 +22,17 @@
           = f.url_field :web_page, value: ''
           = f.time_field :start_work, value: ''
           = f.time_field :finish_work, value: ''
-          = f.text_field :working_days, value: ''
+          = f.select(:working_days, options_for_select([['Select', ''], ['Sun-Fri', 'Sun-Fri']]))
           = f.date_field :birthday, value: ''
-          = f.text_field :login, value: ''
+          / = f.text_field :login, value: ''
           = f.file_field :unitphoto, :class => "btn btn-default"
           = f.text_area :characteristic
           = f.check_box :show_hide_for_units
           = f.check_box :show_hide_for_visitors
           - if departament.units.empty?
             = f.check_box :global_admin, checked: true
-          - else
             = f.check_box :global_admin
-          = f.check_box :global_moderator
+            = f.check_box :global_moderator
           = f.check_box :organization_admin
           = f.check_box :organization_moderator
           = f.check_box :departament_admin
