@@ -2,6 +2,7 @@
   = 'Edit unit data'
 = content_for :edit_unit do
   = 'Edit unit data'
+
 .row
   .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
     .panel.panel-primary
@@ -9,7 +10,7 @@
         EDIT
       .panel-body
         = bootstrap_form_for unit, url: organization_departament_unit_path(organization, departament, unit) do |f|
-          = f.email_field :email
+          = f.email_field :email, value: unit.email
           = link_to 'Change password', new_password_path()
           = f.email_field :secondary_email
           = f.telephone_field :primary_phone_number
@@ -20,7 +21,9 @@
           = f.url_field :web_page
           = f.time_field :start_work, as: :string, value: f.object.start_work
           = f.time_field :finish_work, as: :string, value: f.object.finish_work
-          = f.text_field :working_days
+          = f.select(:working_days, options_for_select([['Mon-Fri', 'Mon-Fri'], ['Day work two rest', 'Day work two rest'], ['Vacation', 'Vacation']], selected: unit.working_days), :include_blank => '')
+
+          = f.text_field :full_name, value: 'Name'
           = f.date_field :birthday
           / = f.text_field :login
           %h4 Curent unit photo

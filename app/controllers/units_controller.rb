@@ -2,42 +2,14 @@ class UnitsController < ApplicationController
   before_action :authenticate_unit!, except: [:new, :create]
 
   def index
-    if current_unit.global_admin?
-      global_admin_role
-    elsif current_unit.global_moderator?
-      global_moderator_role
-    elsif current_unit.organization_admin?
-      organization_admin_role
-    elsif current_unit.organization_moderator?
-      organization_moderator_role
-    elsif current_unit.departament_admin?
-      departament_admin_role
-    elsif current_unit.departament_moderator?
-      departament_moderator_role
-    elsif current_unit.units_admin?
-      units_admin_role
-    else
-     redirect_to organization_departament_units_path(organization, departament)
+    if !current_unit.global_admin? && !current_unit.global_moderator?
+      organizations_isolation
     end
   end
 
   def show
-    if current_unit.global_admin?
-      global_admin_role
-    elsif current_unit.global_moderator?
-      global_moderator_role
-    elsif current_unit.organization_admin?
-      organization_admin_role
-    elsif current_unit.organization_moderator?
-      organization_moderator_role
-    elsif current_unit.departament_admin?
-      departament_admin_role
-    elsif current_unit.departament_moderator?
-      departament_moderator_role
-    elsif current_unit.units_admin?
-      units_admin_role
-    else
-      redirect_to organization_departament_unit_path(organization, departament, unit)
+    if !current_unit.global_admin? && !current_unit.global_moderator?
+      organizations_isolation
     end
   end
 

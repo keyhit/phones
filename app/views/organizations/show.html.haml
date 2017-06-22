@@ -10,11 +10,13 @@
         %b= organization.name
         company
       %tr 
+        %td id
         %td Name
         %td Description
       - departaments.each do |departament|
         %tr
-          %td= link_to departament.departament_name, organization_departament_path(organization, departament)
+          %td= departament.id
+          %td= link_to departament.departament_name, branch_organization_departament_path(organization_id: organization.id)
           %td= departament.departament_description
   .col-md-6
     %table.table.table-striped
@@ -71,9 +73,9 @@
       %tr
         %th Web page
         %td= organization.web_page
-      - if unit_signed_in? and current_unit.global_admin || current_unit.global_moderator || current_unit.organization_admin
+      - if unit_signed_in? 
         %tr
           %th Adminstrative actions
           %td
-            = link_to 'edit', edit_organization_path(organization.id), :class => 'btn btn-warning'
-            = link_to 'Remove', organization_path(organization), :class => 'btn btn-danger', method: :delete, data: { confirm: 'CAUTION! After you confirm all will be deleted!!!' }
+            = link_to 'edit', edit_branch_organization_path(organization.id), :class => 'btn btn-warning'
+            = link_to 'Remove', branch_organization_path(organization), :class => 'btn btn-danger', method: :delete, data: { confirm: 'CAUTION! After you confirm all will be deleted!!!' }

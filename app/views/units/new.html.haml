@@ -22,7 +22,7 @@
           = f.url_field :web_page, value: ''
           = f.time_field :start_work, value: ''
           = f.time_field :finish_work, value: ''
-          = f.select(:working_days, options_for_select([['Select', ''], ['Sun-Fri', 'Sun-Fri']]))
+          = f.select(:working_days, options_for_select([['Mon-Fri', 'Mon-Fri'], ['Day work two rest', 'Day work two rest'], ['Vacation', 'Vacation']]))
           = f.date_field :birthday, value: ''
           / = f.text_field :login, value: ''
           = f.file_field :unitphoto, :class => "btn btn-default"

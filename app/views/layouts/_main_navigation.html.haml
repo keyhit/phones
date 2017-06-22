@@ -49,7 +49,7 @@
           %b Name: 
           = current_unit.full_name
           %b Status:
-          - if current_unit.global_admin 
+          - if current_unit.role == 'global_admin' 
             = 'global admin'
           - elsif current_unit.global_moderator
             = 'global_moderator'
@@ -70,57 +70,59 @@
     .collapse.navbar-collapse
     #bs-example-navbar-collapse-1
     %ul.nav.navbar-nav
-      - if content_for? :all_companies
-        / %li= link_to 'FIRST LINES', lines_path
-        %li= link_to 'ADD COMPANY'.html_safe, new_organization_path()
+      - if content_for? :Main
+        %li= link_to 'MAIN', branches_path()
+      - elsif content_for? :all_companies
+        %li= link_to 'MAIN', branches_path()
+        %li= link_to 'ADD COMPANY', new_branch_organization_path()
       -elsif content_for? :authentication
-        %li= link_to 'ALL COMPANIES', organizations_path()
+        %li= link_to 'ALL COMPANIES', branch_organizations_path()
       - elsif content_for? :create_organization
-        %li= link_to 'ALL COMPANIES', organizations_path()
+        %li= link_to 'ALL COMPANIES', branch_organizations_path()
       - elsif content_for? :edit_organization
-        %li= link_to 'ALL COMPANIES', organizations_path()
-        %li= link_to 'DEPARTAMENTS', organization_departaments_path(organization)
+        %li= link_to 'ALL COMPANIES', branch_organizations_path()
+        %li= link_to 'DEPARTAMENTS', branch_organization_departaments_path(organization)
       - elsif content_for? :organization_name
-        %li= link_to 'ALL COMPANIES', organizations_path()
-        %li= link_to 'DEPARTAMENTS', organization_departaments_path(organization)
+        %li= link_to 'ALL COMPANIES', branch_organizations_path()
+        %li= link_to 'DEPARTAMENTS1', branch_organization_departaments_path(organization_id: organization.id)
       - elsif content_for? :organization_name_for_departaments
-        %li= link_to 'ALL COMPANIES', organizations_path()
-        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
-        %li= link_to 'NEW DEPARTAMENT', new_organization_departament_path()
+        %li= link_to 'ALL COMPANIES', branch_organizations_path()
+        %li= link_to 'MY COMPANY', branch_organization_path(id: organization.id)
+        %li= link_to 'NEW DEPARTAMENT', new_branch_organization_departament_path()
       -elsif content_for? :create_departament
-        %li= link_to 'ALL COMPANIES', organizations_path()
-        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
-        %li= link_to 'ALL DEPARTAMENTS', organization_departaments_path()
+        %li= link_to 'ALL COMPANIES', branch_organizations_path()
+        %li= link_to 'MY COMPANY', branch_organization_path()
+        %li= link_to 'ALL DEPARTAMENTS', branch_organization_departaments_path()
       - elsif content_for? :departament_name
-        %li= link_to 'ALL COMPANIES', organizations_path()
-        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
-        %li= link_to 'ALL DEPARTAMENTS', organization_departaments_path()
-        %li= link_to 'ALL DEPARTAMENT UNITS',organization_departament_units_path(departament.organization_id, departament.id)
-        %li= link_to 'ADD NEW UNIT', new_organization_departament_unit_path(departament_id: departament.id)
+        %li= link_to 'ALL COMPANIES', branch_organizations_path()
+        %li= link_to 'MY COMPANY', branch_organization_path()
+        %li= link_to 'ALL DEPARTAMENTS', branch_organization_departaments_path()
+        %li= link_to 'ALL DEPARTAMENT UNITS', branch_organization_departament_units_path(departament_id: departament.id)
+        %li= link_to 'ADD NEW UNIT', new_branch_organization_departament_unit_path(departament_id: departament.id)
       -elsif content_for? :edit_departament
-        %li= link_to 'ALL COMPANIES', organizations_path()
-        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
-        %li= link_to 'ALL DEPARTAMENTS', organization_departaments_path()
+        %li= link_to 'ALL COMPANIES', branch_organizations_path()
+        %li= link_to 'MY COMPANY', branch_organization_path(id: organization.id)
+        %li= link_to 'ALL DEPARTAMENTS', branch_organization_departaments_path()
       -elsif content_for? :all_units_of_departament
-        %li= link_to 'ALL COMPANIES', organizations_path()
-        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
-        %li= link_to 'DEPARTAMENTS', organization_departaments_path()
+        %li= link_to 'ALL COMPANIES', branch_organizations_path()
+        %li= link_to 'MY COMPANY', branch_organization_path(id: organization.id)
+        %li= link_to 'DEPARTAMENTS', branch_organization_departaments_path()
 
-        %li= link_to 'ADD UNIT', new_organization_departament_unit_path()
+        %li= link_to 'ADD UNIT', new_branch_organization_departament_unit_path()
       -elsif content_for? :unit_full_name
-        %li= link_to 'ALL COMPANIES', organizations_path()
-        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
-        %li= link_to 'DEPARTAMENTS', organization_departaments_path()
-        %li= link_to 'ALL UNITS OF DEPARTAMENT ', organization_departament_units_path()
+        %li= link_to 'ALL COMPANIES', branch_organizations_path()
+        %li= link_to 'MY COMPANY', branch_organization_path(id: organization.id)
+        %li= link_to 'DEPARTAMENTS', branch_organization_departaments_path()
+        %li= link_to 'ALL UNITS OF DEPARTAMENT ', branch_organization_departament_units_path()
       - elsif content_for? :new_unit
-        %li= link_to 'ALL COMPANIES', organizations_path()
-        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
-        %li= link_to 'DEPARTAMENTS', organization_departaments_path()
+        %li= link_to 'ALL COMPANIES', branch_organizations_path()
+        %li= link_to 'MY COMPANY', branch_organization_path(id: organization.id)
+        %li= link_to 'DEPARTAMENTS', branch_organization_departaments_path()
       - elsif content_for? :edit_unit
-        %li= link_to 'ALL COMPANIES', organizations_path()
-        %li= link_to 'MY COMPANY', organization_path(id: organization.id)
-        %li= link_to 'DEPARTAMENTS', organization_departaments_path()
-        %li= link_to 'ALL UNITS OF DEPARTAMENT ', organization_departament_units_path(), :type=> "button"
+        %li= link_to 'ALL COMPANIES', branch_organizations_path()
+        %li= link_to 'MY COMPANY', branch_organization_path(id: organization.id)
+        %li= link_to 'DEPARTAMENTS', branch_organization_departaments_path()
+        %li= link_to 'ALL UNITS OF DEPARTAMENT ', branch_organization_departament_units_path(), :type=> "button"
     %ul.nav.navbar-nav.navbar-right
       %li
         - if notice
@@ -132,5 +134,5 @@
       - if unit_signed_in?
         %li= link_to 'LOG OUT', destroy_unit_session_path(), method: :delete
       - else
-        %li= link_to 'SIGN UP', new_organization_path()
+        %li= link_to 'SIGN UP', new_branch_organization_path(branches)
         %li= link_to 'LOG IN', new_unit_session_path()

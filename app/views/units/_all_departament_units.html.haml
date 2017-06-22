@@ -10,7 +10,7 @@
     %th Email
     %th Working days
     %th Public
-    - if current_unit.global_admin? || current_unit.global_moderator? || current_unit.organization_admin? || current_unit.departament_admin?
+    - if current_unit.role == 'global_admin' || current_unit.role == 'global_moderator'
       %th Action
   - units.each do |unit|
     %tr
@@ -18,7 +18,7 @@
         - unless unit.unitphoto_url.nil?
           = image_tag unit.unitphoto_url, size: "50x35", alt: "company logo"
       %td
-        = link_to unit.full_name, organization_departament_unit_path(departament_id: unit.departament_id, id: unit.id)
+        = link_to unit.full_name, branch_organization_departament_unit_path(departament_id: unit.departament_id, id: unit.id)
       %td= unit.post
       %td= unit.primary_phone_number
       %td= unit.email
@@ -26,5 +26,5 @@
       %td
         - if unit.id.to_i == organization.public_presentation_user_id.to_i
           = 'Yes'
-      - if current_unit.global_admin? || current_unit.global_moderator? || current_unit.organization_admin? || current_unit.departament_admin?
-        %td= link_to 'Destroy', organization_departament_unit_path(departament_id: unit.departament_id, id: unit.id), method: :delete, data: { confirm: 'Are you sure?' }
+      - if current_unit.role == 'global_admin' || current_unit.role == 'global_moderator'
+        %td= link_to 'Remove', branch_organization_departament_unit_path(departament_id: unit.departament_id, id: unit.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger'

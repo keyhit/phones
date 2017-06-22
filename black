@@ -1,0 +1,13 @@
+rails new commandsapp
+rails server
+rails server -e production -p 4000
+rails generate controller Articles
+or
+rails generate controller WhateverControllers new create edit update destroy show
+rails generate model Article title:string text:text
+rails db:drop
+rails db:create
+rails db:migrate
+rails db:seed
+rails db:drop db:create db:migrate db:seed
+rails db:setup

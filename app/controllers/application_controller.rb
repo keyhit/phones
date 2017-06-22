@@ -3,6 +3,21 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
+    def branches
+      @branches = Branche.all
+    end
+    helper_method :branches
+
+    def all_organizations
+      @all_organizations = Organization.all
+    end
+    helper_method :all_organizations
+
+    def branch_organizations
+      @branch_organizations = Organization.where(branche_id: params[:branch_id])
+    end
+    helper_method :branch_organizations
+
     def organization
       @organization ||= Organization.find(params[:organization_id])
     end

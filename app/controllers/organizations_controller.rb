@@ -2,7 +2,6 @@ class OrganizationsController < ApplicationController
   before_action :authenticate_unit!, except: [:index, :show, :new, :create]
 
   def index
-    @organizations = Organization.all
   end
 
   def show

@@ -6,9 +6,11 @@ class CreateOrganizations < ActiveRecord::Migration[5.0]
       t.string :web_page
       t.string :our_skils
       t.string :organizationlogotype
-      t.string :public_presentation_user_id
+      t.string  :public_presentation_user_id
+      t.references :branche, foreign_key: true
 
       t.timestamps
     end
   end
 end
+ 

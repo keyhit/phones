@@ -1,54 +1,29 @@
 class AddDeviseToUnits < ActiveRecord::Migration[5.0]
   def self.up
     create_table :units do |t| 
-      t.string :full_name
-      t.string :belong_to_departament
-      t.string :post
-      t.string :email, null: false, default: ""
-      t.string :secondary_email
-      t.string :encrypted_password, null: false, default: ""
-      t.string :primary_phone_number
-      t.string :secondary_phone_number
-      t.string :short_phone_nunber
-      t.string :fax
-      t.string :home_phone_number
-      t.string :web_page
-      t.string :start_work
-      t.string :finish_work
-      t.string :working_days
-      t.date :birthday
-      t.string :login
-      t.string :password
-      t.string :unitphoto
-      t.string :characteristic
-      t.references :departament, foreign_key: true
+      t.string     :full_name
+      t.string     :belong_to_departament
+      t.string     :post
+      t.string     :email, null: false, default: ""
+      t.string     :secondary_email
+      t.string     :encrypted_password, null: false, default: ""
+      t.string     :primary_phone_number
+      t.string     :secondary_phone_number
+      t.string     :short_phone_nunber
+      t.string     :fax
+      t.string     :home_phone_number
+      t.string     :web_page
+      t.string     :start_work
+      t.string     :finish_work
+      t.string     :working_days
+      t.date       :birthday
+      t.string     :unitphoto
+      t.string     :characteristic
+      t.string     :role
+      t.string     :subordinated
+      t.references :branche, foreign_key: true
       t.references :organization, foreign_key: true
-      # Hide user
-      t.boolean :show_hide_for_units, default: false
-      t.boolean :show_hide_for_visitors, default: false
-      # Roles
-      # CRUD all
-      if units.empty?
-        t.boolean :global_admin, default: true
-      elsif unit.empty?
-        t.boolean :global_admin, default: false
-      end
-      # CRU all
-      t.boolean :global_moderator, default: false
-      # CRUD only in native: orgamization, departament, unit 
-      t.boolean :organization_admin, default: false
-      # CRU only in native: orgamization, departament, unit
-      t.boolean :organization_moderator, default: false
-      # CRUD only in native: departament, unit
-      t.boolean :departament_admin, default: false
-      # CRU only in native: departament, unit
-      t.boolean :departament_moderator, default: false
-      # RU only in native unit
-      if unit.empty?
-        t.boolean :units_admin
-      else
-        t.boolean :units_admin
-      end
+      t.references :departament, foreign_key: true
       ## Database authenticatable
       # t.string :email,              null: false, default: ""
 

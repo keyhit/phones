@@ -1,0 +1,26 @@
+= content_for :title do
+  = 'Main'
+= content_for :Main do
+  = 'Main'
+.row
+  .col-md-2
+    .panel.panel-success
+      .panel-heading
+        %h5 Here is all branches
+      %ul.list-group
+      - branches.each do |branch|
+        %li.list-group-item
+          = link_to branch.branch_name, branch_organizations_path(branch_id: branch.id), :class => 'btn btn-default'
+  .col-md-10
+    .panel.panel-success
+      .panel-heading
+        %h5 Here is all companies
+      %ul.list-group
+      - all_organizations.each do |all_organization|
+        %li.list-group-item
+          - unless all_organization.organizationlogotype_url.nil?
+            = image_tag all_organization.organizationlogotype_url, size: "50x35", alt: "company logo"
+          = all_organization.id
+          = all_organization.branche_id
+          = link_to all_organization.name, branch_organization_path(all_organization.id, all_organization.branche_id), :class => 'btn btn-default'
+          = all_organization.our_skils
