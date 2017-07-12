@@ -8,7 +8,7 @@ class UnitsController < ApplicationController
   end
 
   def show
-    if !current_unit.global_admin? && !current_unit.global_moderator?
+    if !current_unit.role == 'global_admin' || !current_unit.role == 'global_moderator'
       organizations_isolation
     end
   end
@@ -146,7 +146,7 @@ class UnitsController < ApplicationController
 
   private
   def unit_params
-    params.require(:unit).permit(:full_name, :belong_to_departament, :post, :email, :password, :password_confirmation, :secondary_email, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :login, :password, :characteristic, :show_hide_for_units, :show_hide_for_visitors, :global_admin, :global_moderator, :organization_admin, :organization_moderator, :departament_admin, :departament_moderator, :units_admin, :unitphoto)
+    params.require(:unit).permit(:full_name, :belong_to_departament, :post, :email, :password, :password_confirmation, :secondary_email, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :login, :password, :characteristic, :show_hide_for_units, :show_hide_for_visitors, :role, :unitphoto)
   end
 
   def units

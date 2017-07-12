@@ -1,0 +1,56 @@
+%ul.nav.navbar-nav
+  - if content_for? :Main
+    %li= link_to 'ADD COMPANY', branches_path()
+  - elsif content_for :all_companies
+    %li= link_to 'MAIN', branches_path()
+    %li= link_to 'ADD COMPANY', branches_path()
+  -elsif content_for? :authentication
+    %li= link_to 'ALL COMPANIES', branch_organizations_path(branch_id: branches.ids)
+  - elsif content_for? :create_organization
+    %li= link_to 'ALL COMPANIES', branch_organizations_path()
+  - elsif content_for? :edit_organization
+    %li= link_to 'ALL COMPANIES', branch_organizations_path()
+    %li= link_to 'DEPARTAMENTS', branch_organization_departaments_path(branch, organization)
+  - elsif content_for? :organization_name
+    %li= link_to 'ALL COMPANIES', branch_organizations_path()
+    %li= link_to 'DEPARTAMENTS', branch_organization_departaments_path(organization_id: organization.id)
+  - elsif content_for? :organization_name_for_departaments
+    %li= link_to 'ALL COMPANIES', branch_organizations_path()
+    %li= link_to 'MY COMPANY', branch_organization_path(id: organization.id)
+    %li= link_to 'NEW DEPARTAMENT', new_branch_organization_departament_path()
+  -elsif content_for? :create_departament
+    %li= link_to 'ALL COMPANIES', branch_organizations_path()
+    %li= link_to 'MY COMPANY', branch_organization_path()
+    %li= link_to 'ALL DEPARTAMENTS', branch_organization_departaments_path()
+  - elsif content_for? :departament_name
+    %li= link_to 'ALL COMPANIES', branch_organizations_path()
+    %li= link_to 'MY COMPANY', branch_organization_path()
+    %li= link_to 'ALL DEPARTAMENTS', branch_organization_departaments_path()
+    %li= link_to 'ALL DEPARTAMENT UNITS', branch_organization_departament_units_path(departament_id: departament.id)
+    %li= link_to 'ADD NEW UNIT', new_branch_organization_departament_unit_path(departament_id: departament.id)
+  -elsif content_for? :edit_departament
+    %li= link_to 'ALL COMPANIES', branch_organizations_path()
+    %li= link_to 'MY COMPANY', branch_organization_path(id: organization.id)
+    %li= link_to 'ALL DEPARTAMENTS', branch_organization_departaments_path()
+  -elsif content_for? :all_units_of_departament
+    %li= link_to 'ALL COMPANIES', branch_organizations_path()
+    %li= link_to 'MY COMPANY', branch_organization_path(id: organization.id)
+    %li= link_to 'DEPARTAMENTS', branch_organization_departaments_path()
+
+    %li= link_to 'ADD UNIT', new_branch_organization_departament_unit_path()
+  -elsif content_for? :unit_full_name
+    %li= link_to 'ALL COMPANIES', branch_organizations_path()
+    %li= link_to 'MY COMPANY', branch_organization_path(id: organization.id)
+    %li= link_to 'DEPARTAMENTS', branch_organization_departaments_path()
+    %li= link_to 'ALL UNITS OF DEPARTAMENT ', branch_organization_departament_units_path()
+  - elsif content_for? :new_unit
+    %li= link_to 'ALL COMPANIES', branch_organizations_path()
+    %li= link_to 'MY COMPANY', branch_organization_path(id: organization.id)
+    %li= link_to 'DEPARTAMENTS', branch_organization_departaments_path()
+  - elsif content_for? :edit_unit
+    %li= link_to 'ALL COMPANIES', branch_organizations_path()
+    %li= link_to 'MY COMPANY', branch_organization_path(id: organization.id)
+    %li= link_to 'DEPARTAMENTS', branch_organization_departaments_path()
+    %li= link_to 'ALL UNITS OF DEPARTAMENT ', branch_organization_departament_units_path(), :type=> "button"
+  - elsif content_for? :admin_page
+    %li= link_to 'MAIN', branches_path()

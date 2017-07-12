@@ -1,16 +1,10 @@
 = content_for :title do
-  = 'All companies'
+  = 'Branch companies'
 = content_for :all_companies do
-  = 'All companies' 
+  = 'Branch companies' 
 .row
   .col-md-2
-    .panel.panel-success
-      .panel-heading
-        %h5 Here is all branches
-      %ul.list-group
-      - branches.each do |branch|
-        %li.list-group-item
-          = link_to branch.branch_name, branch_organizations_path(branch.id), :class => 'btn btn-default'
+    = render '/branches/branches_all'
   .col-md-10
     .panel.panel-success
       .panel-heading

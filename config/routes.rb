@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   get 'organization/:organization_id/departament/:departament_id/unit/:id', to: 'units#new_password', as: 'new_password' 
   get 'organization/:organization_id/departament/:departament_id/unit/:id/units_self_admin', to: 'units#units_self_admin', as: 'units_self_admin'
+  get 'admin', to: 'branches#admin', as: 'admin'
   root 'branches#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

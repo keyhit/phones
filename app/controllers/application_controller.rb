@@ -8,13 +8,18 @@ class ApplicationController < ActionController::Base
     end
     helper_method :branches
 
+    def branch
+      @branch = Branche.find(params[:branch_id])
+    end
+    helper_method :branch
+
     def all_organizations
       @all_organizations = Organization.all
     end
     helper_method :all_organizations
 
     def branch_organizations
-      @branch_organizations = Organization.where(branche_id: params[:branch_id])
+      @branch_organizations = Organization.where(branche_id: branch.id)
     end
     helper_method :branch_organizations
 
@@ -49,6 +54,11 @@ class ApplicationController < ActionController::Base
       end
     end
     helper_method :public_presentation
+
+    def branch_organization_departament_units(*args)
+      @branch_organization_departament_units = Unit.where(departament_id: args)
+    end
+    helper_method :branch_organization_departament_units
 
     # By default signed unit can't visit to departaments and units lists
     # outher company 

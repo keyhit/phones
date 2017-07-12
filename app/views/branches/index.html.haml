@@ -1,16 +1,10 @@
-= content_for :title do
-  = 'Main'
 = content_for :Main do
+  = 'Main'
+= content_for :Маin do
   = 'Main'
 .row
   .col-md-2
-    .panel.panel-success
-      .panel-heading
-        %h5 Here is all branches
-      %ul.list-group
-      - branches.each do |branch|
-        %li.list-group-item
-          = link_to branch.branch_name, branch_organizations_path(branch_id: branch.id), :class => 'btn btn-default'
+    = render 'branches_all'
   .col-md-10
     .panel.panel-success
       .panel-heading
@@ -24,3 +18,13 @@
           = all_organization.branche_id
           = link_to all_organization.name, branch_organization_path(all_organization.id, all_organization.branche_id), :class => 'btn btn-default'
           = all_organization.our_skils
+
+%div
+  %label{:for => "awardWon"} Award Won
+  %input#awardWon{:list => "awards", :name => "awardWon", :type => "text", :value => "You variant"}/
+  %datalist#awards
+    %select
+      %option{:value => "Best Picture"}
+      %option{:value => "Best Director"}
+      %option{:value => "Best Adapted Screenplay"}
+      %option{:value => "Best Original Screenplay"}

@@ -8,7 +8,7 @@
       .panel-heading
         EDIT
       .panel-body
-        = bootstrap_form_for organization, url: organization_path(organization), method: :patch do |f|
+        = bootstrap_form_for organization, url: branch_organization_path(branch, organization), method: :patch do |f|
           = f.text_field :name
           = f.text_field :address
           = f.url_field :web_page
@@ -18,4 +18,4 @@
           = image_tag(organization.organizationlogotype_url.to_s, size: "50x30", alt: "my logo")
           = f.file_field :organizationlogotype, :class => "btn btn-default"
           = f.submit :class => "btn btn-primary"
-          = link_to 'CANCEL', organization_path(organization), :type=> "button", :class => "btn btn-danger"
+          = link_to 'CANCEL', branch_organization_path(branch, organization), :type=> "button", :class => "btn btn-danger"

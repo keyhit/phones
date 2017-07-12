@@ -1,0 +1,14 @@
+- if unit_signed_in?
+  %b Organization:
+  = unit_orgammization.name
+  %b Departament:
+  = current_unit.belong_to_departament
+  %b Name: 
+  = current_unit.full_name
+  - if current_unit.role?
+    %b Status:
+    = current_unit.role
+  -else
+    = 'undefined'
+- else
+  = 'My greating for you, Guest!!!'
