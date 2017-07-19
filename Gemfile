@@ -63,7 +63,7 @@ gem 'cloudinary'
 gem 'figaro', '~> 1.1.1'
 gem 'devise'
 gem 'erb2haml'
-gem 'rails_admin', '~> 1.2'
+gem 'rails_admin', '~> 1.2', :path => "/home/viacheslav/phones/gems/rails_admin"
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'

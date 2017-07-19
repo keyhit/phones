@@ -1,2 +1,14 @@
-%h1 Branches#new
-%p Find me in app/views/branches/new.html.erb
+= content_for :title do
+  = 'New branch'
+= content_for :new_branch do
+  = 'New branch'
+.row
+  .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
+    .panel.panel-primary
+      .panel-heading
+        NEW
+      .panel-body
+        = bootstrap_form_for :branche, url: branches_path(), method: :post do |f|
+          = f.text_field :branch_name
+          = f.submit :class => "btn btn-primary"
+          = link_to 'CANCEL', admin_branches_path(), :type=> "button", :class => "btn btn-danger"

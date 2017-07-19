@@ -60,6 +60,10 @@ class ApplicationController < ActionController::Base
     end
     helper_method :branch_organization_departament_units
 
+    def tables_name(a)
+    end
+    helper_method :tables_name
+
     # By default signed unit can't visit to departaments and units lists
     # outher company 
     def organizations_isolation

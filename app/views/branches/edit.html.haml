@@ -1,2 +1,14 @@
-%h1 Branches#edit
-%p Find me in app/views/branches/edit.html.erb
+= content_for :title do
+  = 'Edit branch'
+= content_for :edit_branch do
+  = 'Edit branch'
+.row
+  .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
+    .panel.panel-primary
+      .panel-heading
+        EDIT
+      .panel-body
+        = bootstrap_form_for branch_edit, url: branch_path(branch_edit), method: :patch do |f|
+          = f.text_field :branch_name
+          = f.submit :class => "btn btn-primary"
+          = link_to 'CANCEL', admin_branches_path(), :type=> "button", :class => "btn btn-danger"

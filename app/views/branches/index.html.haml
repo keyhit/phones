@@ -19,12 +19,3 @@
           = link_to all_organization.name, branch_organization_path(all_organization.id, all_organization.branche_id), :class => 'btn btn-default'
           = all_organization.our_skils
 
-%div
-  %label{:for => "awardWon"} Award Won
-  %input#awardWon{:list => "awards", :name => "awardWon", :type => "text", :value => "You variant"}/
-  %datalist#awards
-    %select
-      %option{:value => "Best Picture"}
-      %option{:value => "Best Director"}
-      %option{:value => "Best Adapted Screenplay"}
-      %option{:value => "Best Original Screenplay"}

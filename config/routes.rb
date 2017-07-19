@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :units, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   resources :lines
+  resources :admins
+  get 'branches/admin_branches', to: 'branches#admin_branches', as: 'admin_branches'
   resources :branches do
     resources :organizations do
       resources :departaments do

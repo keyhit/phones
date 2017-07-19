@@ -47,3 +47,4 @@ class OrganizationsController < ApplicationController
   end
   helper_method :organization
 end 
+ 

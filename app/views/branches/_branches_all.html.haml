@@ -1,6 +1,9 @@
 .panel.panel-success
   .panel-heading
-    %h5 Here is all branches
+    %h5
+    Here is all branches
+    = link_to admin_branches_path(), :title =>'Setup branches' do
+      .glyphicon.glyphicon-wrench
   %ul.list-group
   - branches.each do |branch|
     %li.list-group-item

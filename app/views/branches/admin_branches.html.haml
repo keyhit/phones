@@ -1,0 +1,21 @@
+= content_for :title do
+  = 'Admin branches'
+= content_for :admin_branches do
+  = 'Admin branches'
+%table.table
+  %caption
+    %h3
+      Branches admin
+  %tr
+    %th Name
+    %th{:colspan=>3} Action
+  - branches.each do |branch|
+    %tr
+      %td
+        = link_to branch.branch_name, branch_organizations_path(branch.id), :class => 'btn btn-default'
+      %td
+        = link_to edit_branch_path(branch), :title =>'Edit' do
+          .span.glyphicon.glyphicon-pencil
+      %td
+        = link_to branch_path(branch), method: :delete, :title =>'Destroy', data: { confirm: 'CAUTION! Are a you sure?' } do
+          .span.glyphicon.glyphicon-remove
