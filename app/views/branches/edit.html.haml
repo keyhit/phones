@@ -8,6 +8,7 @@
       .panel-heading
         EDIT
       .panel-body
+        = render 'flash_form'
         = bootstrap_form_for branch_edit, url: branch_path(branch_edit), method: :patch do |f|
           = f.text_field :branch_name
           = f.submit :class => "btn btn-primary"

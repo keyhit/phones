@@ -60,9 +60,15 @@ class ApplicationController < ActionController::Base
     end
     helper_method :branch_organization_departament_units
 
-    def tables_name(a)
+
+    def check_rules
+      if unit_signed_in?
+        unless current_unit.role == 'global_admin'
+          flash[:error] = 'No access!'
+          redirect_to branches_path()
+        end
+      end
     end
-    helper_method :tables_name
 
     # By default signed unit can't visit to departaments and units lists
     # outher company 

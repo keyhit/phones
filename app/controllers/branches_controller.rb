@@ -14,8 +14,15 @@ class BranchesController < ApplicationController
   end
 
   def create
-    if Branche.create(branche_params)
+    @new_branch = Branche.new(branche_params)
+    @new_branch.valid?
+    @new_branch.errors[:branch_name]
+    @new_branch.branch_name.upcase!
+    if @new_branch.save
       redirect_to admin_branches_path()
+    else
+      flash[:error] = @new_branch.errors[:branch_name]
+      redirect_to new_branch_path(@new_branch.branch_name)
     end
   end
 
@@ -46,14 +53,5 @@ class BranchesController < ApplicationController
     @branche_edit ||= Branche.find(params[:id])
   end
   helper_method :branch_edit
-
-  def check_rules
-    if unit_signed_in?
-      unless current_unit.role == 'global_admin'
-        flash[:error] = 'No access!'
-        redirect_to branches_path()
-      end
-    end
-  end
 
 end
