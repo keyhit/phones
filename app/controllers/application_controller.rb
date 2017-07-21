@@ -207,7 +207,7 @@ class ApplicationController < ActionController::Base
 
     protected
       def configure_permitted_parameters
-        attributes = [:full_name, :belong_to_departament, :post, :email, :password, :password_confirmation, :secondary_email, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :login, :password, :characteristic, :show_hide_for_units, :show_hide_for_visitors, :global_admin, :global_moderator, :organization_admin, :organization_moderator, :departament_admin, :departament_moderator, :units_admin, :unitphoto]
+        attributes = [:full_name, :belong_to_departament, :post, :email, :password, :password_confirmation, :secondary_email, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :login, :password, :characteristic, :role, :unitphoto]
         devise_parameter_sanitizer.permit(:sign_up, keys: attributes)
         devise_parameter_sanitizer.permit(:account_update, keys: attributes)
       end

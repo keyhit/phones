@@ -1,6 +1,6 @@
 class UnitsController < ApplicationController
 
-  before_action :authenticate_unit!
+  before_action :authenticate_unit!, except: [ :new, :create]
   before_action :check_rules_global_admin, except: [ :index, :admin_branches, :show, :new, :create, :edit, :update, :destroy]
   before_action :check_rules_global_moderator, except: [ :index, :admin_branches, :show, :edit, :update]
   before_action :check_rules_organization_admin, except: [ :index, :show, :new, :create, :edit, :update, :destroy]
@@ -9,56 +9,23 @@ class UnitsController < ApplicationController
   before_action :check_rules_departament_moderator , except: [ :index, :show, :edit, :update]
   before_action :check_rules_user, except: [:index, :show, :units_self_admin]
   before_action :organizations_isolation
-  
+
   def index
-    if !current_unit.global_admin? && !current_unit.global_moderator?
-      organizations_isolation
-    end
   end
 
   def show
-    if !current_unit.role == 'global_admin' || !current_unit.role == 'global_moderator'
-      organizations_isolation
-    end
   end
 
   def new
-    if units.empty? 
-        new_unit
-    elsif current_unit.global_admin?
-      global_admin_role
-      new_unit
-    elsif current_unit.global_moderator?
-      global_moderator_role
-      new_unit
-    elsif current_unit.organization_admin?
-      organization_admin_role
-      new_unit
-     elsif current_unit.departament_admin?
-      departament_admin_role
-      new_unit
-    else
-      redirect_to organization_departament_units_path(organization, departament)
-    end
   end
 
   def create
-    if units.empty?
-      create_unit
-    elsif current_unit.global_admin?
-      global_admin_role
-      create_unit
-    elsif current_unit.global_moderator?
-      global_moderator_role
-      create_unit
-    elsif current_unit.organization_admin?
-      organization_admin_role
-      create_unit
-     elsif current_unit.departament_admin?
-      departament_admin_role
-      create_unit
+    @unit = 
+    if Unit.create(unit_params)
+      redirect_to branch_organization_departament_units_path(branch, organization, departament)
     else
-      redirect_to organization_departament_units_path(organization, departament, unit)
+      flash[:error] = 'Unit was not saved!'
+      redirect_to new_branch_organization_departament_unit_path(branch_id: params[:branch_id], organization_id: params[:organization_id], departament_id: params[:departament_id])
     end
   end
 
@@ -167,10 +134,6 @@ class UnitsController < ApplicationController
     @unit ||= departament.units.find(params[:id])
   end
   helper_method :unit
-
-  def new_unit
-    @unit = Unit.new
-  end
 
   def create_unit
     @unit = Unit.new(unit_params)

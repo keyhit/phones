@@ -25,6 +25,9 @@
             = f.label :password_confirmation
             %br/
             = f.password_field :password_confirmation, autocomplete: "off"
+            / = f.hidden_field :branche_id, value: '1'
+            / = f.hidden_field :organization_id, value: '1' 
+            / = f.hidden_field :departament_id, value: '1' 
           .actions
             = f.submit "Sign up"
         = render "devise/shared/links"

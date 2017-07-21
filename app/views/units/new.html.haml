@@ -8,36 +8,36 @@
       .panel-heading
         CREATE
       .panel-body 
-        = bootstrap_form_for :unit, url: organization_departament_units_path(:organization_id => organization.id, :departament_id => departament.id) do |f|
+        = bootstrap_form_for :unit, url: branch_organization_departament_units_path(branch_id: branch.id, organization_id: organization.id, departament_id: departament.id) do |f|
           = f.text_field :full_name, value: 'Name'
           = f.select(:belong_to_departament, organization.departaments.ids , {include_blank: "Select departament"})
           = f.text_area :post
-          = f.email_field :email, value: '1@1'
+          = f.email_field :email, value: '1@1qqqqqq'
+          = f.password_field :password, autocomplete: "off", value: 'xxxxxxxxx'
+          = f.password_field :password_confirmation, autocomplete: "off", value: 'xxxxxxxxx'
           = f.email_field :secondary_email, value: 'z@z'
           = f.telephone_field :primary_phone_number, value: 'xxxxxxxxx'
           = f.telephone_field :secondary_phone_number, value: 'xxxxxxxxx'
           = f.telephone_field :short_phone_nunber, value: 'xxx'
           = f.telephone_field :fax, value: 'xxxxxxxxx'
           = f.telephone_field :home_phone_number, value: 'xxxxxxx'
-          = f.url_field :web_page, value: ''
+          = f.url_field :web_page, value: 'http://localhost:3000'
           = f.time_field :start_work, value: ''
           = f.time_field :finish_work, value: ''
-          = f.select(:working_days, options_for_select([['Mon-Fri', 'Mon-Fri'], ['Day work two rest', 'Day work two rest'], ['Vacation', 'Vacation']]))
+          = f.text_field :working_days, list: 'first-name', value: 'For select working days remove this mesaage or input new ones!'
+          %datalist#first-name
+            %option{:value => 'Mon-Fri'}
+            %option{:value => 'Day work two rest'}
+            %option{:value => 'Vacation'}
+            %option{:value => 'Fired'}
+          / = f.select(:working_days, options_for_select([['Mon-Fri', 'Mon-Fri'], ['Day work two rest', 'Day work two rest'], ['Vacation', 'Vacation']]))
           = f.date_field :birthday, value: ''
           / = f.text_field :login, value: ''
           = f.file_field :unitphoto, :class => "btn btn-default"
           = f.text_area :characteristic
-          = f.check_box :show_hide_for_units
-          = f.check_box :show_hide_for_visitors
-          - if departament.units.empty?
-            = f.check_box :global_admin, checked: true
-            = f.check_box :global_admin
-            = f.check_box :global_moderator
-          = f.check_box :organization_admin
-          = f.check_box :organization_moderator
-          = f.check_box :departament_admin
-          = f.check_box :departament_moderator
-          = f.check_box :units_admin
+          = f.select(:role, options_for_select([['global_admin', 'global_admin'], ['global_moderator', 'global_moderator'], ['organization_admin', 'organization_admin'], ['organization_moderator', 'organization_moderator'], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
+          / = f.hidden_field :branche_id, value: '1'
+          / = f.hidden_field :organization_id, value: '1' 
+          / = f.hidden_field :departament_id, value: '1' 
           = f.submit :class => "btn btn-primary"
-          - if !departament.blank? and !units.blank?
-            = link_to 'CANCEL', organization_departament_units_path(organization), :type=> "button", :class => "btn btn-danger"
+          = link_to 'CANCEL', branch_organization_departament_units_path(organization), :type=> "button", :class => "btn btn-danger"
