@@ -1,5 +1,12 @@
 class BranchesController < ApplicationController
-    before_action :check_rules, :authenticate_unit!, except: [:index]
+  before_action :authenticate_unit!, except: [:index]
+  before_action :check_rules_global_admin, except: [ :index, :admin_branches, :show, :new, :create, :edit, :update, :destroy]
+  before_action :check_rules_global_moderator, except: [ :index, :admin_branches, :show, :edit, :update]
+  before_action :check_rules_organization_admin, except: [:index]
+  before_action :check_rules_organization_moderator , except: [:index]
+  before_action :check_rules_departament_admin , except: [:index]
+  before_action :check_rules_departament_moderator , except: [:index]
+  before_action :check_rules_user, except: [:index]
 
   def index
   end
@@ -53,5 +60,4 @@ class BranchesController < ApplicationController
     @branche_edit ||= Branche.find(params[:id])
   end
   helper_method :branch_edit
-
 end

@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-
   private
     def branches
       @branches = Branche.all
@@ -61,52 +60,150 @@ class ApplicationController < ActionController::Base
     helper_method :branch_organization_departament_units
 
 
-    def check_rules
-      if unit_signed_in?
-        unless current_unit.role == 'global_admin'
-          flash[:error] = 'No access!'
-          redirect_to branches_path()
-        end
+
+  # By default signed unit can't visit to departaments and units lists
+  # outher company 
+  def organizations_isolation
+    if unit_signed_in?
+      if current_unit.organization_id != organization.id
+         redirect_to organization_path(organization)
       end
     end
+  end
+  
+  # Here roles of units
+  def role_1
+    if unit_signed_in?
+      current_unit.role == 'global_admin'
+    end
+  end
+  helper_method :role_1
 
-    # By default signed unit can't visit to departaments and units lists
-    # outher company 
-    def organizations_isolation
-      if unit_signed_in?
-        if current_unit.organization_id != organization.id
-           redirect_to organization_path(organization)
-        end
+  def check_rules_global_admin
+    if role_1
+      unless role_1
+        return true
+      else
+        flash[:error] = 'No access for role_1!'
+        redirect_to branches_path()
+        return
       end
     end
+  end
 
-    # Here roles of units
-    def global_admin_role
+  def role_2
+    if unit_signed_in?
+      current_unit.role == 'global_moderator'
     end
+  end
+  helper_method :role_2
 
-    def global_moderator_role
+  def check_rules_global_moderator
+    if role_2
+      unless role_2
+        return true
+      else
+        flash[:error] = 'No access for role_2!'
+        redirect_to branches_path()
+        return
+      end
     end
+  end
 
-    def organization_admin_role
-        organizations_isolation
+  def role_3
+    if unit_signed_in?
+      current_unit.role == 'organization_admin' 
     end
+  end
+  helper_method :role_3
 
-    def organization_moderator_role
-        organizations_isolation
+  def check_rules_organization_admin
+    if role_3
+      unless role_3
+        return true
+      else
+        flash[:error] = 'No access for role_3!'
+        redirect_to branches_path()
+        return
+      end
     end
+  end
 
-    def departament_admin_role
-        organizations_isolation
+  def role_4
+    if unit_signed_in?
+      current_unit.role == 'organization_moderator'
     end
+  end
+  helper_method :role_4
 
-    def departament_moderator_role
-        organizations_isolation
+  def check_rules_organization_moderator
+    if role_4
+      unless role_4
+        return true
+      else
+        flash[:error] = 'No access for role_4!'
+        redirect_to branches_path()
+        return
+      end
     end
+  end
 
-    def units_admin_role
-        organizations_isolation
+  def role_5
+    if unit_signed_in?
+      current_unit.role == 'departament_admin'
     end
-    
+  end
+  helper_method :role_5
+
+  def check_rules_departament_admin
+    if role_5
+      unless role_5
+        return true
+      else
+        flash[:error] = 'No access for role_5!'
+        redirect_to branches_path()
+        return
+      end
+    end
+  end
+
+  def role_6
+    if unit_signed_in?
+      current_unit.role == 'departament_moderator'
+    end
+  end
+  helper_method :role_6
+
+  def check_rules_departament_moderator
+    if role_6
+      unless role_6
+        return true
+      else
+        flash[:error] = 'No access for role_6!'
+        redirect_to branches_path()
+        return
+      end
+    end
+  end
+
+  def role_7
+    if unit_signed_in?
+      current_unit.role == 'user'
+    end
+  end
+  helper_method :role_7
+
+  def check_rules_user
+    if role_7
+      unless role_7
+        return true
+      else
+        flash[:error] = 'No access for role_7!'
+        redirect_to branches_path()
+      end
+    end
+  end
+
     protected
       def configure_permitted_parameters
         attributes = [:full_name, :belong_to_departament, :post, :email, :password, :password_confirmation, :secondary_email, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :login, :password, :characteristic, :show_hide_for_units, :show_hide_for_visitors, :global_admin, :global_moderator, :organization_admin, :organization_moderator, :departament_admin, :departament_moderator, :units_admin, :unitphoto]

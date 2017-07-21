@@ -53,7 +53,9 @@
     %li= all_units_of_departament_link
   - elsif content_for? :admin_branches
     %li= all_companies_link
-    %li= add_branch_link
+    - if unit_signed_in?
+      - if role_1 
+        %li= add_branch_link
   - elsif content_for? :edit_branch
     %li= all_companies_link
     %li= admin_branches_link
