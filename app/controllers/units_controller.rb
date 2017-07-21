@@ -1,6 +1,15 @@
 class UnitsController < ApplicationController
-  before_action :authenticate_unit!, except: [:new, :create]
 
+  before_action :authenticate_unit!
+  before_action :check_rules_global_admin, except: [ :index, :admin_branches, :show, :new, :create, :edit, :update, :destroy]
+  before_action :check_rules_global_moderator, except: [ :index, :admin_branches, :show, :edit, :update]
+  before_action :check_rules_organization_admin, except: [ :index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :check_rules_organization_moderator , except: [ :index, :show, :edit, :update]
+  before_action :check_rules_departament_admin , except: [ :index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :check_rules_departament_moderator , except: [ :index, :show, :edit, :update]
+  before_action :check_rules_user, except: [:index, :show, :units_self_admin]
+  before_action :organizations_isolation
+  
   def index
     if !current_unit.global_admin? && !current_unit.global_moderator?
       organizations_isolation

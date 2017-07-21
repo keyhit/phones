@@ -1,37 +1,21 @@
 class DepartamentsController < ApplicationController
-  before_action :authenticate_unit!, except: [:new, :create]
+  before_action :authenticate_unit!
+  before_action :check_rules_global_admin, except: [ :index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :check_rules_global_moderator, except: [ :index, :show, :edit, :update]
+  before_action :check_rules_organization_admin, except: [ :index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :check_rules_organization_moderator , except: [ :index, :show, :edit, :update]
+  before_action :check_rules_departament_admin , except: [ :index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :check_rules_departament_moderator , except: [ :index, :show, :edit, :update]
+  before_action :check_rules_user, except: [:index, :show]
+  before_action :organizations_isolation
 
   def index
-    # if current_unit.role == 'global_admin' || current_unit.role == 'global_moderator'
-    #   global_admin_role
-    # else
-    #   redirect_to branch_organization_path(params[:branch_id], params[:organization_id])
-    # end
   end
 
   def show
-    # if current_unit.role == global_admin_role || current_unit.role == global_moderator_role
-    #   global_admin_role
-    # else
-    #   redirect_to branch_organization_path(branches, organization)
-    # end
   end
 
   def new
-    # if  departaments.empty?
-    # else
-    #   if current_unit.global_admin?
-    #     global_admin_role
-    #   elsif current_unit.global_moderator?
-    #     global_moderator_role
-    #   elsif current_unit.organization_admin?
-    #     organization_admin_role
-    #   elsif current_unit.departament_admin?
-    #     departament_admin_role
-    #   else
-    #     redirect_to organization_departaments_path(organization)
-    #   end
-    # end
   end
 
   def create

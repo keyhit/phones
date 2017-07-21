@@ -66,7 +66,8 @@ class ApplicationController < ActionController::Base
   def organizations_isolation
     if unit_signed_in?
       if current_unit.organization_id != organization.id
-         redirect_to organization_path(organization)
+        flash[:error] = 'You not work here. Access denie !'
+        redirect_to branch_organization_path(branch, organization)
       end
     end
   end
