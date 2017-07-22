@@ -4,9 +4,9 @@ class AddDeviseToUnits < ActiveRecord::Migration[5.0]
       t.string     :full_name
       t.string     :belong_to_departament
       t.string     :post
-      t.string     :email, null: false, default: ""
+      t.string     :email,                null: false, default: ""
       t.string     :secondary_email
-      t.string     :encrypted_password, null: false, default: ""
+      t.string     :encrypted_password,   null: false, default: ""
       t.string     :primary_phone_number
       t.string     :secondary_phone_number
       t.string     :short_phone_nunber

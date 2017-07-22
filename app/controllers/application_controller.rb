@@ -27,10 +27,10 @@ class ApplicationController < ActionController::Base
     end
     helper_method :organization
 
-    def unit_orgammization
-      @unit_orgammization ||= Organization.find(current_unit.organization_id)
+    def unit_organization
+      @unit_organization ||= Organization.find(current_unit.organization_id)
     end
-    helper_method :unit_orgammization
+    helper_method :unit_organization
 
     def departament
       @departament ||= organization.departaments.find(params[:departament_id])
@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
     helper_method :departaments
 
     def units
-      @units ||=departament.units.where(params[:departament_id])
+      @units ||= departament.units.where(params[:departament_id])
     end
     helper_method :units
 
@@ -207,7 +207,7 @@ class ApplicationController < ActionController::Base
 
     protected
       def configure_permitted_parameters
-        attributes = [:full_name, :belong_to_departament, :post, :email, :password, :password_confirmation, :secondary_email, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :login, :password, :characteristic, :role, :unitphoto]
+        attributes = [:full_name, :belong_to_departament, :post, :email, :secondary_email, :password, :password_confirmation, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :unitphoto, :characteristic, :role, :subordinate]
         devise_parameter_sanitizer.permit(:sign_up, keys: attributes)
         devise_parameter_sanitizer.permit(:account_update, keys: attributes)
       end

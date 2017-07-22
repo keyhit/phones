@@ -84,9 +84,7 @@ ActiveRecord::Schema.define(version: 20170619214211) do
     t.string   "last_sign_in_ip"
     t.index ["branche_id"], name: "index_units_on_branche_id"
     t.index ["departament_id"], name: "index_units_on_departament_id"
-    t.index ["email"], name: "index_units_on_email", unique: true
     t.index ["organization_id"], name: "index_units_on_organization_id"
-    t.index ["reset_password_token"], name: "index_units_on_reset_password_token", unique: true
   end
 
 end

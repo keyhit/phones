@@ -1,6 +1,5 @@
 class UnitsController < ApplicationController
-
-  before_action :authenticate_unit!, except: [ :new, :create]
+  before_action :authenticate_unit!
   before_action :check_rules_global_admin, except: [ :index, :admin_branches, :show, :new, :create, :edit, :update, :destroy]
   before_action :check_rules_global_moderator, except: [ :index, :admin_branches, :show, :edit, :update]
   before_action :check_rules_organization_admin, except: [ :index, :show, :new, :create, :edit, :update, :destroy]
@@ -20,91 +19,29 @@ class UnitsController < ApplicationController
   end
 
   def create
-    @unit = 
-    if Unit.create(unit_params)
+    # require 'pry'
+    # binding.pry
+    if Unit.create!(unit_params)
       redirect_to branch_organization_departament_units_path(branch, organization, departament)
     else
+      @new_unit.errors
       flash[:error] = 'Unit was not saved!'
       redirect_to new_branch_organization_departament_unit_path(branch_id: params[:branch_id], organization_id: params[:organization_id], departament_id: params[:departament_id])
     end
   end
 
   def edit
-    if current_unit.global_admin?
-      global_admin_role
-    elsif current_unit.global_moderator?
-      global_moderator_role
-    elsif current_unit.organization_admin?
-      organization_admin_role
-    elsif current_unit.organization_moderator?
-      organization_moderator_role
-    elsif current_unit.departament_admin?
-      departament_admin_role
-    elsif current_unit.departament_moderator?
-      departament_moderator_role
-    elsif current_unit.units_admin?
-      if current_unit.id.to_i == unit.id.to_i
-        units_admin_role
-      else 
-        redirect_to organization_departament_units_path(organization, departament, unit)
-      end
-    else
-      redirect_to organization_departament_units_path(organization, departament, unit)
-    end
   end
 
   def update
-    def updation_unit
-      if unit.update(unit_params)
-        redirect_to organization_departament_units_path(organization, departament.id)
-      end
-    end
-    if current_unit.global_admin?
-      global_admin_role
-      updation_unit
-    elsif current_unit.global_moderator?
-      global_moderator_role
-      updation_unit
-    elsif current_unit.organization_admin?
-      organization_admin_role
-      updation_unit
-    elsif current_unit.organization_moderator?
-      organization_moderator_role
-      updation_unit
-    elsif current_unit.departament_admin?
-      departament_admin_role
-      updation_unit
-    elsif current_unit.departament_moderator?
-      departament_moderator_role
-      updation_unit
-    elsif current_unit.units_admin?
-      units_admin_role
-      updation_unit
-    else
-        redirect_to organization_departament_units_path(organization, departament, unit)
+    if unit.update(unit_params)
+      redirect_to organization_departament_units_path(organization, departament.id)
     end
   end
 
   def destroy
-    def deletion_unit
-      if unit.destroy
-        redirect_to organization_departament_units_path(organization, departament.id)
-      end
-    end
-    if current_unit.global_admin?
-      global_admin_role
-      deletion_unit
-    elsif current_unit.global_moderator?
-      global_moderator_role
-      deletion_unit
-    elsif current_unit.organization_admin?
-      organization_admin_role
-      deletion_unit
-    elsif current_unit.departament_admin?
-      departament_admin_role
-      deletion_unit
-    else
-      redirect_to organization_departament_units_path(organization, departament)
+    if unit.destroy
+      redirect_to organization_departament_units_path(organization, departament.id)
     end
   end
 
@@ -122,7 +59,7 @@ class UnitsController < ApplicationController
 
   private
   def unit_params
-    params.require(:unit).permit(:full_name, :belong_to_departament, :post, :email, :password, :password_confirmation, :secondary_email, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :login, :password, :characteristic, :show_hide_for_units, :show_hide_for_visitors, :role, :unitphoto)
+    params.require(:unit).permit(:full_name, :belong_to_departament, :post, :email, :secondary_email, :password, :password_confirmation, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :unitphoto, :characteristic, :role, :subordinate)
   end
 
   def units
@@ -135,14 +72,4 @@ class UnitsController < ApplicationController
   end
   helper_method :unit
 
-  def create_unit
-    @unit = Unit.new(unit_params)
-    @unit.organization = organization
-    @unit.departament = departament
-    if @unit.save and unit_signed_in?
-      redirect_to organization_departament_units_path(organization, departament.id)
-    else
-      redirect_to new_unit_session_path()
-    end
-  end
 end
