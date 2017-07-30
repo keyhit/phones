@@ -1,14 +1,33 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  # before_action :check_branch, :check_organization
   private
+    # def check_branch
+    #   if unit_signed_in? and current_unit.branch_id == nil
+    #     render 'branches/select_branch'
+    #   end
+    # end
+
+    # def check_organization
+    #   if unit_signed_in? and current_unit.organization_id == nil
+    #     render 'organizations/new'
+    #   end
+    # end
+
+    # def check_departament
+    #   if unit_signed_in? and current_unit.departament_id == nil
+    #     render 'departaments/new'
+    #   end
+    # end
+
     def branches
-      @branches = Branche.all
+      @branches = Branch.all
     end
     helper_method :branches
 
     def branch
-      @branch = Branche.find(params[:branch_id])
+      @branch = Branch.find(params[:branch_id])
     end
     helper_method :branch
 
@@ -18,7 +37,7 @@ class ApplicationController < ActionController::Base
     helper_method :all_organizations
 
     def branch_organizations
-      @branch_organizations = Organization.where(branche_id: branch.id)
+      @branch_organizations = Organization.where(branch_id: branch.id)
     end
     helper_method :branch_organizations
 
@@ -27,10 +46,16 @@ class ApplicationController < ActionController::Base
     end
     helper_method :organization
 
+    def unit_branch
+      @unit_branch ||= Branch.find(current_unit.branch_id)
+    end
+    helper_method :unit_branch
+
     def unit_organization
       @unit_organization ||= Organization.find(current_unit.organization_id)
     end
     helper_method :unit_organization
+
 
     def departament
       @departament ||= organization.departaments.find(params[:departament_id])
@@ -59,19 +84,6 @@ class ApplicationController < ActionController::Base
     end
     helper_method :branch_organization_departament_units
 
-
-
-  # By default signed unit can't visit to departaments and units lists
-  # outher company 
-  def organizations_isolation
-    if unit_signed_in?
-      if current_unit.organization_id != organization.id
-        flash[:error] = 'You not work here. Access denie !'
-        redirect_to branch_organization_path(branch, organization)
-      end
-    end
-  end
-  
   # Here roles of units
   def role_1
     if unit_signed_in?
@@ -202,6 +214,33 @@ class ApplicationController < ActionController::Base
         flash[:error] = 'No access for role_7!'
         redirect_to branches_path()
       end
+    end
+  end
+
+  def role_8
+    if unit_signed_in?
+      current_unit.role == nil
+    end
+  end
+  helper_method :role_8
+
+  def check_rules_user_when_registering
+    if role_8
+      unless role_8
+        return true
+      else
+        flash[:error] = 'No access for role_8!'
+        redirect_to branches_path()
+      end
+    end
+  end
+
+  # By default signed unit can't visit to departaments and units lists
+  # outher company 
+  def organizations_isolation
+    if current_unit.organization_id != organization.id
+      flash[:error] = 'You not work here. Access denie !'
+      redirect_to branch_organization_path(branch, organization)
     end
   end
 

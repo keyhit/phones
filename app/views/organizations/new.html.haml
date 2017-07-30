@@ -8,11 +8,10 @@
       .panel-heading
         NEW
       .panel-body
-        = bootstrap_form_for :organization, url: organizations_path do |f|
+        = bootstrap_form_for :organization, url: branch_organizations_path(), method: :post do |f|
           = f.text_field :name
           = f.text_field :address
           = f.url_field :web_page
           = f.text_area :our_skils
           = f.file_field :organizationlogotype, :class => "btn btn-default"
           = f.submit :class => "btn btn-primary"
-          = link_to 'CANCEL', organizations_path(), :type=> "button", :class => "btn btn-danger"

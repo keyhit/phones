@@ -1,0 +1,13 @@
+= content_for :title do
+  = 'Select branch and creating new organization'
+= content_for :create_organization do
+  = 'Creating new organization'
+.row
+  .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
+    .panel.panel-primary
+      .panel-heading
+        SELECT YOU BRANCH
+      .panel-body
+        = bootstrap_form_for :unit, url: update_foreign_ids_path(), method: :post do |f|
+          = f.select(:branch_id, Branch.all.collect { |p| [ p.branch_name, p.id ] })
+          = f.submit :class => "btn btn-primary"

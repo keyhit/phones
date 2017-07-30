@@ -7,7 +7,9 @@ class DepartamentsController < ApplicationController
   before_action :check_rules_departament_admin , except: [ :index, :show, :new, :create, :edit, :update, :destroy]
   before_action :check_rules_departament_moderator , except: [ :index, :show, :edit, :update]
   before_action :check_rules_user, except: [:index, :show]
-  before_action :organizations_isolation
+  before_action :organizations_isolation, if: [ :role_3, :role_4, :role_5, :role_6, :role_7 ]
+  before_action :check_rules_user_when_registering
+
 
   def index
   end

@@ -9,7 +9,7 @@
         NEW
       .panel-body
         = render 'flash_form'
-        = bootstrap_form_for :branche, url: branches_path(), method: :post do |f|
+        = bootstrap_form_for :branch, url: branches_path(), method: :post do |f|
           = f.text_field :branch_name, value: params[:format]
           = f.submit :class => "btn btn-primary"
           = link_to 'CANCEL', admin_branches_path(), :type=> "button", :class => "btn btn-danger"

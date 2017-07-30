@@ -12,3 +12,7 @@ rails db:migrate
 rails db:seed
 rails db:drop db:create db:migrate db:seed
 rails db:setup
+
+def change
+  rename_column :units, :branche_id, :branch_id
+end

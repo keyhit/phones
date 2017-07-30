@@ -14,5 +14,5 @@
         %li.list-group-item
           - unless all_organization.organizationlogotype_url.nil?
             = image_tag all_organization.organizationlogotype_url, size: "50x35", alt: "company logo"
-          = link_to all_organization.name, branch_organization_path(all_organization.branche_id, all_organization.id), :class => 'btn btn-default'
+          = link_to all_organization.name, branch_organization_path(all_organization.branch_id, all_organization.id), :class => 'btn btn-default'
           = all_organization.our_skils

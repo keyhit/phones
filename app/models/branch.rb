@@ -1,4 +1,4 @@
-class Branche < ApplicationRecord
+class Branch < ApplicationRecord
   has_many :organizations, dependent: :destroy
   has_many :departaments
   has_many :units

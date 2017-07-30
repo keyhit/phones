@@ -8,7 +8,7 @@
       .panel-heading
         CREATE
       .panel-body 
-        = bootstrap_form_for :unit, url: branch_organization_departament_units_path(), method: :post do |f|
+        = bootstrap_form_for :unit, url: branch_organization_departament_units_path( branch_id: branch.id, organization_id: organization.id, departament_id: departament.id ), method: :post do |f|
           = f.text_field :full_name, value: 'Name'
           = f.select(:belong_to_departament, organization.departaments.ids , {include_blank: "Select departament"})
           = f.text_area :post
@@ -36,3 +36,4 @@
           = f.select(:role, options_for_select([['global_admin', 'global_admin'], ['global_moderator', 'global_moderator'], ['organization_admin', 'organization_admin'], ['organization_moderator', 'organization_moderator'], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
           = f.submit :class => "btn btn-primary"
           = link_to 'CANCEL', branch_organization_departament_units_path(organization), :type=> "button", :class => "btn btn-danger"
+

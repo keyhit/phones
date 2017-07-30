@@ -47,4 +47,9 @@ module ApplicationHelper
   def add_branch_link
     link_to 'ADD BRANCH', new_branch_path()
   end
+
+  def select_branch
+    link_to 'SELECT BRANCH', new_branch_path()
+  end
+
 end

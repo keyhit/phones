@@ -19,11 +19,13 @@ class OrganizationsController < ApplicationController
 
   def create
     @organization = Organization.new(organization_params)
-    @organization.save
-    if departaments.empty?
-      redirect_to new_organization_departament_path(organization)
+    if @organization.save
+      flash[:notice] = 'Organization saved!'
+      flash[:notice] = @organization.id
+      
+      redirect_to branch_organization_path(branch, organization)
     else
-      redirect_to organization_path(organization)
+      flash[:error] = 'Organization was not saved!'
     end
   end
 
@@ -46,7 +48,7 @@ class OrganizationsController < ApplicationController
   private
 
   def organization_params
-    params.require(:organization).permit(:name, :address, :web_page, :our_skils, :organizationlogotype, :public_presentation_user_id)
+    params.require(:organization).permit(:name, :address, :web_page, :our_skils, :organizationlogotype, :public_presentation_user_id, :branch_id)
   end
 
   def organization

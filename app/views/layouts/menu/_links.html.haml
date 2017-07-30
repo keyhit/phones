@@ -63,3 +63,5 @@
   - elsif content_for? :new_branch
     %li= all_companies_link
     %li= admin_branches_link
+  - elsif unit_signed_in? and current_unit.branch_id == nil
+    %li= select_branch

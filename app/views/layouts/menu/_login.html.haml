@@ -12,5 +12,6 @@
       / %li= link_to 'ADMIN', rails_admin_path()
       / %li= link_to 'ADMIN', admins_path()
   - else
-    %li= link_to 'SIGN UP', new_unit_registration_path()
+    %li= link_to 'SIGN UP', registration_new_unit_path()
+    / %li= link_to 'SIGN UP', new_unit_registration_path()
     %li= link_to 'LOG IN', new_unit_session_path()

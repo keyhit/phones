@@ -1,5 +1,5 @@
 class BranchesController < ApplicationController
-  before_action :authenticate_unit!, except: [:index]
+  before_action :authenticate_unit!, except: [:index, :select_branch]
   before_action :check_rules_global_admin, except: [ :index, :admin_branches, :show, :new, :create, :edit, :update, :destroy]
   before_action :check_rules_global_moderator, except: [ :index, :admin_branches, :show, :edit, :update]
   before_action :check_rules_organization_admin, except: [:index]
@@ -7,11 +7,11 @@ class BranchesController < ApplicationController
   before_action :check_rules_departament_admin , except: [:index]
   before_action :check_rules_departament_moderator , except: [:index]
   before_action :check_rules_user, except: [:index]
-
+  before_action :check_rules_user_when_registering, except: [:index]
   def index
-  end
-
-  def admin_branches
+    if unit_signed_in? and current_unit.branch_id == nil
+      render 'branches/select_branch'
+    end
   end
 
   def show
@@ -21,11 +21,11 @@ class BranchesController < ApplicationController
   end
 
   def create
-    @new_branch = Branche.new(branche_params)
+    @new_branch = Branch.new(branche_params)
     @new_branch.valid?
     @new_branch.errors[:branch_name]
     @new_branch.branch_name.upcase!
-    if @new_branch.save
+    if @new_branch.save!
       redirect_to admin_branches_path()
     else
       flash[:error] = @new_branch.errors[:branch_name]
@@ -46,18 +46,24 @@ class BranchesController < ApplicationController
   end
 
   def destroy
-    if Branche.destroy(params[:id])
+    if Branch.destroy(params[:id])
       redirect_to admin_branches_path()
     end
   end
 
+  def admin_branches
+  end
+
+  def select_branch
+  end
+
   private
   def branche_params
-    params.require(:branche).permit(:branch_name)
+    params.require(:branch).permit(:branch_name)
   end
 
   def branch_edit
-    @branche_edit ||= Branche.find(params[:id])
+    @branche_edit ||= Branch.find(params[:id])
   end
   helper_method :branch_edit
 end

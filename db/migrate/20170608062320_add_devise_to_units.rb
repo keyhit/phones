@@ -21,7 +21,7 @@ class AddDeviseToUnits < ActiveRecord::Migration[5.0]
       t.string     :characteristic
       t.string     :role
       t.string     :subordinated
-      t.references :branche, foreign_key: true
+      t.integer    :branch_id, foreign_key: true  
       t.references :organization, foreign_key: true
       t.references :departament, foreign_key: true
       ## Database authenticatable

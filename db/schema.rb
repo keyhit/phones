@@ -23,11 +23,10 @@ ActiveRecord::Schema.define(version: 20170619214211) do
     t.string   "departament_description"
     t.string   "departamentlogotype"
     t.string   "subordinated"
-    t.integer  "branche_id"
+    t.integer  "branch_id"
     t.integer  "organization_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.index ["branche_id"], name: "index_departaments_on_branche_id"
     t.index ["organization_id"], name: "index_departaments_on_organization_id"
   end
 
@@ -44,10 +43,9 @@ ActiveRecord::Schema.define(version: 20170619214211) do
     t.string   "our_skils"
     t.string   "organizationlogotype"
     t.string   "public_presentation_user_id"
-    t.integer  "branche_id"
+    t.integer  "branch_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.index ["branche_id"], name: "index_organizations_on_branche_id"
   end
 
   create_table "units", force: :cascade do |t|
@@ -71,7 +69,7 @@ ActiveRecord::Schema.define(version: 20170619214211) do
     t.string   "characteristic"
     t.string   "role"
     t.string   "subordinated"
-    t.integer  "branche_id"
+    t.integer  "branch_id"
     t.integer  "organization_id"
     t.integer  "departament_id"
     t.string   "reset_password_token"
@@ -82,9 +80,10 @@ ActiveRecord::Schema.define(version: 20170619214211) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.index ["branche_id"], name: "index_units_on_branche_id"
     t.index ["departament_id"], name: "index_units_on_departament_id"
+    t.index ["email"], name: "index_units_on_email", unique: true
     t.index ["organization_id"], name: "index_units_on_organization_id"
+    t.index ["reset_password_token"], name: "index_units_on_reset_password_token", unique: true
   end
 
 end
