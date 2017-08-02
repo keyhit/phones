@@ -9,9 +9,6 @@ class BranchesController < ApplicationController
   before_action :check_rules_user, except: [:index]
   before_action :check_rules_user_when_registering, except: [:index]
   def index
-    if unit_signed_in? and current_unit.branch_id == nil
-      render 'branches/select_branch'
-    end
   end
 
   def show

@@ -1,0 +1,41 @@
+- if current_unit.branch_id == nil
+  .row
+    .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
+      .panel.panel-primary
+        .panel-heading
+          SELECT YOU BRANCH
+        .panel-body
+          = bootstrap_form_for :unit, url: update_foreign_ids_path(), method: :post do |f|
+            = f.select(:branch_id, Branch.all.collect { |p| [ p.branch_name, p.id ] })
+            = f.submit :class => "btn btn-primary"
+- elsif current_unit.branch_id != nil and current_unit.organization_id == nil
+  .row
+    .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
+      .panel.panel-primary
+        .panel-heading
+          NEW ORGANIZATION
+        .panel-body
+          = bootstrap_form_for :organization, url: branch_organizations_path(branch_id:current_unit.branch_id), method: :post do |f|
+            = f.text_field :name
+            = f.text_field :address
+            = f.url_field :web_page
+            = f.text_area :our_skils
+            = f.file_field :organizationlogotype, :class => "btn btn-default"
+            = f.hidden_field :branch_id, value: current_unit.branch_id
+            = f.submit :class => "btn btn-primary"
+
+- elsif current_unit.branch_id != nil and current_unit.organization_id != nil and current_unit.departament_id == nil
+  .row
+    .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
+      .panel.panel-primary
+        .panel-heading
+          FIRST DEPARTAMENT
+        .panel-body
+          =bootstrap_form_for :departament, url: first_departament_path(branch_id: current_unit.branch_id, organization_id: current_unit.organization_id), method: :post do |f|
+            - if current_unit.organization_id?
+              = f.text_field :departament_name, value: 'First departament'
+            - else
+              = f.text_field :departament_name
+            = f.text_area :departament_description
+            = f.file_field :departamentlogotype, :class => "btn btn-default"
+            = f.submit :class => "btn btn-primary"

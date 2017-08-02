@@ -1,9 +1,11 @@
-%ul.nav.navbar-nav
+%ul.nav.navbar-nav 
   - if content_for? :Main
-    %li= add_company_link
+    - if unit_signed_in? and current_unit.branch_id != nil and current_unit.organization_id == nil
+      %li= add_company_link
   - elsif content_for :all_companies
     %li= main_link
-    %li= add_company_link
+    - if unit_signed_in? and current_unit.branch_id != nil and current_unit.organization_id == nil
+      %li= add_company_link
   -elsif content_for? :authentication
     %li= all_companies_link
   - elsif content_for? :create_organization

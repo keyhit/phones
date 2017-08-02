@@ -1,19 +1,21 @@
 - if unit_signed_in?
   - if current_unit.branch_id != nil
-    / or current_unit.organization_id != nil or current_unit.departament_id != nil
     %b Branch:
     =unit_branch.branch_name
+  - if current_unit.organization_id != nil
     %b Organization:
-    /= unit_organization.name
-    / %b Departament:
-    / = current_unit.belong_to_departament
-    / %b Name: 
-    / = current_unit.full_name
-    - if current_unit.role?
-      / %b Status:
-      / = current_unit.role
-  -else
-    = 'Create you organization and departament!'
+    = unit_organization.name
+  - if current_unit.departament_id != nil
+    %b Departament:
+    = current_unit.belong_to_departament
+  - if current_unit.full_name != nil
+    %b Name: 
+    = current_unit.full_name
+  - if current_unit.role != nil
+    %b Role:
+    = current_unit.role
+  - if current_unit.branch_id == nil or current_unit.organization_id == nil or current_unit.departament_id == nil 
+    .btn.btn-warning
+      = link_to 'Update you account!', update_account_path()
 - else
   = 'My greating for you, Guest!!!'
-/ = binding.pry

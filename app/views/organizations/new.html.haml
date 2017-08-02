@@ -8,7 +8,7 @@
       .panel-heading
         NEW
       .panel-body
-        = bootstrap_form_for :organization, url: branch_organizations_path(), method: :post do |f|
+        = bootstrap_form_for :organization, url: branch_organizations_path(current_unit.branch_id), method: :post do |f|
           = f.text_field :name
           = f.text_field :address
           = f.url_field :web_page

@@ -1,4 +1,4 @@
-class Organization < ApplicationRecord
+ class Organization < ApplicationRecord
   belongs_to :branch, optional: true
   has_many :departaments, dependent: :destroy
   has_many :units

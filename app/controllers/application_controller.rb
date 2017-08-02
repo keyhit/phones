@@ -1,26 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  # before_action :check_branch, :check_organization
   private
-    # def check_branch
-    #   if unit_signed_in? and current_unit.branch_id == nil
-    #     render 'branches/select_branch'
-    #   end
-    # end
-
-    # def check_organization
-    #   if unit_signed_in? and current_unit.organization_id == nil
-    #     render 'organizations/new'
-    #   end
-    # end
-
-    # def check_departament
-    #   if unit_signed_in? and current_unit.departament_id == nil
-    #     render 'departaments/new'
-    #   end
-    # end
-
     def branches
       @branches = Branch.all
     end
@@ -125,7 +106,7 @@ class ApplicationController < ActionController::Base
 
   def role_3
     if unit_signed_in?
-      current_unit.role == 'organization_admin' 
+      current_unit.role == 'organization_admin'
     end
   end
   helper_method :role_3

@@ -22,8 +22,9 @@ class OrganizationsController < ApplicationController
     if @organization.save
       flash[:notice] = 'Organization saved!'
       flash[:notice] = @organization.id
-      
-      redirect_to branch_organization_path(branch, organization)
+      @unit_for_organization_create = Unit.find(current_unit.id)
+      @unit_for_organization_create.update(organization_id: @organization.id)
+      redirect_to update_account_path()
     else
       flash[:error] = 'Organization was not saved!'
     end

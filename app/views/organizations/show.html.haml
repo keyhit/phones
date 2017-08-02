@@ -16,7 +16,7 @@
       - departaments.each do |departament|
         %tr
           %td= departament.id
-          %td= link_to departament.departament_name, branch_organization_departament_path(organization_id: organization.id)
+          %td= link_to departament.departament_name, branch_organization_departament_path(branch, organization, departament)
           %td= departament.departament_description
   .col-md-6
     %table.table.table-striped

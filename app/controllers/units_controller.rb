@@ -2,13 +2,13 @@ class UnitsController < ApplicationController
   before_action :authenticate_unit!, except: [ :registration_new_unit, :save_new_unit]
   before_action :check_rules_global_admin, except: [ :index, :admin_branches, :show, :new, :create, :edit, :update, :destroy]
   before_action :check_rules_global_moderator, except: [ :index, :admin_branches, :show, :edit, :update]
-  before_action :check_rules_organization_admin, except: [ :index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :check_rules_organization_admin, except: [ :index, :show, :new, :create, :edit, :update, :destroy, :update_account, :update_foreign_ids]
   before_action :check_rules_organization_moderator , except: [ :index, :show, :edit, :update]
   before_action :check_rules_departament_admin , except: [ :index, :show, :new, :create, :edit, :update, :destroy]
   before_action :check_rules_departament_moderator , except: [ :index, :show, :edit, :update]
   before_action :check_rules_user, except: [:index, :show, :units_self_admin]
   before_action :organizations_isolation, if: [ :role_3, :role_4, :role_5, :role_6, :role_7 ]
-  before_action :check_rules_user_when_registering
+  before_action :check_rules_user_when_registering, except: [:update_foreign_ids, :update_account]
 
 
   def index
@@ -23,8 +23,7 @@ class UnitsController < ApplicationController
   def save_new_unit
     @save_unit = Unit.new(unit_params)
     if @save_unit.save
-      flash[:notice] = 'Unit saved!'
-      flash[:notice] = @save_unit.id
+      flash[:notice] = 'Unit was saved!'
       redirect_to new_unit_session_path()
     else
       flash[:error] = 'Unit was not saved!'
@@ -56,13 +55,13 @@ class UnitsController < ApplicationController
     end
   end
 
+  def update_account
+  end
+
   def update_foreign_ids
     @update_foreign_ids = Unit.where(id: current_unit.id)
     if @update_foreign_ids.update(unit_params)
-      if current_unit.branch_id and current_unit.organization_id == 'nil' and current_unit.departament_id == 'nil'
-        flash[:notice] = 'Branch id updated!'
-        redirect_to new_branch_organization_path(branch_id: current_unit.branch_id)
-      end
+        redirect_to update_account_path()
     end
   end
 

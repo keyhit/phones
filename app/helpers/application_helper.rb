@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def add_company_link
-    link_to 'ADD COMPANY', branches_path()
+    link_to 'ADD COMPANY', new_branch_organization_path(branch_id: current_unit.branch_id)
   end
 
   def all_companies_link

@@ -9,4 +9,4 @@
   %ul.list-group
   - branches.each do |branch|
     %li.list-group-item
-      = link_to branch.branch_name, branch_organizations_path(branch.id), :class => 'btn btn-default'
+      = link_to branch.branch_name, branch_organizations_path(branch), :class => 'btn btn-default'
