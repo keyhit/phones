@@ -9,6 +9,5 @@
   - if unit_signed_in?
     %li= link_to 'LOG OUT', destroy_unit_session_path(), method: :delete  
   - else
-    %li= link_to 'SIGN UP', registration_new_unit_path()
-    / %li= link_to 'SIGN UP', new_unit_registration_path()
+    %li= link_to 'SIGN UP', new_unit_registration_path()
     %li= link_to 'LOG IN', new_unit_session_path()

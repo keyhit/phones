@@ -9,7 +9,7 @@ class DepartamentsController < ApplicationController
   before_action :check_rules_user, except: [:index, :show]
   before_action :organizations_isolation, if: [ :role_3, :role_4, :role_5, :role_6, :role_7 ]
   before_action :check_rules_user_when_registering, except: [:first_departament]
-
+  before_action :organizations_isolation
 
   def index
   end

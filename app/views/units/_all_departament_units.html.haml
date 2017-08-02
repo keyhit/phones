@@ -18,13 +18,9 @@
         - unless unit.unitphoto_url.nil?
           = image_tag unit.unitphoto_url, size: "50x35", alt: "company logo"
       %td
-        = link_to unit.full_name, branch_organization_departament_unit_path(departament_id: unit.departament_id, id: unit.id)
+        = link_to unit.full_name, branch_organization_departament_unit_path(branch, organization, departament, unit)
       %td= unit.post
       %td= unit.primary_phone_number
       %td= unit.email
       %td= unit.working_days
-      %td
-        - if unit.id.to_i == organization.public_presentation_user_id.to_i
-          = 'Yes'
-      - if current_unit.role == 'global_admin' || current_unit.role == 'global_moderator'
-        %td= link_to 'Remove', branch_organization_departament_unit_path(departament_id: unit.departament_id, id: unit.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger'
+      %td= link_to 'Remove', branch_organization_departament_unit_path(departament_id: unit.departament_id, id: unit.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger'

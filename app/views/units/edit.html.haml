@@ -6,14 +6,16 @@
   .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
     .panel.panel-primary
       .panel-heading
-        EDIT
+        EDIT UNIT DATA
       .panel-body 
         = bootstrap_form_for :unit, url: branch_organization_departament_unit_path( branch_id: branch.id, organization_id: organization.id, departament_id: departament.id ), method: :patch do |f|
           = f.text_field :full_name, value: unit.full_name
-          = f.select(:belong_to_departament, organization.departaments.ids , {include_blank: unit.belong_to_departament})
+          = f.select(:belong_to_departament, departaments.all.collect { |p| [ p.departament_name, p.id ]}, {include_blank: unit.belong_to_departament})
           = f.text_area :post, value: unit.post
           = f.email_field :email, value: unit.email
-
+          - if !role_7 or !role_8
+            / = f.password_field :password, autocomplete: "off"
+            / = f.password_field :password_confirmation, autocomplete: "off"
           = f.email_field :secondary_email, value: unit.secondary_email
           = f.telephone_field :primary_phone_number, value: unit.primary_phone_number
           = f.telephone_field :secondary_phone_number, value: unit.secondary_phone_number
@@ -29,9 +31,21 @@
             %option{:value => 'Day work two rest'}
             %option{:value => 'Vacation'}
             %option{:value => 'Fired'}
-          = f.date_field :birthday, value: unit.birthday 
+          = f.date_field :birthday, value: unit.birthday
           = f.file_field :unitphoto, :class => "btn btn-default", value: unit.unitphoto
-          = f.text_area :characteristic , value: unit.characteristic
-          = f.select(:role, options_for_select([[unit.role, unit.role], ['global_admin', 'global_admin'], ['global_moderator', 'global_moderator'], ['organization_admin', 'organization_admin'], ['organization_moderator', 'organization_moderator'], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
+          = f.text_area :characteristic, value: unit.characteristic
+          - if role_1
+            = f.select(:role, options_for_select([[unit.role], ['global_admin', 'global_admin'], ['global_moderator', 'global_moderator'], ['organization_admin', 'organization_admin'], ['organization_moderator', 'organization_moderator'], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
+          -elsif role_2
+            = f.select(:role, options_for_select([[unit.role], ['organization_admin', 'organization_admin'], ['organization_moderator', 'organization_moderator'], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
+          - elsif role_3
+            = f.select(:role, options_for_select([[unit.role], ['organization_admin', 'organization_admin'], ['organization_moderator', 'organization_moderator'], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
+          - elsif role_4
+            = f.select(:role, options_for_select([[unit.role], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
+          - elsif role_5
+            = f.select(:role, options_for_select([[unit.role], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
+          = f.hidden_field :branch_id, value: params[:branch_id]
+          = f.hidden_field :organization_id, value: params[:organization_id]
+          = f.hidden_field :departament_id, value: params[:departament_id]
           = f.submit :class => "btn btn-primary"
-          = link_to 'CANCEL', branch_organization_departament_units_path(organization), :type=> "button", :class => "btn btn-danger"
+          = link_to 'CANCEL', branch_organization_departament_unit_path(branch, organization, departament, unit), :type=> "button", :class => "btn btn-danger"

@@ -36,7 +36,8 @@ class UnitsController < ApplicationController
 
   def create
     @unit = Unit.new(unit_params)
-    if @unit.save!
+    if @unit.save
+      flash[:error] = 'Unit was not saved!'
       redirect_to branch_organization_departament_units_path(branch, organization, departament)
     else
       @new_unit.errors

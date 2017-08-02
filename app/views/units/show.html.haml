@@ -41,7 +41,7 @@
         %td= unit.full_name
       %tr
         %th Belong to departament
-        %td=link_to unit.belong_to_departament, branch_organization_departament_path(organization.id, departament.id)
+        %td=link_to unit.belong_to_departament, branch_organization_departament_path(branch, organization, departament)
       %tr
         %th Has post of
         %td= unit.post
