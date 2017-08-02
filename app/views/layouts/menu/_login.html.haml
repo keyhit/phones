@@ -1,11 +1,4 @@
 %ul.nav.navbar-nav.navbar-right
-  %li
-    - if notice
-      .alert.alert-info
-        %p= notice
-    - if alert
-      .alert.alert-warning
-        %p= alert
   - if unit_signed_in?
     %li= link_to 'LOG OUT', destroy_unit_session_path(), method: :delete  
   - else

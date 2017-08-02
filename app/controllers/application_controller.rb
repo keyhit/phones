@@ -114,6 +114,7 @@ class ApplicationController < ActionController::Base
   def check_rules_organization_admin
     if role_3
       unless role_3
+
         return true
       else
         flash[:error] = 'No access for role_3!'
@@ -219,9 +220,15 @@ class ApplicationController < ActionController::Base
   # By default signed unit can't visit to departaments and units lists
   # outher company 
   def organizations_isolation
-    if current_unit.organization_id != organization.id
-      flash[:error] = 'You not work here. Access denie !'
-      redirect_to branch_organization_path(branch, organization)
+    if role_1 == true
+      flash[:alert] = 'You here as global administrator!'
+    elsif role_2 == true
+      flash[:alert] = 'You here as global moderator!'
+    elsif role_1 == false || role_2 == false 
+      if current_unit.organization_id != organization.id
+        flash[:error] = 'You not work here. Access denie !'
+        redirect_to branch_organization_path(branch, organization)
+      end
     end
   end
 
