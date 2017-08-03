@@ -8,8 +8,6 @@ class DepartamentsController < ApplicationController
   before_action :check_rules_departament_moderator , except: [ :index, :show, :edit, :update]
   before_action :check_rules_user, except: [:index, :show]
   before_action :organizations_isolation
-  before_action :check_rules_user_when_registering, except: [:first_departament]
-
 
   def index
   end

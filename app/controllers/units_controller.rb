@@ -8,7 +8,7 @@ class UnitsController < ApplicationController
   before_action :check_rules_departament_moderator , except: [ :index, :show, :edit, :update]
   before_action :check_rules_user, except: [:index, :show, :units_self_admin]
   before_action :organizations_isolation, except: [:update_unit_branch_id, :update_account]
-  before_action :check_rules_user_when_registering, only: [:update_account, :update_unit_branch_id]
+
 
 
   def index
