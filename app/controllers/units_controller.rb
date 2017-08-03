@@ -2,13 +2,13 @@ class UnitsController < ApplicationController
   before_action :authenticate_unit!, except: [ :registration_new_unit, :save_new_unit]
   before_action :check_rules_global_admin, except: [ :index, :admin_branches, :show, :new, :create, :edit, :update, :destroy]
   before_action :check_rules_global_moderator, except: [ :index, :admin_branches, :show, :edit, :update]
-  before_action :check_rules_organization_admin, except: [ :index, :show, :new, :create, :edit, :update, :destroy, :update_account, :update_foreign_ids]
+  before_action :check_rules_organization_admin, except: [ :index, :show, :new, :create, :edit, :update, :destroy, :update_account, :update_unit_branch_id]
   before_action :check_rules_organization_moderator , except: [ :index, :show, :edit, :update]
   before_action :check_rules_departament_admin , except: [ :index, :show, :new, :create, :edit, :update, :destroy]
   before_action :check_rules_departament_moderator , except: [ :index, :show, :edit, :update]
   before_action :check_rules_user, except: [:index, :show, :units_self_admin]
-  before_action :organizations_isolation
-  before_action :check_rules_user_when_registering, except: [:update_foreign_ids, :update_account]
+  before_action :organizations_isolation, except: [:update_unit_branch_id, :update_account]
+  before_action :check_rules_user_when_registering, only: [:update_account, :update_unit_branch_id]
 
 
   def index
@@ -59,9 +59,9 @@ class UnitsController < ApplicationController
   def update_account
   end
 
-  def update_foreign_ids
-    @update_foreign_ids = Unit.where(id: current_unit.id)
-    if @update_foreign_ids.update(unit_params)
+  def update_unit_branch_id
+    @update_unit_branch_id = Unit.where(id: current_unit.id)
+    if @update_unit_branch_id.update(unit_params)
         redirect_to update_account_path()
     end
   end

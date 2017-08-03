@@ -49,10 +49,8 @@ class DepartamentsController < ApplicationController
   end
 
   def update
-    def updation_departament
-      if departament.update(departament_params)
-        redirect_to branch_organization_departaments_path(branch, organization)
-      end
+    if departament.update(departament_params)
+      redirect_to branch_organization_departaments_path(branch, organization)
     end
 end
 

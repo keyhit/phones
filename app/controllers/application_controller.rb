@@ -199,24 +199,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def role_8
-    if unit_signed_in?
-      current_unit.role == nil
-    end
-  end
-  helper_method :role_8
-
-  def check_rules_user_when_registering
-    if role_8
-      unless role_8
-        return true
-      else
-        flash[:error] = 'No access for role_8!'
-        redirect_to branches_path()
-      end
-    end
-  end
-
   # By default signed unit can't visit to departaments and units lists
   # outher company 
   def organizations_isolation

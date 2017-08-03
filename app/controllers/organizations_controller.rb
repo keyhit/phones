@@ -12,7 +12,6 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-        # binding.pry
   end
 
   def new

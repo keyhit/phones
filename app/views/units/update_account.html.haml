@@ -5,7 +5,7 @@
         .panel-heading
           SELECT YOU BRANCH
         .panel-body
-          = bootstrap_form_for :unit, url: update_foreign_ids_path(), method: :post do |f|
+          = bootstrap_form_for :unit, url: update_unit_branch_id_path(), method: :patch do |f|
             = f.select(:branch_id, Branch.all.collect { |p| [ p.branch_name, p.id ] })
             = f.submit :class => "btn btn-primary"
 - elsif current_unit.branch_id != nil and current_unit.organization_id == nil
