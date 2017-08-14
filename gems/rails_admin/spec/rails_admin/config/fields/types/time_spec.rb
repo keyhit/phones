@@ -16,12 +16,12 @@ describe RailsAdmin::Config::Fields::Types::Time do
       end
     end
 
-    before :each do
+    before do
       @object = FactoryGirl.create(:field_test)
       @time = ::Time.now.getutc
     end
 
-    after :each do
+    after do
       Time.zone = 'UTC'
     end
 

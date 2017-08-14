@@ -30,12 +30,12 @@ describe RailsAdmin::Config::Fields::Types::Date do
   describe '#parse_input' do
     let(:field) { RailsAdmin.config(FieldTest).fields.detect { |f| f.name == :date_field } }
 
-    before :each do
+    before do
       @object = FactoryGirl.create(:field_test)
       @time = ::Time.now.getutc
     end
 
-    after :each do
+    after do
       Time.zone = 'UTC'
     end
 
@@ -83,7 +83,7 @@ describe RailsAdmin::Config::Fields::Types::Date do
       field
     end
 
-    before :each do
+    before do
       RailsAdmin.config FieldTest do
         field :date_field do
           default_value Date.current
@@ -93,11 +93,11 @@ describe RailsAdmin::Config::Fields::Types::Date do
       @time = ::Time.now.getutc
     end
 
-    it 'should contain the default value' do
+    it 'contains the default value' do
       expect(field.default_value).to eq(Date.current)
     end
 
-    it 'should propagate to the field formatted_value when the object is a new record' do
+    it 'propagates to the field formatted_value when the object is a new record' do
       object = FactoryGirl.build(:field_test)
       field.bindings = {object: object}
       expect(field.formatted_value).to eq(Date.current.strftime('%B %d, %Y'))

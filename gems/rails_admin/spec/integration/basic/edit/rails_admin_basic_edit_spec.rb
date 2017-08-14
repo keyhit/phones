@@ -62,7 +62,7 @@ describe 'RailsAdmin Basic Edit', type: :request do
       @league = FactoryGirl.create :league
       visit edit_path(model_name: 'league', id: @league.id)
       expect(page).to have_selector('select#league_division_ids')
-      expect(page).to_not have_selector('select#league_player_ids')
+      expect(page).not_to have_selector('select#league_player_ids')
     end
   end
 

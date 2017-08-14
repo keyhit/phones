@@ -17,7 +17,7 @@ describe RailsAdmin::Config::Fields::Types::Uuid do
   end
 
   it 'field is a Uuid fieldtype' do
-    expect(field.class).to eq RailsAdmin::Config::Fields::Types::Uuid
+    expect(field.class).to eq described_class
   end
 
   it 'handles uuid string' do

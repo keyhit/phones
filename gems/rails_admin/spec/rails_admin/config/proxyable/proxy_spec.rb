@@ -12,8 +12,9 @@ describe RailsAdmin::Config::Proxyable::Proxy do
     end
   end
 
+  subject { described_class.new proxy_test, foo: 'baz' }
+
   let(:proxy_test) { ProxyTest.new }
-  subject { RailsAdmin::Config::Proxyable::Proxy.new proxy_test, foo: 'baz' }
 
   it 'proxies method calls to @object' do
     expect(subject.bindings).to eq foo: 'baz'

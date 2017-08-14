@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe RailsAdmin::Config::LazyModel do
-  subject { RailsAdmin::Config::LazyModel.new(:Team, &block) }
+  subject { described_class.new(:Team, &block) }
+
   let(:block) { proc { register_instance_option('parameter') } } # an arbitrary instance method we can spy on
 
   describe '#store' do

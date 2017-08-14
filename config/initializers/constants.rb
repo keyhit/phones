@@ -1,1 +1,1 @@
-APPLICATION_NAME = 'Phones'
+APPLICATION_NAME = 'Phones'.freeze

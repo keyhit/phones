@@ -26,7 +26,7 @@ describe 'RailsAdmin Pundit Authorization', type: :request do
 
   describe 'with read player role' do
     before do
-      @user.update_attributes(roles: [:admin, :read_player])
+      @user.update_attributes(roles: %i[admin read_player])
     end
 
     it 'GET /admin should show Player but not League' do
@@ -48,7 +48,7 @@ describe 'RailsAdmin Pundit Authorization', type: :request do
 
   describe 'with admin role' do
     before do
-      @user.update_attributes(roles: [:admin, :manage_player])
+      @user.update_attributes(roles: %i[admin manage_player])
     end
 
     it 'GET /admin should show Player but not League' do
@@ -78,7 +78,7 @@ describe 'RailsAdmin Pundit Authorization', type: :request do
 
   describe 'with all roles' do
     it 'shows links to all actions' do
-      @user.update_attributes(roles: [:admin, :manage_player])
+      @user.update_attributes(roles: %i[admin manage_player])
       @player = FactoryGirl.create :player
 
       visit index_path(model_name: 'player')
@@ -99,6 +99,7 @@ describe 'RailsAdmin Pundit Authorization', type: :request do
 
   context 'when ApplicationController already has pundit_user' do
     let(:admin) { FactoryGirl.create :user, roles: [:admin] }
+
     before do
       RailsAdmin.config.parent_controller = 'ApplicationController'
       allow_any_instance_of(ApplicationController).to receive(:pundit_user).and_return(admin)

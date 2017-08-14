@@ -1,5 +1,5 @@
 class LinesController < ApplicationController
-  before_action :all_lines, only: [:index, :create]
+  before_action :all_lines, only: %i[index create]
   respond_to :html, :js
 
   def index
@@ -7,13 +7,11 @@ class LinesController < ApplicationController
   end
 
   def new
-  @line = Line.new
+    @line = Line.new
   end
 
   def create
-    if @line = Line.create(line_params)
-      redirect_to lines_path
-    end
+    redirect_to lines_path if @line = Line.create(line_params)
   end
 
   def edit
@@ -23,24 +21,21 @@ class LinesController < ApplicationController
 
   def update
     @line = Line.find(params[:id])
-    if @line.update(line_params)
-      redirect_to lines_path
-    end
+    redirect_to lines_path if @line.update(line_params)
   end
 
   def destroy
     @line = Line.find(params[:id])
-    if @line.destroy
-      redirect_to lines_path
-    end
+    redirect_to lines_path if @line.destroy
   end
 
   private
-    def line_params
-      params.require(:line).permit(:rec)
-    end
 
-    def all_lines
-      @lines = Line.all
-    end
+  def line_params
+    params.require(:line).permit(:rec)
+  end
+
+  def all_lines
+    @lines = Line.all
+  end
 end

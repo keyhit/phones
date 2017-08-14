@@ -4,7 +4,7 @@ describe RailsAdmin::Config::Fields::Types::Json do
   let(:field) { RailsAdmin.config(FieldTest).fields.detect { |f| f.name == :json_field } }
 
   describe '#parse_input' do
-    before :each do
+    before do
       RailsAdmin.config do |config|
         config.model FieldTest do
           field :json_field, :json
@@ -23,7 +23,7 @@ describe RailsAdmin::Config::Fields::Types::Json do
   end
 
   describe 'aliasing' do
-    before :each do
+    before do
       RailsAdmin.config do |config|
         config.model FieldTest do
           field :json_field, :jsonb
@@ -32,7 +32,7 @@ describe RailsAdmin::Config::Fields::Types::Json do
     end
 
     it 'allows use of :jsonb fieldtype' do
-      expect(field.class).to eq RailsAdmin::Config::Fields::Types::Json
+      expect(field.class).to eq described_class
     end
   end
 

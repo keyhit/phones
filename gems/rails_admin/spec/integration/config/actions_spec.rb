@@ -10,7 +10,7 @@ describe 'RailsAdmin Config Action DSL', type: :request do
       RailsAdmin.config do |config|
         config.actions do
           index do
-            except %w(FieldTest)
+            except %w[FieldTest]
           end
         end
       end
@@ -24,7 +24,7 @@ describe 'RailsAdmin Config Action DSL', type: :request do
             index
             new
             edit do
-              except %w(Player Team)
+              except %w[Player Team]
             end
           end
         end

@@ -1,16 +1,12 @@
 class LinesController < ApplicationController
-
   def index
     @lines = Line.all
   end
 
-  def new
-  end
+  def new; end
 
   def create
-    if @line = Line.new(line_params).save
-      redirect_to lines_path
-    end
+    redirect_to lines_path if @line = Line.new(line_params).save
   end
 
   def edit
@@ -20,20 +16,17 @@ class LinesController < ApplicationController
 
   def update
     @line = Line.find(params[:id])
-    if @line.update(line_params)
-      redirect_to lines_path
-    end
+    redirect_to lines_path if @line.update(line_params)
   end
 
   def destroy
     @line = Line.find(params[:id])
-    if @line.destroy
-      redirect_to lines_path
-    end
+    redirect_to lines_path if @line.destroy
   end
 
   private
-    def line_params
-      params.require(:line).permit(:rec)
-    end
+
+  def line_params
+    params.require(:line).permit(:rec)
+  end
 end

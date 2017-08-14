@@ -30,12 +30,12 @@ describe RailsAdmin::Config::Fields::Types::Datetime do
   describe '#parse_input' do
     let(:field) { RailsAdmin.config(FieldTest).fields.detect { |f| f.name == :datetime_field } }
 
-    before :each do
+    before do
       @object = FactoryGirl.create(:field_test)
       @time = ::Time.now.getutc
     end
 
-    after :each do
+    after do
       Time.zone = 'UTC'
     end
 

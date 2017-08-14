@@ -1,12 +1,12 @@
 class AddDeviseToUnits < ActiveRecord::Migration[5.0]
   def self.up
-    create_table :units do |t| 
+    create_table :units do |t|
       t.string     :full_name
       t.string     :belong_to_departament
       t.string     :post
-      t.string     :email,                null: false, default: ""
+      t.string     :email, null: false, default: ''
       t.string     :secondary_email
-      t.string     :encrypted_password,   null: false, default: ""
+      t.string     :encrypted_password, null: false, default: ''
       t.string     :primary_phone_number
       t.string     :secondary_phone_number
       t.string     :short_phone_nunber
@@ -21,7 +21,7 @@ class AddDeviseToUnits < ActiveRecord::Migration[5.0]
       t.string     :characteristic
       t.string     :role
       t.string     :subordinated
-      t.integer    :branch_id, foreign_key: true  
+      t.integer    :branch_id, foreign_key: true
       t.references :organization, foreign_key: true
       t.references :departament, foreign_key: true
       ## Database authenticatable
@@ -51,7 +51,6 @@ class AddDeviseToUnits < ActiveRecord::Migration[5.0]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-
 
       # Uncomment below if timestamps were not included in your original model.
       # t.timestamps null: false

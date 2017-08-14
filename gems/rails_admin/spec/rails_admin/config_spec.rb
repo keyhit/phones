@@ -74,9 +74,9 @@ describe RailsAdmin::Config do
 
     it 'can be configured' do
       RailsAdmin.config do |config|
-        config.main_app_name = %w(stati c value)
+        config.main_app_name = %w[stati c value]
       end
-      expect(RailsAdmin.config.main_app_name).to eq(%w(stati c value))
+      expect(RailsAdmin.config.main_app_name).to eq(%w[stati c value])
     end
   end
 
@@ -87,7 +87,7 @@ describe RailsAdmin::Config do
       end
 
       it 'initializes the authorization adapter' do
-        expect(ExampleModule::AuthorizationAdapter).to receive(:new).with(RailsAdmin::Config)
+        expect(ExampleModule::AuthorizationAdapter).to receive(:new).with(described_class)
         RailsAdmin.config do |config|
           config.authorize_with(:example)
         end
@@ -96,7 +96,7 @@ describe RailsAdmin::Config do
 
       it 'passes through any additional arguments to the initializer' do
         options = {option: true}
-        expect(ExampleModule::AuthorizationAdapter).to receive(:new).with(RailsAdmin::Config, options)
+        expect(ExampleModule::AuthorizationAdapter).to receive(:new).with(described_class, options)
         RailsAdmin.config do |config|
           config.authorize_with(:example, options)
         end
@@ -112,7 +112,7 @@ describe RailsAdmin::Config do
       end
 
       it 'initializes the auditing adapter' do
-        expect(ExampleModule::AuditingAdapter).to receive(:new).with(RailsAdmin::Config)
+        expect(ExampleModule::AuditingAdapter).to receive(:new).with(described_class)
         RailsAdmin.config do |config|
           config.audit_with(:example)
         end
@@ -121,7 +121,7 @@ describe RailsAdmin::Config do
 
       it 'passes through any additional arguments to the initializer' do
         options = {option: true}
-        expect(ExampleModule::AuditingAdapter).to receive(:new).with(RailsAdmin::Config, options)
+        expect(ExampleModule::AuditingAdapter).to receive(:new).with(described_class, options)
         RailsAdmin.config do |config|
           config.audit_with(:example, options)
         end
@@ -179,7 +179,7 @@ describe RailsAdmin::Config do
         RailsAdmin.config do |config|
           config.default_search_operator = 'starts_with'
         end
-        expect(RailsAdmin::Config.default_search_operator).to eq('starts_with')
+        expect(described_class.default_search_operator).to eq('starts_with')
       end
 
       it 'errors on unrecognized search operator' do
@@ -191,7 +191,7 @@ describe RailsAdmin::Config do
       end
 
       it "defaults to 'default'" do
-        expect(RailsAdmin::Config.default_search_operator).to eq('default')
+        expect(described_class.default_search_operator).to eq('default')
       end
     end
   end
@@ -256,8 +256,8 @@ describe RailsAdmin::Config do
   end
 
   describe '.models_pool' do
-    it 'should not include classnames start with Concerns::' do
-      expect(RailsAdmin::Config.models_pool.select { |m| m.match(/^Concerns::/) }).to be_empty
+    it 'does not include classnames start with Concerns::' do
+      expect(described_class.models_pool.select { |m| m.match(/^Concerns::/) }).to be_empty
     end
   end
 
@@ -276,6 +276,7 @@ describe RailsAdmin::Config do
 
   describe '.model' do
     let(:fields) { described_class.model(Team).fields }
+
     before do
       described_class.model Team do
         field :players do
@@ -290,7 +291,7 @@ describe RailsAdmin::Config do
         end
       end
       it 'execute all passed blocks' do
-        expect(fields.map(&:name)).to match_array %i(players fans)
+        expect(fields.map(&:name)).to match_array %i[players fans]
       end
     end
     context 'when expand redefine behavior' do
@@ -305,6 +306,7 @@ describe RailsAdmin::Config do
     end
     context 'when model expanded in config' do
       let(:block) { proc { field :players } }
+
       before do
         allow(block).to receive(:source_location).and_return(['config/initializers/rails_admin.rb'])
         described_class.model(Team, &block)

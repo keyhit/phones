@@ -15,7 +15,7 @@ class Team < ActiveRecord::Base
   belongs_to :division
 
   if ::Rails.version >= '4.1'
-    enum main_sponsor: [:no_sponsor, :food_factory, :transportation_company, :bank, :energy_producer]
+    enum main_sponsor: %i[no_sponsor food_factory transportation_company bank energy_producer]
   end
 
   def player_names_truncated

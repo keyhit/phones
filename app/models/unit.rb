@@ -8,4 +8,4 @@ class Unit < ApplicationRecord
   belongs_to :departament, optional: true
   attr_accessor :unitphoto
   mount_uploader :unitphoto, UnitphotoUploader
-end 
+end

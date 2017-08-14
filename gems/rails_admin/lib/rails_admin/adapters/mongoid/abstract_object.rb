@@ -7,7 +7,7 @@ module RailsAdmin
         def initialize(object)
           super
           object.associations.each do |name, association|
-            if [:has_many, :references_many].include? association.macro
+            if %i[has_many references_many].include? association.macro
               instance_eval <<-RUBY, __FILE__, __LINE__ + 1
                 def #{name.to_s.singularize}_ids
                   #{name}.map{|item| item.id }
@@ -23,7 +23,7 @@ module RailsAdmin
                   super __items__.map(&:id)
                 end
 RUBY
-            elsif [:has_one, :references_one].include? association.macro
+            elsif %i[has_one references_one].include? association.macro
               instance_eval <<-RUBY, __FILE__, __LINE__ + 1
                 def #{name}_id=(item_id)
                   item = (#{association.klass}.find(item_id) rescue nil)

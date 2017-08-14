@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RailsAdmin::Config::Fields::Types::String do
   describe '#html_attributes' do
-    before :each do
+    before do
       RailsAdmin.config Ball do
         field 'color', :string
       end
@@ -14,12 +14,12 @@ describe RailsAdmin::Config::Fields::Types::String do
       end.with(object: Ball.new)
     end
 
-    it 'should contain a size attribute' do
+    it 'contains a size attribute' do
       expect(string_field.html_attributes[:size]).to be_present
     end
 
-    it 'should not contain a size attribute valorized with 0' do
-      expect(string_field.html_attributes[:size]).to_not be_zero
+    it 'does not contain a size attribute valorized with 0' do
+      expect(string_field.html_attributes[:size]).not_to be_zero
     end
   end
 

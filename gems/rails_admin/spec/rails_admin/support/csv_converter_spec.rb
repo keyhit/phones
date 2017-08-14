@@ -13,8 +13,8 @@ describe RailsAdmin::CSVConverter do
 
     FactoryGirl.create :player
     objects = Player.all
-    schema = {only: [:number, :name]}
-    expect(RailsAdmin::CSVConverter.new(objects, schema).to_csv({})[2]).to match(/Number,Name/)
+    schema = {only: %i[number name]}
+    expect(described_class.new(objects, schema).to_csv({})[2]).to match(/Number,Name/)
   end
 
   describe '#to_csv' do
@@ -27,15 +27,16 @@ describe RailsAdmin::CSVConverter do
       end
     end
 
-    let(:objects) { FactoryGirl.create_list :player, 1, number: 1, name: 'なまえ' }
-    let(:schema) { {only: [:number, :name]} }
-    let(:options) { {encoding_to: encoding} }
+    subject { described_class.new(objects, schema).to_csv(options) }
 
-    subject { RailsAdmin::CSVConverter.new(objects, schema).to_csv(options) }
+    let(:objects) { FactoryGirl.create_list :player, 1, number: 1, name: 'なまえ' }
+    let(:schema) { {only: %i[number name]} }
+    let(:options) { {encoding_to: encoding} }
 
     context 'when encoding FROM latin1', active_record: true do
       let(:encoding) { '' }
       let(:objects) { FactoryGirl.create_list :player, 1, number: 1, name: 'Josè'.encode('ISO-8859-1') }
+
       before do
         case ActiveRecord::Base.connection_config[:adapter]
         when 'postgresql'
@@ -98,6 +99,7 @@ describe RailsAdmin::CSVConverter do
     context "when specifying a column separator" do
       context "when options keys are symbolized" do
         let(:options) { {encoding_to: 'UTF-8', generator: {col_sep: '___'}} }
+
         it "uses the column separator specified" do
           expect(subject[2].unpack('H*').first).
             to eq 'efbbbf4e756d6265725f5f5f4e616d650a315f5f5fe381aae381bee381880a'
@@ -106,6 +108,7 @@ describe RailsAdmin::CSVConverter do
 
       context "when options keys are string" do
         let(:options) { {'encoding_to' => 'UTF-8', 'generator' => {'col_sep' => '___'}} }
+
         it "uses the column separator specified" do
           expect(subject[2].unpack('H*').first).
             to eq 'efbbbf4e756d6265725f5f5f4e616d650a315f5f5fe381aae381bee381880a'

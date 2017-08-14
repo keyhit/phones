@@ -12,7 +12,7 @@ describe RailsAdmin::Config::Fields::Base do
     end
 
     context 'on a Paperclip installation' do
-      it 'should detect required fields' do
+      it 'detects required fields' do
         expect(RailsAdmin.config('Image').fields.detect { |f| f.name == :file }.with(object: Image.new)).to be_required
       end
     end
@@ -44,7 +44,7 @@ describe RailsAdmin::Config::Fields::Base do
   end
 
   describe '#children_fields' do
-    POLYMORPHIC_CHILDREN = [:commentable_id, :commentable_type].freeze
+    POLYMORPHIC_CHILDREN = %i[commentable_id commentable_type].freeze
 
     it 'is empty by default' do
       expect(RailsAdmin.config(Team).fields.detect { |f| f.name == :name }.children_fields).to eq([])
@@ -81,7 +81,7 @@ describe RailsAdmin::Config::Fields::Base do
 
     context 'of a Dragonfly installation' do
       it 'is a _name field and _uid field' do
-        expect(RailsAdmin.config(FieldTest).fields.detect { |f| f.name == :dragonfly_asset }.children_fields).to eq([:dragonfly_asset_name, :dragonfly_asset_uid])
+        expect(RailsAdmin.config(FieldTest).fields.detect { |f| f.name == :dragonfly_asset }.children_fields).to eq(%i[dragonfly_asset_name dragonfly_asset_uid])
       end
     end
 
@@ -95,7 +95,7 @@ describe RailsAdmin::Config::Fields::Base do
     if defined?(Refile)
       context 'of a Refile installation' do
         it 'is a _id field' do
-          expect(RailsAdmin.config(FieldTest).fields.detect { |f| f.name == :refile_asset }.children_fields).to eq([:refile_asset_id, :refile_asset_filename, :refile_asset_size, :refile_asset_content_type])
+          expect(RailsAdmin.config(FieldTest).fields.detect { |f| f.name == :refile_asset }.children_fields).to eq(%i[refile_asset_id refile_asset_filename refile_asset_size refile_asset_content_type])
         end
       end
     end
@@ -433,8 +433,8 @@ describe RailsAdmin::Config::Fields::Base do
         column :updated_on, :timestamp
         column :deleted_on, :timestamp
       end
-      expect(RailsAdmin.config(FieldVisibilityTest).base.fields.select(&:visible?).collect(&:name)).to match_array [:_id, :created_at, :created_on, :deleted_at, :deleted_on, :id, :name, :updated_at, :updated_on]
-      expect(RailsAdmin.config(FieldVisibilityTest).list.fields.select(&:visible?).collect(&:name)).to match_array [:_id, :created_at, :created_on, :deleted_at, :deleted_on, :id, :name, :updated_at, :updated_on]
+      expect(RailsAdmin.config(FieldVisibilityTest).base.fields.select(&:visible?).collect(&:name)).to match_array %i[_id created_at created_on deleted_at deleted_on id name updated_at updated_on]
+      expect(RailsAdmin.config(FieldVisibilityTest).list.fields.select(&:visible?).collect(&:name)).to match_array %i[_id created_at created_on deleted_at deleted_on id name updated_at updated_on]
       expect(RailsAdmin.config(FieldVisibilityTest).edit.fields.select(&:visible?).collect(&:name)).to match_array [:name]
       expect(RailsAdmin.config(FieldVisibilityTest).show.fields.select(&:visible?).collect(&:name)).to match_array [:name]
     end

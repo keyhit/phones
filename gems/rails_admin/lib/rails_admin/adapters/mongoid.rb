@@ -8,7 +8,7 @@ require 'rails_admin/adapters/mongoid/bson'
 module RailsAdmin
   module Adapters
     module Mongoid
-      DISABLED_COLUMN_TYPES = %w(Range Moped::BSON::Binary BSON::Binary Mongoid::Geospatial::Point).freeze
+      DISABLED_COLUMN_TYPES = %w[Range Moped::BSON::Binary BSON::Binary Mongoid::Geospatial::Point].freeze
 
       def parse_object_id(value)
         Bson.parse_object_id(value)
@@ -21,12 +21,12 @@ module RailsAdmin
       def get(id)
         AbstractObject.new(model.find(id))
       rescue => e
-        raise e if %w(
+        raise e if %w[
           Mongoid::Errors::DocumentNotFound
           Mongoid::Errors::InvalidFind
           Moped::Errors::InvalidObjectId
           BSON::InvalidObjectId
-        ).exclude?(e.class.to_s)
+        ].exclude?(e.class.to_s)
       end
 
       def scoped
@@ -150,7 +150,7 @@ module RailsAdmin
 
       def parse_collection_name(column)
         collection_name, column_name = column.split('.')
-        if [:embeds_one, :embeds_many].include?(model.relations[collection_name].try(:macro).try(:to_sym))
+        if %i[embeds_one embeds_many].include?(model.relations[collection_name].try(:macro).try(:to_sym))
           [table_name, column]
         else
           [collection_name, column_name]
@@ -229,8 +229,8 @@ module RailsAdmin
         end
 
         def build_statement_for_boolean
-          return {@column => false} if %w(false f 0).include?(@value)
-          return {@column => true} if %w(true t 1).include?(@value)
+          return {@column => false} if %w[false f 0].include?(@value)
+          return {@column => true} if %w[true t 1].include?(@value)
         end
 
         def column_for_value(value)

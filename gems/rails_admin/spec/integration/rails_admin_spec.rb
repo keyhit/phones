@@ -93,7 +93,7 @@ describe RailsAdmin, type: :request do
   end
 
   describe 'polymorphic associations' do
-    before :each do
+    before do
       @team = FactoryGirl.create :team
       @comment = FactoryGirl.create :comment, commentable: @team
     end

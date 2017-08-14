@@ -56,7 +56,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
         field :color, :enum do
           default_value 'black'
           enum do
-            %w(black white)
+            %w[black white]
           end
         end
       end
@@ -140,7 +140,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
         RailsAdmin.config.included_models = [HelpTest, Team]
       end
 
-      after(:each) do
+      after do
         # restore validation setting
         HelpTest._validators[:name] = []
         HelpTest.reset_callbacks(:validate)
@@ -366,7 +366,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
     end
 
     describe 'I18n awarly' do
-      after :each do
+      after do
         I18n.locale = :en
       end
 
@@ -810,7 +810,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
 
       it 'hides fields that are deeply nested with inverse_of' do
         visit new_path(model_name: 'field_test')
-        expect(page.body).to_not include('field_test_nested_field_tests_attributes_new_nested_field_tests_deeply_nested_field_tests_attributes_new_deeply_nested_field_tests_nested_field_test_id_field')
+        expect(page.body).not_to include('field_test_nested_field_tests_attributes_new_nested_field_tests_deeply_nested_field_tests_attributes_new_deeply_nested_field_tests_nested_field_test_id_field')
         expect(page.body).to include('field_test_nested_field_tests_attributes_new_nested_field_tests_deeply_nested_field_tests_attributes_new_deeply_nested_field_tests_title')
       end
     end
@@ -936,7 +936,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
       is_expected.to have_selector('textarea#draft_notes[data-richtext="bootstrap-wysihtml5"]')
     end
 
-    it 'should include custom wysihtml5 configuration' do
+    it 'includes custom wysihtml5 configuration' do
       RailsAdmin.config Draft do
         edit do
           field :notes, :wysihtml5 do
@@ -963,7 +963,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
       is_expected.to have_selector('textarea#draft_notes[data-richtext="froala-wysiwyg"]')
     end
 
-    it 'should include custom froala configuration' do
+    it 'includes custom froala configuration' do
       RailsAdmin.config Draft do
         edit do
           field :notes, :froala do
@@ -996,7 +996,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
       before do
         Team.class_eval do
           def color_enum
-            %w(blue green red)
+            %w[blue green red]
           end
         end
         RailsAdmin.config Team do
@@ -1014,7 +1014,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
       it 'auto-detects enumeration' do
         is_expected.to have_selector('.enum_type select')
         is_expected.not_to have_selector('.enum_type select[multiple]')
-        expect(all('.enum_type option').map(&:text).select(&:present?)).to eq %w(blue green red)
+        expect(all('.enum_type option').map(&:text).select(&:present?)).to eq %w[blue green red]
       end
     end
 
@@ -1022,7 +1022,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
       before do
         Team.instance_eval do
           def color_enum
-            %w(blue green red)
+            %w[blue green red]
           end
         end
         RailsAdmin.config Team do
@@ -1047,7 +1047,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
       before do
         Team.class_eval do
           def color_list
-            %w(blue green red)
+            %w[blue green red]
           end
         end
         RailsAdmin.config Team do
@@ -1074,7 +1074,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
       before do
         Team.instance_eval do
           def color_list
-            %w(blue green red)
+            %w[blue green red]
           end
         end
         RailsAdmin.config Team do
@@ -1101,7 +1101,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
       before do
         Team.class_eval do
           def color_list
-            %w(blue green red)
+            %w[blue green red]
           end
         end
         RailsAdmin.config Team do
@@ -1109,7 +1109,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
             field :color, :enum do
               enum_method :color_list
               enum do
-                %w(yellow black)
+                %w[yellow black]
               end
             end
           end
@@ -1135,7 +1135,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
         Team.instance_eval do
           serialize :color
           def color_enum
-            %w(blue green red)
+            %w[blue green red]
           end
         end
         visit new_path(model_name: 'team')
@@ -1161,7 +1161,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
         Team.instance_eval do
           field :color, type: Array
           def color_enum
-            %w(blue green red)
+            %w[blue green red]
           end
         end
         visit new_path(model_name: 'team')
@@ -1185,7 +1185,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
       before do
         class FieldTestWithEnum < FieldTest
           self.table_name = 'field_tests'
-          enum integer_field: %w(foo bar)
+          enum integer_field: %w[foo bar]
         end
         RailsAdmin.config.included_models = [FieldTestWithEnum]
         RailsAdmin.config FieldTestWithEnum do
@@ -1205,7 +1205,7 @@ describe 'RailsAdmin Config DSL Edit Section', type: :request do
         visit new_path(model_name: 'field_test_with_enum')
         is_expected.to have_selector('.enum_type select')
         is_expected.not_to have_selector('.enum_type select[multiple]')
-        expect(all('.enum_type option').map(&:text).select(&:present?)).to eq %w(foo bar)
+        expect(all('.enum_type option').map(&:text).select(&:present?)).to eq %w[foo bar]
       end
 
       it 'shows current value as selected' do

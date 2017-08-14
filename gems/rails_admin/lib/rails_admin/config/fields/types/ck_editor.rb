@@ -28,7 +28,7 @@ module RailsAdmin
             :form_ck_editor
           end
 
-          [:base_location, :config_js, :location].each do |key|
+          %i[base_location config_js location].each do |key|
             register_deprecated_instance_option :"ckeditor_#{key}", key
           end
         end

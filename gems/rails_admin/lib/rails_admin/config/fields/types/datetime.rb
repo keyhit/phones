@@ -22,7 +22,7 @@ module RailsAdmin
 
           def value
             parent_value = super
-            if %w(DateTime Date Time).include?(parent_value.class.name)
+            if %w[DateTime Date Time].include?(parent_value.class.name)
               parent_value.in_time_zone
             else
               parent_value
@@ -34,7 +34,7 @@ module RailsAdmin
           end
 
           register_instance_option :i18n_scope do
-            [:time, :formats]
+            %i[time formats]
           end
 
           register_instance_option :strftime_format do

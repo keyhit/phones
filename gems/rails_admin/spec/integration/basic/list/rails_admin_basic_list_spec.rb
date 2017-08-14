@@ -290,7 +290,7 @@ describe 'RailsAdmin Basic List', type: :request do
 
     it 'displays base filters when no filters are present in the params' do
       RailsAdmin.config Player do
-        list { filters([:name, :team]) }
+        list { filters(%i[name team]) }
       end
       get index_path(model_name: 'player')
 
@@ -526,7 +526,7 @@ describe 'RailsAdmin Basic List', type: :request do
       is_expected.to have_content(@teams[3].name)
     end
     describe 'i18n' do
-      before :each do
+      before do
         en = {admin: {scopes: {
           _all: 'every',
           red: 'krasnyj',
@@ -545,7 +545,7 @@ describe 'RailsAdmin Basic List', type: :request do
         end
       end
       context 'per model' do
-        before :each do
+        before do
           en = {admin: {scopes: {team: {
             _all: 'any',
             red: 'kr',

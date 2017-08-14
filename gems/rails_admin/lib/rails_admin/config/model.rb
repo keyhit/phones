@@ -25,7 +25,7 @@ module RailsAdmin
       attr_accessor :groups
       attr_reader :parent, :root
 
-      NAMED_INSTANCE_VARIABLES = [:@parent, :@root].freeze
+      NAMED_INSTANCE_VARIABLES = %i[@parent @root].freeze
 
       def initialize(entity)
         @parent = nil
@@ -80,7 +80,7 @@ module RailsAdmin
       register_instance_option :parent do
         @parent_model ||= begin
           klass = abstract_model.model.superclass
-          klass = nil if klass.to_s.in?(%w(Object BasicObject ActiveRecord::Base))
+          klass = nil if klass.to_s.in?(%w[Object BasicObject ActiveRecord::Base])
           klass
         end
       end

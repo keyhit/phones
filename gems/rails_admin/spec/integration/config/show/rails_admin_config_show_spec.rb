@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe 'RailsAdmin Config DSL Show Section', type: :request do
   subject { page }
+
   let(:team) { FactoryGirl.create :team }
 
   def do_request
@@ -43,7 +44,7 @@ describe 'RailsAdmin Config DSL Show Section', type: :request do
   end
 
   describe 'bindings' do
-    it 'should be present' do
+    it 'is present' do
       RailsAdmin.config Team do |_c|
         show do
           field :name do
@@ -88,11 +89,11 @@ describe 'RailsAdmin Config DSL Show Section', type: :request do
 
       is_expected.not_to have_selector('h4', text: 'Basic info')
 
-      %w(
+      %w[
         division name logo_url manager
         ballpark mascot founded wins
         losses win_percentage revenue
-      ).each do |field|
+      ].each do |field|
         is_expected.not_to have_selector(".#{field}_field")
       end
     end
@@ -187,11 +188,11 @@ describe 'RailsAdmin Config DSL Show Section', type: :request do
     it 'shows all by default' do
       do_request
 
-      %w(
+      %w[
         division name logo_url manager
         ballpark mascot founded wins
         losses win_percentage revenue players fans
-      ).each do |field|
+      ].each do |field|
         is_expected.to have_selector(".#{field}_field")
       end
     end
@@ -312,11 +313,11 @@ describe 'RailsAdmin Config DSL Show Section', type: :request do
 
       do_request
 
-      %w(Name Logo\ url Manager Ballpark Mascot).each do |text|
+      %w[Name Logo\ url Manager Ballpark Mascot].each do |text|
         is_expected.not_to have_selector('.label', text: text)
       end
 
-      %w(Division Founded Wins Losses Win\ percentage Revenue Players Fans).each do |text|
+      %w[Division Founded Wins Losses Win\ percentage Revenue Players Fans].each do |text|
         is_expected.to have_selector('.label', text: text)
       end
     end
@@ -332,11 +333,11 @@ describe 'RailsAdmin Config DSL Show Section', type: :request do
 
       do_request
 
-      %w(Name Logo\ url Manager Ballpark Mascot).each do |text|
+      %w[Name Logo\ url Manager Ballpark Mascot].each do |text|
         is_expected.not_to have_selector('.label', text: text)
       end
 
-      %w(Division Founded Wins Losses Win\ percentage Revenue Players Fans).each do |text|
+      %w[Division Founded Wins Losses Win\ percentage Revenue Players Fans].each do |text|
         is_expected.to have_selector('.label', text: text)
       end
     end
@@ -354,6 +355,7 @@ describe 'RailsAdmin Config DSL Show Section', type: :request do
 
   describe 'virtual field' do
     let(:team) { FactoryGirl.create :team, name: 'foobar' }
+
     context 'with formatted_value defined' do
       before do
         RailsAdmin.config Team do

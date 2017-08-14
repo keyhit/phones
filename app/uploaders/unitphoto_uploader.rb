@@ -1,5 +1,4 @@
 class UnitphotoUploader < CarrierWave::Uploader::Base
-
   include Cloudinary::CarrierWave
 
   # include Cloudinary::CarrierWave
@@ -48,5 +47,4 @@ class UnitphotoUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-
 end

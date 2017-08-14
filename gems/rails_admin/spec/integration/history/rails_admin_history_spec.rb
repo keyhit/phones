@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'RailsAdmin History', type: :request, active_record: true do
   describe 'model history fetch' do
-    before :each do
+    before do
       RailsAdmin::History.delete_all
       @model = RailsAdmin::AbstractModel.new('Player')
       player = FactoryGirl.create :player
@@ -43,7 +43,7 @@ describe 'RailsAdmin History', type: :request, active_record: true do
     end
 
     context 'GET admin/history/@model' do
-      before :each do
+      before do
         RailsAdmin.config do |c|
           c.audit_with :history
         end
@@ -60,7 +60,7 @@ describe 'RailsAdmin History', type: :request, active_record: true do
       end
 
       context 'with a lot of histories' do
-        before :each do
+        before do
           player = Player.create(team_id: -1, number: -1, name: 'Player 1')
           101.times do |i|
             player.number = i

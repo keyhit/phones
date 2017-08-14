@@ -3,13 +3,13 @@ require 'spec_helper'
 describe RailsAdmin::AbstractModel do
   describe '#to_s' do
     it 'returns model\'s name' do
-      expect(RailsAdmin::AbstractModel.new(Cms::BasicPage).to_s).to eq Cms::BasicPage.to_s
+      expect(described_class.new(Cms::BasicPage).to_s).to eq Cms::BasicPage.to_s
     end
   end
 
   describe 'filters' do
     before do
-      @abstract_model = RailsAdmin::AbstractModel.new('FieldTest')
+      @abstract_model = described_class.new('FieldTest')
     end
 
     context 'ActiveModel::ForbiddenAttributesProtection' do
@@ -63,7 +63,7 @@ describe RailsAdmin::AbstractModel do
     before do
       @paged = Player.page(1)
       Kaminari.config.page_method_name = :per_page_kaminari
-      @abstract_model = RailsAdmin::AbstractModel.new('Player')
+      @abstract_model = described_class.new('Player')
     end
 
     after do
@@ -78,13 +78,13 @@ describe RailsAdmin::AbstractModel do
 
   describe 'each_associated_children' do
     before do
-      @abstract_model = RailsAdmin::AbstractModel.new('Player')
+      @abstract_model = described_class.new('Player')
       @draft = FactoryGirl.build :draft
       @comments = FactoryGirl.build_list :comment, 2
       @player = FactoryGirl.build :player, draft: @draft, comments: @comments
     end
 
-    it 'should return has_one and has_many associations with its children' do
+    it 'returns has_one and has_many associations with its children' do
       @abstract_model.each_associated_children(@player) do |association, children|
         expect(children).to eq case association.name
                                when :draft

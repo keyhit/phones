@@ -1,0 +1,67 @@
+require: rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - db/schema.rb
+    - script/*
+
+Documentation:
+  Enabled: false
+
+LineLength:
+  Max: 120
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - db/migrate/*
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+    - config/routes.rb
+
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - db/migrate/*
+Rails:
+  Enabled: true
+
+Rails/Date:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/TimeZone:
+  Enabled: false
+
+RSpec/DescribedClass:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 15
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 4
+
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+Style/BlockComments:
+  Exclude:
+    - spec/spec_helper.rb
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/RegexpLiteral:
+  AllowInnerSlashes: true

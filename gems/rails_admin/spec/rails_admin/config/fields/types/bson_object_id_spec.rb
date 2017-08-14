@@ -11,7 +11,7 @@ describe RailsAdmin::Config::Fields::Types::BsonObjectId do
       end
     end
 
-    before :each do
+    before do
       RailsAdmin.config do |config|
         config.model FieldTest do
           field :bson_object_id_field, :bson_object_id

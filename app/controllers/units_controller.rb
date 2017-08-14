@@ -1,38 +1,32 @@
 class UnitsController < ApplicationController
-  before_action :authenticate_unit!, except: [ :registration_new_unit, :save_new_unit]
-  before_action :check_rules_global_admin, except: [ :index, :admin_branches, :show, :new, :create, :edit, :update, :destroy]
-  before_action :check_rules_global_moderator, except: [ :index, :admin_branches, :show, :edit, :update]
-  before_action :check_rules_organization_admin, except: [ :index, :show, :new, :create, :edit, :update, :destroy, :update_account, :update_unit_branch_id, :find_name]
-  before_action :check_rules_organization_moderator , except: [ :index, :show, :edit, :update]
-  before_action :check_rules_departament_admin , except: [ :index, :show, :new, :create, :edit, :update, :destroy]
-  before_action :check_rules_departament_moderator , except: [ :index, :show, :edit, :update]
-  before_action :check_rules_user, except: [:index, :show, :units_self_admin]
-  before_action :organizations_isolation, except: [:update_unit_branch_id, :update_account]
+  before_action :authenticate_unit!, except: %i[registration_new_unit save_new_unit]
+  before_action :check_rules_global_admin, except: %i[index admin_branches show new create edit update destroy]
+  before_action :check_rules_global_moderator, except: %i[index admin_branches show edit update]
+  before_action :check_rules_organization_admin, except: %i[index show new create edit update destroy update_account update_unit_branch_id find_name]
+  before_action :check_rules_organization_moderator, except: %i[index show edit update]
+  before_action :check_rules_departament_admin, except: %i[index show new create edit update destroy]
+  before_action :check_rules_departament_moderator, except: %i[index show edit update]
+  before_action :check_rules_user, except: %i[index show units_self_admin]
+  before_action :organizations_isolation, except: %i[update_unit_branch_id update_account]
 
+  def index; end
 
+  def show; end
 
-  def index
-  end
-
-  def show
-  end
-
-  def registration_new_unit
-  end
+  def registration_new_unit; end
 
   def save_new_unit
     @save_unit = Unit.new(unit_params)
     if @save_unit.save
       flash[:notice] = 'Unit was saved!'
-      redirect_to new_unit_session_path()
+      redirect_to new_unit_session_path
     else
       flash[:error] = 'Unit was not saved!'
-      redirect_to branches_path()
+      redirect_to branches_path
     end
   end
 
-  def new
-  end
+  def new; end
 
   def create
     @unit = Unit.new(unit_params)
@@ -44,27 +38,24 @@ class UnitsController < ApplicationController
       flash[:error] = 'Unit was not saved!'
       redirect_to new_branch_organization_departament_unit_path(branch_id: params[:branch_id], organization_id: params[:organization_id], departament_id: params[:departament_id])
     end
-
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @departament_name = organization.departaments.find(params[:departament_id])
-      # binding.pry
+    # binding.pry
     if unit.update(unit_params)
       redirect_to branch_organization_departaments_path(branch, organization)
     end
   end
 
-  def update_account
-  end
+  def update_account; end
 
   def update_unit_branch_id
     @update_unit_branch_id = Unit.where(id: current_unit.id)
     if @update_unit_branch_id.update(unit_params)
-        redirect_to update_account_path()
+      redirect_to update_account_path
     end
   end
 
@@ -87,14 +78,14 @@ class UnitsController < ApplicationController
   end
 
   private
+
   def unit_params
-
-    params.require(:unit).permit(:full_name, :belong_to_departament, :post, :email, :secondary_email, :password, :password_confirmation, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :unitphoto, :characteristic, :role, :subordinate, :branch_id, :organization_id, :departament_id).merge(belong_to_departament: @departament_name.departament_name) 
+    params.require(:unit).permit(:full_name, :belong_to_departament, :post, :email, :secondary_email, :password, :password_confirmation, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :unitphoto, :characteristic, :role, :subordinate, :branch_id, :organization_id, :departament_id).merge(belong_to_departament: @departament_name.departament_name)
     end
 
-    def reg_params
-      params.fetch(:unit).permit(:full_name, :email, :password, :password_confirmation)
-    end
+  def reg_params
+    params.fetch(:unit).permit(:full_name, :email, :password, :password_confirmation)
+  end
 
   def units
     @units ||= departament.units
@@ -106,4 +97,3 @@ class UnitsController < ApplicationController
   end
   helper_method :unit
 end
-

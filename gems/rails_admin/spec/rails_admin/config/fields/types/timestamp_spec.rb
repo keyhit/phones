@@ -4,13 +4,13 @@ describe RailsAdmin::Config::Fields::Types::Timestamp, active_record: true do
   it_behaves_like 'a generic field type', :timestamp_field, :timestamp
 
   describe '#parse_input' do
-    before :each do
+    before do
       @object = FactoryGirl.create(:field_test)
       @time = ::Time.now.getutc
       @field = RailsAdmin.config(FieldTest).fields.detect { |f| f.name == :timestamp_field }
     end
 
-    after :each do
+    after do
       Time.zone = 'UTC'
     end
 

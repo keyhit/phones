@@ -12,10 +12,10 @@ class Ability
 
       # fix for buggy and inconsistent behaviour in Cancan 1.6.8 => https://github.com/ryanb/cancan/issues/721
       if CI_ORM != :mongoid
-        cannot [:update, :destroy], Player
-        can [:update, :destroy], Player, retired: false
+        cannot %i[update destroy], Player
+        can %i[update destroy], Player, retired: false
       else
-        cannot [:update, :destroy], Player, retired: true
+        cannot %i[update destroy], Player, retired: true
       end
     else
       can :dashboard
@@ -69,7 +69,7 @@ describe 'RailsAdmin CanCan Authorization', type: :request do
 
   describe 'with read player role' do
     before do
-      @user.update_attributes(roles: [:admin, :read_player])
+      @user.update_attributes(roles: %i[admin read_player])
     end
 
     it 'GET /admin should show Player but not League' do
@@ -114,7 +114,7 @@ describe 'RailsAdmin CanCan Authorization', type: :request do
 
   describe 'with create and read player role' do
     before do
-      @user.update_attributes(roles: [:admin, :read_player, :create_player])
+      @user.update_attributes(roles: %i[admin read_player create_player])
     end
 
     it 'GET /admin/player/new should render and create record upon submission' do
@@ -145,7 +145,7 @@ describe 'RailsAdmin CanCan Authorization', type: :request do
 
   describe 'with update and read player role' do
     before do
-      @user.update_attributes(roles: [:admin, :read_player, :update_player])
+      @user.update_attributes(roles: %i[admin read_player update_player])
     end
 
     it 'GET /admin/player/1/edit should render and update record upon submission' do
@@ -176,7 +176,7 @@ describe 'RailsAdmin CanCan Authorization', type: :request do
 
   describe 'with history role' do
     it 'shows links to history action' do
-      @user.update_attributes(roles: [:admin, :read_player, :history_player])
+      @user.update_attributes(roles: %i[admin read_player history_player])
       @player = FactoryGirl.create :player
 
       visit index_path(model_name: 'player')
@@ -195,7 +195,7 @@ describe 'RailsAdmin CanCan Authorization', type: :request do
 
   describe 'with show in app role' do
     it 'shows links to show in app action' do
-      @user.update_attributes(roles: [:admin, :read_player, :show_in_app_player])
+      @user.update_attributes(roles: %i[admin read_player show_in_app_player])
       @player = FactoryGirl.create :player
 
       visit index_path(model_name: 'player')
@@ -216,7 +216,7 @@ describe 'RailsAdmin CanCan Authorization', type: :request do
 
   describe 'with all roles' do
     it 'shows links to all actions' do
-      @user.update_attributes(roles: [:admin, :manage_player])
+      @user.update_attributes(roles: %i[admin manage_player])
       @player = FactoryGirl.create :player
 
       visit index_path(model_name: 'player')
@@ -237,7 +237,7 @@ describe 'RailsAdmin CanCan Authorization', type: :request do
 
   describe 'with destroy and read player role' do
     before do
-      @user.update_attributes(roles: [:admin, :read_player, :destroy_player])
+      @user.update_attributes(roles: %i[admin read_player destroy_player])
     end
 
     it 'GET /admin/player/1/delete should render and destroy record upon submission' do
@@ -277,7 +277,7 @@ describe 'RailsAdmin CanCan Authorization', type: :request do
 
   describe 'with exception role' do
     it 'GET /admin/player/bulk_delete should render records which are authorized to' do
-      @user.update_attributes(roles: [:admin, :test_exception])
+      @user.update_attributes(roles: %i[admin test_exception])
       active_player = FactoryGirl.create :player, retired: false
       retired_player = FactoryGirl.create :player, retired: true
 
@@ -288,7 +288,7 @@ describe 'RailsAdmin CanCan Authorization', type: :request do
     end
 
     it 'POST /admin/player/bulk_destroy should destroy records which are authorized to' do
-      @user.update_attributes(roles: [:admin, :test_exception])
+      @user.update_attributes(roles: %i[admin test_exception])
       active_player = FactoryGirl.create :player, retired: false
       retired_player = FactoryGirl.create :player, retired: true
 

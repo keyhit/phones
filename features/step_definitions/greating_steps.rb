@@ -3,5 +3,5 @@ When(/^He go to the homepage$/) do
 end
 
 Then(/^He would see the welcome message$/) do
-  expect(page).to have_content("My greating for you, Guest!!!")
+  expect(page).to have_content('My greating for you, Guest!!!')
 end

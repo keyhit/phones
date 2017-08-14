@@ -11,7 +11,7 @@ describe RailsAdmin::Support::Datetime do
       '%-d %B %Y' => 'D MMMM YYYY',
     }.each do |strftime_format, momentjs_format|
       it "convert strftime_format to momentjs_format - example #{strftime_format}" do
-        strftime_format = RailsAdmin::Support::Datetime.new(strftime_format)
+        strftime_format = described_class.new(strftime_format)
         expect(strftime_format.to_momentjs).to eq momentjs_format
       end
     end

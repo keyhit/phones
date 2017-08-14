@@ -3,7 +3,7 @@ require 'rails_admin/config/fields/types'
 require 'rails_admin/config/fields/types/file_upload'
 
 RailsAdmin::Config::Fields.register_factory do |parent, properties, fields|
-  extensions = [:id, :filename, :size, :content_type]
+  extensions = %i[id filename size content_type]
   model = parent.abstract_model.model
   if (properties.name.to_s =~ /^(.+)_id$/) && defined?(::Refile) && model.ancestors.map(&:to_s).include?("Refile::Attachment(#{attachment_name = Regexp.last_match[1].to_sym})")
     field = RailsAdmin::Config::Fields::Types.load(:refile).new(parent, attachment_name, properties)

@@ -1,13 +1,12 @@
 class PersonalsController < ApplicationController
-
   def index
     @personals = Personal.where(params[:departament_id])
   end
 
   def show
-    if @personal = Personal.find(params[:id]) == nil
+    if @personal = Personal.find(params[:id]).nil?
       redirect_to  new_organization_departament_personal(params)
-    else 
+    else
       @personal = Personal.find(params[:id])
     end
   end
@@ -26,17 +25,15 @@ class PersonalsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
-  def update
-  end
+  def update; end
 
-  def destroy
-  end
+  def destroy; end
 
-  private 
-    def personal_params
-      params.require(:personal).permit(:full_name, :departament_id)
-    end
+  private
+
+  def personal_params
+    params.require(:personal).permit(:full_name, :departament_id)
+  end
 end

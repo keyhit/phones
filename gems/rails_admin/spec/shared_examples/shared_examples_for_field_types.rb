@@ -17,7 +17,7 @@ RSpec.shared_examples 'a generic field type' do |column_name, field_type|
         end.with(object: FieldTest.new)
       end
 
-      it 'should contain a required attribute with the string "required" as value' do
+      it 'contains a required attribute with the string "required" as value' do
         expect(rails_admin_field.html_attributes[:required]).to be_truthy
       end
     end
