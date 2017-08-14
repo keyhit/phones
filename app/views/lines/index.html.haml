@@ -1,6 +1,5 @@
 %h1 Here just rows with records
-= link_to 'Add line', new_line_path
-= link_to 'Companies', organizations_path
+= link_to 'Add line old', new_line_path
 %table
   %tr
     %th ID
@@ -12,4 +11,4 @@
       %td= line.id
       %td= line.rec
       %td= link_to 'Edit', edit_line_path(line)
-      %td= link_to 'Delete', line_path(line), method: :delete
+      %td= link_to 'Delete', line_path(line), remote: true, method: :delete, data: { confirm: 'Are you sure?' }

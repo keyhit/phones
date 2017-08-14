@@ -13,6 +13,6 @@ rails db:seed
 rails db:drop db:create db:migrate db:seed
 rails db:setup
 
-def change
-  rename_column :units, :branche_id, :branch_id
-end
+Keep the original ERBs? Rake task to run
+Yes rake haml:convert_erbs
+No  rake haml:replace_erbs

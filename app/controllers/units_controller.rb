@@ -2,7 +2,7 @@ class UnitsController < ApplicationController
   before_action :authenticate_unit!, except: [ :registration_new_unit, :save_new_unit]
   before_action :check_rules_global_admin, except: [ :index, :admin_branches, :show, :new, :create, :edit, :update, :destroy]
   before_action :check_rules_global_moderator, except: [ :index, :admin_branches, :show, :edit, :update]
-  before_action :check_rules_organization_admin, except: [ :index, :show, :new, :create, :edit, :update, :destroy, :update_account, :update_unit_branch_id]
+  before_action :check_rules_organization_admin, except: [ :index, :show, :new, :create, :edit, :update, :destroy, :update_account, :update_unit_branch_id, :find_name]
   before_action :check_rules_organization_moderator , except: [ :index, :show, :edit, :update]
   before_action :check_rules_departament_admin , except: [ :index, :show, :new, :create, :edit, :update, :destroy]
   before_action :check_rules_departament_moderator , except: [ :index, :show, :edit, :update]
@@ -51,8 +51,10 @@ class UnitsController < ApplicationController
   end
 
   def update
+    @departament_name = organization.departaments.find(params[:departament_id])
+      # binding.pry
     if unit.update(unit_params)
-      redirect_to branch_organization_departament_unit_path(branch, organization, departament, unit.id)
+      redirect_to branch_organization_departaments_path(branch, organization)
     end
   end
 
@@ -85,10 +87,9 @@ class UnitsController < ApplicationController
   end
 
   private
-
-  
   def unit_params
-    params.require(:unit).permit(:full_name, :belong_to_departament, :post, :email, :secondary_email, :password, :password_confirmation, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :unitphoto, :characteristic, :role, :subordinate, :branch_id, :organization_id, :departament_id)
+
+    params.require(:unit).permit(:full_name, :belong_to_departament, :post, :email, :secondary_email, :password, :password_confirmation, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :unitphoto, :characteristic, :role, :subordinate, :branch_id, :organization_id, :departament_id).merge(belong_to_departament: @departament_name.departament_name) 
     end
 
     def reg_params
@@ -104,6 +105,5 @@ class UnitsController < ApplicationController
     @unit ||= departament.units.find(params[:id])
   end
   helper_method :unit
-
 end
 

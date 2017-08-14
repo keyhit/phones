@@ -1,10 +1,13 @@
 class LinesController < ApplicationController
+  before_action :all_lines, only: [:index, :create]
+  respond_to :html, :js
 
   def index
     @lines = Line.all
   end
 
   def new
+  @line = Line.new
   end
 
   def create
@@ -35,5 +38,9 @@ class LinesController < ApplicationController
   private
     def line_params
       params.require(:line).permit(:rec)
+    end
+
+    def all_lines
+      @lines = Line.all
     end
 end

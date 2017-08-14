@@ -21,6 +21,7 @@
         = link_to unit.full_name, branch_organization_departament_unit_path(branch, organization, departament, unit)
       %td= unit.post
       %td= unit.primary_phone_number
-      %td= unit.email
+      %td
+        = link_to unit.email, branch_organization_departament_unit_path(branch, organization, departament, unit)
       %td= unit.working_days
       %td= link_to 'Remove', branch_organization_departament_unit_path(departament_id: unit.departament_id, id: unit.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger'
