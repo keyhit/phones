@@ -1,6 +1,0 @@
-%h2 Edit page
-= render 'nav'
-= form_for :line, url: line_path(@line), method: :patch do |f|
-  = f.label :rec, 'Edit line'
-  = f.text_field :rec
-  = f.submit

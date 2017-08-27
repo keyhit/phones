@@ -11,6 +11,18 @@
         = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
           = devise_error_messages!
           .field
+            = f.label :name
+            %br/
+            = f.text_field :name
+          .field
+            = f.label :surename
+            %br/
+            = f.text_field :surename
+          .field
+            = f.label :patronimic
+            %br/
+            = f.text_field :patronimic
+          .field
             = f.label :email
             %br/
             = f.email_field :email, autofocus: true
@@ -32,3 +44,6 @@
           .actions
             = f.submit "Sign up"
         = render "devise/shared/links"
+
+
+

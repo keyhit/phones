@@ -1,7 +1,0 @@
-      / = f.select(:belong_to_departament, departaments.all.collect { |p| [ p.departament_name, p.id ]}, {include_blank: unit.belong_to_departament}, {id: 'change_departament_id', :id => 'select_departament_id', :onchange => "belong_to_departament_id()"})
-      /     :javascript
-      /       function belong_to_departament_id(){
-      /         var id = document.getElementById('select_departament_id').value;
-      /         document.getElementById("valId").value = id;
-      /       }
-      /     = f.hidden_field :departament_id, id: 'valId', value: params[:departament_id]

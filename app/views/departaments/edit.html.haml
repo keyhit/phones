@@ -8,9 +8,10 @@
       .panel-heading
         EDIT
       .panel-body
-        = bootstrap_form_for departament, url: organization_departament_path([organization, departament]) do |f|
+        = bootstrap_form_for departament, url: branch_organization_departament_path(branch, organization, departament) do |f|
           = f.text_field :departament_name
+          = f.select :subordinated, options_for_select(organization.departaments.map{ |c| [c.departament_name, c.departament_name] })
           = f.text_area :departament_description
           = f.file_field :departamentlogotype, :class => "btn btn-default"
           = f.submit :class => "btn btn-primary"
-          = link_to 'CANCEL', organization_departaments_path(organization), :type=> "button", :class => "btn btn-danger"
+          = link_to 'CANCEL', branch_organization_departaments_path(branch, organization), :type=> "button", :class => "btn btn-danger"

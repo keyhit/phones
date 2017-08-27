@@ -11,12 +11,11 @@ class LinesController < ApplicationController
   end
 
   def create
-    redirect_to lines_path if @line = Line.create(line_params)
+    redirect_to lines_path if Line.create(line_params)
   end
 
   def edit
-    if @line = Line.find(params[:id])
-    end
+    @line == Line.find(params[:id])
   end
 
   def update

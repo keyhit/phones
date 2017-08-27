@@ -8,13 +8,15 @@
       .panel-heading
         EDIT UNIT DATA
       .panel-body 
-        = bootstrap_form_for :unit, url: branch_organization_departament_unit_path( branch_id: branch.id, organization_id: organization.id, departament_id: departament.id ), method: :patch do |f|
-          = f.text_field :full_name, value: unit.full_name
-
-          = f.select :departament_id, options_for_select(departaments.map{ |c| [c.departament_name, c.id]})
-
+        = bootstrap_form_for unit, url: branch_organization_departament_unit_path(branch, organization, departament, unit), method: :patch do |f|
+          = f.text_field :name, value: unit.name
+          = f.text_field :surename, value: unit.surename
+          = f.text_field :patronimic, value: unit.patronimic
+          = f.select :subordinated, options_for_select(departament.units.map{ |c| [c.name, c.name] })
+          = f.select :departament_id, options_for_select(departaments.map{ |c| [c.departament_name, c.id] })
           = f.text_area :post, value: unit.post
           = f.email_field :email, value: unit.email
+          = link_to 'Change password', new_password_path()
           = f.email_field :secondary_email, value: unit.secondary_email
           = f.telephone_field :primary_phone_number, value: unit.primary_phone_number
           = f.telephone_field :secondary_phone_number, value: unit.secondary_phone_number

@@ -9,19 +9,17 @@
     %th Phone 
     %th Email
     %th Working days
-    %th Public
-    - if current_unit.role == 'global_admin' || current_unit.role == 'global_moderator'
-      %th Action
+    %th Detail
   - units.each do |unit|
     %tr
       %td
         - unless unit.unitphoto_url.nil?
           = image_tag unit.unitphoto_url, size: "50x35", alt: "company logo"
       %td
-        = link_to unit.full_name, branch_organization_departament_unit_path(branch, organization, departament, unit)
+        = unit.name
+        = unit.surename
       %td= unit.post
       %td= unit.primary_phone_number
-      %td
-        = link_to unit.email, branch_organization_departament_unit_path(branch, organization, departament, unit)
+      %td= unit.email
       %td= unit.working_days
-      %td= link_to 'Remove', branch_organization_departament_unit_path(departament_id: unit.departament_id, id: unit.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger'
+      %td= link_to 'Detail',branch_organization_departament_unit_path(branch, organization, departament, unit), class: 'btn btn-info'

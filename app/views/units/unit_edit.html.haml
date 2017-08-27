@@ -1,0 +1,24 @@
+= content_for :title do
+  = 'Edit unit data'
+= content_for :edit_unit do
+  = 'Edit unit data'
+.row
+  .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
+    .panel.panel-primary
+      .panel-heading
+        EDIT
+      .panel-body
+        = bootstrap_form_for unit, url: branch_organization_departament_unit_unit_edit_action_path(branch, organization, departament, unit), method: :patch do |f|
+          = link_to 'Change password', new_password_path()
+          = f.email_field :secondary_email
+          = f.telephone_field :secondary_phone_number
+          = f.telephone_field :home_phone_number
+          = label :working_days, 'For change curent working days remove this!'
+          = f.text_field :working_days, list: 'first-name', value: unit.working_days 
+          %datalist#first-name
+            %option{ :value => 'Mon-Fri' }
+            %option{ :value => 'Day work two rest' }
+            %option{ :value => 'Vacation' }
+            %option{ :value => 'Fired' }
+          = f.submit :class => "btn btn-primary"
+          = link_to 'CANCEL', branch_organization_departament_unit_path(branch,organization, departament, unit), :type=> "button", :class => "btn btn-danger"

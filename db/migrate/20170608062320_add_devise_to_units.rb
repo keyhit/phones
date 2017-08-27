@@ -1,8 +1,10 @@
 class AddDeviseToUnits < ActiveRecord::Migration[5.0]
   def self.up
     create_table :units do |t|
-      t.string     :full_name
-      t.string     :belong_to_departament
+      t.string     :name
+      t.string     :surename
+      t.string     :patronimic
+      t.string     :subordinated
       t.string     :post
       t.string     :email, null: false, default: ''
       t.string     :secondary_email
@@ -20,7 +22,6 @@ class AddDeviseToUnits < ActiveRecord::Migration[5.0]
       t.string     :unitphoto
       t.string     :characteristic
       t.string     :role
-      t.string     :subordinated
       t.integer    :branch_id, foreign_key: true
       t.references :organization, foreign_key: true
       t.references :departament, foreign_key: true

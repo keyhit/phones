@@ -62,7 +62,6 @@ gem 'cloudinary'
 gem 'devise'
 gem 'erb2haml'
 gem 'figaro', '~> 1.1.1'
-gem 'rails_admin', '~> 1.2', path: '/home/viacheslav/phones/gems/rails_admin'
 gem 'rubocop', require: false
 gem 'rubocop-rspec'
 

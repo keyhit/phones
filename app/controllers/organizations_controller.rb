@@ -37,14 +37,18 @@ class OrganizationsController < ApplicationController
 
   def destroy
     if organization.destroy
-      redirect_to branch_organization_path(branch, organization)
+      flash[:notice] = 'Organization has been destroyed!'
+      redirect_to branch_path(branch)
+    else
+      flash[:error] = 'Organization was not destroyed!'
+      redirect_to branch_path(organization)
     end
   end
 
   private
 
   def organization_params
-    params.require(:organization).permit(:name, :address, :web_page, :our_skils, :organizationlogotype, :public_presentation_user_id, :branch_id)
+    params.require(:organization).permit(:name, :country, :state, :region, :town, :street, :build, :block, :office, :subordinated, :address, :web_page, :our_skils, :organizationlogotype, :public_presentation_user_id, :branch_id)
   end
 
   def organization

@@ -9,8 +9,11 @@
         CREATE
       .panel-body 
         = bootstrap_form_for :unit, url: branch_organization_departament_units_path( branch_id: branch.id, organization_id: organization.id, departament_id: departament.id ), method: :post do |f|
-          = f.text_field :full_name, value: 'Name'
-          = f.select(:belong_to_departament, organization.departaments.ids , {include_blank: "Select departament"})
+          = f.text_field :name, value: 'Name'
+          = f.text_field :surename, value: 'Surename'
+          = f.text_field :patronimic, value: 'Patronimic'
+          = f.select :subordinated, options_for_select(departament.units.map{ |c| [c.name, c.name] })
+          = f.select :departament_id, options_for_select(departaments.map{ |c| [c.departament_name, c.id]})
           = f.text_area :post
           = f.email_field :email
           = f.password_field :password, autocomplete: "off"
@@ -36,7 +39,7 @@
           - if role_1
             = f.select(:role, options_for_select([['global_admin', 'global_admin'], ['global_moderator', 'global_moderator'], ['organization_admin', 'organization_admin'], ['organization_moderator', 'organization_moderator'], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
           - elsif role_3
-            = f.select(:role, options_for_select([['organization_admin', 'organization_admin'], ['organization_moderator', 'organization_moderator'], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
+            = f.select(:role, options_for_select([['user', 'user'], ['organization_admin', 'organization_admin'], ['organization_moderator', 'organization_moderator'], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator']]))
           - elsif role_5
             = f.select(:role, options_for_select([['departament_moderator', 'departament_moderator'], ['user', 'user']]))
           = f.hidden_field :branch_id, value: params[:branch_id]

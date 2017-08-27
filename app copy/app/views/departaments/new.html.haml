@@ -1,6 +1,0 @@
-%h5 Add new departament
-= link_to 'Back to departament list', organization_departaments_path(params[:organization_id])
-=bootstrap_form_for :departament, url: organization_departaments_path(@organization) do |f|
-  = f.text_field :departament_name
-  = f.text_area :departament_description
-  = f.submit

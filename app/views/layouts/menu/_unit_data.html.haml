@@ -7,10 +7,10 @@
     = link_to unit_organization.name, branch_organization_path(current_unit.branch_id, current_unit.organization_id)
   - if current_unit.departament_id != nil
     %b Departament:
-    = link_to current_unit.belong_to_departament, branch_organization_departament_path(current_unit.branch_id, current_unit.organization_id, current_unit.departament_id)
-  - if current_unit.full_name != nil
+    = link_to current_unit.departament.departament_name, branch_organization_departament_path(current_unit.branch_id, current_unit.organization_id, current_unit.departament_id)
+  - if current_unit.role != nil && current_unit.branch_id != nil && current_unit.organization_id != nil && current_unit.departament_id != nil
     %b Name: 
-    = link_to current_unit.full_name, branch_organization_departament_unit_path(current_unit.branch_id, current_unit.organization_id, current_unit.departament_id, current_unit.id)
+    = link_to current_unit.name, branch_organization_departament_unit_path(current_unit.branch_id, current_unit.organization_id, current_unit.departament_id, current_unit.id)
   - if current_unit.email?  && current_unit.branch_id != nil && current_unit.organization_id != nil && current_unit.departament_id != nil
     %b Email: 
     = link_to current_unit.email, branch_organization_departament_unit_path(current_unit.branch_id, current_unit.organization_id, current_unit.departament_id, current_unit.id)

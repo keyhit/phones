@@ -2,25 +2,29 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def cont (f)
+    content_for f
+  end
+
   private
 
   def branches
-    @branches = Branch.all
+    @branches ||= Branch.all
   end
   helper_method :branches
 
   def branch
-    @branch = Branch.find(params[:branch_id])
+    @branch ||= Branch.find(params[:branch_id])
   end
   helper_method :branch
 
   def all_organizations
-    @all_organizations = Organization.all
+    @all_organizations ||= Organization.all
   end
   helper_method :all_organizations
 
   def branch_organizations
-    @branch_organizations = Organization.where(branch_id: branch.id)
+    @branch_organizations ||= Organization.where(branch_id: branch.id)
   end
   helper_method :branch_organizations
 
@@ -55,9 +59,7 @@ class ApplicationController < ActionController::Base
   helper_method :units
 
   def public_presentation
-    if organization.public_presentation_user_id?
-      @public_presentation ||= Unit.find(organization.public_presentation_user_id)
-    end
+    @public_presentation ||= Unit.find(organization.public_presentation_user_id) if organization.public_presentation_user_id?
   end
   helper_method :public_presentation
 
@@ -113,7 +115,6 @@ class ApplicationController < ActionController::Base
         redirect_to branches_path
         nil
       else
-
         true
       end
     end

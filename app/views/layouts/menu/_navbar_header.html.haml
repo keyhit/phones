@@ -1,41 +1,56 @@
-.navbar-header
-  .navbar-brand
-    - if content_for? :Main
-      = 'List of all companies'
-    - elsif content_for? :all_companies
-      = 'List of all companies by branch'
-      = branch.branch_name
-    - elsif content_for? :create_organization
-      = yield(:create_organization)
-    - elsif content_for? :edit_organization
-      = yield(:edit_organization)
-    - elsif content_for? :organization_name
-      Contact information of
-      %b
-      = yield(:organization_name)
-      company
-    -elsif content_for? :create_departament
-      = yield(:create_departament)
-    -elsif content_for? :edit_departament 
-      = yield(:edit_departament )
-    - elsif content_for? :organization_name_for_departaments
-      All departaments of
-      %b
-      = yield(:organization_name_for_departaments)
-    - elsif content_for? :departament_name
-      Detail information about
-      = yield(:departament_name)
-      departament
-      = yield(:organization_name)
-    -elsif content_for? :all_units_of_departament
-      All units of departament
-      = yield(:all_units_of_departament)
-    -elsif content_for? :unit_full_name
-      Detail info about 
-      %b
-      = yield(:unit_full_name)
-      unit
-    - elsif content_for? :new_unit
-      = yield(:new_unit)
-    - elsif content_for? :edit_unit
-      = yield(:edit_unit)
+%h4
+  - if content_for? :info_page
+    = yield :info_page
+  - if content_for? :new_info_page
+    = yield :new_info_page
+  - if content_for? :edit_info_page
+    = yield :edit_info_page
+  - if content_for? :Main
+    = 'List of all companies'
+  - elsif content_for? :all_companies
+    = 'List of all companies by branch'
+    = branch.branch_name
+  - elsif content_for? :create_organization
+    = yield(:create_organization)
+  - elsif content_for? :edit_organization
+    = yield(:edit_organization)
+  - elsif content_for? :organization_name
+    Contact information of
+    %b
+    = yield(:organization_name)
+    company
+  -elsif content_for? :create_departament
+    = yield(:create_departament)
+  -elsif content_for? :edit_departament 
+    = yield(:edit_departament )
+  - elsif content_for? :organization_name_for_departaments
+    All departaments of
+    %b
+    = yield(:organization_name_for_departaments)
+  - elsif content_for? :departament_name
+    Detail information about
+    = yield(:departament_name)
+    departament
+    = yield(:organization_name)
+  -elsif content_for? :all_units_of_departament
+    All units of departament
+    = yield(:all_units_of_departament)
+  -elsif content_for? :unit_full_name
+    Detail info about 
+    %b
+    = yield(:unit_full_name)
+    unit
+  - elsif content_for? :new_unit
+    = yield(:new_unit)
+  - elsif content_for? :edit_unit
+    = yield(:edit_unit)
+
+- if notice
+  .alert.alert-info
+    %p= notice
+- if alert
+  .alert.alert-warning
+    %p= alert
+- if flash[:error]
+  .alert.alert-warning
+    %p= flash[:error]

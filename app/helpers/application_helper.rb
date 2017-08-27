@@ -1,5 +1,17 @@
 module ApplicationHelper
   # Links
+  def info_link
+    link_to 'INFO', infos_path
+  end
+
+  def new_info_link
+    link_to 'NEW INFO', new_info_path
+  end
+
+  def edit_info_link
+    link_to 'EDIT INFO', info_path
+  end
+
   def main_link
     link_to 'MAIN', branches_path
   end

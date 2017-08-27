@@ -17,9 +17,18 @@
         .panel-body
           = bootstrap_form_for :organization, url: branch_organizations_path(branch_id:current_unit.branch_id), method: :post do |f|
             = f.text_field :name
-            = f.text_field :address
-            = f.url_field :web_page
-            = f.text_area :our_skils
+            = f.select :branch_id, options_for_select(branches.map{ |c| [c.branch_name, c.id] })
+            = f.select :subordinated, options_for_select(all_organizations.map{ |c| [c.name, c.name] })
+            = f.select :country, options_for_select(COUNTRIES.map{ |key, value| value })
+            = f.text_field :state
+            = f.text_field :region
+            = f.select :town, options_for_select(SITIES.map{ |key, value| value })
+            = f.text_field :street
+            = f.text_field :build
+            = f.text_field :block
+            = f.text_field :office
+            = f.url_field  :web_page
+            = f.text_area  :our_skils
             = f.file_field :organizationlogotype, :class => "btn btn-default"
             = f.hidden_field :branch_id, value: current_unit.branch_id
             = f.submit :class => "btn btn-primary"

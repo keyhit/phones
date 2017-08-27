@@ -10,6 +10,7 @@
       .panel-body
         =bootstrap_form_for :departament, url: branch_organization_departaments_path(branch, organization), method: :post do |f|
           = f.text_field :departament_name
+          = f.select :subordinated, options_for_select(organization.departaments.map{ |c| [c.departament_name, c.departament_name] })
           = f.text_area :departament_description
           = f.file_field :departamentlogotype, :class => "btn btn-default"
           = f.hidden_field :branch_id, value: params[:branch_id]

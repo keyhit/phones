@@ -7,7 +7,6 @@ class BranchesController < ApplicationController
   before_action :check_rules_departament_admin, except: [:index]
   before_action :check_rules_departament_moderator, except: [:index]
   before_action :check_rules_user, except: [:index]
-  before_action :check_rules_user_when_registering, except: [:index]
   def index; end
 
   def show; end
@@ -39,7 +38,13 @@ class BranchesController < ApplicationController
   end
 
   def destroy
-    redirect_to admin_branches_path if Branch.destroy(params[:id])
+    if Branch.destroy(params[:id])
+      redirect_to admin_branches_path()
+      flash[:notice] = 'Branch was deleted!'
+    else
+      redirect_to admin_branches_path()
+      flash[:error] = 'Branch was not deleted!'
+    end
   end
 
   def admin_branches; end

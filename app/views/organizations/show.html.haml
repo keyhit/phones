@@ -36,13 +36,49 @@
         %th Company name
         %td= organization.name
       %tr
+        %th Subordinated
+        %td= organization.subordinated
+      %tr
         %th Headquarters address
-        %td= organization.address
+        %td
+          - if organization.country?
+            %i='Country '
+            %b= organization.country 
+            %br/
+          - if organization.state?
+            %i=' obl '
+            %b= organization.state
+            %i= ','
+          - if organization.region?
+            %i=' reg  '
+            %b= organization.region
+            %i= ', '
+            %br/
+          - if organization.town?
+            %i= ' town '
+            %b= organization.town
+            %i= ', '
+          - if organization.street?
+            %i= ' street '
+            %b= organization.street
+            %i= ', '
+            %br/
+          - if organization.build?
+            %i=' building ' 
+            %b= organization.build 
+            %i=', '
+          - if organization.block?
+            %i=' block '
+            %b= organization.block 
+            %i=', '
+          - if organization.office?
+            %i= ' office ' 
+            %b= organization.office
       %tr
         %th Contact person
         %td
           -unless public_presentation.nil?
-            = link_to public_presentation.full_name, organization_departament_unit_path( public_presentation.organization_id, public_presentation.departament_id, public_presentation.id)
+            = link_to public_presentation.name, branch_organization_departament_unit_path( organization.branch_id, public_presentation.organization_id, public_presentation.departament_id, public_presentation.id)
           -else
             = 'Not assigned'
       %tr
@@ -73,9 +109,13 @@
       %tr
         %th Web page
         %td= organization.web_page
+      %tr
+        %th Organization ID
+        %td= organization.id
       - if unit_signed_in? 
         %tr
-          %th Adminstrative actions
-          %td
-            = link_to 'edit', edit_branch_organization_path(organization.id), :class => 'btn btn-warning'
-            = link_to 'Remove', branch_organization_path(organization), :class => 'btn btn-danger', method: :delete, data: { confirm: 'CAUTION! After you confirm all will be deleted!!!' }
+          -if role_1 || role_2 || current_unit.organization_id == organization.id
+            %th Adminstrative actions
+            %td
+              = link_to 'edit', edit_branch_organization_path(branch, organization.id), :class => 'btn btn-warning'
+              = link_to 'Remove', branch_organization_path(branch, organization), :class => 'btn btn-danger', method: :delete, data: { confirm: 'CAUTION! After you confirm all will be deleted!!!' }

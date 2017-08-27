@@ -1,18 +1,14 @@
 = content_for :Main do
   = 'Main'
-= content_for :Маin do
-  = 'Main'
 .row
-  .col-md-2
+  .col-md-3
     = render 'branches_all'
-  .col-md-10
-    .panel.panel-success
-      .panel-heading
-        %h5 Here is all companies of all branhces
-      %ul.list-group
-      - all_organizations.each do |all_organization|
-        %li.list-group-item
-          - unless all_organization.organizationlogotype_url.nil?
-            = image_tag all_organization.organizationlogotype_url, size: "50x35", alt: "company logo"
-          = link_to all_organization.name, branch_organization_path(all_organization.branch_id, all_organization.id), :class => 'btn btn-default'
+  .col-md-9
+    %ul.list-group
+    - all_organizations.each do |all_organization|
+      %li.list-group-item
+        - unless all_organization.organizationlogotype_url.nil?
+          = image_tag all_organization.organizationlogotype_url, size: "50x35", alt: "company logo"
+        = link_to all_organization.name, branch_organization_path(all_organization.branch_id, all_organization.id)
+        %small
           = all_organization.our_skils

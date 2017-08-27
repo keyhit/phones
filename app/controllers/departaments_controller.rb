@@ -4,7 +4,7 @@ class DepartamentsController < ApplicationController
   before_action :check_rules_global_moderator, except: %i[index show edit update]
   before_action :check_rules_organization_admin, except: %i[index show new create first_departament edit update destroy]
   before_action :check_rules_organization_moderator, except: %i[index show edit update]
-  before_action :check_rules_departament_admin, except: %i[index show new create edit update destroy]
+  before_action :check_rules_departament_admin, except: %i[index show edit update]
   before_action :check_rules_departament_moderator, except: %i[index show edit update]
   before_action :check_rules_user, except: %i[index show]
   before_action :organizations_isolation
@@ -31,7 +31,7 @@ class DepartamentsController < ApplicationController
     if @first_departament.save
       flash[:notice] = 'First departament saved!'
       @unit_for_departament_create = Unit.find(current_unit.id)
-      @unit_for_departament_create.update(belong_to_departament: @first_departament.departament_name, departament_id: @first_departament.id)
+      @unit_for_departament_create.update(departament_id: @first_departament.id)
       @departament_for_update = Departament.find(@first_departament.id)
       @departament_for_update.update(branch_id: current_unit.branch_id, organization_id: current_unit.organization_id)
       redirect_to branch_organization_path(branch, organization)
@@ -44,12 +44,20 @@ class DepartamentsController < ApplicationController
 
   def update
     if departament.update(departament_params)
+      flash[:notice] = 'Departament updated!'
+      redirect_to branch_organization_departaments_path(branch, organization)
+    else
+      flash[:error] = 'Departament was not updated!'
       redirect_to branch_organization_departaments_path(branch, organization)
     end
 end
 
   def destroy
     if departament.destroy
+      flash[:notice] = 'Departament has been destroyed!'
+      redirect_to branch_organization_departaments_path(branch, organization)
+    else
+      flash[:error] = 'Departament was not destroyed!'
       redirect_to branch_organization_departaments_path(branch, organization)
     end
   end
@@ -57,7 +65,7 @@ end
   private
 
   def departament_params
-    params.require(:departament).permit(:departament_name, :departament_description, :departamentlogotype, :branch_id, :organization_id)
+    params.require(:departament).permit(:departament_name, :subordinated, :departament_description, :departamentlogotype, :branch_id, :organization_id)
   end
 
   def departaments

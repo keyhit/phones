@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619214211) do
+ActiveRecord::Schema.define(version: 20170827141135) do
 
   create_table "branches", force: :cascade do |t|
     t.string   "branch_name"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 20170619214211) do
     t.index ["organization_id"], name: "index_departaments_on_organization_id"
   end
 
+  create_table "infos", force: :cascade do |t|
+    t.string   "header"
+    t.string   "text"
+    t.string   "myPhoto"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "lines", force: :cascade do |t|
     t.string   "rec"
     t.datetime "created_at", null: false
@@ -38,7 +46,15 @@ ActiveRecord::Schema.define(version: 20170619214211) do
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
-    t.string   "address"
+    t.string   "subordinated"
+    t.string   "country"
+    t.string   "state"
+    t.string   "region"
+    t.string   "town"
+    t.string   "street"
+    t.string   "build"
+    t.string   "block"
+    t.string   "office"
     t.string   "web_page"
     t.string   "our_skils"
     t.string   "organizationlogotype"
@@ -49,8 +65,10 @@ ActiveRecord::Schema.define(version: 20170619214211) do
   end
 
   create_table "units", force: :cascade do |t|
-    t.string   "full_name"
-    t.string   "belong_to_departament"
+    t.string   "name"
+    t.string   "surename"
+    t.string   "patronimic"
+    t.string   "subordinated"
     t.string   "post"
     t.string   "email",                  default: "", null: false
     t.string   "secondary_email"
@@ -68,7 +86,6 @@ ActiveRecord::Schema.define(version: 20170619214211) do
     t.string   "unitphoto"
     t.string   "characteristic"
     t.string   "role"
-    t.string   "subordinated"
     t.integer  "branch_id"
     t.integer  "organization_id"
     t.integer  "departament_id"

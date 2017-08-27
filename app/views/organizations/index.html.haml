@@ -6,14 +6,11 @@
   .col-md-2
     = render '/branches/branches_all'
   .col-md-10
-    .panel.panel-success
-      .panel-heading
-        %h5 Here is all companies
-      %ul.list-group
-      - branch_organizations.each do |branch_organization|
-        %li.list-group-item
-          = branch_organization.name
-          - unless branch_organization.organizationlogotype_url.nil?
-            = image_tag branch_organization.organizationlogotype_url, size: "50x35", alt: "company logo"
-          = link_to branch_organization.name, branch_organization_path(id: branch_organization.id), :class => 'btn btn-default'
+    %ul.list-group
+    - branch_organizations.each do |branch_organization|
+      %li.list-group-item
+        - unless branch_organization.organizationlogotype_url.nil?
+          = image_tag branch_organization.organizationlogotype_url, size: "50x35", alt: "company logo"
+        = link_to branch_organization.name, branch_organization_path(id: branch_organization.id)
+        %small
           = branch_organization.our_skils

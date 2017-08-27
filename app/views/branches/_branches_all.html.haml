@@ -1,12 +1,9 @@
-.panel.panel-success
-  .panel-heading
-    %h5
-    Here is all branches
-    - if unit_signed_in?
-      - if role_1 || role_2
-        = link_to admin_branches_path(), :title =>'Setup branches' do
-          .glyphicon.glyphicon-wrench
-  %ul.list-group
-  - branches.each do |branch|
-    %li.list-group-item
-      = link_to branch.branch_name, branch_organizations_path(branch), :class => 'btn btn-default'
+%ul.list-group
+  - if unit_signed_in?
+    - if role_1 || role_2
+      %li 
+      = link_to admin_branches_path(), :title =>'Setup branches' do
+        .glyphicon.glyphicon-wrench
+- branches.each do |branch|
+  %li.list-group-item
+    = link_to branch.branch_name, branch_organizations_path(branch)

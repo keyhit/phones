@@ -1,6 +1,5 @@
-%ul.nav.navbar-nav.navbar-right
-  - if unit_signed_in?
-    %li= link_to 'LOG OUT', destroy_unit_session_path(), method: :delete  
-  - else
-    %li= link_to 'SIGN UP', new_unit_registration_path()
-    %li= link_to 'LOG IN', new_unit_session_path()
+- if unit_signed_in?
+  = link_to 'LOG OUT', destroy_unit_session_path(), method: :delete, :class => 'btn btn-default btn-sm'
+- else
+  = link_to 'SIGN UP', new_unit_registration_path(), :class => 'btn btn-default btn-sm'
+  = link_to 'LOG IN', new_unit_session_path(), :class => 'btn btn-default btn-sm'
