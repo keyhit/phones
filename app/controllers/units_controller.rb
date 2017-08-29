@@ -101,7 +101,6 @@ class UnitsController < ApplicationController
   end
 
   private
-
   def unit_params
     params.require(:unit).permit(:name, :surename, :patronimic, :subordinated, :post, :email, :secondary_email, :password, :password_confirmation, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :unitphoto, :characteristic, :role, :branch_id, :organization_id, :departament_id)
     end

@@ -1,4 +1,5 @@
 %ul.nav.navbar-nav 
+  %li= link_to 'FEEDBACK', new_feedback_path()
   - if !content_for? :info_page
     %li= info_link
   - if content_for? :info_page 

@@ -6,7 +6,9 @@
   .col-xs-4.col-sm-4.col-md-4.col-lg-4
     %table.table
       %tr
-        %td= image_tag(departament.departamentlogotype_url.to_s, size: "160x120", alt: "my logo", :class => "center-block img-rounded")
+        %td
+        - unless departament.departamentlogotype_url.nil? 
+          =image_tag(departament.departamentlogotype_url.to_s, size: "160x120", alt: "my logo", :class => "center-block img-rounded")
       %tr
         %th Departament ID
         %td= departament.id

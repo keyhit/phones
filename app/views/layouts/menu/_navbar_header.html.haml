@@ -1,9 +1,11 @@
 %h4
-  - if content_for? :info_page
+  -if content_for? :new_email_message_page
+    = yield :new_email_message_page
+  - elsif content_for? :info_page
     = yield :info_page
-  - if content_for? :new_info_page
+  - elsif content_for? :new_info_page
     = yield :new_info_page
-  - if content_for? :edit_info_page
+  - elsif content_for? :edit_info_page
     = yield :edit_info_page
   - if content_for? :Main
     = 'List of all companies'
@@ -54,3 +56,5 @@
 - if flash[:error]
   .alert.alert-warning
     %p= flash[:error]
+
+

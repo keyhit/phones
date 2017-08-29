@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :units, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   resources :lines
+  get 'feedbacks/new', to: 'feedbacks#new', as: 'new_feedback'
+  post 'feedbacks', to: 'feedbacks#send_feedback', as: 'send_feedback'
   resources :infos
   resources :admins
   get 'branches/admin_branches', to: 'branches#admin_branches', as: 'admin_branches'

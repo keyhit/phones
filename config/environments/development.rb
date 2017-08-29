@@ -39,7 +39,7 @@ Rails.application.configure do
   #
   config.action_mailer.delivery_method = :smtp
   #
-  config.action_mailer.perform_deliveries = false
+  config.action_mailer.perform_deliveries = true
   #
   config.action_mailer.raise_delivery_errors = true
   #
@@ -73,5 +73,7 @@ Rails.application.configure do
     authentication: :plain,
     user_name: 'viacheslavkarpenkoju@gmail.com',
     password: 'Eysdthcfk'
+    username: ENV['GMAIL_USERNAME'],
+    password: ENV['GMAIL_PASSWORD'],
   }
 end
