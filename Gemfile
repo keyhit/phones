@@ -64,6 +64,7 @@ gem 'erb2haml'
 gem 'figaro', '~> 1.1.1'
 gem 'rubocop', require: false
 gem 'rubocop-rspec'
+gem 'json'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'

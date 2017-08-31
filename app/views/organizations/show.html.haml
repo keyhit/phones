@@ -4,20 +4,31 @@
   = organization.name
 .row
   .col-md-6 
-    %table.table
-      %caption 
-        Departaments of 
-        %b= organization.name
-        company
-      %tr 
-        %td id
-        %td Name
-        %td Description
-      - departaments.each do |departament|
-        %tr
-          %td= departament.id
-          %td= link_to departament.departament_name, branch_organization_departament_path(branch, organization, departament)
-          %td= departament.departament_description
+    .container
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#map"} Map
+        %li
+          %a{"data-toggle" => "tab", :href => "#departaments"} Departaments
+    .tab-content
+      #map.tab-pane.fade.in.active
+        = render 'map'
+      #departaments.tab-pane.fade
+        %table.table
+          %caption 
+            Departaments of 
+            %b= organization.name
+            company
+          %tr 
+            %td id
+            %td Name
+            %td Description
+          - departaments.each do |departament|
+            %tr
+              %td= departament.id
+              %td= link_to departament.departament_name, branch_organization_departament_path(branch, organization, departament)
+              %td= departament.departament_description
+
   .col-md-6
     %table.table.table-striped
       %caption 
@@ -26,7 +37,7 @@
       %tr
         %td
           - unless organization.organizationlogotype_url.nil?
-            = image_tag organization.organizationlogotype_url, size: "160x120", alt: "company logo", class: "center-block img-rounded"
+            = image_tag organization.organizationlogotype_url, size: "120x160", alt: "company logo", class: "center-block img-rounded"
         %td
           %table.table.table-striped
             %caption Our skills
