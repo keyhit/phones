@@ -10,7 +10,13 @@ class OrganizationsController < ApplicationController
 
   def index; end
 
-  def show; end
+  def show
+    if organization.street.split.count != 1
+      @street_name = organization.street.split(" ").join(',+')
+    else
+      @street_name = organization.street
+    end
+  end
 
   def new; end
 
