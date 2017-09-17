@@ -2,9 +2,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def cont (f)
-    content_for f
-  end
+  # def cont (f)
+  #   content_for f
+  # end
 
   private
 
@@ -58,10 +58,20 @@ class ApplicationController < ActionController::Base
   end
   helper_method :units
 
-  def public_presentation
-    @public_presentation ||= Unit.find(organization.public_presentation_user_id) if organization.public_presentation_user_id?
+  def organization_public_person
+    @organization_public_person ||= Unit.find(organization.public_unit_id) if organization.public_unit_id?
   end
-  helper_method :public_presentation
+  helper_method :organization_public_person
+
+  def departament_public_person
+    @departament_public_person ||= Unit.find(departament.public_unit_id) if departament.public_unit_id?
+  end
+  helper_method :departament_public_person
+
+  def departament_public_units_id(arg)
+    @departament_public_units_id = Unit.find_by('id' => arg)
+  end
+  helper_method :departament_public_units_id
 
   def branch_organization_departament_units(*args)
     @branch_organization_departament_units = Unit.where(departament_id: args)

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :lines
   get 'feedbacks/new', to: 'feedbacks#new', as: 'new_feedback'
   post 'feedbacks', to: 'feedbacks#send_feedback', as: 'send_feedback'
+  resources :searches
   resources :infos
   resources :admins
   get 'branches/admin_branches', to: 'branches#admin_branches', as: 'admin_branches'

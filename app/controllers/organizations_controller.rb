@@ -16,6 +16,12 @@ class OrganizationsController < ApplicationController
     else
       @street_name = organization.street
     end
+
+    if organization.block?
+      @build_number = organization.build + organization.block
+    else
+      @build_number = organization.build
+    end
   end
 
   def new; end
@@ -54,7 +60,7 @@ class OrganizationsController < ApplicationController
   private
 
   def organization_params
-    params.require(:organization).permit(:name, :country, :state, :region, :town, :street, :build, :block, :office, :subordinated, :address, :web_page, :our_skils, :organizationlogotype, :public_presentation_user_id, :branch_id)
+    params.require(:organization).permit(:name, :country, :state, :region, :town, :street, :build, :block, :office, :subordinated, :address, :web_page, :our_skils, :organizationlogotype, :public_unit_id, :branch_id)
   end
 
   def organization

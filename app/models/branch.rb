@@ -4,7 +4,7 @@ class Branch < ApplicationRecord
   has_many :units
 
   validates :branch_name, presence: true,
-                          length: { minimum: 5, maximum: 30 }
+                          length: { minimum: 5, maximum: 80 }
 
   before_save :upcase_branch_name
   def upcase_branch_name

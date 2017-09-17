@@ -65,7 +65,7 @@ end
   private
 
   def departament_params
-    params.require(:departament).permit(:departament_name, :subordinated, :departament_description, :departamentlogotype, :branch_id, :organization_id)
+    params.require(:departament).permit(:departament_name, :subordinated, :public_unit_id,:departament_description, :departamentlogotype, :branch_id, :organization_id)
   end
 
   def departaments

@@ -12,6 +12,10 @@ module ApplicationHelper
     link_to 'EDIT INFO', info_path
   end
 
+  def feedback_link
+    link_to 'FEEDBACK', new_feedback_path()
+  end
+
   def main_link
     link_to 'MAIN', branches_path
   end

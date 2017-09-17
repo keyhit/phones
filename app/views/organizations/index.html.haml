@@ -3,14 +3,14 @@
 = content_for :all_companies do
   = 'Branch companies' 
 .row
-  .col-md-2
+  .col-md-3
     = render '/branches/branches_all'
-  .col-md-10
+  .col-md-9
     %ul.list-group
     - branch_organizations.each do |branch_organization|
       %li.list-group-item
         - unless branch_organization.organizationlogotype_url.nil?
-          = image_tag branch_organization.organizationlogotype_url, size: "50x35", alt: "company logo"
+          = image_tag branch_organization.organizationlogotype_url, size: "50x62", alt: "company logo"
         = link_to branch_organization.name, branch_organization_path(id: branch_organization.id)
         %small
           = branch_organization.our_skils

@@ -2,12 +2,17 @@
   .col-xs-12.col-sm-12.col-md-12.col-lg-12
     .nav.nav-tabs
       .row
-        .col-xs-2.col-sm-2.col-md-2.col-lg-2
-          = render 'layouts/menu/login'
         .col-xs-10.col-sm-10.col-md-10.col-lg-10
           = render 'layouts/menu/unit_data'
 .row
-  .col-xs-12.col-sm-12.col-md-12.col-lg-12
+  .col-xs-5.col-sm-5.col-md-5.col-lg-5
+    .nav.nav-tabs
+      .row
+        .col-xs-4.col-sm-4.col-md-4.col-lg-4
+          = render 'layouts/menu/login'
+        .col-xs-7.col-sm-7.col-md-7.col-lg-7
+          = render 'searches/new'
+  .col-xs-7.col-sm-7.col-md-7.col-lg-7
     .nav.nav-tabs
       = render 'layouts/menu/navbar_header'
 .row

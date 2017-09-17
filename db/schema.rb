@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170828200602) do
+ActiveRecord::Schema.define(version: 20170902213954) do
 
   create_table "branches", force: :cascade do |t|
     t.string   "branch_name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170828200602) do
     t.string   "departament_description"
     t.string   "departamentlogotype"
     t.string   "subordinated"
+    t.integer  "public_unit_id"
     t.integer  "branch_id"
     t.integer  "organization_id"
     t.datetime "created_at",              null: false
@@ -58,10 +59,15 @@ ActiveRecord::Schema.define(version: 20170828200602) do
     t.string   "web_page"
     t.string   "our_skils"
     t.string   "organizationlogotype"
-    t.string   "public_presentation_user_id"
+    t.integer  "public_unit_id"
     t.integer  "branch_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "units", force: :cascade do |t|
@@ -70,9 +76,9 @@ ActiveRecord::Schema.define(version: 20170828200602) do
     t.string   "patronimic"
     t.string   "subordinated"
     t.string   "post"
-    t.string   "email",                  default: "", null: false
+    t.string   "email",                   default: "",    null: false
     t.string   "secondary_email"
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",      default: "",    null: false
     t.string   "primary_phone_number"
     t.string   "secondary_phone_number"
     t.string   "short_phone_nunber"
@@ -86,13 +92,15 @@ ActiveRecord::Schema.define(version: 20170828200602) do
     t.string   "unitphoto"
     t.string   "characteristic"
     t.string   "role"
+    t.boolean  "public_for_organization", default: false
+    t.boolean  "public_for_departament",  default: false
     t.integer  "branch_id"
     t.integer  "organization_id"
     t.integer  "departament_id"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",           default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -101,14 +109,6 @@ ActiveRecord::Schema.define(version: 20170828200602) do
     t.index ["email"], name: "index_units_on_email", unique: true
     t.index ["organization_id"], name: "index_units_on_organization_id"
     t.index ["reset_password_token"], name: "index_units_on_reset_password_token", unique: true
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "login"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

@@ -5,6 +5,7 @@ class CreateDepartaments < ActiveRecord::Migration[5.0]
       t.string     :departament_description
       t.string     :departamentlogotype
       t.string     :subordinated
+      t.integer    :public_unit_id
       t.integer    :branch_id, foreign_key: true
       t.references :organization, foreign_key: true
 

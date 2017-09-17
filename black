@@ -16,3 +16,11 @@ rails db:setup
 Keep the original ERBs? Rake task to run
 Yes rake haml:convert_erbs
 No  rake haml:replace_erbs
+==========================
+CONTROLLER
+depts = Departament.all.includes(:public_unit)
+VIEW
+depts.each {|d| p d.public_unit&.email}
+MODEL DEPARTAMENT
+has_one :public_unit, class_name: 'Unit'
+=========================

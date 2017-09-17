@@ -23,17 +23,38 @@
             %td id
             %td Name
             %td Description
+            %td Contact person
+            %td Phone/Fax
+            %td Email
           - departaments.each do |departament|
             %tr
               %td= departament.id
               %td= link_to departament.departament_name, branch_organization_departament_path(branch, organization, departament)
               %td= departament.departament_description
 
+              %td
+                - unless departament_public_units_id(departament.public_unit_id).nil?
+                  - departament_public_unit_id = departament_public_units_id(departament.public_unit_id)
+
+
+                - unless departament_public_unit_id.nil?
+                  = link_to departament_public_unit_id.name + ' ' + departament_public_unit_id.surename, branch_organization_departament_unit_path(departament_public_unit_id.branch_id, departament_public_unit_id.organization_id, departament_public_unit_id.departament_id, departament_public_unit_id.id)
+                - else
+                  Not assigned
+              %td
+                - unless departament_public_unit_id.nil?
+                  = departament_public_unit_id.primary_phone_number + '/' + departament_public_unit_id.fax
+                - else
+                  Not assigned
+              %td
+                - unless departament_public_unit_id.nil?
+                  = departament_public_unit_id.email
+                  = departament.public_unit_id
+                - else
+                  Not assigned
   .col-md-6
     %table.table.table-striped
-      %caption 
-        Main data of: 
-        %b= organization.name
+      %caption Main data of: #{ organization.name } company
       %tr
         %td
           - unless organization.organizationlogotype_url.nil?
@@ -88,33 +109,33 @@
       %tr
         %th Contact person
         %td
-          -unless public_presentation.nil?
-            = link_to public_presentation.name, branch_organization_departament_unit_path( organization.branch_id, public_presentation.organization_id, public_presentation.departament_id, public_presentation.id)
+          -unless organization_public_person.nil?
+            = link_to organization_public_person.name + " " + organization_public_person.surename + " " + organization_public_person.patronimic, branch_organization_departament_unit_path( organization.branch_id, organization_public_person.organization_id, organization_public_person.departament_id, organization_public_person.id)
           -else
             = 'Not assigned'
       %tr
         %th Phone
         %td
-          - unless public_presentation.nil?
-            = public_presentation.primary_phone_number 
-            = ' and '
-            = public_presentation.secondary_phone_number
+          - unless organization_public_person.nil?
+            = organization_public_person.primary_phone_number 
+            = ' '
+            = organization_public_person.secondary_phone_number
           -else
             = 'Not assigned'
       %tr
         %th Fax
         %td
-          - unless public_presentation.nil?
-            = public_presentation.fax
+          - unless organization_public_person.nil?
+            = organization_public_person.fax
           -else
             = 'Not assigned'
       %tr
         %th Email
         %td
-          - unless public_presentation.nil?
-            = public_presentation.email
+          - unless organization_public_person.nil?
+            = organization_public_person.email
             = ' and '
-            = public_presentation.secondary_email
+            = organization_public_person.secondary_email
           -else
             = 'Not assigned'
       %tr

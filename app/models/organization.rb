@@ -4,4 +4,5 @@ class Organization < ApplicationRecord
   has_many :units
   attr_accessor :organizationlogotype
   mount_uploader :organizationlogotype, OrganizationlogotypeUploader
+
 end

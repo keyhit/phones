@@ -1,0 +1,21 @@
+= content_for :title do
+  = 'Detail info'
+= content_for :detail_info_page do
+  = 'Detail info page'
+.row
+  .col-md-12
+    - unless @info.myPhoto_url.nil?
+      = image_tag(info.myPhoto_url, size: "219x291", alt: "my photo", :class => "center-block img-rounded")
+    .row
+      .col-md-1
+      .col-md-10
+        %h4
+          = @info.header 
+          .small Published: #{info.created_at}. Edited: #{info.updated_at}
+
+        .row
+          .col-md-12
+            %p= @info.text
+            - if role_1
+              = link_to 'Edit', edit_info_path(info)
+              = link_to 'Delete', info_path(info), method: :delete, data: { confirm: 'CAUTION! After you confirm article will be deleted!!!' }

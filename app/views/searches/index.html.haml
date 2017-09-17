@@ -1,0 +1,196 @@
+= content_for :title do
+  = 'Branch companies'
+= content_for :search do
+  = 'Search' 
+.row
+  .col-xs-1.col-sm-1.col-md-1.col-lg-1
+  .col-xs-10.col-sm-10.col-md-10.col-lg-10
+    .container
+      %ul.nav.nav-tabs
+        %li
+          %a{"data-toggle" => "tab", :href => "#branches"} Branches #{ @branches_search.count unless @branches_search.nil? }
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#organizations"} Organizations #{ @organizations_search.count unless @organizations_search.nil? }
+        %li
+          %a{"data-toggle" => "tab", :href => "#public_organization_units"} Public organization units #{ @public_units_organization_search.count unless @public_units_organization_search.nil? }
+        %li
+          %a{"data-toggle" => "tab", :href => "#departaments"} Departaments #{ @departaments_search.count unless @departaments_search.nil? }
+        %li
+          %a{"data-toggle" => "tab", :href => "#public_departament_units"} Public departament units #{ @public_units_departament_search.count unless @public_units_departament_search.nil? }
+        %li
+          %a{"data-toggle" => "tab", :href => "#colegues"} Colegues #{ @colegues_search.count unless @colegues_search.nil? }
+        %li
+          %a{"data-toggle" => "tab", :href => "#infos"} Info #{ @infos_search.count unless @infos_search.nil? }
+    .tab-content
+      #branches.tab-pane.fade
+        - unless @branches_search.nil? || @branches_search.empty?
+          %table.table
+            %thead
+              %tr
+                %th Branch name
+            %tbody
+            - @branches_search.each do |branch_search|
+              %tr
+                %td
+                  = link_to branch_search.branch_name, branch_organizations_path(branch_search.id)
+        - else
+          %h3 No results!
+      #organizations.tab-pane.fade.in.active
+        - unless @organizations_search.nil? || @organizations_search.empty?
+          %table.table
+            %thead
+              %tr
+                %th Logo
+                %th Name
+                %th Country, state, region
+                %th Town
+                %th Street, build, block, office
+                %th Web_page
+                %th Skills
+            %tbody
+            - @organizations_search.each do |organization_search|
+              %tr
+                %td
+                  - unless organization_search.organizationlogotype.nil?
+                    = image_tag organization_search.organizationlogotype_url, size: "40x55", alt: "company logo", class: "center-block img-rounded"
+                %td
+                  =  link_to organization_search.name, branch_organization_path(organization_search.branch_id, organization_search.id)
+                %td
+                  = organization_search.country
+                  = organization_search.state
+                  = organization_search.region
+                %td
+                  = organization_search.town
+                %td
+                  = organization_search.street
+                  = organization_search.build
+                  = organization_search.block
+                  = organization_search.office
+                %td
+                  = organization_search.web_page
+                %td
+                  = organization_search.our_skils
+        - else
+          %h3 No results!
+      #departaments.tab-pane.fade
+        -unless @departaments_search.nil? || @departaments_search.empty?
+          %table.table
+            %thead
+              %tr
+                %th Photo
+                %th Name
+                %th Description
+            %tbody
+              - @departaments_search.each do |departament_search|
+                %tr
+                  %td
+                    - unless departament_search.departamentlogotype.nil?
+                      = image_tag departament_search.departamentlogotype_url, size: "40x55", alt: "company logo", class: "center-block img-rounded"
+                  %td= link_to departament_search.departament_name, branch_organization_departament_path(departament_search.branch_id, departament_search.organization_id, departament_search.id) 
+                  %td= departament_search.departament_description
+        - else
+          %h3 No results!
+      #public_organization_units.tab-pane.fade
+        -unless @public_units_organization_search.nil? || @public_units_organization_search.empty?
+          %table.table
+            %thead
+              %tr
+                %th Photo
+                %th Name, surename, patronimic
+                %th Post
+                %th Email
+                %th Phone number
+            %tbody
+              - @public_units_organization_search.each do |public_unit_organization_search|
+                %tr
+                  %td
+                    - unless public_unit_organization_search.unitphoto.nil?
+                      = image_tag public_unit_organization_search.unitphoto_url, size: "40x55", alt: "company logo", class: "center-block img-rounded"
+                  %td
+                    = link_to public_unit_organization_search.name, branch_organization_departament_unit_path(public_unit_organization_search.branch_id, public_unit_organization_search.organization_id, public_unit_organization_search.departament_id, public_unit_organization_search.id)
+                    = public_unit_organization_search.surename 
+                    = public_unit_organization_search.patronimic 
+                  %td
+                    = public_unit_organization_search.post 
+                  %td
+                    = public_unit_organization_search.email 
+                  %td
+                    = public_unit_organization_search.primary_phone_number
+        - else
+          %h3 No results!
+      #public_departament_units.tab-pane.fade
+        -unless @public_units_departament_search.nil? || @public_units_departament_search.empty?
+          %table.table
+            %thead
+              %tr
+                %th Photo
+                %th Name, surename, patronimic
+                %th Post
+                %th Email
+                %th Phone number
+            %tbody
+              - @public_units_departament_search.each do |public_unit_departament_search|
+                %tr
+                  %td
+                    - unless public_unit_departament_search.unitphoto.nil?
+                      = image_tag public_unit_departament_search.unitphoto_url, size: "40x55", alt: "company logo", class: "center-block img-rounded"
+                  %td
+                    = link_to public_unit_departament_search.name, branch_organization_departament_unit_path(public_unit_departament_search.branch_id, public_unit_departament_search.organization_id, public_unit_departament_search.departament_id, public_unit_departament_search.id)
+                    = public_unit_departament_search.surename 
+                    = public_unit_departament_search.patronimic 
+                  %td
+                    = public_unit_departament_search.post 
+                  %td
+                    = public_unit_departament_search.email 
+                  %td
+                    = public_unit_departament_search.primary_phone_number
+        - else
+          %h3 No results!
+      #colegues.tab-pane.fade
+        -unless @colegues_search.nil? || @colegues_search.empty?
+          %table.table
+            %thead
+              %tr
+                %th Photo
+                %th Name, surename, patronimic
+                %th Post
+                %th Email
+                %th Phone number
+            %tbody
+              - @colegues_search.each do |colegue_search|
+                %tr
+                  %td
+                    - unless colegue_search.unitphoto.nil?
+                      = image_tag colegue_search.unitphoto_url, size: "40x55", alt: "company logo", class: "center-block img-rounded"
+                  %td
+                    = link_to colegue_search.name, branch_organization_departament_unit_path(colegue_search.branch_id, colegue_search.organization_id, colegue_search.departament_id, colegue_search.id)
+                    = colegue_search.surename 
+                    = colegue_search.patronimic 
+                  %td
+                    = colegue_search.post 
+                  %td
+                    = colegue_search.email 
+                  %td
+                    = colegue_search.primary_phone_number
+        - else
+          %h3 No results!
+      #infos.tab-pane.fade
+        - unless @infos_search.nil? || @infos_search.empty?
+          %table.table
+            %thead
+              %tr
+                %th Header
+                %th Text
+                %th Detail
+            %tbody
+              - @infos_search.each do |info_search|
+                %tr
+                  %td
+                    = info_search.header
+                  %td
+                    = info_search.text
+                  %td
+                    = link_to 'Detail', info_path(info_search.id)
+        - else
+          %h3 No results!
+  .col-xs-1.col-sm-1.col-md-1.col-lg-1

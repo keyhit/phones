@@ -22,6 +22,25 @@
         %th Departament description
         %td= departament.departament_description
       %tr
+        %th Contact person
+        - unless departament_public_person.nil?
+          %td= link_to departament_public_person.name + " " + departament_public_person.surename + " " + departament_public_person.patronimic, branch_organization_departament_unit_path(departament_public_person.branch_id, departament_public_person.organization_id, departament_public_person.departament_id, departament_public_person.id)
+        - else 
+          %td Not assigned
+      %tr
+        %th Phone/Fax
+        - unless departament_public_person.nil?
+          %td= departament_public_person.primary_phone_number + "/ " + departament_public_person.fax
+        - else 
+          %td Not assigned
+      %tr
+        %th Email
+        - unless departament_public_person.nil?
+          %td= departament_public_person.email
+        - else 
+          %td Not assigned
+
+      %tr
         %th Admin actions
         %td
           = link_to 'Edit', edit_branch_organization_departament_path(branch, organization, departament), class: 'btn btn-warning'
