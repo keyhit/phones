@@ -65,6 +65,7 @@ gem 'figaro', '~> 1.1.1'
 gem 'rubocop', require: false
 gem 'rubocop-rspec'
 gem 'json'
+gem 'rails-i18n', '~> 5.0.0' # For 5.0.x and 5.1.x
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'

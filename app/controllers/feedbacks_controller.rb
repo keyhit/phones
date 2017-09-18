@@ -6,8 +6,8 @@ class FeedbacksController < ApplicationController
     @message_sender = current_unit.email
     @subject = feedback_params[:subject]
     @body = feedback_params[:body]
-    @file_name = feedback_params[:file].original_filename
-    @file_path = feedback_params[:file].tempfile
+    @file_name = feedback_params[:file].original_filename if feedback_params[:file]
+    @file_path = feedback_params[:file].tempfile if feedback_params[:file]
     # binding.pry
     if FeedbackMailer.feedback(@subject, @body, @message_sender, @file_name, @file_path).deliver_now
       flash[:notice] = 'Mail has sent!'

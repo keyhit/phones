@@ -27,7 +27,7 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_dispatch.best_standards_support = :builtin
 
@@ -71,7 +71,7 @@ Rails.application.configure do
     port: 587,
     domain: 'gmail.com',
     authentication: :plain,
-    username: ENV['GMAIL_USERNAME'],
+    user_name: ENV['GMAIL_USERNAME'],
     password: ENV['GMAIL_PASSWORD']
   }
 end
