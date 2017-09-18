@@ -24,3 +24,8 @@ depts.each {|d| p d.public_unit&.email}
 MODEL DEPARTAMENT
 has_one :public_unit, class_name: 'Unit'
 =========================
+
+
+boolean :hidden
+boolean :blocked
+integer :subordinated_id

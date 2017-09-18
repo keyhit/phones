@@ -1,7 +1,7 @@
 - if unit_signed_in?
   - if current_unit.branch_id != nil
     %b Branch:
-    = link_to unit_branch.branch_name, branch_organizations_path(current_unit.branch_id)
+    = link_to unit_branch.branch_name, branch_organizations_path(current_unit.branch_id, current_unit.organization_id)
   - if current_unit.organization_id != nil
     %b Organization:
     = link_to unit_organization.name, branch_organization_path(current_unit.branch_id, current_unit.organization_id)

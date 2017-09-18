@@ -91,6 +91,7 @@ class UnitsController < ApplicationController
   def unit_edit; end
 
   def unit_edit_action
+    binding.pry
     if unit.update(unit_edit_action_params)
       flash[:notice] = 'User data was saved!'
       redirect_to branch_organization_departament_unit_path(branch, organization, departament)
