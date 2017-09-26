@@ -1,0 +1,7 @@
+en:
+  branches:
+    edit:
+      edit:       "EDIT BRANCH NAME"
+      save:       "SAVE"
+      cancel:     "CANCEL"
+      edit_title: "Edit branch name"

@@ -16,13 +16,11 @@ class BranchesController < ApplicationController
   def create
     @new_branch = Branch.new(branche_params)
     @new_branch.valid?
-    @new_branch.errors[:branch_name]
-    @new_branch.branch_name.upcase!
-    if @new_branch.save!
+    if @new_branch.save
       redirect_to admin_branches_path
     else
-      flash[:error] = @new_branch.errors[:branch_name]
-      redirect_to new_branch_path(@new_branch.branch_name)
+      flash[:error] = @new_branch
+      redirect_to new_branch_path(@new_branch)
     end
   end
 
@@ -54,7 +52,7 @@ class BranchesController < ApplicationController
   private
 
   def branche_params
-    params.require(:branch).permit(:branch_name)
+    params.require(:branch).permit(:branch_name_en, :branch_name_ru, :branch_name_uk)
   end
 
   def branch_edit
