@@ -54,7 +54,7 @@ class BranchesController < ApplicationController
   private
 
   def branche_params
-    params.require(:branch).permit(:branch_name)
+    params.require(:branch).permit(:branch_name_en, :branch_name_ru, :branch_name_uk)
   end
 
   def branch_edit

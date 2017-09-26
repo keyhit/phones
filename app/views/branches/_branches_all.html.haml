@@ -6,4 +6,4 @@
         .glyphicon.glyphicon-wrench
 - branches.each do |branch|
   %li.list-group-item
-    = link_to branch.branch_name, branch_organizations_path(branch)
+    = link_to branch_name(branch), branch_organizations_path(branch)

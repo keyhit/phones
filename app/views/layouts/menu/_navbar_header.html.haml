@@ -15,7 +15,7 @@
     = 'List of all companies'
   - elsif content_for? :all_companies
     = 'List of all companies by branch'
-    = branch.branch_name
+    = branch_name(branch)
   - elsif content_for? :create_organization
     = yield(:create_organization)
   - elsif content_for? :edit_organization
