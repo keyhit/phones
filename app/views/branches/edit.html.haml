@@ -1,14 +1,12 @@
 = content_for :title do
-  = 'Edit branch'
+  =t '.edit_title'
 = content_for :edit_branch do
   = 'Edit branch'
 .row
   .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
     .panel.panel-primary
-      .panel-heading
-        EDIT
+      .panel-heading= t ('.edit')
       .panel-body
-        = render 'flash_form'
         = bootstrap_form_for branch_edit, url: branch_path(branch_edit), method: :patch do |f|
           %legend English localization
           =f.text_field :branch_name_en, label: "Branch name"
@@ -16,7 +14,7 @@
           =f.text_field :branch_name_ru, label: "Название отросли народного хозяйства"
           %legend Українська локалізація
           =f.text_field :branch_name_uk, label: "Назва галузі народного господарства"
-          = f.submit :class => "btn btn-primary"
-          = link_to 'CANCEL', admin_branches_path(), :type=> "button", :class => "btn btn-danger"
+          = f.submit :class => "btn btn-primary", value: (t ('.save'))
+          = link_to (t ('.cancel')), admin_branches_path(), :type=> "button", :class => "btn btn-danger"
 
 
