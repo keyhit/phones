@@ -1,5 +1,5 @@
 = content_for :title do
-  = 'Detail info'
+  = "#{t ('.all_article')}| #{info_header(@info)} |"
 = content_for :detail_info_page do
   = 'Detail info page'
 .row
@@ -9,13 +9,15 @@
     .row
       .col-md-1
       .col-md-10
+        %h3= info_great_header(@info)
         %h4
-          = @info.header 
-          .small Published: #{info.created_at}. Edited: #{info.updated_at}
+          = info_header(@info) 
 
         .row
           .col-md-12
-            %p= @info.text
+            %p= info_text(@info)
+            .small #{ t ('.published') } #{ info.created_at }. #{ t ('.edited') } #{ info.updated_at }. #{ t ('.identifier') } #{ info.id }.
             - if role_1
-              = link_to 'Edit', edit_info_path(info)
-              = link_to 'Delete', info_path(info), method: :delete, data: { confirm: 'CAUTION! After you confirm article will be deleted!!!' }
+              = link_to (t '.edit'), edit_info_path(@info)
+              = "/"
+              = link_to (t '.delete'), info_path(@info), method: :delete, data: { confirm: (t '.caution') }, remote: true

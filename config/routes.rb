@@ -1,13 +1,21 @@
 Rails.application.routes.draw do
   # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :units, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
+
   resources :lines
+
   get 'feedbacks/new', to: 'feedbacks#new', as: 'new_feedback'
+
   post 'feedbacks', to: 'feedbacks#send_feedback', as: 'send_feedback'
+
   resources :searches
+
   resources :infos
+
   resources :admins
+
   get 'branches/admin_branches', to: 'branches#admin_branches', as: 'admin_branches'
+
   resources :branches do
     resources :organizations do
       resources :departaments do
@@ -28,6 +36,9 @@ Rails.application.routes.draw do
   get '/branches/:branch_id/organizations/:organization_id/departaments/:departament_id/units/:id/unit_edit', to: 'units#unit_edit', as: 'branch_organization_departament_unit_unit_edit'
 
   patch '/branches/:branch_id/organizations/:organization_id/departaments/:departament_id/units/:id/unit_edit_action', to: 'units#unit_edit_action', as: 'branch_organization_departament_unit_unit_edit_action'
+
+  patch 'units', to: 'units#locale', as: 'locale_branch_organization_departament_unit'
+
   root 'branches#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

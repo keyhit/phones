@@ -29,3 +29,4 @@ has_one :public_unit, class_name: 'Unit'
 boolean :hidden
 boolean :blocked
 integer :subordinated_id
+string :locale

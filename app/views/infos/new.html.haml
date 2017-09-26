@@ -5,13 +5,22 @@
 .row
 .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
   .panel.panel-primary
-    .panel-heading
-      CREATE
+    .panel-heading= t '.new'
     .panel-body 
       = bootstrap_form_for :info, url: infos_path(), method: :post do |f|
-        = f.text_field :header
-        = f.text_area :text
-        = f.file_field :myPhoto
-        = f.submit :class => "btn btn-primary"
-        = link_to 'CANCEL', infos_path(), :type=> "button", :class => "btn btn-danger"
-
+        %legend English localization
+        = f.text_field :great_header_en, label: 'Article header'
+        = f.text_field :header_en, label: 'Chapter header'
+        = f.text_area  :text_en, label: 'Chapter text'
+        %legend Русская локализация (only Russian)
+        = f.text_field :great_header_ru, label: 'Оглавление статьи'
+        = f.text_field :header_ru, label: 'Глава'
+        = f.text_area  :text_ru, label: 'Текст статьи'
+        %legend Українська локалізація (only Ukraine)
+        = f.text_field :great_header_uk, label: 'Заголовок статті'
+        = f.text_field :header_uk, label: 'Заголовок розділу'
+        = f.text_area  :text_uk, label: 'Текст розділу'
+        %legend= t ('.uploading_image')
+        = f.file_field :myPhoto, label: (t ('.upload_image'))
+        = f.submit (t ('.save_changes')), :class => "btn btn-primary", name: nil
+        = link_to (t ('.cancel_changes')), infos_path(), :type=> "button", :class => "btn btn-danger"

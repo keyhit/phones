@@ -1,5 +1,5 @@
 class InfosController < ApplicationController
-    before_action :authenticate_unit!, except: %i[ index]
+    before_action :authenticate_unit!, except: %i[ index show]
   before_action :check_rules_global_admin, except: %i[index admin_branches show new create edit update destroy new_password write_new_password]
   before_action :check_rules_global_moderator, except: %i[index]
   before_action :check_rules_organization_admin, except: %i[index]
@@ -50,7 +50,7 @@ class InfosController < ApplicationController
 
   private 
   def info_params
-    params.require(:info).permit(:header, :text, :myPhoto )
+    params.require(:info).permit(:great_header_en, :great_header_ru, :great_header_uk, :header_en, :text_en, :header_ru, :text_ru, :header_uk, :text_uk, :myPhoto )
   end
 
   def infos

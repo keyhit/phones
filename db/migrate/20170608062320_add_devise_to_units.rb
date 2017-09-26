@@ -22,6 +22,7 @@ class AddDeviseToUnits < ActiveRecord::Migration[5.0]
       t.string     :unitphoto
       t.string     :characteristic
       t.string     :role
+      t.string     :locale, default: 'uk'
       t.boolean    :public_for_organization, default: false
       t.boolean    :public_for_departament, default: false
       t.integer    :branch_id, foreign_key: true

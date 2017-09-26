@@ -1,0 +1,31 @@
+uk:
+  infos:
+    index:
+      title:     "Сторінка інформації"
+      published: "Опубліковано: "
+      edited:    "Редаговано: "
+      identifier:  "Ідентифікатор статті: "
+      detail:    "Детальніше"
+      edit:      "Редагувати"
+      delete:    "Видалити"
+      caution:   "УВАГА! Після підтвердження стаття буде видалена!!!"
+    show:
+      all_article: "Стаття "
+      published:   "Опубліковано: "
+      edited:      "Редаговано: "
+      identifier:  "Ідентифікатор статті: "
+      edit:        "Редагувати"
+      delete:      "Видалити" 
+      caution:     "УВАГА! Після підтвердження стаття буде видалена!!!"
+    new:
+      new:             "СТВОРЕННЯ СТАТТЕЙ"
+      uploading_image: "Завантажeння зображень"
+      upload_image:    "Завантажити зображення"
+      save_changes:    "Зберегти"
+      cancel_changes:  "Скасувати"
+    edit:
+      edit:            "РЕДАГУВАННЯ СТАТТЕЙ"
+      uploading_image: "Завантажeння зображень"
+      upload_image:    "Завантажити зображення"
+      save_changes:    "Зберегти зміни"
+      cancel_changes:  "Скасувати"

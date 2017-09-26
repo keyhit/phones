@@ -1,13 +1,13 @@
 class UnitsController < ApplicationController
   before_action :authenticate_unit!, except: %i[registration_new_unit save_new_unit]
-  before_action :check_rules_global_admin, except: %i[index admin_branches show new create edit update destroy new_password write_new_password]
-  before_action :check_rules_global_moderator, except: %i[index admin_branches show edit update new_password write_new_password]
-  before_action :check_rules_organization_admin, except: %i[index show new create edit update destroy update_account update_unit_branch_id find_name new_password write_new_password]
-  before_action :check_rules_organization_moderator, except: %i[index show new create edit update new_password write_new_password]
-  before_action :check_rules_departament_admin, except: %i[index show new create edit update destroy new_password write_new_password]
-  before_action :check_rules_departament_moderator, except: %i[index show edit update new_password write_new_password]
-  before_action :check_rules_user, except: %i[index show unit_edit unit_edit_action new_password write_new_password]
-  before_action :organizations_isolation, except: %i[update_unit_branch_id update_account]
+  before_action :check_rules_global_admin, except: %i[index admin_branches show new create edit update destroy new_password write_new_password locale]
+  before_action :check_rules_global_moderator, except: %i[index admin_branches show edit update new_password write_new_password locale]
+  before_action :check_rules_organization_admin, except: %i[index show new create edit update destroy update_account update_unit_branch_id find_name new_password write_new_password locale]
+  before_action :check_rules_organization_moderator, except: %i[index show new create edit update new_password write_new_password locale]
+  before_action :check_rules_departament_admin, except: %i[index show new create edit update destroy new_password write_new_password locale]
+  before_action :check_rules_departament_moderator, except: %i[index show edit update new_password write_new_password locale]
+  before_action :check_rules_user, except: %i[index show unit_edit unit_edit_action new_password write_new_password locale]
+  before_action :organizations_isolation, except: %i[update_unit_branch_id update_account locale]
 
   def index; end
 
@@ -101,9 +101,15 @@ class UnitsController < ApplicationController
     end
   end
 
+  def locale
+    current_unit.update(units_locale)
+    #binding.pry
+    redirect_back(fallback_location: root_path)
+  end
+
   private
   def unit_params
-    params.require(:unit).permit(:name, :surename, :patronimic, :subordinated, :post, :email, :secondary_email, :password, :password_confirmation, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :unitphoto, :characteristic, :role, :branch_id, :organization_id, :departament_id)
+    params.require(:unit).permit(:name, :surename, :patronimic, :subordinated, :post, :email, :secondary_email, :password, :password_confirmation, :primary_phone_number, :secondary_phone_number, :short_phone_nunber, :fax, :home_phone_number, :web_page, :start_work, :finish_work, :working_days, :birthday, :unitphoto, :characteristic, :role, :locale, :branch_id, :organization_id, :departament_id)
     end
 
   def reg_params
@@ -116,6 +122,10 @@ class UnitsController < ApplicationController
 
   def unit_edit_action_params
     params.require(:unit).permit(:secondary_email, :secondary_phone_number, :home_phone_number, :working_days)
+  end
+
+  def units_locale
+    params.require(:unit).permit(:locale)
   end
 
   def units

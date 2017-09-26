@@ -1,0 +1,31 @@
+en:
+  infos:
+    index:
+      title:     "Info page"
+      published: "Published: "
+      edited:    "Edited: "
+      identifier:  "Article identifier:"
+      detail:    "Detail"
+      edit:      "Edit"
+      delete:    "Delete"
+      caution:   "CAUTION! After you confirm article will be deleted!!!"
+    show:
+      all_article: "Article "
+      published:   "Published: "
+      edited:      "Edited: "
+      identifier:  "Article identifier:"
+      edit:        "Edit"
+      delete:      "Delete"
+      caution:     "CAUTION! After you confirm article will be deleted!!!"
+    new:
+      new:            "CREATE ARTICLE"
+      uploading_image: "Uploading images"
+      upload_image:    "Upload picture"
+      save_changes:    "Save"
+      cancel_changes:  "Cancel"
+    edit:
+      edit:            "ARTICLE EDITOR"
+      uploading_image: "Uploading images"
+      upload_image:    "Upload picture"
+      save_changes:    "Save changes"
+      cancel_changes:  "Cancel"

@@ -1,0 +1,3 @@
+= form_for :unit, url: locale_branch_organization_departament_unit_path(current_unit.branch_id, current_unit.organization_id, current_unit.departament_id, current_unit.id), method: :patch, remote: true do |f|
+  = f.select :locale, options_for_select(LOCALE.invert), hide_label: true
+  = f.submit "OK", name: nil

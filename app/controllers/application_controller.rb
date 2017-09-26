@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_locale
 
-  # def cont (f)
-  #   content_for f
-  # end
+  def set_locale
+    I18n.locale = current_unit.locale.to_s || I18n.default_locale if current_unit.present?
+  end
 
   private
 

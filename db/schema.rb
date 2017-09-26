@@ -13,9 +13,11 @@
 ActiveRecord::Schema.define(version: 20170902213954) do
 
   create_table "branches", force: :cascade do |t|
-    t.string   "branch_name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "branch_name_en"
+    t.string   "branch_name_ru"
+    t.string   "branch_name_uk"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "departaments", force: :cascade do |t|
@@ -32,11 +34,18 @@ ActiveRecord::Schema.define(version: 20170902213954) do
   end
 
   create_table "infos", force: :cascade do |t|
-    t.string   "header"
-    t.string   "text"
+    t.string   "great_header_en"
+    t.string   "great_header_ru"
+    t.string   "great_header_uk"
+    t.string   "header_en"
+    t.string   "text_en"
+    t.string   "header_ru"
+    t.string   "text_ru"
+    t.string   "header_uk"
+    t.string   "text_uk"
     t.string   "myPhoto"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "lines", force: :cascade do |t|
@@ -92,6 +101,7 @@ ActiveRecord::Schema.define(version: 20170902213954) do
     t.string   "unitphoto"
     t.string   "characteristic"
     t.string   "role"
+    t.string   "locale",                  default: "uk"
     t.boolean  "public_for_organization", default: false
     t.boolean  "public_for_departament",  default: false
     t.integer  "branch_id"

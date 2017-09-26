@@ -1,7 +1,7 @@
 module ApplicationHelper
   # Links
   def info_link
-    link_to 'INFO', infos_path
+    link_to 'INFO', infos_path()
   end
 
   def new_info_link
