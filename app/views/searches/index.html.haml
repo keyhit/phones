@@ -1,38 +1,37 @@
 = content_for :title do
-  = 'Branch companies'
+  = t '.search_result'
 = content_for :search do
-  = 'Search' 
+  = t '.search' 
 .row
   .col-xs-1.col-sm-1.col-md-1.col-lg-1
   .col-xs-10.col-sm-10.col-md-10.col-lg-10
     .container
       %ul.nav.nav-tabs
         %li
-          %a{"data-toggle" => "tab", :href => "#branches"} Branches #{ @branches_search.count unless @branches_search.nil? }
+          %a{"data-toggle" => "tab", :href => "#branches"} #{ t '.branches' }, #{ @branches_search.count unless @branches_search.nil? }
         %li.active
-          %a{"data-toggle" => "tab", :href => "#organizations"} Organizations #{ @organizations_search.count unless @organizations_search.nil? }
+          %a{"data-toggle" => "tab", :href => "#organizations"} #{ t '.organizations' }, #{ @organizations_search.count unless @organizations_search.nil? }
         %li
-          %a{"data-toggle" => "tab", :href => "#public_organization_units"} Public organization units #{ @public_units_organization_search.count unless @public_units_organization_search.nil? }
+          %a{"data-toggle" => "tab", :href => "#public_organization_units"} #{ t '.public_organizations_units' }, #{ @public_units_organization_search.count unless @public_units_organization_search.nil? }
         %li
-          %a{"data-toggle" => "tab", :href => "#departaments"} Departaments #{ @departaments_search.count unless @departaments_search.nil? }
+          %a{"data-toggle" => "tab", :href => "#departaments"} #{ t '.departaments' }, #{ @departaments_search.count unless @departaments_search.nil? }
         %li
-          %a{"data-toggle" => "tab", :href => "#public_departament_units"} Public departament units #{ @public_units_departament_search.count unless @public_units_departament_search.nil? }
+          %a{"data-toggle" => "tab", :href => "#public_departament_units"} #{ t '.public_departament_units' }, #{ @public_units_departament_search.count unless @public_units_departament_search.nil? }
         %li
-          %a{"data-toggle" => "tab", :href => "#colegues"} Colegues #{ @colegues_search.count unless @colegues_search.nil? }
+          %a{"data-toggle" => "tab", :href => "#colegues"} #{ t '.colegues' }, #{ @colegues_search.count unless @colegues_search.nil? }
         %li
-          %a{"data-toggle" => "tab", :href => "#infos"} Info #{ @infos_search.count unless @infos_search.nil? }
+          %a{"data-toggle" => "tab", :href => "#infos"} #{ t '.info' }, #{ @infos_search.count unless @infos_search.nil? }
     .tab-content
       #branches.tab-pane.fade
         - unless @branches_search.nil? || @branches_search.empty?
           %table.table
             %thead
               %tr
-                %th Branch name
+                %th #{ t '.branch_name' }
             %tbody
             - @branches_search.each do |branch_search|
               %tr
-                %td
-                  = link_to branch_search.branch_name, branch_organizations_path(branch_search.id)
+                %td= link_to branch_name(branch_search), branch_organizations_path(branch_search.id)
         - else
           %h3 No results!
       #organizations.tab-pane.fade.in.active
@@ -40,13 +39,13 @@
           %table.table
             %thead
               %tr
-                %th Logo
-                %th Name
-                %th Country, state, region
-                %th Town
-                %th Street, build, block, office
-                %th Web_page
-                %th Skills
+                %th #{ t '.logo' }
+                %th #{ t '.name' }
+                %th #{ t '.country_state_region' }
+                %th #{ t '.town' }
+                %th #{ t '.street_build_block_office' }
+                %th #{ t '.web_page' }
+                %th #{ t '.skills' }
             %tbody
             - @organizations_search.each do |organization_search|
               %tr
@@ -77,9 +76,9 @@
           %table.table
             %thead
               %tr
-                %th Photo
-                %th Name
-                %th Description
+                %th #{ t '.photo' }
+                %th #{ t '.name' }
+                %th #{ t '.description' }
             %tbody
               - @departaments_search.each do |departament_search|
                 %tr
@@ -95,11 +94,11 @@
           %table.table
             %thead
               %tr
-                %th Photo
-                %th Name, surename, patronimic
-                %th Post
-                %th Email
-                %th Phone number
+                %th #{ t '.photo' }
+                %th #{ t '.name_surename_patronimic' }
+                %th #{ t '.post' }
+                %th #{ t '.email' }
+                %th #{ t '.phone_number' }
             %tbody
               - @public_units_organization_search.each do |public_unit_organization_search|
                 %tr
@@ -123,11 +122,11 @@
           %table.table
             %thead
               %tr
-                %th Photo
-                %th Name, surename, patronimic
-                %th Post
-                %th Email
-                %th Phone number
+                %th #{ t '.photo' }
+                %th #{ t '.name_surename_patronimic' }
+                %th #{ t '.post' }
+                %th #{ t '.email' }
+                %th #{ t '.phone_number' }
             %tbody
               - @public_units_departament_search.each do |public_unit_departament_search|
                 %tr
@@ -151,11 +150,11 @@
           %table.table
             %thead
               %tr
-                %th Photo
-                %th Name, surename, patronimic
-                %th Post
-                %th Email
-                %th Phone number
+                %th #{ t '.photo' }
+                %th #{ t '.name_surename_patronimic' }
+                %th #{ t '.post' }
+                %th #{ t '.email' }
+                %th #{ t '.phone_number' }
             %tbody
               - @colegues_search.each do |colegue_search|
                 %tr
@@ -179,18 +178,17 @@
           %table.table
             %thead
               %tr
-                %th Header
-                %th Text
-                %th Detail
+                %th #{ t '.great_header' }
+                %th #{ t '.header' }
+                %th #{ t '.text' }
+                %th #{ t '.detail' }
             %tbody
               - @infos_search.each do |info_search|
                 %tr
-                  %td
-                    = info_search.header
-                  %td
-                    = info_search.text
-                  %td
-                    = link_to 'Detail', info_path(info_search.id)
+                  %td= infos_great_header(info_search)
+                  %td= infos_header(info_search)
+                  %td= infos_text(info_search)
+                  %td= link_to (t '.detail'), info_path(info_search.id)
         - else
           %h3 No results!
   .col-xs-1.col-sm-1.col-md-1.col-lg-1

@@ -2,6 +2,7 @@ en:
   infos:
     index:
       title:     "Info page"
+      info_page: "Info page"
       published: "Published: "
       edited:    "Edited: "
       identifier:  "Article identifier:"
@@ -11,6 +12,7 @@ en:
       caution:   "CAUTION! After you confirm article will be deleted!!!"
     show:
       all_article: "Article "
+      detail_info_page: "Detail info page"
       published:   "Published: "
       edited:      "Edited: "
       identifier:  "Article identifier:"

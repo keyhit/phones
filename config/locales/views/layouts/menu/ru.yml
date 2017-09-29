@@ -1,0 +1,37 @@
+ru:
+  layouts:
+    menu:
+      login:
+        log_out: "ВЫЙТИ"
+        sign_up: "РЕГИСТРАЦИЯ"
+        log_in:  "ВОЙТИ"
+      links:
+        admit_branches: "АДМИНИСТРИРОВАНИЕ ОТРОСЛЕЙ"
+        add_branch: "ДОБАВИТЬ ОТРОСЛЬ"
+        select_branch: "ВЫБРАТЬ ОТРОСЛЬ"
+        info: "ИНФОРМАЦИЯ"
+        new_info: "ДОБАВИТЬ ИНФОРМАЦИЮ"
+        edit_info: "РЕДАКТИРОВАТЬ ИНФОРМАЦИЮ"
+        feedback: "ОБРАТНАЯ СВЯЗЬ"
+        main: "ГЛАВНАЯ"
+        add_company: "ДОБАВИТЬ КОМПАНИЮ"
+        all_companies: "ВСЕ КОМПАНИИ"
+        departaments: "ПОДРАЗДЕЛЕНИЯ КОМПАНИИ"
+        my_company: "МОЯ КОМПАНИЯ"
+        new_departament: "НОВЫЙ ОТДЕЛ"
+        all_departament: "ВСЕ ОТДЕЛЫ"
+        add_departaments_unit: "РАБОТНИКИ ОТДЕЛА"
+        add_new_unit: "ДОБАВИТЬ НОВОГО РАБОТНИКА"
+        all_units_of_departament: "ВСЕ РАБОТНИКИ ОТДЕЛА"
+      navbar_header:
+        list_of_all_companies: "Cписок всех компаний"
+        list_of_all_companies_by_branch: "Список компаний в отросли"
+      unit_data:
+        branch: "Отросль:"
+        organization: "Организация:"
+        departament: "Отдел:"
+        name: "Імя: "
+        role: "Роль:"
+        update_you_account: "Обновить акаунт!"
+        guest_greting: "Привет, догогой гость!"
+        

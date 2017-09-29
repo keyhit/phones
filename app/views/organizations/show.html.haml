@@ -7,25 +7,22 @@
     .container
       %ul.nav.nav-tabs
         %li.active
-          %a{"data-toggle" => "tab", :href => "#map"} Map
+          %a{"data-toggle" => "tab", :href => "#map"} #{ t '.map' }
         %li
-          %a{"data-toggle" => "tab", :href => "#departaments"} Departaments
+          %a{"data-toggle" => "tab", :href => "#departaments"} #{ t '.departaments' }
     .tab-content
       #map.tab-pane.fade.in.active
         = render 'map'
       #departaments.tab-pane.fade
         %table.table
-          %caption 
-            Departaments of 
-            %b= organization.name
-            company
+          %caption= "#{ t '.departaments_of_company' } #{ organization.name }"
           %tr 
-            %td id
-            %td Name
-            %td Description
-            %td Contact person
-            %td Phone/Fax
-            %td Email
+            %td= t '.id'
+            %td= t '.name'
+            %td= t '.description'
+            %td= t '.contact_person'
+            %td= t '.phone_fax'
+            %td= t '.email'
           - departaments.each do |departament|
             %tr
               %td= departament.id
@@ -54,100 +51,100 @@
                   Not assigned
   .col-md-6
     %table.table.table-striped
-      %caption Main data of: #{ organization.name } company
+      %caption= "#{ t '.main_data_of' } #{ organization.name }"
       %tr
         %td
           - unless organization.organizationlogotype_url.nil?
             = image_tag organization.organizationlogotype_url, size: "120x160", alt: "company logo", class: "center-block img-rounded"
         %td
           %table.table.table-striped
-            %caption Our skills
+            %caption= t '.our_skills'
             %tr 
               %td= organization.our_skils
       %tr
-        %th Company name
+        %th= t '.company_name'
         %td= organization.name
       %tr
-        %th Subordinated
+        %th= t '.subordinated'
         %td= organization.subordinated
       %tr
-        %th Headquarters address
+        %th= t '.headquarter_address'
         %td
           - if organization.country?
-            %i='Country '
+            %i= t '.country'
             %b= organization.country 
             %br/
           - if organization.state?
-            %i=' obl '
+            %i= t '.obl'
             %b= organization.state
             %i= ','
           - if organization.region?
-            %i=' reg  '
+            %i= t '.reg'
             %b= organization.region
             %i= ', '
             %br/
           - if organization.town?
-            %i= ' town '
+            %i= t '.town'
             %b= organization.town
             %i= ', '
           - if organization.street?
-            %i= ' street '
+            %i= t '.street'
             %b= organization.street
             %i= ', '
             %br/
           - if organization.build?
-            %i=' building ' 
+            %i= t '.building'
             %b= organization.build 
             %i=', '
           - if organization.block?
-            %i=' block '
+            %i= t '.block'
             %b= organization.block 
             %i=', '
           - if organization.office?
-            %i= ' office ' 
+            %i= t '.office'
             %b= organization.office
       %tr
-        %th Contact person
+        %th= t '.contact_person'
         %td
           -unless organization_public_person.nil?
             = link_to organization_public_person.name + " " + organization_public_person.surename + " " + organization_public_person.patronimic, branch_organization_departament_unit_path( organization.branch_id, organization_public_person.organization_id, organization_public_person.departament_id, organization_public_person.id)
           -else
-            = 'Not assigned'
+            = t '.not_assigned'
       %tr
-        %th Phone
+        %th= t '.phone'
         %td
           - unless organization_public_person.nil?
             = organization_public_person.primary_phone_number 
             = ' '
             = organization_public_person.secondary_phone_number
           -else
-            = 'Not assigned'
+            = t '.not_assigned'
       %tr
-        %th Fax
+        %th= t '.fax'
         %td
           - unless organization_public_person.nil?
             = organization_public_person.fax
           -else
-            = 'Not assigned'
+            = t '.not_assigned'
       %tr
-        %th Email
+        %th= t'.email'
         %td
           - unless organization_public_person.nil?
             = organization_public_person.email
-            = ' and '
+            = t '.and'
             = organization_public_person.secondary_email
           -else
-            = 'Not assigned'
+            = t '.not_assigned'
       %tr
-        %th Web page
+        %th= t '.web_page'
         %td= organization.web_page
       %tr
-        %th Organization ID
+        %th= t '.organization_id'
         %td= organization.id
       - if unit_signed_in? 
         %tr
           -if role_1 || role_2 || current_unit.organization_id == organization.id
-            %th Adminstrative actions
+            %th= t '.adminstrative_actions'
             %td
-              = link_to 'edit', edit_branch_organization_path(branch, organization.id), :class => 'btn btn-warning'
-              = link_to 'Remove', branch_organization_path(branch, organization), :class => 'btn btn-danger', method: :delete, data: { confirm: 'CAUTION! After you confirm all will be deleted!!!' }
+              = link_to (t '.edit'), edit_branch_organization_path(branch, organization.id), :class => 'btn btn-warning'
+              = link_to (t '.remove'), branch_organization_path(branch, organization), :class => 'btn btn-danger', method: :delete, data: { confirm: (t '.confirm') }

@@ -12,7 +12,7 @@
   - branches.each do |branch|
     %tr
       %td
-        = link_to branch.branch_name, branch_organizations_path(branch.id), :class => 'btn btn-default'
+        = link_to branch_name(branch), branch_organizations_path(branch.id), :class => 'btn btn-default'
       %td
         = link_to edit_branch_path(branch), :title =>'Edit' do
           .span.glyphicon.glyphicon-pencil

@@ -1,0 +1,11 @@
+uk:
+  feedbacks:
+    new:
+      new_message: "Нове повідомлення"
+      new_email_message: "Нове електронне повідомлення"
+      create_simle_message_to_creator_of_this: "СТВОРИТИ ПРОСТЕ ПОВІДОМЛЕННЯ АВТОРУ"
+      subject: "Тема"
+      body: "Тіло повідомлення"
+      file: "Додати файл"
+      send: "НАДІСЛАТИ"
+      cancel: "СКАСУВАТИ"

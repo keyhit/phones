@@ -1,0 +1,36 @@
+en:
+  layouts:
+    menu:
+      login:
+        log_out: "LOG OUT"
+        sign_up: "SIGN UP"
+        log_in:  "LOG IN"
+      links:
+        admit_branches: "ADMIN BRANCHES"
+        add_branch: "ADD BRANCH"
+        select_branch: "SELECT BRANCH"
+        info: "INFO"
+        new_info: "NEW INFO"
+        edit_info: "EDIT INFO"
+        feedback: "FEEDBACK"
+        main: "MAIN"
+        add_company: "ADD COMPANY"
+        all_companies: "ALL COMPANIES"
+        departaments: "DEPARTAMENTS"
+        my_company: "MY COMPANY"
+        new_departament: "NEW DEPARTAMENT"
+        all_departament: "ALL DEPARTAMENTS"
+        add_departaments_unit: "ALL DEPARTAMENT UNITS"
+        add_new_unit: "ADD NEW UNIT"
+        all_units_of_departament: "ALL UNITS OF DEPARTAMENT"
+      navbar_header:
+        list_of_all_companies: "List of all companies"
+        list_of_all_companies_by_branch: "List of all companies by branch"
+      unit_data:
+        branch: "Branch:"
+        organization: "Organization:"
+        departament: "Departament:"
+        name: "Name: "
+        role: "Role:"
+        update_you_account: "Update you account!"
+        guest_greting: "My greating for you, Guest!!!"

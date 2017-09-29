@@ -1,0 +1,11 @@
+en:
+  feedbacks:
+    new:
+      new_message: "New message"
+      new_email_message: "New email message"
+      create_simle_message_to_creator_of_this: "CREATE SIMPLE MESSAGE TO CREATOR OF THIS"
+      subject: "Subject"
+      body: "Body"
+      file: "Attach File"
+      send: "SEND"
+      cancel: "CANCEL"

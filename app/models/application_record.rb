@@ -3,7 +3,7 @@ class ApplicationRecord < ActiveRecord::Base
 
   def self.search_branch(search)
     if search != ''
-      where('branch_name LIKE ?', "%#{search}%")
+      where('branch_name_en LIKE ? OR branch_name_ru LIKE ? OR branch_name_uk LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
     end
   end
 
@@ -44,7 +44,7 @@ class ApplicationRecord < ActiveRecord::Base
 
   def self.search_info(search)
     if search !=''
-      where('header LIKE ? OR text LIKE ?', "%#{search}%", "%#{search}%")
+      where('great_header_ru LIKE ? OR great_header_uk LIKE ? OR header_en LIKE ? OR text_en LIKE ? OR header_ru LIKE ? OR text_ru LIKE ? OR header_uk LIKE ? OR text_uk LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
     end
   end
 end

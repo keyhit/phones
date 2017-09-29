@@ -1,0 +1,37 @@
+uk:
+  layouts:
+    menu:
+      login:
+        log_out: "ВИЙТИ"
+        sign_up: "РЕЄСТРАЦІЯ"
+        log_in:  "ВХІД"
+      links:
+        admit_branches: "АДМІНІСТРУВАННЯ ГАЛУЗЕЙ"
+        add_branch: "ДОДАТИ ГАЛУЗЬ"
+        select_branch: "ВИБРАТИ ГАЛУЗЬ"
+        info: "ІНФОРМАЦІЯ"
+        new_info: "ДОДАТИ ІНФОРМАЦІЮ"
+        edit_info: "РЕДАГУВАТИ ІНФОРМАЦІЮ"
+        feedback: "ЗВОРОТНІЙ ЗВ'ЯЗОК"
+        main: "ГОЛОВНА"
+        add_company: "ДОДАТИ КОМПАНІЮ"
+        all_companies: "ВСІ КОМПАНІЇ"
+        departaments: "ВІДДІЛЕННЯ КОМПАНІЇ"
+        my_company: "МОЯ КОМПАНІЯ"
+        new_departament: "НОВИЙ ВІДДІЛ"
+        all_departament: "ВСІ ВІДДІЛИ"
+        add_departaments_unit: "СПІВРОБІТНИКИ ВІДДІЛУ"
+        add_new_unit: "ДОДАТИ НОВОГО СПІВРОБІТНИКА"
+        all_units_of_departament: "ВСІ СПІВРОБІТНИКИ ВІДДІЛУ"
+      navbar_header:
+        list_of_all_companies: "Список всіх компаній"
+        list_of_all_companies_by_branch: "Список всіх компаній галузі"
+      unit_data:
+        branch: "Галузь:"
+        organization: "Організація:"
+        departament: "Відділ"
+        name: "Ім'я: "
+        role: "Роль:"
+        update_you_account: "Оновіть Ваш акаунт!"
+        guest_greting: "Вітаю тебе, любий гість!"
+

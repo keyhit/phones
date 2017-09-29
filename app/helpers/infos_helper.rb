@@ -100,8 +100,4 @@ module InfosHelper
       @info.text_uk
     end
   end
-  module IfosForm
-"1"
-  end
-
 end

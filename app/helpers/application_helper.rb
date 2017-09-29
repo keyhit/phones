@@ -1,70 +1,87 @@
 module ApplicationHelper
   # Links
-  def info_link
-    link_to 'INFO', infos_path()
-  end
-
-  def new_info_link
-    link_to 'NEW INFO', new_info_path
-  end
-
-  def edit_info_link
-    link_to 'EDIT INFO', info_path
-  end
-
-  def feedback_link
-    link_to 'FEEDBACK', new_feedback_path()
-  end
-
-  def main_link
-    link_to 'MAIN', branches_path
-  end
-
-  def add_company_link
-    link_to 'ADD COMPANY', new_branch_organization_path(branch_id: current_unit.branch_id)
-  end
-
-  def all_companies_link
-    link_to 'ALL COMPANIES', branches_path
-  end
-
-  def departaments_link
-    link_to 'DEPARTAMENTS', branch_organization_departaments_path(branch, organization)
-  end
-
-  def my_company_link
-    link_to 'MY COMPANY', branch_organization_path(id: organization.id)
-  end
-
-  def new_departament_link
-    link_to 'NEW DEPARTAMENT', new_branch_organization_departament_path
-  end
-
-  def all_departaments_link
-    link_to 'ALL DEPARTAMENTS', branch_organization_departaments_path
-  end
-
-  def all_departaments_units_link
-    link_to 'ALL DEPARTAMENT UNITS', branch_organization_departament_units_path(departament_id: departament.id)
-  end
-
-  def add_new_unit_link
-    link_to 'ADD NEW UNIT', new_branch_organization_departament_unit_path(departament_id: departament.id)
-  end
-
-  def all_units_of_departament_link
-    link_to 'ALL UNITS OF DEPARTAMENT ', branch_organization_departament_units_path
-  end
-
   def admin_branches_link
-    link_to 'ADMIN BRANCHES', admin_branches_path
+    link_to (t 'admin_branches'), admin_branches_path
   end
 
   def add_branch_link
-    link_to 'ADD BRANCH', new_branch_path
+    link_to (t '.add_branch'), new_branch_path
   end
 
   def select_branch
-    link_to 'SELECT BRANCH', new_branch_path
+    link_to (t '.select_branch'), new_branch_path
+  end
+
+  def info_link
+    link_to (t '.info'), infos_path()
+  end
+
+  def new_info_link
+    link_to (t '.new_info'), new_info_path
+  end
+
+  def edit_info_link
+    link_to (t '.edit_info'), info_path
+  end
+
+  def feedback_link
+    link_to (t '.feedback'), new_feedback_path()
+  end
+
+  def main_link
+    link_to (t '.main'), branches_path
+  end
+
+  def add_company_link
+    link_to (t '.add_company'), new_branch_organization_path(branch_id: current_unit.branch_id)
+  end
+
+  def all_companies_link
+    link_to (t '.all_companies'), branches_path
+  end
+
+  def departaments_link
+    link_to (t '.departaments'), branch_organization_departaments_path(branch, organization)
+  end
+
+  def my_company_link
+    link_to (t '.my_company'), branch_organization_path(id: organization.id)
+  end
+
+  def new_departament_link
+    link_to (t '.new_departament'), new_branch_organization_departament_path
+  end
+
+  def all_departaments_link
+    link_to (t '.all_departaments'), branch_organization_departaments_path
+  end
+
+  def all_departaments_units_link
+    link_to (t '.add_departaments_unit'), branch_organization_departament_units_path(departament_id: departament.id)
+  end
+
+  def add_new_unit_link
+    link_to (t '.add_new_unit'), new_branch_organization_departament_unit_path(departament_id: departament.id)
+  end
+
+  def all_units_of_departament_link
+    link_to (t '.all_units_of_departament'), branch_organization_departament_units_path
+  end
+
+  def branch_name(unit_branch)
+    if unit_signed_in?
+      case current_unit.locale
+      when 'ru'
+        unit_branch.branch_name_ru
+      when 'en'
+        unit_branch.branch_name_en
+      when 'uk'
+        unit_branch.branch_name_uk
+      else
+        unit_branch.branch_name_uk
+      end
+    else
+      unit_branch.branch_name_uk
+    end
   end
 end

@@ -1,0 +1,11 @@
+ru:
+  feedbacks:
+    new:
+      new_message: "Новое сообщение"
+      new_email_message: "Новое електронное сообщение"
+      create_simle_message_to_creator_of_this: "СОЗДАТЬ ПРОСТОЕ СООБЩЕНИЕ АВТОРУ"
+      subject: "Тема"
+      body: "Тело сообщения"
+      file: "Приложить файл"
+      send: "ПОСЛАТЬ"
+      cancel: "ОТМЕНИТЬ"

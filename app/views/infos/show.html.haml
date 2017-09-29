@@ -1,7 +1,7 @@
 = content_for :title do
-  = "#{t ('.all_article')}| #{info_header(@info)} |"
+  = "#{ t ('.all_article') }| #{ info_header(@info) } |"
 = content_for :detail_info_page do
-  = 'Detail info page'
+  =" #{ t '.detail_info_page' } #{ info_header(@info) }"
 .row
   .col-md-12
     - unless @info.myPhoto_url.nil?
