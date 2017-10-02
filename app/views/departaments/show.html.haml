@@ -10,41 +10,42 @@
         - unless departament.departamentlogotype_url.nil? 
           =image_tag(departament.departamentlogotype_url.to_s, size: "160x120", alt: "my logo", :class => "center-block img-rounded")
       %tr
-        %th Departament ID
+        %th= t '.departament_id'
         %td= departament.id
       %tr
-        %th Departament name
+        %th= t '.departament_name'
         %td= departament.departament_name
       %tr
-        %th Subordinated
+        %th= t '.subordinated'
         %td= departament.subordinated
       %tr
-        %th Departament description
+        %th= t '.departament_description'
         %td= departament.departament_description
       %tr
-        %th Contact person
+        %th= t '.contact_person'
         - unless departament_public_person.nil?
           %td= link_to departament_public_person.name + " " + departament_public_person.surename + " " + departament_public_person.patronimic, branch_organization_departament_unit_path(departament_public_person.branch_id, departament_public_person.organization_id, departament_public_person.departament_id, departament_public_person.id)
         - else 
-          %td Not assigned
+          %td= t '.not_assigned'
       %tr
-        %th Phone/Fax
+        %th= t '.phone_fax'
         - unless departament_public_person.nil?
-          %td= departament_public_person.primary_phone_number + "/ " + departament_public_person.fax
+          %td
+            = departament_public_person.primary_phone_number
+            = departament_public_person.fax
         - else 
-          %td Not assigned
-      %tr
-        %th Email
-        - unless departament_public_person.nil?
-          %td= departament_public_person.email
-        - else 
-          %td Not assigned
+          %td= t '.not_assigned'
+      %th= t '.email'
+      - unless departament_public_person.nil?
+        %td= departament_public_person.email
+      - else 
+        %td= t '.not_assigned'
 
       %tr
-        %th Admin actions
+        %th= t '.admin_actions'
         %td
-          = link_to 'Edit', edit_branch_organization_departament_path(branch, organization, departament), class: 'btn btn-warning'
+          = link_to ( t '.edit'), edit_branch_organization_departament_path(branch, organization, departament), class: 'btn btn-warning'
           - if role_1 || role_2 || role_3 and current_unit.departament_id != departament.id
-            = link_to 'Delete departament', branch_organization_departament_path(branch, organization, departament), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+            = link_to ( t '.delete'), branch_organization_departament_path(branch, organization, departament), method: :delete, data: { confirm: ( t '.confirm') }, class: 'btn btn-danger'
   .col-xs-8.col-sm-8.col-md-8.col-lg-8
     = render 'units/all_departament_units'

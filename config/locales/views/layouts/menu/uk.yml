@@ -26,6 +26,13 @@ uk:
       navbar_header:
         list_of_all_companies: "Список всіх компаній"
         list_of_all_companies_by_branch: "Список всіх компаній галузі"
+        contact_information_of: "Контактна інформація про "
+        all_departaments_of: "Всі відділи "
+        detail_information_about: "Детальніше про "
+        departament: "відділ"
+        all_units_of_departament: "Всі працівники відділу"
+        detail_info_about: "Детальніше про"
+        unit: "працівника"
       unit_data:
         branch: "Галузь:"
         organization: "Організація:"

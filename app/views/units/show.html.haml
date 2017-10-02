@@ -1,5 +1,5 @@
 = content_for :title do
-  = 'About unit'
+  = t '.about_unit'
 = content_for :unit_full_name do
   = unit.name
 .row
@@ -7,68 +7,68 @@
   .col-md-2
     - unless unit.unitphoto_url.nil?
       = image_tag(unit.unitphoto_url.to_s, size: "160x120", alt: "my logo", :class => "center-block img-rounded")
-    %h4 Characteristic
+    %h4= t '.characteristic'
     %p= unit.characteristic
   .col-md-7
     %table.table
       %tr
-        %th Personal ID
+        %th= t '.personal_id'
         %td= unit.id
       %tr
-        %th Name, surename, patronimic
+        %th= t '.name_surename_patronimic'
         %td
           = unit.name
           = unit.surename 
           = unit.patronimic
       %tr
-        %th Subordinated
+        %th= t '.subordinated'
         %td= unit.subordinated
       %tr
-        %th Belong to departament
+        %th= t '.belong_to_departament'
         %td=link_to unit.departament.departament_name, branch_organization_departament_path(branch, organization, departament)
       %tr
-        %th Has post of
+        %th= t '.has_post_of'
         %td= unit.post
       %tr
-        %th Primary email
+        %th= t '.email'
         %td= unit.email
       %tr
-        %th Secondary email
+        %th= t '.secondary_email'
         %td= unit.secondary_email
 
       %tr
-        %th Primary phone number
+        %th= t '.primary_phone_number'
         %td= unit.primary_phone_number
 
       %tr
-        %th Secondary phone number
+        %th= t '.secondary_phone_number'
         %td= unit.secondary_phone_number
       %tr
-        %th Short phone number
+        %th= t '.short_phone_number'
         %td= unit.short_phone_nunber
       %tr
-        %th Fax phone number
+        %th= t '.fax_phone_number'
         %td= unit.fax
       %tr
-        %th Home phone number
+        %th= t '.home_phone_number'
         %td= unit.home_phone_number
       %tr
-        %th Oficial web page
+        %th= t '.oficial_web_page'
         %td= unit.web_page
       %tr
-        %th Has began work at
+        %th= t '.has_began_work_at'
         %td= unit.start_work
       %tr
-        %th Has finished work at
+        %th= t '.has_finished_work_at'
         %td= unit.finish_work
       %tr
-        %th Has working 
+        %th= t '.has_working'
         %td= unit.working_days
       %tr
-        %th Birthday
+        %th= t '.birthday'
         %td= unit.birthday
       %tr
-        %th Unit role
+        %th= t '.unit_role'
         %th= unit.role
 .row
   .col-md-3
@@ -76,32 +76,32 @@
     - if role_1 || role_2 || role_3 || role_4 || role_5 || role_6
       %table.table
         %tr
-          %th Adminstrative actions:
+          %th= t '.adminstrative_actions'
           - if role_1 || role_2 || role_3
             %td
               - if unit.id.to_i == organization.public_unit_id.to_i
                 = bootstrap_form_for organization, url: branch_organization_path(branch, organization), method: :patch do |f|
                   = f.hidden_field :public_unit_id, value: ''
-                  = f.submit value: 'Unublic for organization', class: 'btn btn-info'
+                  = f.submit value: ( t '.unublic_for_organization'), class: 'btn btn-info'
               -else 
                 = bootstrap_form_for organization, url: branch_organization_path(branch, organization), method: :patch do |f|
                   = f.hidden_field :public_unit_id, value: unit.id
-                  = f.submit value: 'Public for organization', class: 'btn btn-info'
+                  = f.submit value: ( t '.public_for_organization'), class: 'btn btn-info'
             %td
               - if unit.id.to_i == departament.public_unit_id.to_i
                 = bootstrap_form_for departament, url: branch_organization_departament_path(branch, organization, departament), method: :patch do |f|
                   = f.hidden_field :public_unit_id, value: ''
-                  = f.submit value: 'Unublic for own departament', class: 'btn btn-info'
+                  = f.submit value: ( t '.unublic_for_own_departament'), class: 'btn btn-info'
               -else 
                 = bootstrap_form_for departament, url: branch_organization_departament_path(branch, organization, departament), method: :patch do |f|
                   = f.hidden_field :public_unit_id, value: unit.id
-                  = f.submit value: 'Public for own departament', class: 'btn btn-info'
-          %td= link_to 'edit', edit_branch_organization_departament_unit_path(branch, organization, departament, unit), class: 'btn btn-warning'
+                  = f.submit value: ( t '.public_for_own_departament'), class: 'btn btn-info'
+          %td= link_to ( t '.edit'), edit_branch_organization_departament_unit_path(branch, organization, departament, unit), class: 'btn btn-warning'
           - if organization.public_unit_id.to_i != unit.id.to_i 
             -if role_1 || role_2 || role_3
-              %td= link_to 'Remove', branch_organization_departament_unit_path(branch, organization, departament, unit), class: 'btn btn-danger', method: :delete, data: { confirm: 'CAUTION! After you confirm all will be deleted!!!' }
+              %td= link_to ( t '.remove'), branch_organization_departament_unit_path(branch, organization, departament, unit), class: 'btn btn-danger', method: :delete, data: { confirm: ( t '.caution_remove') }
     - if role_7 && current_unit.id == unit.id
       %table.table
         %tr
-          %th Adminstrative actions:
-          %td= link_to 'User edit', branch_organization_departament_unit_unit_edit_path(branch, organization, departament, unit), :class => 'btn btn-warning'
+          %th= t '.adminstrative_actions'
+          %td= link_to ( t '.user_edit'), branch_organization_departament_unit_unit_edit_path(branch, organization, departament, unit), :class => 'btn btn-warning'

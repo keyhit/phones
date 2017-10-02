@@ -26,6 +26,13 @@ en:
       navbar_header:
         list_of_all_companies: "List of all companies"
         list_of_all_companies_by_branch: "List of all companies by branch"
+        contact_information_of: "Contact information of"
+        all_departaments_of: "All departaments of"
+        detail_information_about: "Detail information about"
+        departament: "departament"
+        all_units_of_departament: "All units of departament"
+        detail_info_about: "Detail info about"
+        unit: "unit"
       unit_data:
         branch: "Branch:"
         organization: "Organization:"

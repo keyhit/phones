@@ -1,0 +1,26 @@
+uk:
+  departaments:
+    index:
+      title: "Всі відділи" 
+      logotype: "Логотип"
+      name: "Назва"
+      description: "Опис"
+      actions: "Дії"
+      all_departament_s_units: "ВСІ ПРАЦІВНИКИ ВІДДІЛУ"
+      details: "ДОКЛАДНО"
+      edit: "РЕДАГУВАТИ"
+      delete_departament: "ВИДАЛИТИ ВІДДІЛ"
+      confirm: "Ви впевнені?"
+    show:
+     departament_id: "Ідентифікатор відділу"
+     departament_name: "Назва"
+     subordinated: "Підпорядкований"
+     departament_description: "Опис"
+     contact_person: "Контактна особа"
+     not_assigned: "Не призначено"
+     phone_fax: "Телефон / факс"
+     email: "Email"
+     admin_actions: "Адміністративні дії"
+     edit: "РЕДАГУВАТИ"
+     delete departament: "ВИДАЛИТИ"
+     confirm: "Ви впевнені ?"

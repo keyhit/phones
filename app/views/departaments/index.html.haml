@@ -1,13 +1,13 @@
 = content_for :title do
-  = 'All departaments'
+  = t '.title'
 = content_for :organization_name_for_departaments do 
   = organization.name
 %table.table
   %tr
-    %th Departament logotype
-    %th Departament name
-    %th Departament description
-    %th{:colspan => "4"} Actions
+    %th= t '.logotype'
+    %th= t '.name'
+    %th= t '.description'
+    %th{:colspan => "4"}= t '.actions'
     - departaments.each do |departament|
       %tr
         %td
@@ -15,9 +15,10 @@
             = image_tag departament.departamentlogotype_url, size: "50x35", alt: "company logo"
         %td= link_to departament.departament_name, branch_organization_departament_path(branch, organization, departament)
         %td= departament.departament_description
-        %td= link_to 'Units',branch_organization_departament_units_path(branch, organization, departament), class: 'btn btn-default'
-        %td= link_to 'Details', branch_organization_departament_path(branch, organization, departament), class: 'btn btn-info'
+        %td= link_to (t '.all_departament_s_units'),branch_organization_departament_units_path(branch, organization, departament), class: 'btn btn-default'
+        %td= link_to (t '.details'), branch_organization_departament_path(branch, organization, departament), class: 'btn btn-info'
         - if role_1 || role_2 || role_3 || role_4 || role_5
-          %td= link_to 'Edit', edit_branch_organization_departament_path(branch, organization, departament), class: 'btn btn-warning'
+          %td= link_to (t '.edit'), edit_branch_organization_departament_path(branch, organization, departament), class: 'btn btn-warning'
         - if role_1 || role_2 || role_3 and current_unit.departament_id != departament.id
-          %td= link_to 'Delete departament', branch_organization_departament_path(branch, organization, departament), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+          %td= link_to (t '.delete_departament'), branch_organization_departament_path(branch, organization, departament), method: :delete, data: { confirm: (t '.confirm') }, class: 'btn btn-danger'
+ 

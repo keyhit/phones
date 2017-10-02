@@ -3,48 +3,48 @@
     .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
       .panel.panel-primary
         .panel-heading
-          SELECT YOU BRANCH
+          = t '.select_branch'
         .panel-body
           = bootstrap_form_for :unit, url: update_unit_branch_id_path(), method: :patch do |f|
-            = f.select(:branch_id, Branch.all.collect { |p| [ p.branch_name, p.id ] })
-            = f.submit :class => "btn btn-primary"
+            = f.select(:branch_id, select_branch_name, label: (t '.select_branch_name'))
+            = f.submit :class => "btn btn-primary", value: (t '.apply_branch')
 - elsif current_unit.branch_id != nil and current_unit.organization_id == nil
   .row
     .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
       .panel.panel-primary
         .panel-heading
-          NEW ORGANIZATION
+          = t '.you_organization_name'
         .panel-body
           = bootstrap_form_for :organization, url: branch_organizations_path(branch_id:current_unit.branch_id), method: :post do |f|
-            = f.text_field :name
-            = f.select :branch_id, options_for_select(branches.map{ |c| [c.branch_name, c.id] })
-            = f.select :subordinated, options_for_select(all_organizations.map{ |c| [c.name, c.name] })
-            = f.select :country, options_for_select(COUNTRIES.map{ |key, value| value })
-            = f.text_field :state
-            = f.text_field :region
-            = f.select :town, options_for_select(SITIES.map{ |key, value| value })
-            = f.text_field :street
-            = f.text_field :build
-            = f.text_field :block
-            = f.text_field :office
-            = f.url_field  :web_page
-            = f.text_area  :our_skils
-            = f.file_field :organizationlogotype, :class => "btn btn-default"
+            = f.text_field :name, label: (t '.organization_name')
+            / = f.select :branch_id, options_for_select(branches.map{ |c| [c.branch_name, c.id] })
+            = f.select :subordinated, options_for_select(all_organizations.map{ |c| [c.name, c.name] }), label: (t '.subordinated')
+            = f.select :country, options_for_select(COUNTRIES.map{ |key, value| value }), label: (t '.country')
+            = f.text_field :state, label: (t '.state')
+            = f.text_field :region, label: (t '.region')
+            = f.select :town, options_for_select(SITIES.map{ |key, value| value }), label: (t '.town')
+            = f.text_field :street, label: (t '.street')
+            = f.text_field :build, label: (t '.build')
+            = f.text_field :block, label: (t '.block')
+            = f.text_field :office, label: (t '.office')
+            = f.url_field  :web_page, label: (t '.web_page')
+            = f.text_area  :our_skils, label: (t '.our_skils')
+            = f.file_field :organizationlogotype, :class => "btn btn-default", label: (t '.organization_logotype')
             = f.hidden_field :branch_id, value: current_unit.branch_id
-            = f.submit :class => "btn btn-primary"
+            = f.submit :class => "btn btn-primary", label: (t '.save_organization')
 
 - elsif current_unit.branch_id != nil and current_unit.organization_id != nil and current_unit.departament_id == nil
   .row
     .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
       .panel.panel-primary
         .panel-heading
-          FIRST DEPARTAMENT
+          = t '.you_first_departament_name'
         .panel-body
           =bootstrap_form_for :departament, url: first_departament_path(branch_id: current_unit.branch_id, organization_id: current_unit.organization_id), method: :post do |f|
             - if current_unit.organization_id?
-              = f.text_field :departament_name, value: 'First departament'
+              = f.text_field :departament_name, value: (t '.first_departament'), label: (t '.departament_name')
             - else
-              = f.text_field :departament_name
-            = f.text_area :departament_description
-            = f.file_field :departamentlogotype, :class => "btn btn-default"
-            = f.submit :class => "btn btn-primary"
+              = f.text_field :departament_name, label: (t '.departament_name')
+            = f.text_area :departament_description, label: (t '.departament_description') 
+            = f.file_field :departamentlogotype, :class => "btn btn-default", label: (t '.dowmload_departament_logotype')
+            = f.submit :class => "btn btn-primary", label: (t '.save_departament')

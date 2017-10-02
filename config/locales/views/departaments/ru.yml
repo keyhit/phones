@@ -1,0 +1,26 @@
+ru:
+  departaments:
+    index:
+      title: "Все отделы" 
+      logotype: "Логотип"
+      name: "Название"
+      description: "Описание"
+      actions: "Действия"
+      all_departament_s_units: "ВСЕ РАБОТНИКИ ОТДЕЛА"
+      details: "ПОДРОБНЕЕ"
+      edit: "РЕДАКТИРОВАТЬ"
+      delete_departament: "УДАЛИТЬ ОТДЕЛ"
+      confirm: "Вы уверены?"
+    show:
+     departament_id: "Идентификатор отдела"
+     departament_name: "Название"
+     subordinated: "Подлежит"
+     departament_description: "Описание"
+     contact_person: "Контактная персона"
+     not_assigned: "Не назначено"
+     phone_fax: "Телефон / факс"
+     email: "Email"
+     admin_actions: "Административные действия"
+     edit: "РЕДАКТИРОВАТЬ"
+     delete departament: "УДАЛИТЬ"
+     confirm: "Вы уверены?"

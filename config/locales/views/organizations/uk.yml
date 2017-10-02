@@ -6,7 +6,7 @@ uk:
       departaments: "Відділи"
       departaments_of_company: "Відділи організації "
       id:             "Ідентифікатор"
-      name:           "Ім'я"
+      name:           "Назва"
       description:    "Опис"
       contact_person: "Контактна особа"
       phone_fax:      "Телефон/Факс"

@@ -26,6 +26,13 @@ ru:
       navbar_header:
         list_of_all_companies: "Cписок всех компаний"
         list_of_all_companies_by_branch: "Список компаний в отросли"
+        contact_information_of: "Контактная информация о "
+        all_departaments_of: "Все подразделения организации"
+        detail_information_about: "Подробная информация о "
+        departament: "отдел"
+        all_units_of_departament: "Все работники отдела"
+        detail_info_about: "Подробнее о"
+        unit: "работнике"
       unit_data:
         branch: "Отросль:"
         organization: "Организация:"

@@ -40,7 +40,8 @@
                   Not assigned
               %td
                 - unless departament_public_unit_id.nil?
-                  = departament_public_unit_id.primary_phone_number + '/' + departament_public_unit_id.fax
+                  = departament_public_unit_id.primary_phone_number
+                  = departament_public_unit_id.fax
                 - else
                   Not assigned
               %td

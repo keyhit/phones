@@ -1,0 +1,26 @@
+en:
+  departaments:
+    index:
+      title: "All departaments" 
+      logotype: "Logotype"
+      name: "Name"
+      description: "Description"
+      actions: "Actions"
+      all_departament_s_units: "ALL DEPARTAMENT'S UNITS"
+      details: "DETAILS"
+      edit: "EDIT"
+      delete_departament: "DELETE DEPARTAMENT"
+      confirm: "Are you sure?"
+    show:
+     departament_id: "Departament ID"
+     departament_name: "Departament name"
+     subordinated: "Subordinated"
+     departament_description: "Departament description"
+     contact_person: "Contact person"
+     not_assigned: "Not assigned"
+     phone_fax: "Phone/Fax"
+     email: "Email"
+     admin_actions: "Admin actions"
+     edit: "EDIT"
+     delete departament: "DELETE"
+     confirm: "'Are you sure?'"

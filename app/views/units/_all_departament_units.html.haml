@@ -1,15 +1,15 @@
 %table.table
-  %caption 
-    All units of 
+  %caption
+    = t '.all_units_of' 
     %b= departament.departament_name
   %tr
-    %th Photo
-    %th Name
-    %th Post
-    %th Phone 
-    %th Email
-    %th Working days
-    %th Detail
+    %th= t '.photo'
+    %th= t '.name'
+    %th= t '.post'
+    %th= t '.phone'
+    %th= t '.email'
+    %th= t '.working_days'
+    %th= t '.detail'
   - units.each do |unit|
     %tr
       %td
@@ -22,4 +22,4 @@
       %td= unit.primary_phone_number
       %td= unit.email
       %td= unit.working_days
-      %td= link_to 'Detail',branch_organization_departament_unit_path(branch, organization, departament, unit), class: 'btn btn-info'
+      %td= link_to ( t '.unit_data'),branch_organization_departament_unit_path(branch, organization, departament, unit), class: 'btn btn-info'
