@@ -14,7 +14,11 @@
   - if content_for? :Main
     = t '.list_of_all_companies'
   - elsif content_for? :all_companies
+<<<<<<< HEAD
     = t '.list_of_all_companies_by_branch'
+=======
+    = 'List of all companies by branch'
+>>>>>>> 6448cc24022857ab9f631b3f2380dd36d041f835
     = branch_name(branch)
   - elsif content_for? :create_organization
     = yield(:create_organization)

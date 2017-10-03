@@ -15,7 +15,12 @@ class BranchesController < ApplicationController
 
   def create
     @new_branch = Branch.new(branche_params)
+<<<<<<< HEAD
     if @new_branch.save!
+=======
+    @new_branch.valid?
+    if @new_branch.save
+>>>>>>> 6448cc24022857ab9f631b3f2380dd36d041f835
       redirect_to admin_branches_path
     else
       flash[:error] = @new_branch
