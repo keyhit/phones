@@ -10,7 +10,7 @@
       .panel-body
         = bootstrap_form_for organization, url: branch_organization_path(branch, organization), method: :patch do |f|
           = f.text_field :name
-          = f.select :branch_id, options_for_select(branches.map{ |c| [c.branch_name, c.id] })
+          = f.select :branch_id, options_for_select(select_branch_name)
           = f.select :subordinated, options_for_select(all_organizations.map{ |c| [c.name, c.name] })
           = f.select :country, options_for_select(COUNTRIES.map{ |key, value| value })
           = f.text_field :state

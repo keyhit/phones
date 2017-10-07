@@ -84,4 +84,17 @@ module ApplicationHelper
       unit_branch.branch_name_uk
     end
   end
+
+  def select_branch_name
+    case current_unit.locale
+    when 'en'
+      Branch.all.collect { |p| [ p.branch_name_en, p.id ] }
+    when 'ru'
+      Branch.all.collect { |p| [ p.branch_name_ru, p.id ] }
+    when 'uk'
+      Branch.all.collect { |p| [ p.branch_name_uk, p.id ] }
+    else
+    Branch.all.collect { |p| [ p.branch_name_uk, p.id ] }
+    end
+  end
 end
