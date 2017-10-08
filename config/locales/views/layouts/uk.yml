@@ -1,3 +1,8 @@
 uk:
   layouts:
-    main_navigation:
+    footer:
+      built_by: "Створено Карпенко Вячеславом"
+      if_guestions_tap: "Питання? Тисни "
+      or: "або"
+      use_email: "пиши на електронку"
+      call: "дзвони"

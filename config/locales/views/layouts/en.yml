@@ -1,3 +1,8 @@
 en:
   layouts:
-    main_navigation:
+    footer:
+      built_by: "Built by Karpenko Viacheslav"
+      if_guestions_tap: "Questions? Tap "
+      or: "or"
+      use_email: "use my e-mail address"
+      call: "call"
