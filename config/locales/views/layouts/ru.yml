@@ -1,3 +1,8 @@
 ru:
   layouts:
-    main_navigation:
+    footer:
+      built_by: "Создано Карпенко Вячеславом"
+      if_guestions_tap: "Есть вопросы? Жми "
+      or: "или"
+      use_email: "пиши на електронку"
+      call: "звони"
