@@ -103,7 +103,6 @@ class UnitsController < ApplicationController
 
   def locale
     current_unit.update(units_locale)
-    #binding.pry
     redirect_back(fallback_location: root_path)
   end
 

@@ -1,10 +1,10 @@
 en:
   layouts:
     menu:
-      login:
-        log_out: "LOG OUT"
-        sign_up: "SIGN UP"
-        log_in:  "LOG IN"
+      change_locale:
+        english_language: "English language"
+        russian_language: "Russian language"
+        ukraine_language: "Ukraine language"
       links:
         admit_branches: "ADMIN BRANCHES"
         add_branch: "ADD BRANCH"
@@ -23,6 +23,10 @@ en:
         add_departaments_unit: "ALL DEPARTAMENT UNITS"
         add_new_unit: "ADD NEW UNIT"
         all_units_of_departament: "ALL UNITS OF DEPARTAMENT"
+      login:
+        log_out: "LOG OUT"
+        sign_up: "SIGN UP"
+        log_in:  "LOG IN"
       navbar_header:
         list_of_all_companies: "List of all companies"
         list_of_all_companies_by_branch: "List of all companies by branch"
@@ -34,10 +38,10 @@ en:
         detail_info_about: "Detail info about"
         unit: "unit"
       unit_data:
+        my_data: "My data"
         branch: "Branch:"
         organization: "Organization:"
         departament: "Departament:"
         name: "Name: "
         role: "Role:"
         update_you_account: "Update you account!"
-        guest_greting: "My greating for you, Guest!!!"

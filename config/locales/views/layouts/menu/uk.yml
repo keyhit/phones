@@ -1,10 +1,10 @@
 uk:
   layouts:
     menu:
-      login:
-        log_out: "ВИЙТИ"
-        sign_up: "РЕЄСТРАЦІЯ"
-        log_in:  "ВХІД"
+      change_locale:
+        english_language: "Англійська мова"
+        russian_language: "Російська мова"
+        ukraine_language: "Українська мова"
       links:
         admit_branches: "АДМІНІСТРУВАННЯ ГАЛУЗЕЙ"
         add_branch: "ДОДАТИ ГАЛУЗЬ"
@@ -23,6 +23,10 @@ uk:
         add_departaments_unit: "СПІВРОБІТНИКИ ВІДДІЛУ"
         add_new_unit: "ДОДАТИ НОВОГО СПІВРОБІТНИКА"
         all_units_of_departament: "ВСІ СПІВРОБІТНИКИ ВІДДІЛУ"
+      login:
+        log_out: "ВИЙТИ"
+        sign_up: "РЕЄСТРАЦІЯ"
+        log_in:  "ВХІД"
       navbar_header:
         list_of_all_companies: "Список всіх компаній"
         list_of_all_companies_by_branch: "Список всіх компаній галузі"
@@ -34,11 +38,10 @@ uk:
         detail_info_about: "Детальніше про"
         unit: "працівника"
       unit_data:
+        my_data: "Мої дані"
         branch: "Галузь:"
         organization: "Організація:"
         departament: "Відділ"
         name: "Ім'я: "
         role: "Роль:"
         update_you_account: "Оновіть Ваш акаунт!"
-        guest_greting: "Вітаю тебе, любий гість!"
-

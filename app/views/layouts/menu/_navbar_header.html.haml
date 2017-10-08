@@ -1,65 +1,66 @@
-%h4
-  -if content_for? :new_email_message_page
-    = yield :new_email_message_page
-  - elsif content_for? :info_page
-    = yield :info_page
-  - elsif content_for? :detail_info_page
-    = yield :detail_info_page
-  -elsif  content_for? :search
-    = yield :search
-  - elsif content_for? :new_info_page
-    = yield :new_info_page
-  - elsif content_for? :edit_info_page
-    = yield :edit_info_page
-  - if content_for? :Main
-    = t '.list_of_all_companies'
-  - elsif content_for? :all_companies
-    = t '.list_of_all_companies_by_branch'
-    = 'List of all companies by branch'
-    = branch_name(branch)
-  - elsif content_for? :create_organization
-    = yield(:create_organization)
-  - elsif content_for? :edit_organization
-    = yield(:edit_organization)
-  - elsif content_for? :organization_name
-    = t '.contact_information_of'
-    %b
-    = yield(:organization_name)
-    = t '.company'
-  -elsif content_for? :create_departament
-    = yield(:create_departament)
-  -elsif content_for? :edit_departament 
-    = yield(:edit_departament )
-  - elsif content_for? :organization_name_for_departaments
-    = t '.all_departaments_of'
-    %b
-    = yield(:organization_name_for_departaments)
-  - elsif content_for? :departament_name
-    = t '.detail_information_about'
-    = yield(:departament_name)
-    = t '.departament'
-    = yield(:organization_name)
-  -elsif content_for? :all_units_of_departament
-    = t '.all_units_of_departament'
-    = yield(:all_units_of_departament)
-  -elsif content_for? :unit_full_name
-    = t '.detail_info_about' 
-    %b
-    = yield(:unit_full_name)
-    = t '.unit'
-  - elsif content_for? :new_unit
-    = yield(:new_unit)
-  - elsif content_for? :edit_unit
-    = yield(:edit_unit)
+%li
+  %a 
+    -if content_for? :new_email_message_page
+      = yield :new_email_message_page
+    - elsif content_for? :info_page
+      = yield :info_page
+    - elsif content_for? :detail_info_page
+      = yield :detail_info_page
+    -elsif  content_for? :search
+      = yield :search
+    - elsif content_for? :new_info_page
+      = yield :new_info_page
+    - elsif content_for? :edit_info_page
+      = yield :edit_info_page
+    - if content_for? :Main
+      = t '.list_of_all_companies'
+    - elsif content_for? :all_companies
+      = t '.list_of_all_companies_by_branch'
+      = 'List of all companies by branch'
+      = branch_name(branch)
+    - elsif content_for? :create_organization
+      = yield(:create_organization)
+    - elsif content_for? :edit_organization
+      = yield(:edit_organization)
+    - elsif content_for? :organization_name
+      = t '.contact_information_of'
+      %b
+      = yield(:organization_name)
+      = t '.company'
+    -elsif content_for? :create_departament
+      = yield(:create_departament)
+    -elsif content_for? :edit_departament 
+      = yield(:edit_departament )
+    - elsif content_for? :organization_name_for_departaments
+      = t '.all_departaments_of'
+      %b
+      = yield(:organization_name_for_departaments)
+    - elsif content_for? :departament_name
+      = t '.detail_information_about'
+      = yield(:departament_name)
+      = t '.departament'
+      = yield(:organization_name)
+    -elsif content_for? :all_units_of_departament
+      = t '.all_units_of_departament'
+      = yield(:all_units_of_departament)
+    -elsif content_for? :unit_full_name
+      = t '.detail_info_about' 
+      %b
+      = yield(:unit_full_name)
+      = t '.unit'
+    - elsif content_for? :new_unit
+      = yield(:new_unit)
+    - elsif content_for? :edit_unit
+      = yield(:edit_unit)
 
-- if notice
-  .alert.alert-info
-    %p= notice
-- if alert
-  .alert.alert-warning
-    %p= alert
-- if flash[:error]
-  .alert.alert-warning
-    %p= flash[:error]
+/ - if notice
+/   .alert.alert-info
+/     %p= notice
+/ - if alert
+/   .alert.alert-warning
+/     %p= alert
+/ - if flash[:error]
+/   .alert.alert-warning
+/     %p= flash[:error]
 
 

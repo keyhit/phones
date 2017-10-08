@@ -1,24 +1,43 @@
 - if unit_signed_in?
-  - if current_unit.branch_id != nil
-    %b= t '.branch'
-    = link_to branch_name(unit_branch), branch_organizations_path(current_unit.branch_id, current_unit.organization_id)
-  - if current_unit.organization_id != nil
-    %b= t '.organization'
-    = link_to unit_organization.name, branch_organization_path(current_unit.branch_id, current_unit.organization_id)
-  - if current_unit.departament_id != nil
-    %b= t '.departament'
-    = link_to current_unit.departament.departament_name, branch_organization_departament_path(current_unit.branch_id, current_unit.organization_id, current_unit.departament_id)
-  - if current_unit.role != nil && current_unit.branch_id != nil && current_unit.organization_id != nil && current_unit.departament_id != nil
-    %b= t '.name' 
-    = link_to current_unit.name, branch_organization_departament_unit_path(current_unit.branch_id, current_unit.organization_id, current_unit.departament_id, current_unit.id)
-  - if current_unit.email?  && current_unit.branch_id != nil && current_unit.organization_id != nil && current_unit.departament_id != nil
-    %b Email: 
-    = link_to current_unit.email, branch_organization_departament_unit_path(current_unit.branch_id, current_unit.organization_id, current_unit.departament_id, current_unit.id)
-  - if current_unit.role != nil && current_unit.branch_id != nil && current_unit.organization_id != nil && current_unit.departament_id != nil
-    %b= t '.role'
-    = link_to current_unit.role, branch_organization_departament_unit_path(current_unit.branch_id, current_unit.organization_id, current_unit.departament_id, current_unit.id)
-  - if current_unit.branch_id == nil or current_unit.organization_id == nil or current_unit.departament_id == nil 
-    .btn.btn-warning
-      = link_to (t '.update_you_account'), update_account_path()
-- else
-  = t '.guest_greting'
+  %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+    = t '.my_data'
+    %span.caret
+  %ul.dropdown-menu
+
+    - if current_unit.branch_id != nil
+      %li
+        %b= t '.branch'
+      %li
+        = link_to branch_name(unit_branch), branch_organizations_path(current_unit.branch_id, current_unit.organization_id)
+    - if current_unit.organization_id != nil
+      %li.divider{:role => "separator"}
+      %li
+        %b= t '.organization'
+        = link_to unit_organization.name, branch_organization_path(current_unit.branch_id, current_unit.organization_id)
+    - if current_unit.departament_id != nil
+      %li.divider{:role => "separator"}
+      %li
+        %b= t '.departament'
+      %li
+        = link_to current_unit.departament.departament_name, branch_organization_departament_path(current_unit.branch_id, current_unit.organization_id, current_unit.departament_id)
+    - if current_unit.role != nil && current_unit.branch_id != nil && current_unit.organization_id != nil && current_unit.departament_id != nil
+      %li.divider{:role => "separator"}
+      %li
+        %b= t '.name' 
+      %li
+        = link_to current_unit.name, branch_organization_departament_unit_path(current_unit.branch_id, current_unit.organization_id, current_unit.departament_id, current_unit.id)
+    - if current_unit.email?  && current_unit.branch_id != nil && current_unit.organization_id != nil && current_unit.departament_id != nil
+      %li.divider{:role => "separator"}
+      %li
+        %b Email: 
+      %li
+        = link_to current_unit.email, branch_organization_departament_unit_path(current_unit.branch_id, current_unit.organization_id, current_unit.departament_id, current_unit.id)
+    - if current_unit.role != nil && current_unit.branch_id != nil && current_unit.organization_id != nil && current_unit.departament_id != nil
+      %li.divider{:role => "separator"}
+      %li
+        %b= t '.role'
+      %li
+        = link_to current_unit.role, branch_organization_departament_unit_path(current_unit.branch_id, current_unit.organization_id, current_unit.departament_id, current_unit.id)
+    - if current_unit.branch_id == nil or current_unit.organization_id == nil or current_unit.departament_id == nil 
+      %li= link_to (t '.update_you_account'), update_account_path(), :class => "btn btn-warning"
+

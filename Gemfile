@@ -57,6 +57,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap_form'
 gem 'sprockets-rails', '~> 3.2.0'
 
+
 gem 'carrierwave', '~> 1.0'
 gem 'cloudinary'
 gem 'devise'
@@ -65,6 +66,7 @@ gem 'figaro', '~> 1.1.1'
 gem 'rubocop', require: false
 gem 'rubocop-rspec'
 gem 'json'
+gem 'jquery-rails'
 gem 'rails-i18n', '~> 5.0.0' # For 5.0.x and 5.1.x
 
 source 'https://rails-assets.org' do

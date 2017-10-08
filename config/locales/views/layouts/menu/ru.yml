@@ -1,10 +1,10 @@
 ru:
   layouts:
     menu:
-      login:
-        log_out: "ВЫЙТИ"
-        sign_up: "РЕГИСТРАЦИЯ"
-        log_in:  "ВОЙТИ"
+      change_locale:
+        english_language: "Английский язык"
+        russian_language: "Русский язык"
+        ukraine_language: "Украинский язык"
       links:
         admit_branches: "АДМИНИСТРИРОВАНИЕ ОТРОСЛЕЙ"
         add_branch: "ДОБАВИТЬ ОТРОСЛЬ"
@@ -23,6 +23,10 @@ ru:
         add_departaments_unit: "РАБОТНИКИ ОТДЕЛА"
         add_new_unit: "ДОБАВИТЬ НОВОГО РАБОТНИКА"
         all_units_of_departament: "ВСЕ РАБОТНИКИ ОТДЕЛА"
+      login:
+        log_out: "ВЫЙТИ"
+        sign_up: "РЕГИСТРАЦИЯ"
+        log_in:  "ВОЙТИ"
       navbar_header:
         list_of_all_companies: "Cписок всех компаний"
         list_of_all_companies_by_branch: "Список компаний в отросли"
@@ -34,11 +38,10 @@ ru:
         detail_info_about: "Подробнее о"
         unit: "работнике"
       unit_data:
+        my_data: "Мои данные"
         branch: "Отросль:"
         organization: "Организация:"
         departament: "Отдел:"
         name: "Імя: "
         role: "Роль:"
         update_you_account: "Обновить акаунт!"
-        guest_greting: "Привет, догогой гость!"
-        

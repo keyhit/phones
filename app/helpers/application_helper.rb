@@ -1,5 +1,8 @@
 module ApplicationHelper
   # Links
+  def my_phones_link
+    link_to 'MyPhones', branches_path
+  end
   def admin_branches_link
     link_to (t 'admin_branches'), admin_branches_path
   end
@@ -94,7 +97,20 @@ module ApplicationHelper
     when 'uk'
       Branch.all.collect { |p| [ p.branch_name_uk, p.id ] }
     else
-    Branch.all.collect { |p| [ p.branch_name_uk, p.id ] }
+      Branch.all.collect { |p| [ p.branch_name_uk, p.id ] }
+    end
+  end
+
+  def current_locale
+    case current_unit.locale
+    when 'en'
+      t '.english_language'
+    when 'ru'
+      t '.russian_language'
+    when 'uk'
+      t '.ukraine_language'
+    else
+      t '.ukraine_language'
     end
   end
 end

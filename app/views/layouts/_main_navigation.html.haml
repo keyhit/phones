@@ -1,24 +1,24 @@
-.row
-  .col-xs-12.col-sm-12.col-md-12.col-lg-12
-    .nav.nav-tabs
-      .row
-        .col-xs-10.col-sm-10.col-md-10.col-lg-10
+%nav.navbar.navbar-default
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-false" => "false", "data-target" => "#bs-example-navbar-collapse-1 ", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      .navbar-brand= my_phones_link
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-left
+        %li.dropdown
+          = render 'layouts/menu/change_locale'
+        %li.dropdown
           = render 'layouts/menu/unit_data'
-.row
-  .col-xs-7.col-sm-7.col-md-7.col-lg-7
-    .nav.nav-tabs
-      .row
-        .col-xs-3.col-sm-3.col-md-3.col-lg-3
-          = render 'layouts/menu/login'
-        .col-xs-6.col-sm-6.col-md-6.col-lg-6
-          = render 'searches/new'
-        .col-xs-2.col-sm-2.col-md-2.col-lg-2
-          - unless current_unit.nil?
-            = render 'layouts/menu/change_locale'
-  .col-xs-5.col-sm-5.col-md-5.col-lg-5
-    .nav.nav-tabs
-      = render 'layouts/menu/navbar_header'
-.row
-  .col-xs-12.col-sm-12.col-md-12.col-lg-12
-    .nav.nav-tabs
-      = render 'layouts/menu/links'
+        = render 'layouts/menu/navbar_header'
+      %ul.nav.navbar-nav.navbar-right
+        = render 'layouts/menu/login'
+        = render 'searches/new'
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-left
+        = render 'layouts/menu/links'
