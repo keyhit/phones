@@ -5,6 +5,7 @@ class AddDeviseToUnits < ActiveRecord::Migration[5.0]
       t.string     :surename
       t.string     :patronimic
       t.string     :subordinated
+      t.integer    :subordinated_id
       t.string     :post
       t.string     :email, null: false, default: ''
       t.string     :secondary_email
@@ -23,6 +24,8 @@ class AddDeviseToUnits < ActiveRecord::Migration[5.0]
       t.string     :characteristic
       t.string     :role
       t.string     :locale, default: 'uk'
+      t.boolean    :hidden, default: false
+      t.boolean    :blocked, default: false
       t.boolean    :public_for_organization, default: false
       t.boolean    :public_for_departament, default: false
       t.integer    :branch_id, foreign_key: true

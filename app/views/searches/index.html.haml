@@ -106,7 +106,7 @@
                     - unless public_unit_organization_search.unitphoto.nil?
                       = image_tag public_unit_organization_search.unitphoto_url, size: "40x55", alt: "company logo", class: "center-block img-rounded"
                   %td
-                    = link_to public_unit_organization_search.name, branch_organization_departament_unit_path(public_unit_organization_search.branch_id, public_unit_organization_search.organization_id, public_unit_organization_search.departament_id, public_unit_organization_search.id)
+                    = link_to public_unit_organization_search.name, branch_organization_path(public_unit_organization_search.branch_id, public_unit_organization_search.organization_id)
                     = public_unit_organization_search.surename 
                     = public_unit_organization_search.patronimic 
                   %td
@@ -134,7 +134,7 @@
                     - unless public_unit_departament_search.unitphoto.nil?
                       = image_tag public_unit_departament_search.unitphoto_url, size: "40x55", alt: "company logo", class: "center-block img-rounded"
                   %td
-                    = link_to public_unit_departament_search.name, branch_organization_departament_unit_path(public_unit_departament_search.branch_id, public_unit_departament_search.organization_id, public_unit_departament_search.departament_id, public_unit_departament_search.id)
+                    = link_to public_unit_departament_search.name, branch_organization_path(public_unit_departament_search.branch_id, public_unit_departament_search.organization_id)
                     = public_unit_departament_search.surename 
                     = public_unit_departament_search.patronimic 
                   %td

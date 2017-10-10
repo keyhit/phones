@@ -113,4 +113,20 @@ module ApplicationHelper
       t '.ukraine_language'
     end
   end
+
+  def bootstrap_class_for_flash(flash_type)
+    case flash_type
+    when 'success'
+     'alert-success'
+    when 'error'
+      'alert-warning'
+    when 'alert'
+      'alert-block'
+    when' notice'
+      'alert-info'
+    else
+      flash_type.to_s + "aa"
+    end
+  end
+
 end

@@ -16,7 +16,6 @@
       = t '.list_of_all_companies'
     - elsif content_for? :all_companies
       = t '.list_of_all_companies_by_branch'
-      = 'List of all companies by branch'
       = branch_name(branch)
     - elsif content_for? :create_organization
       = yield(:create_organization)
@@ -52,15 +51,3 @@
       = yield(:new_unit)
     - elsif content_for? :edit_unit
       = yield(:edit_unit)
-
-/ - if notice
-/   .alert.alert-info
-/     %p= notice
-/ - if alert
-/   .alert.alert-warning
-/     %p= alert
-/ - if flash[:error]
-/   .alert.alert-warning
-/     %p= flash[:error]
-
-

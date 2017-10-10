@@ -16,8 +16,12 @@ ActiveRecord::Schema.define(version: 20170902213954) do
     t.string   "branch_name_en"
     t.string   "branch_name_ru"
     t.string   "branch_name_uk"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "subordinated"
+    t.integer  "subordinated_id"
+    t.boolean  "hidden",          default: false
+    t.boolean  "blocked",         default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "departaments", force: :cascade do |t|
@@ -25,11 +29,14 @@ ActiveRecord::Schema.define(version: 20170902213954) do
     t.string   "departament_description"
     t.string   "departamentlogotype"
     t.string   "subordinated"
+    t.integer  "subordinated_id"
+    t.boolean  "hidden",                  default: false
+    t.boolean  "blocked",                 default: false
     t.integer  "public_unit_id"
     t.integer  "branch_id"
     t.integer  "organization_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.index ["organization_id"], name: "index_departaments_on_organization_id"
   end
 
@@ -57,6 +64,7 @@ ActiveRecord::Schema.define(version: 20170902213954) do
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.string   "subordinated"
+    t.integer  "subordinated_id"
     t.string   "country"
     t.string   "state"
     t.string   "region"
@@ -69,9 +77,11 @@ ActiveRecord::Schema.define(version: 20170902213954) do
     t.string   "our_skils"
     t.string   "organizationlogotype"
     t.integer  "public_unit_id"
+    t.boolean  "hidden",               default: false
+    t.boolean  "blocked",              default: false
     t.integer  "branch_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "searches", force: :cascade do |t|
@@ -84,6 +94,7 @@ ActiveRecord::Schema.define(version: 20170902213954) do
     t.string   "surename"
     t.string   "patronimic"
     t.string   "subordinated"
+    t.integer  "subordinated_id"
     t.string   "post"
     t.string   "email",                   default: "",    null: false
     t.string   "secondary_email"
@@ -102,6 +113,8 @@ ActiveRecord::Schema.define(version: 20170902213954) do
     t.string   "characteristic"
     t.string   "role"
     t.string   "locale",                  default: "uk"
+    t.boolean  "hidden",                  default: false
+    t.boolean  "blocked",                 default: false
     t.boolean  "public_for_organization", default: false
     t.boolean  "public_for_departament",  default: false
     t.integer  "branch_id"

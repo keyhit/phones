@@ -45,69 +45,44 @@ Unit.create(name: 'user2O2D1', surename: 'Surename', patronimic: 'Patronimic', s
 Info.create(great_header_en: "Hello in my info page!!!",great_header_ru: "Приветствую Вас на странице информации!", great_header_uk: "Вітаю Вас на сторінці інформації!", header_en: "What is it?", header_ru: "Что єто?", header_uk: "Що це?
 ", text_en: "Goog time for you, dear friend! My name Viacheslav and i am designer of this web site. It's my first experience of programming in ruby with using rails framework. It was created by me as traning space and improve the skills of web programming. My aim is creating phones numbers list of my colegues in different companies. Work is not finished yet and i hope my enthusiasm will not gone.   ", text_ru: "Привет, дорогой друг! Зовут меня Вячеслав, и я автор этого веб-сайта. Это мой первый опыт программирования на руби с использованием платформы rails. Он был создан мной как пространство для тренировок и улучшения навыков веб-программирования. Моя цель - создать список телефонов моих коллег в разных компаниях. Работа еще не закончена, и я надеюсь, что мой энтузиазм не исчезнет.", text_uk: "Привіт, любий друже! Мене звати Вячеслав і я дизайнер цього веб-сайту. Це мій перший досвід програмування на рубі з використанням Rails. Він був створений мною як трeнувальний простір та вдосконалення навичок веб-програмування. Моя мета - створити список телефонів моїх колег у різних компаніях. Робота ще не завершена, і я сподіваюсь, що мій ентузіазм не зникне.", myPhoto: "")
 
-Branch.create!(branch_name_en: 'Agriculture, Forestry and Fisheries')
-Branch.create!(branch_name_en: 'Mining and quarrying')
-Branch.create!(branch_name_en: 'Manufacturing industry')
-Branch.create!(branch_name_en: 'Supply of electricity, gas, steam and air conditioning')
-Branch.create!(branch_name_en: 'Water supply; sewage, waste management')
-Branch.create!(branch_name_en: 'Construction')
-Branch.create!(branch_name_en: 'Wholesale and retail trade; repair of motor vehicles and motorcycles')
-Branch.create!(branch_name_en: 'Transport, warehousing, postal and courier activities')
-Branch.create!(branch_name_en: 'Temporary placement and organization of food')
-Branch.create!(branch_name_en: 'Information and telecommunications')
-Branch.create!(branch_name_en: 'Financial and insurance activities')
-Branch.create!(branch_name_en: 'Real estate operations')
-Branch.create!(branch_name_en: 'Professional, scientific and technical activities')
-Branch.create!(branch_name_en: 'Activity in the field of administrative and auxiliary services')
-Branch.create!(branch_name_en: 'Public administration and defense; compulsory social insurance')
-Branch.create!(branch_name_en: 'Education')
-Branch.create!(branch_name_en: 'Health care and social assistance')
-Branch.create!(branch_name_en: 'Arts, sports, entertainment and recreation')
-Branch.create!(branch_name_en: 'Provision of other types of services')
-Branch.create!(branch_name_en: 'Activities of households')
-Branch.create!(branch_name_en: 'Activities of extraterritorial organizations and bodies')
+Branch.create!(branch_name_en: 'Agriculture, Forestry and Fisheries', branch_name_ru: 'Сельское хозяйство, лесное хозяйство и рыбное хозяйство', branch_name_uk: 'Сільське господарство, лісове господарство та рибне господарство')
 
-Branch.create(branch_name_ru: 'Сельское хозяйство, лесное хозяйство и рыбное хозяйство')
-Branch.create(branch_name_ru: 'Добывающая промышленность и разработка карьеров')
-Branch.create(branch_name_ru: 'Перерабатывающая промышленность')
-Branch.create(branch_name_ru: 'Поставка электроэнергии, газа и кондиционированного воздуха')
-Branch.create(branch_name_ru: 'Водоснабжения; канализация, обращение с отходами')
-Branch.create(branch_name_ru: 'Строительство')
-Branch.create(branch_name_ru: 'Оптовая и розничная торговля; ремонт автотранспортных средств и мотоциклов')
-Branch.create(branch_name_ru: 'Транспорт, складское хозяйство, почтовая и курьерская деятельность')
-Branch.create(branch_name_ru: 'Временное размещения и организация питания')
-Branch.create(branch_name_ru: 'Информация и телекоммуникации')
-Branch.create(branch_name_ru: 'Финансовая и страховая деятельность')
-Branch.create(branch_name_ru: 'Операции с недвижимым имуществом')
-Branch.create(branch_name_ru: 'Профессиональная, научная и техническая деятельность')
-Branch.create(branch_name_ru: 'Деятельность в сфере административного и вспомогательного обслуживания')
-Branch.create(branch_name_ru: 'Государственное управление и оборона; обязательное социальное страхование')
-Branch.create(branch_name_ru: 'Образование')
-Branch.create(branch_name_ru: 'Здравоохранение и предоставление социальной помощи')
-Branch.create(branch_name_ru: 'Искусство, спорт, развлечения и отдых')
-Branch.create(branch_name_ru: 'Предоставление других видов услуг')
-Branch.create(branch_name_ru: 'Деятельность домашних хозяйств')
-Branch.create(branch_name_ru: 'Деятельность экстерриториальных организаций и органов')
+Branch.create!(branch_name_en: 'Mining and quarrying', branch_name_ru: 'Добывающая промышленность и разработка карьеров', branch_name_uk: 'Добувна промисловість і розроблення кар\'єрів')
 
-Branch.create(branch_name_uk: 'Сільське господарство, лісове господарство та рибне господарство')
-Branch.create(branch_name_uk: 'Добувна промисловість і розроблення кар\'єрів')
-Branch.create(branch_name_uk: 'Переробна промисловість')
-Branch.create(branch_name_uk: 'Постачання електроенергії, газу, пари та кондиційованого повітря')
-Branch.create(branch_name_uk: 'Водопостачання; каналізація, поводження з відходами')
-Branch.create(branch_name_uk: 'Будівництво')
-Branch.create(branch_name_uk: 'Оптова та роздрібна торгівля; ремонт автотранспортних засобів і мотоциклів')
-Branch.create(branch_name_uk: 'Транспорт, складське господарство, поштова та кур\'єрська діяльність')
-Branch.create(branch_name_uk: 'Тимчасове розміщування й організація харчування')
-Branch.create(branch_name_uk: 'Інформація та телекомунікації')
-Branch.create(branch_name_uk: 'Фінансова та страхова діяльність')
-Branch.create(branch_name_uk: 'Операції з нерухомим майном')
-Branch.create(branch_name_uk: 'Професійна, наукова та технічна діяльність')
-Branch.create(branch_name_uk: 'Діяльність у сфері адміністративного та допоміжного обслуговування')
-Branch.create(branch_name_uk: 'Державне управління й оборона; обов\'язкове соціальне страхування')
-Branch.create(branch_name_uk: 'Освіта')
-Branch.create(branch_name_uk: 'Охорона здоров\'я та надання соціальної допомоги')
-Branch.create(branch_name_uk: 'Мистецтво, спорт, розваги та відпочинок')
-Branch.create(branch_name_uk: 'Надання інших видів послуг')
-Branch.create(branch_name_uk: 'Діяльність домашніх господарств')
-Branch.create(branch_name_uk: 'Діяльність екстериторіальних організацій і органів')
+Branch.create!(branch_name_en: 'Manufacturing industry', branch_name_ru: 'Перерабатывающая промышленность', branch_name_uk: 'Переробна промисловість')
 
+Branch.create!(branch_name_en: 'Supply of electricity, gas, steam and air conditioning', branch_name_ru: 'Поставка электроэнергии, газа и кондиционированного воздуха', branch_name_uk: 'Постачання електроенергії, газу, пари та кондиційованого повітря')
+
+Branch.create!(branch_name_en: 'Water supply; sewage, waste management', branch_name_ru: 'Водоснабжения; канализация, обращение с отходами', branch_name_uk: 'Водопостачання; каналізація, поводження з відходами')
+
+Branch.create!(branch_name_en: 'Construction', branch_name_ru: 'Строительство', branch_name_uk: 'Будівництво')
+
+Branch.create!(branch_name_en: 'Wholesale and retail trade; repair of motor vehicles and motorcycles',branch_name_ru: 'Оптовая и розничная торговля; ремонт автотранспортных средств и мотоциклов', branch_name_uk: 'Оптова та роздрібна торгівля; ремонт автотранспортних засобів і мотоциклів')
+
+Branch.create!(branch_name_en: 'Transport, warehousing, postal and courier activities', branch_name_ru: 'Транспорт, складское хозяйство, почтовая и курьерская деятельность', branch_name_uk: 'Транспорт, складське господарство, поштова та кур\'єрська діяльність')
+
+Branch.create!(branch_name_en: 'Temporary placement and organization of food', branch_name_ru: 'Временное размещения и организация питания', branch_name_uk: 'Тимчасове розміщування й організація харчування')
+
+Branch.create!(branch_name_en: 'Information and telecommunications', branch_name_ru: 'Информация и телекоммуникации', branch_name_uk: 'Інформація та телекомунікації')
+
+Branch.create!(branch_name_en: 'Financial and insurance activities', branch_name_ru: 'Финансовая и страховая деятельность', branch_name_uk: 'Фінансова та страхова діяльність')
+
+Branch.create!(branch_name_en: 'Real estate operations', branch_name_ru: 'Операции с недвижимым имуществом', branch_name_uk: 'Операції з нерухомим майном')
+
+Branch.create!(branch_name_en: 'Professional, scientific and technical activities', branch_name_ru: 'Профессиональная, научная и техническая деятельность', branch_name_uk: 'Професійна, наукова та технічна діяльність')
+
+Branch.create!(branch_name_en: 'Activity in the field of administrative and auxiliary services', branch_name_ru: 'Деятельность в сфере административного и вспомогательного обслуживания', branch_name_uk: 'Діяльність у сфері адміністративного та допоміжного обслуговування')
+
+Branch.create!(branch_name_en: 'Public administration and defense; compulsory social insurance', branch_name_ru: 'Государственное управление и оборона; обязательное социальное страхование', branch_name_uk: 'Державне управління й оборона; обов\'язкове соціальне страхування')
+
+Branch.create!(branch_name_en: 'Education', branch_name_ru: 'Образование', branch_name_uk: 'Освіта')
+
+Branch.create!(branch_name_en: 'Health care and social assistance', branch_name_ru: 'Здравоохранение и предоставление социальной помощи', branch_name_uk: 'Охорона здоров\'я та надання соціальної допомоги')
+
+Branch.create!(branch_name_en: 'Arts, sports, entertainment and recreation', branch_name_ru: 'Искусство, спорт, развлечения и отдых', branch_name_uk: 'Мистецтво, спорт, розваги та відпочинок')
+
+Branch.create!(branch_name_en: 'Provision of other types of services', branch_name_ru: 'Предоставление других видов услуг', branch_name_uk: 'Надання інших видів послуг')
+
+Branch.create!(branch_name_en: 'Activities of households', branch_name_ru: 'Деятельность домашних хозяйств', branch_name_uk: 'Діяльність домашніх господарств')
+
+Branch.create!(branch_name_en: 'Activities of extraterritorial organizations and bodies', branch_name_ru: 'Деятельность экстерриториальных организаций и органов', branch_name_uk: 'Діяльність екстериторіальних організацій і органів')

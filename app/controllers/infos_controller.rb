@@ -1,12 +1,12 @@
 class InfosController < ApplicationController
     before_action :authenticate_unit!, except: %i[ index show]
   before_action :check_rules_global_admin, except: %i[index admin_branches show new create edit update destroy new_password write_new_password]
-  before_action :check_rules_global_moderator, except: %i[index]
-  before_action :check_rules_organization_admin, except: %i[index]
-  before_action :check_rules_organization_moderator, except: %i[index]
-  before_action :check_rules_departament_admin, except: %i[index]
-  before_action :check_rules_departament_moderator, except: %i[index]
-  before_action :check_rules_user, except: %i[index]
+  before_action :check_rules_global_moderator, except: %i[index show]
+  before_action :check_rules_organization_admin, except: %i[index show]
+  before_action :check_rules_organization_moderator, except: %i[index show]
+  before_action :check_rules_departament_admin, except: %i[index show]
+  before_action :check_rules_departament_moderator, except: %i[index show]
+  before_action :check_rules_user, except: %i[index show]
 
   def index; end
 
