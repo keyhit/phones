@@ -1,6 +1,6 @@
 class DepartamentsController < ApplicationController
   before_action :authenticate_unit!
-  before_action :check_rules_global_admin, except: %i[index show new create edit update destroy]
+  before_action :check_rules_global_admin, except: %i[index show new create first_departament edit update destroy]
   before_action :check_rules_global_moderator, except: %i[index show edit update]
   before_action :check_rules_organization_admin, except: %i[index show new create first_departament edit update destroy]
   before_action :check_rules_organization_moderator, except: %i[index show edit update]
@@ -29,7 +29,7 @@ class DepartamentsController < ApplicationController
   def first_departament
     @first_departament = Departament.new(departament_params)
     if @first_departament.save
-      flash[:notice] = 'First departament saved!'
+      flash[:success] = 'First departament saved!'
       @unit_for_departament_create = Unit.find(current_unit.id)
       @unit_for_departament_create.update(departament_id: @first_departament.id)
       @departament_for_update = Departament.find(@first_departament.id)

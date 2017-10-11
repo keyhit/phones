@@ -8,4 +8,13 @@ class Unit < ApplicationRecord
   belongs_to :departament, optional: true
   attr_accessor :unitphoto
   mount_uploader :unitphoto, UnitphotoUploader
+
+  before_save :initial_unit_roles
+  def initial_unit_roles
+    if Unit.first.nil?
+      self.role = 'global_admin'
+    elsif self.role.nil?
+      self.role = 'organization_admin'
+    end
+  end
 end

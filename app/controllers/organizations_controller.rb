@@ -29,8 +29,7 @@ class OrganizationsController < ApplicationController
   def create
     @organization = Organization.new(organization_params)
     if @organization.save
-      flash[:notice] = 'Organization saved!'
-      flash[:notice] = @organization.id
+      flash[:success] = 'Organization saved!'
       @unit_for_organization_create = Unit.find(current_unit.id)
       @unit_for_organization_create.update(organization_id: @organization.id)
       redirect_to update_account_path

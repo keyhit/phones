@@ -9,6 +9,8 @@ class BranchesController < ApplicationController
   before_action :check_rules_user, except: [:index]
   def index; end
 
+  def admin_branches; end
+
   def show; end
 
   def new; end
@@ -47,7 +49,6 @@ class BranchesController < ApplicationController
     end
   end
 
-  def admin_branches; end
 
   def select_branch; end
 

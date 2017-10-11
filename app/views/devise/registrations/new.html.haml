@@ -36,10 +36,6 @@
           .field
             = f.label :password_confirmation
             %br/
-            - if Branch.first
-              = f.hidden_field :role, value: 'organization_admin'
-            -else
-              = f.hidden_field :role, value: 'global_admin'
             = f.password_field :password_confirmation, autocomplete: "off"
           .actions
             = f.submit "Sign up"

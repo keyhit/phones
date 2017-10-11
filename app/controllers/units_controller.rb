@@ -1,6 +1,6 @@
 class UnitsController < ApplicationController
   before_action :authenticate_unit!, except: %i[registration_new_unit save_new_unit]
-  before_action :check_rules_global_admin, except: %i[index admin_branches show new create edit update destroy new_password write_new_password locale]
+  before_action :check_rules_global_admin, except: %i[index admin_branches show new create edit update update_account update_unit_branch_id destroy new_password write_new_password locale]
   before_action :check_rules_global_moderator, except: %i[index admin_branches show edit update new_password write_new_password locale]
   before_action :check_rules_organization_admin, except: %i[index show new create edit update destroy update_account update_unit_branch_id find_name new_password write_new_password locale]
   before_action :check_rules_organization_moderator, except: %i[index show new create edit update new_password write_new_password locale]
@@ -34,7 +34,6 @@ class UnitsController < ApplicationController
       flash[:error] = 'Unit was saved!'
       redirect_to branch_organization_departament_units_path(branch, organization, departament)
     else
-      @new_unit.errors
       flash[:error] = 'Unit was not saved!'
       @redirect_to_units
     end
@@ -58,7 +57,7 @@ class UnitsController < ApplicationController
     @update_unit_branch_id = Unit.where(id: current_unit.id)
 
     if @update_unit_branch_id.update(unit_params)
-      flash[:notice] = 'Branch ID was updated!'
+      flash[:success] = 'Branch ID was updated!'
       redirect_to update_account_path
     else
       flash[:error] = 'Branch ID was not updated!'
