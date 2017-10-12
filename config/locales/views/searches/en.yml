@@ -22,7 +22,7 @@ en:
       skills: "Skills"
       photo: "Photo"
       description: "Description"
-      name_surename_patronimic: "Name, surename, patronimic"
+      name_surename_patronymic: "Name, surename, patronymic"
       post: "Post"
       email: "Email"
       phone_number: "Phone number"

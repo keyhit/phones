@@ -1,0 +1,40 @@
+en:
+  devise:
+    registrations:
+      new:
+        sign_up_header: "SIGN UP"
+        name: "Name"
+        surename: "Surename"
+        patronymic: "Patronymic"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        sign_up: "Sign up"
+        cancel: "Cancel"
+    shared:
+      links:
+        log_in: "Log in"
+        sign_up: "Sign up"
+        forgot_your_password: "Forgot_your_password ?"
+    sessions:
+      new:
+        log_in_header: "Log in"
+        password: "Password"
+        remember_me: "Remember me"
+        log_in: "Log in"
+    passwords:
+      new:
+        forgot_your_password: "RECOVERING PASSWORD"
+        send_me_reset_password_instructions: "Send me reset password instructions"
+      edit:
+        change_your_password: "Change your password"
+        characters_minimum: "Characters minimum"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        change_my_password: "Change my password"
+    mailer:
+      reset_password_instructions:
+        hello: "Hello"
+        sentences_1: "Someone has requested a link to change your password. You can do this through the link below."
+        change_my_password: "Change my password"
+        sentences_2: "If you didn't request this, please ignore this email."
+        sentences_3: "Your password won't change until you access the link above and create a new one."

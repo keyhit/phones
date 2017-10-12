@@ -3,7 +3,7 @@ class AddDeviseToUnits < ActiveRecord::Migration[5.0]
     create_table :units do |t|
       t.string     :name
       t.string     :surename
-      t.string     :patronimic
+      t.string     :patronymic
       t.string     :subordinated
       t.integer    :subordinated_id
       t.string     :post

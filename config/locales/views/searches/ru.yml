@@ -22,7 +22,7 @@ ru:
       skills: "Скилы"
       photo: "Фото"
       description: "Описание"
-      name_surename_patronimic: "Имя, фамилия, отчество"
+      name_surename_patronymic: "Имя, фамилия, отчество"
       post: "Должность"
       email: "Email"
       phone_number: "Телефонный номер"

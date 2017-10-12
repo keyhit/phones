@@ -6,7 +6,7 @@ uk:
       about_unit: "Про співробітника"
       characteristic: "Характеристика"
       personal_id: "Особистий ідентифікатор"
-      name_surename_patronimic: "Ім'я, прізвище, по батькові"
+      name_surename_patronymic: "Ім'я, прізвище, по батькові"
       subordinated: "Підпорядкований"
       belong_to_departament: "Належить до відділу"
       has_post_of: "Посада"

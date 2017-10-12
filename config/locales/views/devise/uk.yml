@@ -1,0 +1,40 @@
+uk:
+  devise:
+    registrations:
+      new:
+        sign_up_header: "РЕЄСТРАЦІЯ"
+        name: "Ім'я"
+        surename: "Прізвище"
+        patronymic: "По батькові"
+        password: "Пароль"
+        password_confirmation: "Підтвердження паролю"
+        sign_up: "Зареєструватися"
+        cancel: "Скасувати"
+    shared:
+      links:
+        log_in: "Вхід"
+        sign_up: "Реєстрація"
+        forgot_your_password: "Забули свій пароль?"
+    sessions:
+      new:
+        log_in_header: "Авторизація"
+        password: "Пароль"
+        remember_me: "Запам'ятати мене"
+        log_in: "Авторизуватися"
+    passwords:
+      new:
+        forgot_your_password: "ВІДНОВЛЕННЯ ПАРОЛЮ"
+        send_me_reset_password_instructions: "Надіслати інструкцію для зміни паролю"
+      edit:
+        change_your_password: "ЗМІНА ПАРОЛЮ"
+        characters_minimum: "символів мінімум"
+        password: "Пароль"
+        password_confirmation: "Підтвердження паролю"
+        change_my_password: "Змінити пароль"
+    mailer:
+      reset_password_instructions:
+        hello: "Вітаю!!!"
+        sentences_1: " Вам надіслано посилання для зміни Вашого паролю. Перейдіть за посиланню нижче і зробіть це."
+        change_my_password: "Змінити мій пароль"
+        sentences_2: "Якщо ви не посилали це повідомлення то ігноруйте його."
+        sentences_3: "Ваш пароль не зміниться поки ви не перейдете за посиланням вище."

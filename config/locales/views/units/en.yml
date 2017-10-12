@@ -6,7 +6,7 @@ en:
       about_unit: "About unit"
       characteristic: "Characteristic"
       personal_id: "Personal ID"
-      name_surename_patronimic: "Name, surename, patronimic"
+      name_surename_patronymic: "Name, surename, patronymic"
       subordinated: "Subordinated"
       belong_to_departament: "Belong to departament"
       has_post_of: "Has post of"

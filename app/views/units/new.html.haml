@@ -11,7 +11,7 @@
         = bootstrap_form_for :unit, url: branch_organization_departament_units_path( branch_id: branch.id, organization_id: organization.id, departament_id: departament.id ), method: :post do |f|
           = f.text_field :name, value: 'Name'
           = f.text_field :surename, value: 'Surename'
-          = f.text_field :patronimic, value: 'Patronimic'
+          = f.text_field :patronymic, value: 'Patronymic'
           = f.select :subordinated, options_for_select(departament.units.map{ |c| [c.name, c.name] })
           = f.select :departament_id, options_for_select(departaments.map{ |c| [c.departament_name, c.id]})
           = f.text_area :post

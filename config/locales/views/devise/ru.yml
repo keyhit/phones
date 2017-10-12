@@ -1,0 +1,40 @@
+ru:
+  devise:
+    registrations:
+      new:
+        sign_up_header: "РЕГИСТРАЦИЯ"
+        name: "Имя"
+        surename: "Фамилия"
+        patronymic: "Отчество"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        sign_up: "Зарегистрироватся"
+        cancel: "Отменить"
+    shared:
+      links:
+        log_in: "Вход"
+        sign_up: "Регистрация"
+        forgot_your_password: "Забыли свой пароль?"
+    sessions:
+      new:
+        log_in_header: "Авторизация"
+        password: "Пароль"
+        remember_me: "Запомнить меня"
+        log_in: "Авторизироваться"
+    passwords:
+      new:
+        forgot_your_password: "ВОССТАНОВЛЕНИЯ ПАРОЛЯ"
+        send_me_reset_password_instructions: "Прислать инструкцию для изменения пароля"
+      edit:
+        change_your_password: "ИЗМЕНЕНИЕ ПАРОЛЯ"
+        characters_minimum: "символов минимум"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        change_my_password: "Изменить пароль"
+    mailer:
+      reset_password_instructions:
+        hello: "Привет!!!"
+        sentences_1: " Вам пришло сообщение для изменения пароля. Перейдите по ссыле ниже."
+        change_my_password: "Изменить мой пароль"
+        sentences_2: "Если не вы послали это сообщение то игнорируйте его."
+        sentences_3: "Ваш пароль не изменится пока вы не перейдете по ссылке выше."

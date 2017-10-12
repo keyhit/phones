@@ -24,7 +24,7 @@
       %tr
         %th= t '.contact_person'
         - unless departament_public_person.nil?
-          %td= link_to departament_public_person.name + " " + departament_public_person.surename + " " + departament_public_person.patronimic, branch_organization_departament_unit_path(departament_public_person.branch_id, departament_public_person.organization_id, departament_public_person.departament_id, departament_public_person.id)
+          %td= link_to departament_public_person.name + " " + departament_public_person.surename + " " + departament_public_person.patronymic, branch_organization_departament_unit_path(departament_public_person.branch_id, departament_public_person.organization_id, departament_public_person.departament_id, departament_public_person.id)
         - else 
           %td= t '.not_assigned'
       %tr

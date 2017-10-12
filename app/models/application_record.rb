@@ -20,25 +20,25 @@ class ApplicationRecord < ActiveRecord::Base
 
   def self.search_public_organization_units(search)
     if search !=''
-      where('(name LIKE ? OR surename LIKE ? OR patronimic LIKE ? OR post LIKE ?  OR email LIKE ? OR primary_phone_number LIKE ? OR unitphoto LIKE ? OR characteristic LIKE ? OR branch_id LIKE ? OR organization_id LIKE ? OR departament_id LIKE ?) AND (public_for_organization = ?) ', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", true)
+      where('(name LIKE ? OR surename LIKE ? OR patronymic LIKE ? OR post LIKE ?  OR email LIKE ? OR primary_phone_number LIKE ? OR unitphoto LIKE ? OR characteristic LIKE ? OR branch_id LIKE ? OR organization_id LIKE ? OR departament_id LIKE ?) AND (public_for_organization = ?) ', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", true)
     end
   end
 
   def self.search_public_departament_units(search)
     if search !=''
-      where('(name LIKE ? OR surename LIKE ? OR patronimic LIKE ? OR post LIKE ?  OR email LIKE ? OR primary_phone_number LIKE ? OR unitphoto LIKE ? OR characteristic LIKE ? OR branch_id LIKE ? OR organization_id LIKE ? OR departament_id LIKE ?) AND (public_for_departament = ?) ', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", true)
+      where('(name LIKE ? OR surename LIKE ? OR patronymic LIKE ? OR post LIKE ?  OR email LIKE ? OR primary_phone_number LIKE ? OR unitphoto LIKE ? OR characteristic LIKE ? OR branch_id LIKE ? OR organization_id LIKE ? OR departament_id LIKE ?) AND (public_for_departament = ?) ', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", true)
     end
   end
 
   def self.global_search_unit(search)
     if search !=''
-      where('name LIKE ? OR surename LIKE ? OR patronimic LIKE ? OR post LIKE ?  OR email LIKE ? OR primary_phone_number LIKE ? OR unitphoto LIKE ? OR characteristic LIKE ? OR branch_id LIKE ? OR organization_id LIKE ? OR departament_id LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+      where('name LIKE ? OR surename LIKE ? OR patronymic LIKE ? OR post LIKE ?  OR email LIKE ? OR primary_phone_number LIKE ? OR unitphoto LIKE ? OR characteristic LIKE ? OR branch_id LIKE ? OR organization_id LIKE ? OR departament_id LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
     end
   end
 
   def self.search_colegues(search, org_id)
     if search !=''
-      where('name LIKE ? OR surename LIKE ? OR patronimic LIKE ? OR post LIKE ?  OR email LIKE ? OR primary_phone_number LIKE ? OR unitphoto LIKE ? OR characteristic LIKE ? OR branch_id LIKE ? OR organization_id LIKE ? OR departament_id LIKE ? ', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%").rewhere( organization_id: "#{org_id}")
+      where('name LIKE ? OR surename LIKE ? OR patronymic LIKE ? OR post LIKE ?  OR email LIKE ? OR primary_phone_number LIKE ? OR unitphoto LIKE ? OR characteristic LIKE ? OR branch_id LIKE ? OR organization_id LIKE ? OR departament_id LIKE ? ', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%").rewhere( organization_id: "#{org_id}")
     end
   end
 

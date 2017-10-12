@@ -216,7 +216,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    attributes = %i[name surename patronimic belong_to_departament post email secondary_email password password_confirmation primary_phone_number secondary_phone_number short_phone_nunber fax home_phone_number web_page start_work finish_work working_days birthday unitphoto characteristic role subordinate]
+    attributes = %i[name surename patronymic belong_to_departament post email secondary_email password password_confirmation primary_phone_number secondary_phone_number short_phone_nunber fax home_phone_number web_page start_work finish_work working_days birthday unitphoto characteristic role subordinate]
     devise_parameter_sanitizer.permit(:sign_up, keys: attributes)
     devise_parameter_sanitizer.permit(:account_update, keys: attributes)
   end

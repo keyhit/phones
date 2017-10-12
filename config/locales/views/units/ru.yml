@@ -6,7 +6,7 @@ ru:
       about_unit: "О сотруднике"
       characteristic: "Характеристика"
       personal_id: "Персональный идентификатор"
-      name_surename_patronimic: "Імя, фамилия, отчество"
+      name_surename_patronymic: "Імя, фамилия, отчество"
       subordinated: "Начальник"
       belong_to_departament: "Принадлежит к отделу"
       has_post_of: "Пост"

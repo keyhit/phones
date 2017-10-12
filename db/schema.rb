@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20170902213954) do
   create_table "units", force: :cascade do |t|
     t.string   "name"
     t.string   "surename"
-    t.string   "patronimic"
+    t.string   "patronymic"
     t.string   "subordinated"
     t.integer  "subordinated_id"
     t.string   "post"

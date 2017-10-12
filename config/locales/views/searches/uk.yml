@@ -22,7 +22,7 @@ uk:
       skills: "Скіли"
       photo: "Фото"
       description: "Опис"
-      name_surename_patronimic: "Ім'я, прізвище, по-батькові"
+      name_surename_patronymic: "Ім'я, прізвище, по-батькові"
       post: "Посада"
       email: "Email"
       phone_number: "Телефонний номер"

@@ -17,12 +17,11 @@
         .panel-body
           = bootstrap_form_for :organization, url: branch_organizations_path(branch_id:current_unit.branch_id), method: :post do |f|
             = f.text_field :name, label: (t '.organization_name')
-            / = f.select :branch_id, options_for_select(branches.map{ |c| [c.branch_name, c.id] })
             = f.select :subordinated, options_for_select(all_organizations.map{ |c| [c.name, c.name] }), label: (t '.subordinated')
-            = f.select :country, options_for_select(COUNTRIES.map{ |key, value| value }), label: (t '.country')
+            = f.text_field :country, label: (t '.country')
             = f.text_field :state, label: (t '.state')
             = f.text_field :region, label: (t '.region')
-            = f.select :town, options_for_select(SITIES.map{ |key, value| value }), label: (t '.town')
+            = f.text_field :town, label: (t '.town')
             = f.text_field :street, label: (t '.street')
             = f.text_field :build, label: (t '.build')
             = f.text_field :block, label: (t '.block')
