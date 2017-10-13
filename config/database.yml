@@ -53,10 +53,10 @@ production:
   <<: *default
   adapter: postgresql
   encoding: unicode
-  database: deit3uo59hnmkn
+  database: <%= ENV["PRODUCTION_DB_DATABASE"] %>
   pool: 5
-  username: cjdnkjhkijsbot
-  password: d4015e2d365a544023862c00ad393285d2f5182be0de0263403dc855024456c3
+  username: <%= ENV["PRODUCTION_DB_USERNAME"] %>
+  password: <%= ENV["PRODUCTION_DB_PASSWORD"] %>
 
 
 cucumber:
