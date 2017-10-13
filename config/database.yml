@@ -51,7 +51,14 @@ test: &test
 
 production:
   <<: *default
-  database: db/production_postgresql/postgresql
+  adapter: postgresql
+  encoding: unicode
+  database: deit3uo59hnmkn
+  pool: 5
+  username: cjdnkjhkijsbot
+  password: d4015e2d365a544023862c00ad393285d2f5182be0de0263403dc855024456c3
+
 
 cucumber:
   <<: *test
+

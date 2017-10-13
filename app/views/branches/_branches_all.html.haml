@@ -1,5 +1,9 @@
 %ul.list-group
-
+  - if unit_signed_in?
+    - if role_1 || role_2
+      %li 
+      = link_to admin_branches_path(), :title =>'Setup branches' do
+        .glyphicon.glyphicon-wrench
 - branches.each do |branch|
   %li.list-group-item
     = link_to branch_name(branch), branch_organizations_path(branch)
