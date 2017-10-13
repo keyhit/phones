@@ -13,7 +13,7 @@
           = f.text_field :surename
           = f.text_field :patronymic
           = f.select :subordinated, options_for_select(departament.units.map{ |c| [c.name, c.name] })
-          = f.select :departament_id, options_for_select(departaments.map{ |c| [c.departament_name, c.id] })
+          = f.select :departament_id, options_for_select(all_organizations_departaments.all.collect {|p| [ p.departament_name, p.id ] }, { selected: params[:departament_id]})
           = f.text_area :post
           = f.email_field :email
           = link_to 'Change password', new_password_path()

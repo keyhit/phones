@@ -50,9 +50,14 @@ class ApplicationController < ActionController::Base
   helper_method :departament
 
   def departaments
-    @departaments ||= organization.departaments.where(id: params[:organization_id])
+    @departaments ||= organization.departaments.where(params[:organization_id])
   end
   helper_method :departaments
+
+  def all_organizations_departaments
+    @all_organizations_departaments ||= Departament.where(organization_id: params[:organization_id])
+  end
+  helper_method :all_organizations_departaments
 
   def units
     @units ||= departament.units.where(params[:departament_id])

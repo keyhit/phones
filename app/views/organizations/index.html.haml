@@ -14,7 +14,7 @@
         - branch_organizations.each do |branch_organization|
           %li.list-group-item
             - unless branch_organization.organizationlogotype_url.nil?
-              = image_tag branch_organization.organizationlogotype_url, size: "50x62", alt: "company logo"
+              = image_tag branch_organization.organizationlogotype_url, size: "77x103", alt: "company logo"
             = link_to branch_organization.name, branch_organization_path(id: branch_organization.id)
             %small
               = branch_organization.our_skils

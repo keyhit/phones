@@ -6,7 +6,7 @@
   .col-md-1
   .col-md-2
     - unless unit.unitphoto_url.nil?
-      = image_tag(unit.unitphoto_url.to_s, size: "160x120", alt: "my logo", :class => "center-block img-rounded")
+      = image_tag(unit.unitphoto_url.to_s, size: "154x206", alt: "my logo", :class => "center-block img-rounded")
     %h4= t '.characteristic'
     %p= unit.characteristic
   .col-md-7
