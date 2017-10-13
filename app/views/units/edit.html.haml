@@ -8,33 +8,33 @@
       .panel-heading
         EDIT UNIT DATA
       .panel-body 
-        = bootstrap_form_for unit, url: branch_organization_departament_unit_path(branch, organization, departament, unit), method: :patch do |f|
-          = f.text_field :name, value: unit.name
-          = f.text_field :surename, value: unit.surename
-          = f.text_field :patronymic, value: unit.patronymic
+        = bootstrap_form_for unit, url: branch_organization_departament_unit_path(1), method: :patch do |f|
+          = f.text_field :name
+          = f.text_field :surename
+          = f.text_field :patronymic
           = f.select :subordinated, options_for_select(departament.units.map{ |c| [c.name, c.name] })
           = f.select :departament_id, options_for_select(departaments.map{ |c| [c.departament_name, c.id] })
-          = f.text_area :post, value: unit.post
-          = f.email_field :email, value: unit.email
+          = f.text_area :post
+          = f.email_field :email
           = link_to 'Change password', new_password_path()
-          = f.email_field :secondary_email, value: unit.secondary_email
-          = f.telephone_field :primary_phone_number, value: unit.primary_phone_number
-          = f.telephone_field :secondary_phone_number, value: unit.secondary_phone_number
-          = f.telephone_field :short_phone_nunber, value: unit.short_phone_nunber
-          = f.telephone_field :fax, value: unit.fax
-          = f.telephone_field :home_phone_number, value: unit.home_phone_number
-          = f.url_field :web_page, value: unit.web_page
-          = f.time_field :start_work, value: unit.start_work
-          = f.time_field :finish_work, value: unit.finish_work
+          = f.email_field :secondary_email
+          = f.telephone_field :primary_phone_number
+          = f.telephone_field :secondary_phone_number
+          = f.telephone_field :short_phone_nunber
+          = f.telephone_field :fax
+          = f.telephone_field :home_phone_number
+          = f.url_field :web_page
+          = f.time_field :start_work
+          = f.time_field :finish_work
           = f.text_field :working_days, list: 'first-name', value: unit.working_days
           %datalist#first-name
             %option{:value => 'Mon-Fri'}
             %option{:value => 'Day work two rest'}
             %option{:value => 'Vacation'}
             %option{:value => 'Fired'}
-          = f.date_field :birthday, value: unit.birthday
-          = f.file_field :unitphoto, :class => "btn btn-default", value: unit.unitphoto
-          = f.text_area :characteristic, value: unit.characteristic
+          = f.date_field :birthday
+          = f.file_field :unitphoto
+          = f.text_area :characteristic
           - if role_1
             = f.select(:role, options_for_select([[unit.role], ['global_admin', 'global_admin'], ['global_moderator', 'global_moderator'], ['organization_admin', 'organization_admin'], ['organization_moderator', 'organization_moderator'], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
           -elsif role_2
@@ -45,7 +45,7 @@
             = f.select(:role, options_for_select([[unit.role], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
           - elsif role_5
             = f.select(:role, options_for_select([[unit.role], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
-          = f.hidden_field :branch_id, value: params[:branch_id]
+          = f.hidden_field :branch_id
           = f.hidden_field :organization_id, value: params[:organization_id]
           = f.submit :class => "btn btn-primary", data: { "disable-with": "Saving..." }
           = link_to 'CANCEL', branch_organization_departament_unit_path(branch, organization, departament, unit), :type=> "button", :class => "btn btn-danger"

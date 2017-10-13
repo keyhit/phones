@@ -1,6 +1,7 @@
 uk:
   organizations:
     index:
+      all_organizations_of_branch: "Всі організації галузі"
     show:
       map: "Карта"
       departaments: "Відділи"

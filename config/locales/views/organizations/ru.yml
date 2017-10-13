@@ -1,6 +1,7 @@
 ru:
   organizations:
     index:
+      all_organizations_of_branch: "Все организации отросли"
     show:
       map: "Карта"
       departaments: "Подразделения"

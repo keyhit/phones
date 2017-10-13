@@ -4,11 +4,15 @@
   .col-md-3
     = render 'branches_all'
   .col-md-9
-    %ul.list-group
-    - all_organizations.each do |all_organization|
-      %li.list-group-item
-        - unless all_organization.organizationlogotype_url.nil?
-          = image_tag all_organization.organizationlogotype_url, size: "50x62", alt: "company logo"
-        = link_to all_organization.name, branch_organization_path(all_organization.branch_id, all_organization.id)
-        %small
-          = all_organization.our_skils
+    .panel.panel-default
+      .panel-heading 
+        = t '.all_organizations'
+      .panel-body
+        %ul.list-group
+        - all_organizations.each do |all_organization|
+          %li.list-group-item
+            - unless all_organization.organizationlogotype_url.nil?
+              = image_tag all_organization.organizationlogotype_url, size: "50x62", alt: "company logo"
+            = link_to all_organization.name, branch_organization_path(all_organization.branch_id, all_organization.id)
+            %small
+              = all_organization.our_skils

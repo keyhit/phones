@@ -1,5 +1,7 @@
 uk:
   branches:
+    index:
+      all_organizations: "Всі організації"
     new:
       new:       "ДОДАВАННЯ ГАЛУЗІ"
       save:      "ЗБЕРЕГТИ"
@@ -10,3 +12,5 @@ uk:
       save:       "ЗБЕРЕГТИ"
       cancel:     "ВІДХИЛИТИ"
       edit_title: "Редагування назви галузі "
+    branches_all:
+      all_branches: "Всі галузі"
