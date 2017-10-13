@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170902213954) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "branches", force: :cascade do |t|
     t.string   "branch_name_en"
     t.string   "branch_name_ru"
@@ -37,7 +40,7 @@ ActiveRecord::Schema.define(version: 20170902213954) do
     t.integer  "organization_id"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
-    t.index ["organization_id"], name: "index_departaments_on_organization_id"
+    t.index ["organization_id"], name: "index_departaments_on_organization_id", using: :btree
   end
 
   create_table "infos", force: :cascade do |t|
@@ -128,10 +131,13 @@ ActiveRecord::Schema.define(version: 20170902213954) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.index ["departament_id"], name: "index_units_on_departament_id"
-    t.index ["email"], name: "index_units_on_email", unique: true
-    t.index ["organization_id"], name: "index_units_on_organization_id"
-    t.index ["reset_password_token"], name: "index_units_on_reset_password_token", unique: true
+    t.index ["departament_id"], name: "index_units_on_departament_id", using: :btree
+    t.index ["email"], name: "index_units_on_email", unique: true, using: :btree
+    t.index ["organization_id"], name: "index_units_on_organization_id", using: :btree
+    t.index ["reset_password_token"], name: "index_units_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "departaments", "organizations"
+  add_foreign_key "units", "departaments"
+  add_foreign_key "units", "organizations"
 end
