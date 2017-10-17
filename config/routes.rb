@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   patch '/branches/:branch_id/organizations/:organization_id/departaments/:departament_id/units/:id/unit_edit_action', to: 'units#unit_edit_action', as: 'branch_organization_departament_unit_unit_edit_action'
 
   patch 'units', to: 'units#locale', as: 'locale_branch_organization_departament_unit'
-  patch '/branches/:branch_id/organizations/:organization_id/departaments/:departament_id/units/:id/set_public_for_organization', to: 'unit#set_public_for_organization', as: 'set_public_for_organization_branch_organization_departament_unit'
+  patch '/branches/:branch_id/organizations/:organization_id/departaments/:departament_id/unit/:id/set_public_for_organization', to: 'unit#set_public_for_organization', as: 'set_public_for_organization_branch_organization_departament_unit'
   root 'branches#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

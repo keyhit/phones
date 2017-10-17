@@ -13,9 +13,8 @@
   .col-md-7
     %table.table
       %tr
-        = link_to ( t '.public_for_organization'), set_organization_public_unit_branch_organization_path(branch_id: unit.branch_id, organization_id: unit.organization_id, departament_id: unit.departament_id, id: unit.id, organization: {public_unit_id: unit.id}), method: :patch, class: 'btn btn-info'
 
-        = link_to ( t '.unublic_for_organization'), set_organization_public_unit_branch_organization_path(branch_id: unit.branch_id, organization_id: unit.organization_id, departament_id: unit.departament_id, id: unit.id, organization: {public_unit_id: nil}), method: :patch, class: 'btn btn-info'
+
         %th= t '.personal_id'
         %td= unit.id
       %tr
@@ -84,13 +83,9 @@
           - if role_1 || role_2 || role_3
             %td
               - if unit.id.to_i == organization.public_unit_id.to_i
-                = bootstrap_form_for organization, url: set_organization_public_unit_branch_organization_path(branch, organization), method: :patch do |f|
-                  = f.hidden_field :public_unit_id, value: ''
-                  = f.submit value: ( t '.unublic_for_organization'), class: 'btn btn-info'
+                = link_to ( t '.unublic_for_organization'), set_organization_public_unit_branch_organization_path(branch_id: unit.branch_id, id: unit.organization_id, organization: { id: unit.organization_id,public_unit_id: nil }, unit: { id: unit.id, public_for_organization: false }), method: :patch, class: 'btn btn-info'
               -else 
-                = bootstrap_form_for organization, url: set_organization_public_unit_branch_organization_path(branch, organization), method: :patch do |f|
-                  = f.hidden_field :public_unit_id, value: unit.id
-                  = f.submit value: ( t '.public_for_organization'), class: 'btn btn-info'
+                = link_to ( t '.public_for_organization'), set_organization_public_unit_branch_organization_path(branch_id: unit.branch_id, id: unit.organization_id, organization: { id: unit.organization_id,public_unit_id: unit.id }, unit: { unit_id: unit.id, public_for_organization: 'true' }), method: :patch, class: 'btn btn-info'
             %td
               - if unit.id.to_i == departament.public_unit_id.to_i
                 = bootstrap_form_for departament, url: branch_organization_departament_path(branch, organization, departament), method: :patch do |f|

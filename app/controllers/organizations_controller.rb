@@ -49,7 +49,10 @@ class OrganizationsController < ApplicationController
   def set_organization_public_unit
     if organization.update(set_organization_public_unit_params)
       flash[:notice] = 'Unit id assigned for organization!'
-      redirect_to set_public_for_organization_branch_organization_departament_unit_path(1, 1, 1, 1, method: :patch)
+      @unit ||= Unit.find(params[:id])
+      @unit.update(set_public_for_organization_params)
+      flash[:notice] = params[:departament_id]
+      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -70,8 +73,13 @@ class OrganizationsController < ApplicationController
   end
 
   def set_organization_public_unit_params
-    params.require(:organization).permit(:branch_id, :public_unit_id)
+    params.require(:organization).permit(:id, :public_unit_id)
   end
+
+  def set_public_for_organization_params
+    params.require(:unit).permit(:public_for_organization)
+  end
+
   def organization
     @organization ||= Organization.find(params[:id])
   end

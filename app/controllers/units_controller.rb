@@ -65,11 +65,11 @@ class UnitsController < ApplicationController
     end
   end
 
-  def set_public_for_organization
-    if unit.update(set_public_for_organization_params)
-      flash[:notice] = 'Unit public for organization now!'
-    end
-  end
+  # def set_public_for_organization
+  #   if unit.update(set_public_for_organization_params)
+  #     flash[:notice] = 'Unit public for organization now!11111111111'
+  #   end
+  # end
 
   def destroy
     if unit.destroy
@@ -132,9 +132,9 @@ class UnitsController < ApplicationController
     params.require(:unit).permit(:locale)
   end
 
-  def set_public_for_organization_params
-    params.require(:unit).permit(:public_for_organization)
-  end
+  # def set_public_for_organization_params
+  #   params.require(:unit).permit(:public_for_organization)
+  # end
 
   def units
     @units ||= departament.units
