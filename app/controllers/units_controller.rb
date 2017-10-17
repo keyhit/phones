@@ -65,6 +65,12 @@ class UnitsController < ApplicationController
     end
   end
 
+  def set_public_for_organization
+    if unit.update(set_public_for_organization_params)
+      flash[:notice] = 'Unit public for organization now!'
+    end
+  end
+
   def destroy
     if unit.destroy
       flash[:notice] = 'Unit has been destroyed!'
@@ -124,6 +130,10 @@ class UnitsController < ApplicationController
 
   def units_locale
     params.require(:unit).permit(:locale)
+  end
+
+  def set_public_for_organization_params
+    params.require(:unit).permit(:public_for_organization)
   end
 
   def units

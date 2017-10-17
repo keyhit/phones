@@ -1,9 +1,9 @@
 class OrganizationsController < ApplicationController
   before_action :authenticate_unit!, except: %i[index show]
-  before_action :check_rules_global_admin, except: %i[index admin_branches show new create edit update destroy]
-  before_action :check_rules_global_moderator, except: %i[index admin_branches show edit update]
-  before_action :check_rules_organization_admin, except: %i[index show new create edit update destroy]
-  before_action :check_rules_organization_moderator, except: %i[index show edit update]
+  before_action :check_rules_global_admin, except: %i[index admin_branches show new create edit update set_organization_public_unit destroy]
+  before_action :check_rules_global_moderator, except: %i[index admin_branches show edit update set_organization_public_unit ]
+  before_action :check_rules_organization_admin, except: %i[index show new create edit update set_organization_public_unit destroy]
+  before_action :check_rules_organization_moderator, except: %i[index show edit update set_organization_public_unit]
   before_action :check_rules_departament_admin, except: %i[index show]
   before_action :check_rules_departament_moderator, except: %i[index show]
   before_action :check_rules_user, except: %i[index show]
@@ -46,6 +46,13 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def set_organization_public_unit
+    if organization.update(set_organization_public_unit_params)
+      flash[:notice] = 'Unit id assigned for organization!'
+      redirect_to set_public_for_organization_branch_organization_departament_unit_path(1, 1, 1, 1, method: :patch)
+    end
+  end
+
   def destroy
     if organization.destroy
       flash[:notice] = 'Organization has been destroyed!'
@@ -56,12 +63,15 @@ class OrganizationsController < ApplicationController
     end
   end
 
-  private
 
+  private
   def organization_params
     params.require(:organization).permit(:name, :country, :state, :region, :town, :street, :build, :block, :office, :subordinated, :address, :web_page, :our_skils, :organizationlogotype, :public_unit_id, :branch_id)
   end
 
+  def set_organization_public_unit_params
+    params.require(:organization).permit(:branch_id, :public_unit_id)
+  end
   def organization
     @organization ||= Organization.find(params[:id])
   end

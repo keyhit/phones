@@ -2,6 +2,7 @@
   = t '.about_unit'
 = content_for :unit_full_name do
   = unit.name
+
 .row
   .col-md-1
   .col-md-2
@@ -12,6 +13,9 @@
   .col-md-7
     %table.table
       %tr
+        = link_to ( t '.public_for_organization'), set_organization_public_unit_branch_organization_path(branch_id: unit.branch_id, organization_id: unit.organization_id, departament_id: unit.departament_id, id: unit.id, organization: {public_unit_id: unit.id}), method: :patch, class: 'btn btn-info'
+
+        = link_to ( t '.unublic_for_organization'), set_organization_public_unit_branch_organization_path(branch_id: unit.branch_id, organization_id: unit.organization_id, departament_id: unit.departament_id, id: unit.id, organization: {public_unit_id: nil}), method: :patch, class: 'btn btn-info'
         %th= t '.personal_id'
         %td= unit.id
       %tr
@@ -80,11 +84,11 @@
           - if role_1 || role_2 || role_3
             %td
               - if unit.id.to_i == organization.public_unit_id.to_i
-                = bootstrap_form_for organization, url: branch_organization_path(branch, organization), method: :patch do |f|
+                = bootstrap_form_for organization, url: set_organization_public_unit_branch_organization_path(branch, organization), method: :patch do |f|
                   = f.hidden_field :public_unit_id, value: ''
                   = f.submit value: ( t '.unublic_for_organization'), class: 'btn btn-info'
               -else 
-                = bootstrap_form_for organization, url: branch_organization_path(branch, organization), method: :patch do |f|
+                = bootstrap_form_for organization, url: set_organization_public_unit_branch_organization_path(branch, organization), method: :patch do |f|
                   = f.hidden_field :public_unit_id, value: unit.id
                   = f.submit value: ( t '.public_for_organization'), class: 'btn btn-info'
             %td
