@@ -17,4 +17,16 @@ class Unit < ApplicationRecord
       self.role = 'organization_admin'
     end
   end
+
+  def self.set_public_for_organization(organization_id, public_unit_id)
+    if self.where(organization_id: "#{ organization_id }").update(public_for_organization: false) && self.where(id: "#{ public_unit_id }").update(public_for_organization: true)
+      return true
+    end
+  end
+
+  def self.unset_public_for_organization(organization_id)
+    if self.where(organization_id: "#{ organization_id }").update(public_for_organization: false)
+      return true
+    end
+  end
 end

@@ -1,9 +1,9 @@
 class OrganizationsController < ApplicationController
   before_action :authenticate_unit!, except: %i[index show]
-  before_action :check_rules_global_admin, except: %i[index admin_branches show new create edit update set_organization_public_unit destroy]
-  before_action :check_rules_global_moderator, except: %i[index admin_branches show edit update set_organization_public_unit ]
-  before_action :check_rules_organization_admin, except: %i[index show new create edit update set_organization_public_unit destroy]
-  before_action :check_rules_organization_moderator, except: %i[index show edit update set_organization_public_unit]
+  before_action :check_rules_global_admin, except: %i[index admin_branches show new create edit update set_public_unit_id unset_public_unit_id  destroy]
+  before_action :check_rules_global_moderator, except: %i[index admin_branches show edit update set_public_unit_id unset_public_unit_id ]
+  before_action :check_rules_organization_admin, except: %i[index show new create edit update set_public_unit_id unset_public_unit_id destroy]
+  before_action :check_rules_organization_moderator, except: %i[index show edit update set_public_unit_id unset_public_unit_id]
   before_action :check_rules_departament_admin, except: %i[index show]
   before_action :check_rules_departament_moderator, except: %i[index show]
   before_action :check_rules_user, except: %i[index show]
@@ -46,14 +46,22 @@ class OrganizationsController < ApplicationController
     end
   end
 
-  def set_organization_public_unit
-    if organization.update(set_organization_public_unit_params)
-      flash[:notice] = 'Unit id assigned for organization!'
-      @unit = Unit.find(params[:id])
-      @unit.update(set_public_for_organization_params)
-      flash[:notice] = params[:departament_id]
-      redirect_back(fallback_location: root_path)
+  def set_public_unit_id
+    if organization.update(set_public_unit_id_params) && Unit.set_public_for_organization(params[:organization][:organization_id], params[:organization][:public_unit_id])
+      flash[:notice] = "Unit id assigned for organization! Set public for organization!"
+    else
+      flash[:error] = "Unit id NOT assigned for organization! ERROR setting public for organization"
     end
+    redirect_back fallback_location: root_path
+  end
+  
+  def unset_public_unit_id
+    if organization.update(set_public_unit_id_params) && Unit.unset_public_for_organization(params[:organization][:organization_id])
+      flash[:notice] = "Unit id UNassigned for organization! UNSet public for organization!"
+    else
+      flash[:error] = "Unit id STILL assigned for organization! ERROR setting public for organization"
+    end
+    redirect_back fallback_location: root_path
   end
 
   def destroy
@@ -66,18 +74,13 @@ class OrganizationsController < ApplicationController
     end
   end
 
-
   private
   def organization_params
     params.require(:organization).permit(:name, :country, :state, :region, :town, :street, :build, :block, :office, :subordinated, :address, :web_page, :our_skils, :organizationlogotype, :public_unit_id, :branch_id)
   end
 
-  def set_organization_public_unit_params
-    params.require(:organization).permit(:id, :public_unit_id)
-  end
-
-  def set_public_for_organization_params
-    params.require(:unit).permit(:public_for_organization)
+  def set_public_unit_id_params
+    params.require(:organization).permit(:public_unit_id)
   end
 
   def organization
