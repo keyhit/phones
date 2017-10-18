@@ -49,7 +49,7 @@ class OrganizationsController < ApplicationController
   def set_organization_public_unit
     if organization.update(set_organization_public_unit_params)
       flash[:notice] = 'Unit id assigned for organization!'
-      @unit ||= Unit.find(params[:id])
+      @unit = Unit.find(params[:id])
       @unit.update(set_public_for_organization_params)
       flash[:notice] = params[:departament_id]
       redirect_back(fallback_location: root_path)
