@@ -15,9 +15,11 @@
         = render 'map'
       #departaments.tab-pane.fade
         %table.table
-          %caption= "#{ t '.departaments_of_company' } #{ organization.name }"
+          %caption
+            =  t '.departaments_of_company'
+            %b
+              = organization.name 
           %tr 
-            %td= t '.id'
             %td= t '.name'
             %td= t '.description'
             %td= t '.contact_person'
@@ -25,8 +27,11 @@
             %td= t '.email'
           - departaments.each do |departament|
             %tr
-              %td= departament.id
-              %td= link_to departament.departament_name, branch_organization_departament_path(branch, organization, departament)
+              %td
+                - if check_visitors
+                  = link_to departament.departament_name, branch_organization_departament_path(branch, organization, departament)
+                - else
+                  = departament.departament_name
               %td= departament.departament_description
 
               %td
@@ -35,24 +40,29 @@
 
 
                 - unless departament_public_unit_id.nil?
-                  = link_to departament_public_unit_id.name + ' ' + departament_public_unit_id.surename, branch_organization_departament_unit_path(departament_public_unit_id.branch_id, departament_public_unit_id.organization_id, departament_public_unit_id.departament_id, departament_public_unit_id.id)
+                  - if check_visitors
+                    = link_to departament_public_unit_id.name + ' ' + departament_public_unit_id.surename, branch_organization_departament_unit_path(departament_public_unit_id.branch_id, departament_public_unit_id.organization_id, departament_public_unit_id.departament_id, departament_public_unit_id.id)
+                  -else
+                    = departament_public_unit_id.name
                 - else
-                  Not assigned
+                  = t '.not_assigned'
               %td
                 - unless departament_public_unit_id.nil?
                   = departament_public_unit_id.primary_phone_number
                   = departament_public_unit_id.fax
                 - else
-                  Not assigned
+                  = t '.not_assigned'
               %td
                 - unless departament_public_unit_id.nil?
                   = departament_public_unit_id.email
-                  = departament.public_unit_id
                 - else
-                  Not assigned
+                  = t '.not_assigned'
   .col-md-6
     %table.table.table-striped
-      %caption= "#{ t '.main_data_of' } #{ organization.name }"
+      %caption
+        = t '.main_data_of'
+        %b 
+          = organization.name
       %tr
         %td
           - unless organization.organizationlogotype_url.nil?
@@ -132,8 +142,9 @@
         %td
           - unless organization_public_person.nil?
             = organization_public_person.email
-            = t '.and'
-            = organization_public_person.secondary_email
+            - if organization_public_person.secondary_email?
+              = t '.and'
+              = organization_public_person.secondary_email
           -else
             = t '.not_assigned'
       %tr

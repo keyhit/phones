@@ -15,4 +15,8 @@ module OrganizationsHelper
       branch.branch_name_uk
     end
   end
+
+  def check_visitors
+    unit_signed_in? && current_unit.organization_id == params[:id].to_i || role_1 || role_2
+  end
 end

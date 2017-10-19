@@ -28,7 +28,7 @@
     %li= departaments_link
   - elsif content_for? :organization_name
     %li= all_companies_link
-    - if unit_signed_in?
+    - if unit_signed_in? && current_unit.organization_id == params[:id].to_i || role_1 || role_2
       %li= departaments_link
   - elsif content_for? :organization_name_for_departaments
     %li= all_companies_link
@@ -80,4 +80,3 @@
     %li= all_companies_link
     %li= admin_branches_link
   - elsif unit_signed_in? and current_unit.branch_id == nil
-    %li= select_branch

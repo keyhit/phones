@@ -11,10 +11,6 @@ module ApplicationHelper
     link_to (t '.add_branch'), new_branch_path
   end
 
-  def select_branch
-    link_to (t '.select_branch'), new_branch_path
-  end
-
   def info_link
     link_to (t '.info'), infos_path()
   end
