@@ -28,7 +28,8 @@
     %li= departaments_link
   - elsif content_for? :organization_name
     %li= all_companies_link
-    %li= departaments_link
+    - if unit_signed_in?
+      %li= departaments_link
   - elsif content_for? :organization_name_for_departaments
     %li= all_companies_link
     %li= my_company_link

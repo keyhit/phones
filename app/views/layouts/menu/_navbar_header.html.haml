@@ -22,30 +22,30 @@
     - elsif content_for? :edit_organization
       = yield(:edit_organization)
     - elsif content_for? :organization_name
-      = t '.contact_information_of'
+      = t '.contact_information_of_company'
       %b
-      = yield(:organization_name)
-      = t '.company'
+        = yield(:organization_name)
     -elsif content_for? :create_departament
       = yield(:create_departament)
     -elsif content_for? :edit_departament 
       = yield(:edit_departament )
     - elsif content_for? :organization_name_for_departaments
-      = t '.all_departaments_of'
+      = t '.all_departaments_of_company'
       %b
-      = yield(:organization_name_for_departaments)
+        = yield(:organization_name_for_departaments)
     - elsif content_for? :departament_name
-      = t '.detail_information_about'
-      = yield(:departament_name)
-      = t '.departament'
+      = t '.detail_info_about'
+      %b
+        = yield(:departament_name)
       = yield(:organization_name)
     -elsif content_for? :all_units_of_departament
       = t '.all_units_of_departament'
-      = yield(:all_units_of_departament)
+      %b
+        = yield(:all_units_of_departament)
     -elsif content_for? :unit_full_name
       = t '.detail_info_about' 
       %b
-      = yield(:unit_full_name)
+        = yield(:unit_full_name)
       = t '.unit'
     - elsif content_for? :new_unit
       = yield(:new_unit)
