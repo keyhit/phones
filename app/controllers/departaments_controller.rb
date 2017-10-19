@@ -1,11 +1,11 @@
 class DepartamentsController < ApplicationController
   before_action :authenticate_unit!
-  before_action :check_rules_global_admin, except: %i[index show new create first_departament edit update destroy]
-  before_action :check_rules_global_moderator, except: %i[index show edit update]
-  before_action :check_rules_organization_admin, except: %i[index show new create first_departament edit update destroy]
-  before_action :check_rules_organization_moderator, except: %i[index show edit update]
-  before_action :check_rules_departament_admin, except: %i[index show edit update]
-  before_action :check_rules_departament_moderator, except: %i[index show edit update]
+  before_action :check_rules_global_admin, except: %i[index show new create first_departament edit update set_public_unit_id unset_public_unit_id destroy]
+  before_action :check_rules_global_moderator, except: %i[index show edit update set_public_unit_id unset_public_unit_id]
+  before_action :check_rules_organization_admin, except: %i[index show new create first_departament edit update set_public_unit_id unset_public_unit_id destroy]
+  before_action :check_rules_organization_moderator, except: %i[index show edit update set_public_unit_id unset_public_unit_id]
+  before_action :check_rules_departament_admin, except: %i[index show edit update set_public_unit_id unset_public_unit_id]
+  before_action :check_rules_departament_moderator, except: %i[index show edit update set_public_unit_id unset_public_unit_id]
   before_action :check_rules_user, except: %i[index show]
   before_action :organizations_isolation
 
@@ -50,7 +50,25 @@ class DepartamentsController < ApplicationController
       flash[:error] = 'Departament was not updated!'
       redirect_to branch_organization_departaments_path(branch, organization)
     end
-end
+  end
+
+  def set_public_unit_id
+    if departament.update(set_unset_public_unit_id_params) && Unit.set_public_for_departament(params[:departament][:departament_id], params[:departament][:public_unit_id])
+      flash[:notice] = "Unit id assigned for departament! Set public for departament!"
+    else
+      flash[:error] = "Unit id NOT assigned for departament! ERROR setting public for departament"
+    end
+    redirect_back fallback_location: root_path
+  end
+  
+  def unset_public_unit_id
+    if departament.update(set_unset_public_unit_id_params) && Unit.unset_public_for_departament(params[:departament][:departament_id])
+      flash[:notice] = "Unit id UNassigned for departament! UNSet public for departament!"
+    else
+      flash[:error] = "Unit id STILL assigned for departament! ERROR setting public for departament"
+    end
+    redirect_back fallback_location: root_path
+  end
 
   def destroy
     if departament.destroy
@@ -77,6 +95,10 @@ end
     @departament ||= departaments.find(params[:id])
   end
   helper_method :departament
+
+  def set_unset_public_unit_id_params
+    params.require(:departament).permit(:public_unit_id)
+  end
 
   def create_departament
     if !organization.departaments.ids[0]

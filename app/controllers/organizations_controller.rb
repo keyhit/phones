@@ -47,7 +47,7 @@ class OrganizationsController < ApplicationController
   end
 
   def set_public_unit_id
-    if organization.update(set_public_unit_id_params) && Unit.set_public_for_organization(params[:organization][:organization_id], params[:organization][:public_unit_id])
+    if organization.update(set_unset_public_unit_id_params) && Unit.set_public_for_organization(params[:organization][:organization_id], params[:organization][:public_unit_id])
       flash[:notice] = "Unit id assigned for organization! Set public for organization!"
     else
       flash[:error] = "Unit id NOT assigned for organization! ERROR setting public for organization"
@@ -56,7 +56,7 @@ class OrganizationsController < ApplicationController
   end
   
   def unset_public_unit_id
-    if organization.update(set_public_unit_id_params) && Unit.unset_public_for_organization(params[:organization][:organization_id])
+    if organization.update(set_unset_public_unit_id_params) && Unit.unset_public_for_organization(params[:organization][:organization_id])
       flash[:notice] = "Unit id UNassigned for organization! UNSet public for organization!"
     else
       flash[:error] = "Unit id STILL assigned for organization! ERROR setting public for organization"
@@ -79,7 +79,7 @@ class OrganizationsController < ApplicationController
     params.require(:organization).permit(:name, :country, :state, :region, :town, :street, :build, :block, :office, :subordinated, :address, :web_page, :our_skils, :organizationlogotype, :public_unit_id, :branch_id)
   end
 
-  def set_public_unit_id_params
+  def set_unset_public_unit_id_params
     params.require(:organization).permit(:public_unit_id)
   end
 

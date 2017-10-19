@@ -29,4 +29,16 @@ class Unit < ApplicationRecord
       return true
     end
   end
+
+  def self.set_public_for_departament(departament_id, public_unit_id)
+    if self.where(departament_id: "#{ departament_id }").update(public_for_departament: false) && self.where(id: "#{ public_unit_id }").update(public_for_departament: true)
+      return true
+    end
+  end
+
+  def self.unset_public_for_departament(departament_id)
+    if self.where(departament_id: "#{ departament_id }").update(public_for_departament: false)
+      return true
+    end
+  end
 end

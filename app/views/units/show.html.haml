@@ -2,7 +2,6 @@
   = t '.about_unit'
 = content_for :unit_full_name do
   = unit.name
-/ = Unit.set_public_for_organization(1, 3)
 .row
   .col-md-1
   .col-md-2
@@ -92,12 +91,14 @@
                   = f.submit value: ( t '.public_for_organization'), class: 'btn btn-info'
             %td
               - if unit.id.to_i == departament.public_unit_id.to_i
-                = bootstrap_form_for departament, url: branch_organization_departament_path(branch, organization, departament), method: :patch do |f|
+                = bootstrap_form_for departament, url: unset_public_unit_id_branch_organization_departament_path(branch, organization, departament), method: :patch do |f|
                   = f.hidden_field :public_unit_id, value: ''
+                  = f.hidden_field :departament_id, value: unit.departament_id 
                   = f.submit value: ( t '.unublic_for_own_departament'), class: 'btn btn-info'
               -else 
-                = bootstrap_form_for departament, url: branch_organization_departament_path(branch, organization, departament), method: :patch do |f|
+                = bootstrap_form_for departament, url: set_public_unit_id_branch_organization_departament_path(branch, organization, departament), method: :patch do |f|
                   = f.hidden_field :public_unit_id, value: unit.id
+                  = f.hidden_field :departament_id, value: unit.departament_id 
                   = f.submit value: ( t '.public_for_own_departament'), class: 'btn btn-info'
           %td= link_to ( t '.edit'), edit_branch_organization_departament_unit_path(branch, organization, departament, unit), class: 'btn btn-warning'
           - if organization.public_unit_id.to_i != unit.id.to_i 

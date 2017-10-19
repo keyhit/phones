@@ -23,10 +23,15 @@ Rails.application.routes.draw do
       end
     end
   end
+  patch 'units/update_unit_branch_id', to: 'units#update_unit_branch_id', as: 'update_unit_branch_id'
   patch '/branches/:branch_id/organization/:id' , to: 'organizations#set_organization_public_unit', as: 'set_organization_public_unit_branch_organization'
   post 'departaments', to: 'departaments#first_departament', as: 'first_departament'
+  
+  patch '/branches/:branch_id/organization/:organization_id/departament/:id/set_public_unit_id', to: 'departaments#set_public_unit_id', as: 'set_public_unit_id_branch_organization_departament'
+
+  patch '/branches/:branch_id/organization/:organization_id/departament/:id/unset_public_unit_id', to: 'departaments#unset_public_unit_id', as: 'unset_public_unit_id_branch_organization_departament'
+
   get 'units/update_account', to: 'units#update_account', as: 'update_account'
-  patch 'units/update_unit_branch_id', to: 'units#update_unit_branch_id', as: 'update_unit_branch_id'
   get 'branch/select_branch', to: 'branches#select_branch', as: 'select_branch'
   get 'units/registration_new_unit', to: 'units#registration_new_unit', as: 'registration_new_unit'
   post 'units', to: 'units#save_new_unit', as: 'save_new_unit'
