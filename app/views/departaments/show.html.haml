@@ -37,7 +37,7 @@
           %td= t '.not_assigned'
       %th= t '.email'
       - unless departament_public_person.nil?
-        %td= departament_public_person.email
+        %td= mail_to departament_public_person.email
       - else 
         %td= t '.not_assigned'
 

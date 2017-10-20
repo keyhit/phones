@@ -20,6 +20,6 @@
         = unit.surename
       %td= unit.post
       %td= unit.primary_phone_number
-      %td= unit.email
+      %td= mail_to unit.email
       %td= unit.working_days
       %td= link_to ( t '.unit_data'),branch_organization_departament_unit_path(branch, organization, departament, unit), class: 'btn btn-info'

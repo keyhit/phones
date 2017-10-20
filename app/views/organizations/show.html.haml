@@ -54,7 +54,7 @@
                   = t '.not_assigned'
               %td
                 - unless departament_public_unit_id.nil?
-                  = departament_public_unit_id.email
+                  = mail_to departament_public_unit_id.email
                 - else
                   = t '.not_assigned'
   .col-md-6
@@ -144,10 +144,10 @@
         %th= t'.email'
         %td
           - unless organization_public_person.nil?
-            = organization_public_person.email
+            = mail_to organization_public_person.email
             - if organization_public_person.secondary_email?
               = t '.and'
-              = organization_public_person.secondary_email
+              = mail_to organization_public_person.secondary_email
           -else
             = t '.not_assigned'
       %tr
