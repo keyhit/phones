@@ -35,7 +35,7 @@ uk:
         contact_information_of_company: "Детальніше про компанію"
         all_units_of_departament: "Всі працівники відділу"
         detail_info_about: "Детальніше про відділ"
-        unit: "працівника"
+        full_info_about_unit: "повна інформація про працівника"
       unit_data:
         my_data: "Мої дані"
         branch: "Галузь:"

@@ -35,7 +35,7 @@ en:
         detail_information_about: "Detail information about"
         all_units_of_departament: "All units of departament"
         detail_info_about: "Detail info about departament"
-        unit: "unit"
+        full_info_about_unit: "full information about unit"
       unit_data:
         my_data: "My data"
         branch: "Branch:"

@@ -35,7 +35,7 @@ ru:
         contact_information_of_company: "Подробная информация о компании"
         all_units_of_departament: "Все работники отдела"
         detail_info_about: "Подробнее об отделе "
-        unit: "работнике"
+        full_info_about_unit: "полная информация о работнике"
       unit_data:
         my_data: "Мои данные"
         branch: "Отросль:"
