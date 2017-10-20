@@ -118,7 +118,10 @@
         %th= t '.contact_person'
         %td
           -unless organization_public_person.nil?
-            = link_to organization_public_person.name + " " + organization_public_person.surename + " " + organization_public_person.patronymic, branch_organization_departament_unit_path( organization.branch_id, organization_public_person.organization_id, organization_public_person.departament_id, organization_public_person.id)
+            - if check_visitors
+              = link_to organization_public_person.name + " " + organization_public_person.surename + " " + organization_public_person.patronymic, branch_organization_departament_unit_path( organization.branch_id, organization_public_person.organization_id, organization_public_person.departament_id, organization_public_person.id)
+            - else 
+              = organization_public_person.name + " " + organization_public_person.surename + " " + organization_public_person.patronymic
           -else
             = t '.not_assigned'
       %tr
