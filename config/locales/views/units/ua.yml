@@ -49,6 +49,7 @@ uk:
       you_organization_name: "НАЗВІТЬ ВАШУ ОРГАНІЗАЦІЮ"
       organization_name: "Назва організації"
       subordinated: "Підпорядкований"
+      subordinated_blank: "Нікому не підпорядкований"
       country: "Країна"
       state: "Область"
       region: "Район"

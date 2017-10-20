@@ -49,6 +49,7 @@ en:
       you_organization_name: "YOU ORGANIZATION NAME"
       organization_name: "Organization name"
       subordinated: "Subordinated"
+      subordinated_blank: "Do not obey anyone"
       country: "country"
       state: "State"
       region: "Region"

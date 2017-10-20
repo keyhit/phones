@@ -14,7 +14,7 @@ ru:
     show:
      departament_id: "Идентификатор отдела"
      departament_name: "Название"
-     subordinated: "Подлежит"
+     subordinated: "В подчинении"
      departament_description: "Описание"
      contact_person: "Контактная персона"
      not_assigned: "Не назначено"

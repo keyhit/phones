@@ -10,8 +10,8 @@
       .panel-body
         = bootstrap_form_for organization, url: branch_organization_path(branch, organization), method: :patch do |f|
           = f.text_field :name
-          = f.select :branch_id, options_for_select(select_branch_name)
-          = f.select :subordinated, options_for_select(all_organizations.map{ |c| [c.name, c.name] })
+          = f.select :branch_id, select_branch_name
+          = f.select :subordinated, all_organizations.all.collect { |c| [c.name] }, { include_blank: organization.subordinated, include_blank: (t '.subordinated_blank') , label: (t '.subordinated') }
           = f.text_field :country
           = f.text_field :state
           = f.text_field :region
@@ -24,7 +24,7 @@
           = f.text_area  :our_skils
           = f.label      :organizationlogotype, 'Curent logotype'
           %br
-          = image_tag(organization.organizationlogotype_url.to_s, size: "50x30", alt: "my logo")
+          = image_tag(organization.organizationlogotype_url.to_s, size: "120x160", alt: "my logo")
           = f.file_field :organizationlogotype, :class => "btn btn-default"
           = f.submit :class => "btn btn-primary"
           = link_to 'CANCEL', branch_organization_path(branch, organization), :type=> "button", :class => "btn btn-danger"

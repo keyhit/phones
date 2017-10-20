@@ -36,3 +36,5 @@ en:
       edit: "EDIT"
       remove: "REMOVE"
       confirm: "CAUTION! After you confirm all will be deleted and can't be restored!!!"
+    edit:
+      subordinated_blank: "Do not obey anyone"

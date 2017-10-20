@@ -10,7 +10,7 @@
       .panel-body
         = bootstrap_form_for :organization, url: branch_organizations_path(current_unit.branch_id), method: :post do |f|
           = f.text_field :name
-          = f.select :branch_id, options_for_select(branches.map{ |c| [c.branch_name, c.id] })
+          = f.select :branch_id, options_for_select(branches.all.collect{ |c| [c.branch_name, c.id] })
           = f.select :subordinated, options_for_select(all_organizations.map{ |c| [c.name, c.name] })
           = f.text_field :country
           = f.text_field :state
