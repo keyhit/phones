@@ -33,17 +33,14 @@
                 - else
                   = departament.departament_name
               %td= departament.departament_description
-
               %td
                 - unless departament_public_units_id(departament.public_unit_id).nil?
                   - departament_public_unit_id = departament_public_units_id(departament.public_unit_id)
-
-
                 - unless departament_public_unit_id.nil?
                   - if check_visitors
                     = link_to departament_public_unit_id.name + ' ' + departament_public_unit_id.surename, branch_organization_departament_unit_path(departament_public_unit_id.branch_id, departament_public_unit_id.organization_id, departament_public_unit_id.departament_id, departament_public_unit_id.id)
                   -else
-                    = departament_public_unit_id.name
+                    = departament_public_unit_id.name + departament_public_unit_id.surename
                 - else
                   = t '.not_assigned'
               %td
