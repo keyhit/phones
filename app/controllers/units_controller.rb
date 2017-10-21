@@ -44,10 +44,10 @@ class UnitsController < ApplicationController
   def update
     if unit.update(unit_params)
       flash[:notice] = 'Unit has been edited!'
-      redirect_to branch_organization_departament_units_path(branch, organization, departament, unit)
+      redirect_to branch_organization_departament_unit_path(branch, organization, departament, unit)
     else
       flash[:error] = 'Unit is not edited!'
-      redirect_to branch_organization_departament_units_path(branch, organization, departament, unit)
+      render :edit
     end
   end
 

@@ -2,19 +2,29 @@
   = 'Edit unit data'
 = content_for :edit_unit do
   = 'Edit unit data'
+/.html_safe
 .row
   .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
     .panel.panel-primary
       .panel-heading
-        EDIT UNIT DATA
+        EDIT UNIT DATA (fields, markered "*", must be fulled)
       .panel-body 
-        = bootstrap_form_for unit, url: branch_organization_departament_unit_path(1), method: :patch do |f|
-          = f.text_field :name
-          = f.text_field :surename
-          = f.text_field :patronymic
-          = f.select :subordinated, options_for_select(departament.units.map{ |c| [c.name, c.name] })
-          = f.select :departament_id, options_for_select(all_organizations_departaments.all.collect {|p| [ p.departament_name, p.id ] }, { selected: params[:departament_id]})
-          = f.text_area :post
+        = bootstrap_form_for unit, url: branch_organization_departament_unit_path(branch, organization, departament, unit), method: :patch do |f|
+          = f.label :name, "Name * "
+          %em (1 character minimum, 80 characters maximum)
+          = f.text_field :name, hide_label: true
+          = f.label :surename, "Surename * "
+          %em (1 character minimum, 80 characters maximum)
+          = f.text_field :surename, hide_label: true
+          = f.label :surename, "Patronymic"
+          %em (80 characters maximum)
+          = f.text_field :patronymic, hide_label: true
+          %legend
+          = f.select :subordinated, departament.units.all.collect{ |c| [c.name] }, {include_blank: unit.subordinated}
+          = f.select :departament_id, all_organizations_departaments.all.collect {|p| [ p.departament_name, p.id ] }, { selected: params[:departament_id]}
+          = f.label :post, "Post * "
+          %em (5 character minimum, 80 characters maximum)
+          = f.text_area :post, hide_label: true
           = f.email_field :email
           = link_to 'Change password', new_password_path()
           = f.email_field :secondary_email

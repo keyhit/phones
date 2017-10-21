@@ -41,4 +41,9 @@ class Unit < ApplicationRecord
       return true
     end
   end
+
+  validates :name, presence: true, length: { minimum: 1, maximum: 80 }
+  validates :surename, presence: true, length: { minimum: 1, maximum: 80 }
+  validates :patronymic, presence: true, length: { maximum: 80 }
+  validates :post, presence: true, length: { minimum: 5, maximum: 150 }
 end
