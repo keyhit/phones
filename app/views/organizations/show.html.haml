@@ -40,7 +40,7 @@
                   - if check_visitors
                     = link_to departament_public_unit_id.name + ' ' + departament_public_unit_id.surename, branch_organization_departament_unit_path(departament_public_unit_id.branch_id, departament_public_unit_id.organization_id, departament_public_unit_id.departament_id, departament_public_unit_id.id)
                   -else
-                    = departament_public_unit_id.name + departament_public_unit_id.surename
+                    = departament_public_unit_id.name + " " + departament_public_unit_id.surename
                 - else
                   = t '.not_assigned'
               %td
