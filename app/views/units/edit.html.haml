@@ -7,55 +7,127 @@
   .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
     .panel.panel-primary
       .panel-heading
-        EDIT UNIT DATA (fields, markered "*", must be fulled)
+        EDIT UNIT DATA (fields, markered " * ", must be fulled)
       .panel-body 
         = bootstrap_form_for unit, url: branch_organization_departament_unit_path(branch, organization, departament, unit), method: :patch do |f|
+
+          %legend Name, Surename, Patronymic
+
           = f.label :name, "Name * "
           %em (1 character minimum, 80 characters maximum)
           = f.text_field :name, hide_label: true
-          = f.label :surename, "Surename * "
+
+          = f.label :surename, "Surename"
           %em (1 character minimum, 80 characters maximum)
           = f.text_field :surename, hide_label: true
+
           = f.label :surename, "Patronymic"
           %em (80 characters maximum)
           = f.text_field :patronymic, hide_label: true
-          %legend
-          = f.select :subordinated, departament.units.all.collect{ |c| [c.name] }, {include_blank: unit.subordinated}
-          = f.select :departament_id, all_organizations_departaments.all.collect {|p| [ p.departament_name, p.id ] }, { selected: params[:departament_id]}
+
+          %legend Departament and subordinated
+
+          = f.label :subordinated, "Subordinated *"
+          %em (select chief unit)
+          = f.select :subordinated, departament.units.all.collect{ |c| [c.name] }, {include_blank: unit.subordinated, hide_label: true}
+
+          = f.label :departament_id, "Beliongs to departament * "
+          %em (select departament unit)
+          = f.select :departament_id, all_organizations_departaments.all.collect {|p| [ p.departament_name, p.id ] }, { selected: params[:departament_id], hide_label: true}
+
           = f.label :post, "Post * "
-          %em (5 character minimum, 80 characters maximum)
+          %em (5 character minimum, 150 characters maximum)
           = f.text_area :post, hide_label: true
-          = f.email_field :email
+
+          = f.label :characteristic, "Characteristic"
+          %em (2000 characters maximum)
+          = f.text_area :characteristic, hide_label: true
+
+          %legend Primary phone and email
+
+          = f.label :email, "Email * "
+          %em (use characters "a-z", "0-9", "@", "-", "_", ".", maximum 100 characters)
+          = f.email_field :email, hide_label: true
+
           = link_to 'Change password', new_password_path()
-          = f.email_field :secondary_email
-          = f.telephone_field :primary_phone_number
-          = f.telephone_field :secondary_phone_number
-          = f.telephone_field :short_phone_nunber
-          = f.telephone_field :fax
-          = f.telephone_field :home_phone_number
-          = f.url_field :web_page
-          = f.time_field :start_work
-          = f.time_field :finish_work
-          = f.text_field :working_days, list: 'first-name', value: unit.working_days
+          %br/
+          %br/
+
+          = f.label :primary_phone_number, "Primary phone number * "
+          %em (use maximum 13 characters "+380xxxxxxxxx")
+          = f.telephone_field :primary_phone_number, hide_label: true
+
+          %legend Working days and hours
+
+          = f.label :start_work, "Start work *"
+          %em (when work has started)
+          = f.time_field :start_work, hide_label: true, value: unit.start_work
+
+          = f.label :finish_work, "Finish work *"
+          %em (when work has finished)
+          = f.time_field :finish_work, hide_label: true,value: unit.finish_work
+
+          = f.label :working_days, "Working days *"
+          %em (write down you variant days of work in text field below or delete current value and select your one from list)
+          = f.text_field :working_days, hide_label: true, list: 'first-name', value: unit.working_days
           %datalist#first-name
             %option{:value => 'Mon-Fri'}
             %option{:value => 'Day work two rest'}
             %option{:value => 'Vacation'}
             %option{:value => 'Fired'}
-          = f.date_field :birthday
-          = f.file_field :unitphoto
-          = f.text_area :characteristic
-          - if role_1
-            = f.select(:role, options_for_select([[unit.role], ['global_admin', 'global_admin'], ['global_moderator', 'global_moderator'], ['organization_admin', 'organization_admin'], ['organization_moderator', 'organization_moderator'], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
+
+          %legend Differ unit data
+
+          = f.label :secondary_email, "Secondary_email  "
+          %em (use characters "a-z", "0-9", "@", "-", "_", ".", maximum 100 characters)
+          = f.email_field :secondary_email, hide_label: true
+
+          = f.label :secondary_phone_number, "Secondary phone number"
+          %em (use maximum 13 characters "+380xxxxxxxxx")
+          = f.telephone_field :secondary_phone_number, hide_label: true
+
+          = f.label :short_phone_nunber, "Short phone nunber"
+          %em (use maximum 13 characters "+380xxxxxxxxx", "a-z")
+          = f.telephone_field :short_phone_nunber, hide_label: true
+
+          = f.label :fax, "Fax"
+          %em (use maximum 13 characters "+380xxxxxxxxx")
+          = f.telephone_field :fax, hide_label: true
+
+          = f.label :home_phone_number, "Home phone number"
+          %em (use maximum 13 characters "+380xxxxxxxxx")
+          = f.telephone_field :home_phone_number, hide_label: true
+
+          = f.label :web_page, "Web page"
+          %em (use maximum 150 characters "http", "https", ":", "//", "0-9", "a-z", "-", "_", ".")
+          = f.url_field :web_page, hide_label: true
+
+
+          = f.label :birthday, "Birthday"
+          %em (unit's birth day)
+          = f.date_field :birthday, hide_label: true
+
+          = f.label :locale, "Locale"
+          %em (select unit locale)
+          = f.select :locale, LOCALE.invert.sort, hide_label: true
+
+          = f.label :unitphoto, "Unitphoto"
+          %em (change unitphoto)
+          - unless unit.unitphoto_url.nil?
+            = image_tag(unit.unitphoto_url.to_s, size: "154x206", alt: "my logo", :class => "center-block img-rounded")
+          = f.file_field :unitphoto, hide_label: true
+
+          - if role_1 
+            = f.select :role, ROLE_1
           -elsif role_2
-            = f.select(:role, options_for_select([[unit.role], ['organization_admin', 'organization_admin'], ['organization_moderator', 'organization_moderator'], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
+            = f.select :role, ROLE_2
           - elsif role_3
-            = f.select(:role, options_for_select([[unit.role], ['organization_admin', 'organization_admin'], ['organization_moderator', 'organization_moderator'], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
+            = f.select :role, ROLE_3
           - elsif role_4
-            = f.select(:role, options_for_select([[unit.role], ['departament_admin', 'departament_admin'], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
+            = f.select :role, ROLE_4
           - elsif role_5
-            = f.select(:role, options_for_select([[unit.role], ['departament_moderator', 'departament_moderator'], ['user', 'user']]))
-          = f.hidden_field :branch_id
-          = f.hidden_field :organization_id, value: params[:organization_id]
+            = f.select :role, ROLE_5
+
           = f.submit :class => "btn btn-primary", data: { "disable-with": "Saving..." }
+
           = link_to 'CANCEL', branch_organization_departament_unit_path(branch, organization, departament, unit), :type=> "button", :class => "btn btn-danger"

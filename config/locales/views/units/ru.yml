@@ -23,6 +23,7 @@ ru:
       has_working: "Робочие дни"
       birthday: "День рождения"
       unit_role: "Роль доступа"
+      current_locale: "Текущая локализация"
       adminstrative_actions: "Административные действия:"
       unublic_for_organization: "Не публичный для организации"
       public_for_organization: "Публичный для организации"

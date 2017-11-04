@@ -4,6 +4,6 @@
     %span.caret
   %ul.dropdown-menu
     - LOCALE.each do |key, value|
-      %li.divider{:role => "separator"}
+      %li.divider{ :role => "separator" }
       %li
         #{ link_to value, locale_branch_organization_departament_unit_path( unit: { locale: key }), method: :patch }

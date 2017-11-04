@@ -1,7 +1,7 @@
 module ApplicationHelper
   # Links
   def my_phones_link
-    link_to 'MyPhones', branches_path
+    link_to 'MyPhones - do business in communicate', branches_path
   end
   def admin_branches_link
     link_to (t 'admin_branches'), admin_branches_path

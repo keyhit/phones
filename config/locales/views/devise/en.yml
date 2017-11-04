@@ -2,12 +2,17 @@ en:
   devise:
     registrations:
       new:
-        sign_up_header: "SIGN UP"
+        sign_up_header: "SIGN UP (fields marked \" * \" must be full)"
         name: "Name"
+        name_description: "(1 character minimum, 80 characters maximum)"
         surename: "Surename"
         patronymic: "Patronymic"
-        password: "Password"
-        password_confirmation: "Password confirmation"
+        email: "Email * "
+        email_description: "(use characters \"a-z\", \"0-9\", \"@\", \"-\", \"_\", \".\", maximum 100 characters)"
+        password: "Password * "
+        password_description: "(6 characters minimum, 64 characters maximum)"
+        password_confirmation: "Password confirmation * "
+        password_confirmation_description: "(repeat input you password)"
         sign_up: "Sign up"
         cancel: "Cancel"
     shared:

@@ -23,6 +23,7 @@ en:
       has_working: "Has working"
       birthday: "Birthday"
       unit_role: "Unit role"
+      current_locale: "Current locale"
       adminstrative_actions: "Adminstrative actions:"
       unublic_for_organization: "Unublic for organization"
       public_for_organization: "Public for organization"

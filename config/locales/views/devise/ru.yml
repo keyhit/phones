@@ -2,12 +2,17 @@ ru:
   devise:
     registrations:
       new:
-        sign_up_header: "РЕГИСТРАЦИЯ"
-        name: "Имя"
+        sign_up_header: "РЕГИСТРАЦИЯ (поля помеченые \" * \" обязательны для заполнения)"
+        name: "Имя * "
+        name_description: "(1 символ мінімум, 80 символів максимум)"
         surename: "Фамилия"
         patronymic: "Отчество"
-        password: "Пароль"
-        password_confirmation: "Подтверждение пароля"
+        email: "Email * "
+        email_description: "(используйте символы \"a-z\", \"0-9\", \"@\", \"-\", \"_\", \".\", максимум 100 символов)"
+        password: "Пароль * "
+        password_description: "(6 символов минимум, 64 символа максимум)"
+        password_confirmation: "Подтверждение пароля * "
+        password_confirmation_description: "(повторите ввод пароля)"
         sign_up: "Зарегистрироватся"
         cancel: "Отменить"
     shared:

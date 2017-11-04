@@ -1,4 +1,13 @@
 APPLICATION_NAME = 'MyPhones'.freeze
-COUNTRIES = { '1': 'Україна', '2': 'Белорусь', '3': 'Россия'} 
-SITIES = { '1': 'Київ', '2': 'Черкаси', '3': 'Львів'} 
-LOCALE = { uk: 'Українська мова', ru: 'Русский язык', en: 'English language' }
+
+LOCALE = { uk: 'Українська мова', ru: 'Русский язык', en: 'English language' }.freeze
+
+ROLE_1 = %w[global_admin global_moderator organization_admin organization_moderator departament_admin departament_moderator user].freeze
+
+ROLE_2 = %w[organization_admin organization_moderator departament_admin departament_moderator user].freeze
+
+ROLE_3 = %w[organization_moderator departament_admin departament_moderator user].freeze
+
+ROLE_4 = %w[departament_admin departament_moderator user].freeze
+
+ROLE_5 = %w[departament_moderator user].freeze

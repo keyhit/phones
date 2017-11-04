@@ -79,3 +79,8 @@ group :test do
   gem 'database_cleaner'
 end
 gem 'rspec'
+
+group :test, :development do
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
+end

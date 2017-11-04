@@ -13,6 +13,8 @@
           .field
             = f.label t '.name'
             %br/
+            %em 
+              = (t '.name_description')
             = f.text_field :name, hide_label: true
           .field
             = f.label t '.surename'
@@ -23,18 +25,23 @@
             %br/
             = f.text_field :patronymic, hide_label: true
           .field
-            = f.label :email
+            = f.label :email, (t '.email')
+            %br/
+            %em 
+              = (t '.email_description')
             %br/
             = f.email_field :email, autofocus: true, hide_label: true
           .field
-            = f.label t '.password'
-            - if @minimum_password_length
-              %em
-                (#{@minimum_password_length} characters minimum)
+            = f.label :password, (t '.password')
             %br/
+            %em 
+              = (t '.password_description')
             = f.password_field :password, autocomplete: "off", hide_label: true
           .field
-            = f.label t '.password_confirmation'
+            = f.label :password_confirmation, (t '.password_confirmation')
+            %br/
+            %em 
+              = (t '.password_confirmation_description')
             %br/
             = f.password_field :password_confirmation, autocomplete: "off", hide_label: true
           .actions

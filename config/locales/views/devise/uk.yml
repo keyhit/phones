@@ -2,12 +2,17 @@ uk:
   devise:
     registrations:
       new:
-        sign_up_header: "РЕЄСТРАЦІЯ"
-        name: "Ім'я"
+        sign_up_header: "РЕЄСТРАЦІЯ (поля помічені \" * \" обов'язкові)"
+        name: "Ім'я * "
+        name_description: "(1 символ минимум, 80 символов максимум)"
         surename: "Прізвище"
         patronymic: "По батькові"
-        password: "Пароль"
-        password_confirmation: "Підтвердження паролю"
+        email: "Email * "
+        email_description: "(використовуйте символи \"a-z\", \"0-9\", \"@\", \"-\", \"_\", \".\", максимум 100 символів)"
+        password: "Пароль * "
+        password_description: "(6 символів мінімум, 64 символи максимум)"
+        password_confirmation: "Підтвердження паролю * "
+        password_confirmation_description: "(повторіть введення паролю)"
         sign_up: "Зареєструватися"
         cancel: "Скасувати"
     shared:

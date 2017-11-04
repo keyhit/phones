@@ -23,6 +23,7 @@ uk:
       has_working: "Робочі дні"
       birthday: "День народження"
       unit_role: "Роль доступу"
+      current_locale: "Поточна локалізація"
       adminstrative_actions: "Адміністративні дії:"
       unublic_for_organization: "Не публічний для організації"
       public_for_organization: "Публічний для організації"
