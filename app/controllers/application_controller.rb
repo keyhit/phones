@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   helper_method :unit_organization
 
   def departament
-    @departament ||= organization.departaments.find(params[:departament_id])
+    @departament ||= Departament.find(params[:departament_id])
   end
   helper_method :departament
 

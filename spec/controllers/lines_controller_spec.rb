@@ -43,7 +43,7 @@ RSpec.describe LinesController, type: :controller do
   describe 'PATCH #update' do
     it 'has change rec' do
       line = create(:line)
-      patch :update, params: { id: line.id , line: { rec: 'Edited rec'}}
+      patch :update, params: { id: line.id, line: { rec: 'Edited rec' } }
       line.reload
       expect(line.rec).to eq('Edited rec')
     end

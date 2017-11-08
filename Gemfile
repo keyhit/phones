@@ -50,24 +50,19 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'haml'
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap_form'
-gem 'sprockets-rails', '~> 3.2.0'
-
-
 gem 'carrierwave', '~> 1.0'
 gem 'cloudinary'
 gem 'devise'
 gem 'erb2haml'
 gem 'figaro', '~> 1.1.1'
-gem 'rubocop', require: false
-gem 'rubocop-rspec'
+gem 'haml'
 gem 'json'
-gem 'jquery-rails'
 gem 'rails-i18n', '~> 5.0.0' # For 5.0.x and 5.1.x
+gem 'rubocop', require: false
+gem 'sprockets-rails', '~> 3.2.0'
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
@@ -75,12 +70,10 @@ end
 
 group :test do
   gem 'cucumber-rails', require: false
-  # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
-end
-gem 'rspec'
-
-group :test, :development do
   gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+  gem 'rspec'
   gem 'rspec-rails'
+  gem 'rubocop-rspec'
 end

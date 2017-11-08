@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
   get 'units/update_account', to: 'units#update_account', as: 'update_account'
   get 'branch/select_branch', to: 'branches#select_branch', as: 'select_branch'
-  get 'units/registration_new_unit', to: 'units#registration_new_unit', as: 'registration_new_unit'
+  # get 'units/registration_new_unit', to: 'units#registration_new_unit', as: 'registration_new_unit'
   post 'units', to: 'units#save_new_unit', as: 'save_new_unit'
 
   get '/branches/:branch_id/organizations/:organization_id/departaments/:departament_id/units/:id/new_password', to: 'units#new_password', as: 'new_password'

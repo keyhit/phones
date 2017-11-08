@@ -13,20 +13,20 @@ class UnitsController < ApplicationController
 
   def show; end
 
-  def registration_new_unit
-    @save_unit = Unit.new
-  end
+  # def registration_new_unit
+  #   @save_unit = Unit.new
+  # end
 
-  def save_new_unit
-    @save_unit = Unit.new(unit_params)
-    if @save_unit.save
-      flash[:notice] = 'Unit was saved!'
-      redirect_to new_unit_session_path
-    else
-      flash[:error] = 'Unit was not saved!'
-      render :registration_new_unit
-    end
-  end
+  # def save_new_unit
+  #   @save_unit = Unit.new(unit_params)
+  #   if @save_unit.save
+  #     flash[:notice] = 'Unit was saved!'
+  #     redirect_to new_unit_session_path
+  #   else
+  #     flash[:error] = 'Unit was not saved!'
+  #     render :registration_new_unit
+  #   end
+  # end
 
   def new
     @unit = Unit.new
@@ -35,7 +35,7 @@ class UnitsController < ApplicationController
   def create
     @unit = Unit.new(unit_params)
     if @unit.save
-      flash[:error] = 'Unit was saved!'
+      flash[:notice] = 'Unit was saved!'
       redirect_to branch_organization_departament_units_path(branch, organization, departament)
     else
       flash[:error] = 'Unit was not saved!'
@@ -43,7 +43,9 @@ class UnitsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    # binding.pry
+  end
 
   def update
     if unit.update(unit_params)
@@ -94,7 +96,6 @@ class UnitsController < ApplicationController
   def unit_edit; end
 
   def unit_edit_action
-    # binding.pry
     if unit.update(unit_edit_action_params)
       flash[:notice] = 'User data was saved!'
       redirect_to branch_organization_departament_unit_path(branch, organization, departament)
@@ -106,7 +107,6 @@ class UnitsController < ApplicationController
 
   def locale
     current_unit.update(unit_params)
-    # binding.pry
     redirect_back(fallback_location: root_path)
   end
 
