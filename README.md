@@ -1,10 +1,10 @@
-## h2 MyPhones - do business in communicate
+## MyPhones - do business in communicate
 
-### h3 Ruby & Rails
+### Ruby & Rails
 + Ruby version 2.3.0
 + Rails version 5.0.6
 
-### h3 Ruby gems used besides default one
+### Ruby gems used besides default one
 
 + development
   - 'bootstrap-sass', '~> 3.3.6'
@@ -28,10 +28,10 @@
   - 'rspec-rails'
   - 'rubocop-rspec'
 
-### h3 Production (Ver 1.0)
+### Production (Ver 1.0)
 + Version on WWW - [myphones.herokuapp.com](https://myphones.herokuapp.com "Visit myphones.herokuapp.com!")
 
-### h3 Future
+### Future
 <blockquote>
   <p><strong>I am not finished</strong> yet. It's long interesting way for getting new experience in  ROR programming. I hope it will became more than hobby. I want it as little step to new work and new tecnologies.</p>
 </blockquote>
