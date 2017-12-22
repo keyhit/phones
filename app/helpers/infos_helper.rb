@@ -50,7 +50,7 @@ module InfosHelper
     end
   end
 
-    def info_great_header(info)
+  def info_great_header(_info)
     if unit_signed_in?
       case current_unit.locale
       when 'ru'
@@ -65,9 +65,9 @@ module InfosHelper
     else
       @info.great_header_uk
     end
-  end
+end
 
-  def info_header(info)
+  def info_header(_info)
     if unit_signed_in?
       case current_unit.locale
       when 'ru'
@@ -84,7 +84,7 @@ module InfosHelper
     end
   end
 
-  def info_text(info)
+  def info_text(_info)
     if unit_signed_in?
       case current_unit.locale
       when 'ru'

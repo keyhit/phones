@@ -15,7 +15,7 @@ class Unit < ApplicationRecord
 
   validates :patronymic, presence: false, allow_blank: true, length: { maximum: 80 }
 
-  validates :post, presence: true, length: { minimum: 5, maximum: 150 } if !@save_unit
+  validates :post, presence: true, length: { minimum: 5, maximum: 150 } unless @save_unit
 
   validates :email, presence: true, format: { with: /\A^([a-z0-9\-_.]*)@([a-z0-9\-_.]*)$\z/ }, length: { maximum: 100 }
 
@@ -46,34 +46,32 @@ class Unit < ApplicationRecord
   def initial_unit_roles
     if Unit.first.nil?
       self.role = 'global_admin'
-    elsif self.role.nil?
+    elsif role.nil?
       self.role = 'organization_admin'
     end
   end
 
   def self.set_public_for_organization(organization_id, public_unit_id)
-    if self.where(organization_id: "#{ organization_id }").update(public_for_organization: false) && self.where(id: "#{ public_unit_id }").update(public_for_organization: true)
-      return true
+    if where(organization_id: organization_id.to_s).update(public_for_organization: false) && where(id: public_unit_id.to_s).update(public_for_organization: true)
+      true
     end
   end
 
   def self.unset_public_for_organization(organization_id)
-    if self.where(organization_id: "#{ organization_id }").update(public_for_organization: false)
-      return true
+    if where(organization_id: organization_id.to_s).update(public_for_organization: false)
+      true
     end
   end
 
   def self.set_public_for_departament(departament_id, public_unit_id)
-    if self.where(departament_id: "#{ departament_id }").update(public_for_departament: false) && self.where(id: "#{ public_unit_id }").update(public_for_departament: true)
-      return true
+    if where(departament_id: departament_id.to_s).update(public_for_departament: false) && where(id: public_unit_id.to_s).update(public_for_departament: true)
+      true
     end
   end
 
   def self.unset_public_for_departament(departament_id)
-    if self.where(departament_id: "#{ departament_id }").update(public_for_departament: false)
-      return true
+    if where(departament_id: departament_id.to_s).update(public_for_departament: false)
+      true
     end
   end
-
-
 end

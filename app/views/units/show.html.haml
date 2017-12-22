@@ -18,14 +18,14 @@
         %th= t '.name_surename_patronymic'
         %td
           = unit.name
-          = unit.surename 
+          = unit.surename
           = unit.patronymic
       %tr
         %th= t '.subordinated'
         %td= unit.subordinated
       %tr
         %th= t '.belong_to_departament'
-        %td=link_to unit.departament.departament_name, branch_organization_departament_path(branch, organization, departament)
+        %td=link_to unit.departament.departament_name,branch_organization_departament_path(branch, organization, departament)
       %tr
         %th= t '.has_post_of'
         %td= unit.post
@@ -98,10 +98,10 @@
                   = f.hidden_field :public_unit_id, value: ''
                   = f.hidden_field :departament_id, value: unit.departament_id 
                   = f.submit value: ( t '.unublic_for_own_departament'), class: 'btn btn-info'
-              -else 
+              -else
                 = bootstrap_form_for departament, url: set_public_unit_id_branch_organization_departament_path(branch, organization, departament), method: :patch do |f|
                   = f.hidden_field :public_unit_id, value: unit.id
-                  = f.hidden_field :departament_id, value: unit.departament_id 
+                  = f.hidden_field :departament_id, value: unit.departament_id
                   = f.submit value: ( t '.public_for_own_departament'), class: 'btn btn-info'
           %td= link_to ( t '.edit'), edit_branch_organization_departament_unit_path(branch, organization, departament, unit), class: 'btn btn-warning'
           - if organization.public_unit_id.to_i != unit.id.to_i 
@@ -111,4 +111,4 @@
       %table.table
         %tr
           %th= t '.adminstrative_actions'
-          %td= link_to ( t '.user_edit'), branch_organization_departament_unit_unit_edit_path(branch, organization, departament, unit), :class => 'btn btn-warning'
+          %td= link_to ( t '.user_edit'),branch_organization_departament_unit_unit_edit_path(branch, organization, departament, unit), :class => 'btn btn-warning'

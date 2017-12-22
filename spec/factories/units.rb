@@ -8,7 +8,7 @@ FactoryBot.define do
     post                    '123456s'
     email                   'viacheslavkarpenkoju@gmail.com'
     secondary_email         nil
-    password               '123456789'
+    password '123456789'
     primary_phone_number    '+380969490444'
     secondary_phone_number  '+380969490444'
     short_phone_nunber      nil

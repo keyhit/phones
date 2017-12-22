@@ -54,18 +54,18 @@ class DepartamentsController < ApplicationController
 
   def set_public_unit_id
     if departament.update(set_unset_public_unit_id_params) && Unit.set_public_for_departament(params[:departament][:departament_id], params[:departament][:public_unit_id])
-      flash[:notice] = "Unit id assigned for departament! Set public for departament!"
+      flash[:notice] = 'Unit id assigned for departament! Set public for departament!'
     else
-      flash[:error] = "Unit id NOT assigned for departament! ERROR setting public for departament"
+      flash[:error] = 'Unit id NOT assigned for departament! ERROR setting public for departament'
     end
     redirect_back fallback_location: root_path
   end
-  
+
   def unset_public_unit_id
     if departament.update(set_unset_public_unit_id_params) && Unit.unset_public_for_departament(params[:departament][:departament_id])
-      flash[:notice] = "Unit id UNassigned for departament! UNSet public for departament!"
+      flash[:notice] = 'Unit id UNassigned for departament! UNSet public for departament!'
     else
-      flash[:error] = "Unit id STILL assigned for departament! ERROR setting public for departament"
+      flash[:error] = 'Unit id STILL assigned for departament! ERROR setting public for departament'
     end
     redirect_back fallback_location: root_path
   end
@@ -83,7 +83,7 @@ class DepartamentsController < ApplicationController
   private
 
   def departament_params
-    params.require(:departament).permit(:departament_name, :subordinated, :public_unit_id,:departament_description, :departamentlogotype, :branch_id, :organization_id)
+    params.require(:departament).permit(:departament_name, :subordinated, :public_unit_id, :departament_description, :departamentlogotype, :branch_id, :organization_id)
   end
 
   def departaments

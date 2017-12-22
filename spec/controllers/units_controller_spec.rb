@@ -6,6 +6,7 @@ RSpec.describe UnitsController, type: :controller do
   let(:organization) { create(:organization, branch_id: branch.id) }
   let(:departament) { create(:departament, branch_id: branch.id) }
   let(:unit) { create(:unit, branch_id: branch.id, organization_id: organization.id, departament_id: departament.id) }
+
   before do
     sign_in unit
   end
@@ -33,9 +34,9 @@ RSpec.describe UnitsController, type: :controller do
 
   # describe 'GET #save_new_unit' do
   #   it '' do
-
   #   end
   # end
+
   describe 'GET #new' do
     it 'assigns a new country to @unit' do
       get :new, params: { branch_id: branch.id, organization_id: organization.id, departament_id: departament.id }
@@ -51,7 +52,7 @@ RSpec.describe UnitsController, type: :controller do
   describe 'POST #create' do
     context 'Create new unit' do
       it 'Create new unit' do
-        post :create, params: {branch_id: branch.id, organization_id: organization.id, departament_id: departament.id, unit: { name: 'Viacheslav', surename: 'Karpenko', patronymic: 'Jurievich', subordinated: 'no', subordinated_id: nil, post: 'Chief', email: 'viacheslavkarpenkoju@gmail.com1', secondary_email: nil, password: '123456789', primary_phone_number: '+380969490444', secondary_phone_number: '+380969490444', short_phone_nunber: nil, fax: '+380969490444', home_phone_number: '+380969490444', web_page: 'https://www.facebook.com/viacheslav.karpenko.75', start_work: '08:30', finish_work: '17:00', working_days: 'Mon-Fri', birthday: nil, unitphoto: nil, characteristic: nil, role: 'global_admin', locale: 'uk', hidden: nil, blocked: nil, public_for_organization: true, public_for_departament: true } }
+        post :create, params: { branch_id: branch.id, organization_id: organization.id, departament_id: departament.id, unit: { name: 'Viacheslav', surename: 'Karpenko', patronymic: 'Jurievich', subordinated: 'no', subordinated_id: nil, post: 'Chief', email: 'viacheslavkarpenkoju@gmail.com1', secondary_email: nil, password: '123456789', primary_phone_number: '+380969490444', secondary_phone_number: '+380969490444', short_phone_nunber: nil, fax: '+380969490444', home_phone_number: '+380969490444', web_page: 'https://www.facebook.com/viacheslav.karpenko.75', start_work: '08:30', finish_work: '17:00', working_days: 'Mon-Fri', birthday: nil, unitphoto: nil, characteristic: nil, role: 'global_admin', locale: 'uk', hidden: nil, blocked: nil, public_for_organization: true, public_for_departament: true } }
         expect(Unit.count).to be(2)
         expect(flash[:notice]).to match 'Unit was saved!'
         expect(response).to have_http_status(302)

@@ -65,3 +65,4 @@ Style/FrozenStringLiteralComment:
 
 Style/RegexpLiteral:
   AllowInnerSlashes: true
+

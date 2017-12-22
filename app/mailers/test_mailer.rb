@@ -1,6 +1,5 @@
 class TestMailer < ApplicationMailer
-
-  def test()
+  def test
     mail(to: 'viacheslavkarpenkoju@gmail.com', subject: 'Test mailer')
   end
 end

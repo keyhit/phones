@@ -3,6 +3,7 @@ module ApplicationHelper
   def my_phones_link
     link_to 'MyPhones - do business in communicate', branches_path
   end
+
   def admin_branches_link
     link_to (t 'admin_branches'), admin_branches_path
   end
@@ -12,7 +13,7 @@ module ApplicationHelper
   end
 
   def info_link
-    link_to (t '.info'), infos_path()
+    link_to (t '.info'), infos_path
   end
 
   def new_info_link
@@ -24,7 +25,7 @@ module ApplicationHelper
   end
 
   def feedback_link
-    link_to (t '.feedback'), new_feedback_path()
+    link_to (t '.feedback'), new_feedback_path
   end
 
   def main_link
@@ -87,13 +88,13 @@ module ApplicationHelper
   def select_branch_name
     case current_unit.locale
     when 'en'
-      Branch.all.collect { |p| [ p.branch_name_en, p.id ] }
+      Branch.all.collect { |p| [p.branch_name_en, p.id] }
     when 'ru'
-      Branch.all.collect { |p| [ p.branch_name_ru, p.id ] }
+      Branch.all.collect { |p| [p.branch_name_ru, p.id] }
     when 'uk'
-      Branch.all.collect { |p| [ p.branch_name_uk, p.id ] }
+      Branch.all.collect { |p| [p.branch_name_uk, p.id] }
     else
-      Branch.all.collect { |p| [ p.branch_name_uk, p.id ] }
+      Branch.all.collect { |p| [p.branch_name_uk, p.id] }
     end
   end
 
@@ -113,16 +114,15 @@ module ApplicationHelper
   def bootstrap_class_for_flash(flash_type)
     case flash_type
     when 'success'
-     'alert-success'
+      'alert-success'
     when 'error'
       'alert-warning'
     when 'alert'
       'alert-block'
-    when' notice'
+    when ' notice'
       'alert-info'
     else
-      flash_type.to_s + "aa"
+      flash_type.to_s + 'aa'
     end
   end
-
 end

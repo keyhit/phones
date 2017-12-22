@@ -4,11 +4,11 @@ class Branch < ApplicationRecord
   has_many :units
 
   validates :branch_name_en, presence: true,
-                          length: { minimum: 3, maximum: 120 }
+                             length: { minimum: 3, maximum: 120 }
   validates :branch_name_ru, presence: true,
-                          length: { minimum: 3, maximum: 120 }
+                             length: { minimum: 3, maximum: 120 }
   validates :branch_name_uk, presence: true,
-                          length: { minimum: 3, maximum: 120 }
+                             length: { minimum: 3, maximum: 120 }
   validates :branch_name_en, uniqueness: true
   validates :branch_name_ru, uniqueness: true
   validates :branch_name_uk, uniqueness: true

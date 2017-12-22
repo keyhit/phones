@@ -4,7 +4,7 @@ rails server -e production -p 4000
 rails s -b 0.0.0.0 -p 8080 
 rails generate controller Articles
 or
-rails generate controller WhateverControllers new create edit update destroy show
+rails generate controller Controllers new create edit update destroy show
 rails generate model Article title:string text:text
 rails db:drop
 rails db:create
@@ -24,3 +24,7 @@ depts.each {|d| p d.public_unit&.email}
 MODEL DEPARTAMENT
 has_one :public_unit, class_name: 'Unit'
 =========================
+
+rspec all progress
+
+$ rspec spec --format documentation

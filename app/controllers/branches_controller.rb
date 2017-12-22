@@ -41,14 +41,13 @@ class BranchesController < ApplicationController
 
   def destroy
     if Branch.destroy(params[:id])
-      redirect_to admin_branches_path()
+      redirect_to admin_branches_path
       flash[:notice] = 'Branch was deleted!'
     else
-      redirect_to admin_branches_path()
+      redirect_to admin_branches_path
       flash[:error] = 'Branch was not deleted!'
     end
   end
-
 
   def select_branch; end
 

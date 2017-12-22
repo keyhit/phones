@@ -12,18 +12,18 @@ class Organization < ApplicationRecord
   after_update :update_unit_branch_id
 
   def find_units_by_organization_id
-    @units = Unit.find_by(organization_id: self.id)
+    @units = Unit.find_by(organization_id: id)
   end
 
   def update_unit_branch_id
-    @units.update(branch_id: self.branch_id)
+    @units.update(branch_id: branch_id)
   end
 
   def find_departament_by_organization_id
-    @departaments = Departament.find_by(organization_id: self.id)
+    @departaments = Departament.find_by(organization_id: id)
   end
 
   def update_departament_branch_id
-    @departaments.update(branch_id: self.branch_id)
+    @departaments.update(branch_id: branch_id)
   end
 end

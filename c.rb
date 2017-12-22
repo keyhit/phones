@@ -1,9 +1,9 @@
-puts "c.rb"
+puts 'c.rb'
 class SolarSys
   attr_accessor :distanse
   def self.earth(distance)
-    @earth = "Earth"
-    @moon = "Moon"
+    @earth = 'Earth'
+    @moon = 'Moon'
     puts "From #{@moon} to #{@earth} distance #{distance} miles!"
   end
 end
@@ -15,13 +15,13 @@ end
 #   end
 # end
 
-# Space.new.galaxy 
+# Space.new.galaxy
 
 # dis = SolarSys.new
 # dis.distanse = "10"
 # dis.earth
 
-s_dis = SolarSys.earth("10")
+s_dis = SolarSys.earth('10')
 
 # class Person
 #   attr_accessor :name
