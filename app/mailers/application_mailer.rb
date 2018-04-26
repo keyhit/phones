@@ -6,3 +6,5 @@ class ApplicationMailer < ActionMailer::Base
     mail(to: email, subject: 'test')
   end
 end
+
+

@@ -3,8 +3,10 @@ uk:
     registrations:
       new:
         sign_up_header: "РЕЄСТРАЦІЯ (поля помічені \" * \" обов'язкові)"
+        post: "Посада"
+        post_description: "(80 символів максимум)"
         name: "Ім'я * "
-        name_description: "(1 символ минимум, 80 символов максимум)"
+        name_description: "(1 символ мінімум, 80 символів максимум)"
         surename: "Прізвище"
         patronymic: "По батькові"
         email: "Email * "
@@ -15,6 +17,8 @@ uk:
         password_confirmation_description: "(повторіть введення паролю)"
         sign_up: "Зареєструватися"
         cancel: "Скасувати"
+      unit:
+        signed_up: "Користувач зареєстрований"
     shared:
       links:
         log_in: "Вхід"
@@ -26,6 +30,9 @@ uk:
         password: "Пароль"
         remember_me: "Запам'ятати мене"
         log_in: "Авторизуватися"
+      unit:
+        signed_in: "Ви авторизувалися"
+        signed_out: "Ви вийшли з облікового запису"
     passwords:
       new:
         forgot_your_password: "ВІДНОВЛЕННЯ ПАРОЛЮ"

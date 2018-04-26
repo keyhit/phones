@@ -3,6 +3,8 @@ ru:
     registrations:
       new:
         sign_up_header: "РЕГИСТРАЦИЯ (поля помеченые \" * \" обязательны для заполнения)"
+        post: "Должность"
+        post_description: "(80 символов максимум)"
         name: "Имя * "
         name_description: "(1 символ мінімум, 80 символів максимум)"
         surename: "Фамилия"
@@ -15,6 +17,8 @@ ru:
         password_confirmation_description: "(повторите ввод пароля)"
         sign_up: "Зарегистрироватся"
         cancel: "Отменить"
+      unit:
+        signed_up: "Пользователь зарегистрирован"
     shared:
       links:
         log_in: "Вход"
@@ -26,6 +30,9 @@ ru:
         password: "Пароль"
         remember_me: "Запомнить меня"
         log_in: "Авторизироваться"
+      unit:
+        signed_in: "Вы авторизировались"
+        signed_out: "Вы вышли с учетной записи"
     passwords:
       new:
         forgot_your_password: "ВОССТАНОВЛЕНИЯ ПАРОЛЯ"

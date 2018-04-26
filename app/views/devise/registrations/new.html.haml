@@ -11,6 +11,12 @@
         = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
           = devise_error_messages!
           .field
+            = f.label t '.post'
+            %br/
+            %em 
+              = (t '.post_description')
+            = f.text_field :post, hide_label: true
+          .field
             = f.label t '.name'
             %br/
             %em 

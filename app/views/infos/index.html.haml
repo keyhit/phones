@@ -3,27 +3,28 @@
 = content_for :info_page do
   = t '.info_page'
 - infos.each do |info|
-  .row
-    .col-md-4
-    .col-md-4
-      %h3.center-block= infos_great_header(info)
+  .infos
+    .row
       .col-md-4
-    .row
-      .col-md-12
-        - unless info.myPhoto_url.nil?
-          = image_tag(info.myPhoto_url, size: "219x291", alt: "my photo", :class => "center-block img-rounded")
-    .row
-      .col-md-1
-      .col-md-10
-        %h4
-          = infos_header(info)
-        .row
-          .col-md-12
-            %p= infos_text(info)
-            .small #{ t ('.published') } #{ info.created_at }. #{ t ('.edited') } #{ info.updated_at }. #{ t ('.identifier') } #{ info.id }.
-            = link_to (t '.detail'), info_path(info)
-            - if role_1
-              = "/"
-              = link_to (t '.edit'), edit_info_path(info)
-              = "/"
-              = link_to (t '.delete'), info_path(info), method: :delete, data: { confirm: (t '.caution') }, remote: true
+      .col-md-4
+        %h3.center-block= infos_great_header(info)
+        .col-md-4
+      .row
+        .col-md-12
+          - unless info.myPhoto_url.nil?
+            = image_tag(info.myPhoto_url, size: "219x291", alt: "my photo", :class => "center-block img-rounded")
+      .row
+        .col-md-1
+        .col-md-10
+          %h4
+            = infos_header(info)
+          .row
+            .col-md-12
+              %p= infos_text(info)
+              .small #{ t ('.published') } #{ info.created_at }. #{ t ('.edited') } #{ info.updated_at }. #{ t ('.identifier') } #{ info.id }.
+              = link_to (t '.detail'), info_path(info)
+              - if role_1
+                = "/"
+                = link_to (t '.edit'), edit_info_path(info)
+                = "/"
+                = link_to (t '.delete'), info_path(info), method: :delete, data: { confirm: (t '.caution') }, remote: true

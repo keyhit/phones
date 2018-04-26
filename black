@@ -6,12 +6,14 @@ rails generate controller Articles
 or
 rails generate controller Controllers new create edit update destroy show
 rails generate model Article title:string text:text
+rails g migration CreateJoinTableProductsSuppliers products suppliers
 rails db:drop
 rails db:create
 rails db:migrate
 rails db:seed
 rails db:drop db:create db:migrate db:seed
 rails db:setup
+rake db:migrate:reset
 
 Keep the original ERBs? Rake task to run
 Yes rake haml:convert_erbs

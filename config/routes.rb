@@ -31,7 +31,9 @@ Rails.application.routes.draw do
       to: 'branches#admin_branches',
       as: 'admin_branches'
 
-  patch 'units/update_unit_branch_id', to: 'units#update_unit_branch_id', as: 'update_unit_branch_id'
+  patch 'units/update_unit_branch_id',
+        to: 'units#update_unit_branch_id',
+        as: 'update_unit_branch_id'
 
   patch '/branches/:branch_id/organization/:id',
         to: 'organizations#set_organization_public_unit',
@@ -83,6 +85,7 @@ Rails.application.routes.draw do
         to: 'organizations#unset_public_unit_id',
         as: 'unset_public_unit_id_branch_organization'
 
+  @ascold = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
   root 'branches#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

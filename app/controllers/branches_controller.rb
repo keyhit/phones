@@ -17,7 +17,7 @@ class BranchesController < ApplicationController
 
   def create
     @new_branch = Branch.new(branche_params)
-    if @new_branch.save!
+    if @new_branch.save
       @new_branch.valid?
       if @new_branch.save
         redirect_to admin_branches_path

@@ -1,17 +1,15 @@
-.navbar.navbar-default.navbar-bottom
-  .container-fluid
-    %p.navbar-text.pull-left
-      © 2017 - #{ t '.built_by' }
-    %p.navbar-text.pull-left
-      = t '.if_guestions_tap'
-      = info_link
-      = t '.or'
-      = feedback_link
-      = t '.or'
-      = t '.use_email'
-      = mail_to 'viacheslavkarpenkoju@gmail.com'
-      = t '.or'
-      = t '.call'
-      +380969490444.
-    %p.navbar-text.pull-left
-      Ver 1.0
+%h5
+  = t '.if_guestions_tap'
+  = info_link
+  = feedback_link
+  = t '.or'
+  = t '.use_email'
+  = mail_to 'viacheslavkarpenkoju@gmail.com'
+  = t '.or'
+  = t '.call'
+  +380969490444.
+%h5
+  © 2017 - 
+  = Time.now.strftime("%Y")
+  #{ t '.built_by' }
+  Version 1.1

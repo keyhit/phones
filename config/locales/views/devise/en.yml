@@ -3,6 +3,8 @@ en:
     registrations:
       new:
         sign_up_header: "SIGN UP (fields marked \" * \" must be full)"
+        post: "Post"
+        post_description: "(80 characters maximum)"
         name: "Name"
         name_description: "(1 character minimum, 80 characters maximum)"
         surename: "Surename"
@@ -15,6 +17,8 @@ en:
         password_confirmation_description: "(repeat input you password)"
         sign_up: "Sign up"
         cancel: "Cancel"
+      unit:
+        signed_up: "You are signed up"
     shared:
       links:
         log_in: "Log in"
@@ -26,6 +30,9 @@ en:
         password: "Password"
         remember_me: "Remember me"
         log_in: "Log in"
+      unit:
+        signed_in: "You signed in"
+        signed_out: "You signed out"
     passwords:
       new:
         forgot_your_password: "RECOVERING PASSWORD"

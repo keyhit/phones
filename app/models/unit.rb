@@ -15,7 +15,7 @@ class Unit < ApplicationRecord
 
   validates :patronymic, presence: false, allow_blank: true, length: { maximum: 80 }
 
-  validates :post, presence: true, length: { minimum: 5, maximum: 150 } unless @save_unit
+  validates :post, presence: true, length: { minimum: 5, maximum: 150 }
 
   validates :email, presence: true, format: { with: /\A^([a-z0-9\-_.]*)@([a-z0-9\-_.]*)$\z/ }, length: { maximum: 100 }
 

@@ -7,16 +7,19 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    .row
-      .col-sm-12.col-md-12.col-lg-12.col-xl-12
-      = render 'layouts/main_navigation'
-    .row
-      .col-sm-12.col-md-12.col-lg-12.col-xl-12
-      = render partial: "layouts/flash_messages", flash: flash
-    .row
-      .col-sm-12.col-md-12.col-lg-12.col-xl-12
-        = yield
-    .row
-      .col-sm-12.col-md-12.col-lg-12.col-xl-12
-        %hr
-        =  render 'layouts/footer'
+    .wrapper
+      .content
+        .row
+          .col-xs-12.col-sm-12.col-md-12.col-lg-12
+            = render 'layouts/main_navigation'
+        .row
+          .col-sm-12.col-md-12.col-lg-12.col-xl-12
+            = render partial: "layouts/flash_messages", flash: flash
+        .row
+          .col-sm-12.col-md-12.col-lg-12.col-xl-12
+            .infos
+              = yield
+      .footer
+        .row
+          .col-xs-12.col-sm-12.col-md-12.col-lg-12
+            =render 'layouts/footer'
