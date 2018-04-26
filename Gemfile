@@ -13,6 +13,7 @@ gem 'rails', '~> 5.0.1'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+gem 'web-console', '>= 3.3.0'
 
 group :development, :production, :test do
   gem 'bootstrap-sass', '~> 3.3.6'
@@ -41,7 +42,6 @@ group :development, :production, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'sprockets-rails', '~> 3.2.0'
-  gem 'web-console', '>= 3.3.0'
 end
 
 source 'https://rails-assets.org' do
