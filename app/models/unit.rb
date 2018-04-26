@@ -29,7 +29,7 @@ class Unit < ApplicationRecord
 
   validates :secondary_phone_number, presence: true, allow_blank: true, format: { with: /\A^[+][0-9]{12}$\z/ }
 
-  validates :short_phone_nunber, presence: true, allow_blank: true, format: { with: /\A^[+][0-9a-z]{12}$\z/ }
+  validates :short_phone_nunber, presence: true, allow_blank: true, format: { with: /\A^[+][0-9]{12}$\z/ } if @save_unit
 
   validates :fax, presence: true, allow_blank: true, format: { with: /\A^[+][0-9]{12}$\z/ }
 
