@@ -117,7 +117,6 @@
           = f.label :unitphoto, "Unitphoto"
           %em (change unitphoto)
           = f.file_field :unitphoto, hide_label: true
-
           - if role_1 
             = f.select :role, ROLE_1
           -elsif role_2
@@ -128,7 +127,7 @@
             = f.select :role, ROLE_4
           - elsif role_5
             = f.select :role, ROLE_5
-
+          = f.hidden_field :branch_id, value: branch.id
+          = f.hidden_field :organization_id, value: organization.id
           = f.submit :class => "btn btn-primary", data: { "disable-with": "Saving..." }
-
           = link_to 'CANCEL', branch_organization_departament_path(branch, organization, departament), :type=> "button", :class => "btn btn-danger"
