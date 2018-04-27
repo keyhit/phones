@@ -33,6 +33,7 @@ class UnitsController < ApplicationController
   end
 
   def create
+    binding.pry
     @unit = Unit.new(unit_params)
     if @unit.save
       flash[:notice] = 'Unit was saved!'

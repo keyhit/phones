@@ -8,7 +8,7 @@
       .panel-heading
         CREATE
       .panel-body 
-        = bootstrap_form_for @unit, url: branch_organization_departament_units_path( branch_id: branch.id, organization_id: organization.id, departament_id: departament.id ), method: :post do |f|
+        = bootstrap_form_for @unit, url: branch_organization_departament_units_path(branch, organization, departament), method: :post do |f|
 
           %legend Name, Surename, Patronymic
 
