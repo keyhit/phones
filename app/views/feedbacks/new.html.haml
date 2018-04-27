@@ -2,15 +2,14 @@
   = t '.new_message'
 = content_for :new_email_message_page do
   = t '.new_email_message'
-
 .row
-.col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
-  .panel.panel-primary
-    .panel-heading= t '.create_simle_message_to_creator_of_this'
-    .panel-body 
-      = bootstrap_form_for :feedback, url: send_feedback_path() do |f|
-        = f.text_field :subject, label: (t '.subject')
-        = f.text_area :body, label: (t '.body')
-        = f.file_field :file, label: (t '.file')
-        = f.submit :class => "btn btn-primary", value:(t '.send')
-        = link_to (t '.cancel'), branches_path(), :type=> "button", :class => "btn btn-danger"
+  .col-lg-offset-3.col-lg-6.col-md-offset-3.col-md-6.col-sm-offset-2.col-sm-8.col-xs-12
+    .panel.panel-primary
+      .panel-heading= t '.create_simle_message_to_creator_of_this'
+      .panel-body 
+        = bootstrap_form_for :feedback, url: send_feedback_path() do |f|
+          = f.text_field :subject, label: (t '.subject')
+          = f.text_area :body, label: (t '.body')
+          = f.file_field :file, label: (t '.file')
+          = f.submit :class => "btn btn-primary", value:(t '.send')
+          = link_to (t '.cancel'), branches_path(), { type: 'button', class: 'btn btn-danger' }
